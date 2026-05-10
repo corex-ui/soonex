@@ -9,7 +9,7 @@ defmodule Soonex.HomeA11yTest do
     Process.sleep(2400)
 
     _ = find(session, Query.css("#main-content"))
-    _ = find(session, Query.css(".link--skip", visible: false))
+    _ = find(session, Query.css(".link.link--skip", visible: :any))
 
     session
     |> A11yAudit.Wallaby.assert_no_violations()
