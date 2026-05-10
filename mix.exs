@@ -38,7 +38,7 @@ defmodule Soonex.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:corex, "~> 0.1.0-beta.3"},
+      {:corex, "~> 0.1.0-beta.4"},
       {:color, "~> 0.11"},
       {:designex, "~> 1.0"},
       {:floki, "~> 0.38"},
