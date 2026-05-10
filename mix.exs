@@ -53,7 +53,8 @@ defmodule Soonex.MixProject do
       {:wallaby, "~> 0.30", only: :test, runtime: false},
       {:a11y_audit, "~> 0.3.1", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false}
+      {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:json_polyfill, "~> 0.2 or ~> 1.0"}
     ]
   end
 
