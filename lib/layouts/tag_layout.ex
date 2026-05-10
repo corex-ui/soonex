@@ -18,7 +18,7 @@ defmodule Soonex.TagLayout do
     ~H"""
     <article class="flex min-h-dvh flex-col px-space py-size-xl">
       <div class="mx-auto flex w-full max-w-3xl flex-col gap-space-lg">
-        <.navigate to="/tags" class="link link--accent w-fit">
+        <.navigate to={Soonex.Public.path("/tags")} class="link link--accent w-fit">
           All tags
         </.navigate>
         <header class="flex flex-col gap-space-sm border-b border-border pb-space-lg">
@@ -29,7 +29,7 @@ defmodule Soonex.TagLayout do
         </header>
         <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
           <li :for={post <- @tag_posts}>
-            <.navigate to={post.permalink} class="link link--accent">
+            <.navigate to={Soonex.Public.path(post.permalink)} class="link link--accent">
               {post[:title] || "Untitled"}
             </.navigate>
           </li>

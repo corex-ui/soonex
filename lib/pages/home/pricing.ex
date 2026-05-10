@@ -175,7 +175,7 @@ defmodule Soonex.HomePage.Pricing do
               </ul>
 
               <.navigate
-                to={if tier.cta_to == :docs, do: "/docs", else: tier.cta_to}
+                to={if tier.cta_to == :docs, do: Soonex.Public.path("/docs"), else: tier.cta_to}
                 class={["mt-auto w-full justify-center", tier.cta_class]}
                 external={tier.cta_external}
               >

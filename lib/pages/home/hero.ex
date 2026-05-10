@@ -66,7 +66,7 @@ defmodule Soonex.HomePage.Hero do
           <.navigate to="#waitlist" class="button button--accent">
             Join the waitlist
           </.navigate>
-          <.navigate to="/docs" class="button button--ghost">
+          <.navigate to={Soonex.Public.path("/docs")} class="button button--ghost">
             Read the documentation <.heroicon name="hero-arrow-up-right" />
           </.navigate>
         </div>

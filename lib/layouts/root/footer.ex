@@ -21,7 +21,7 @@ defmodule Soonex.Layouts.Root.Footer do
             <p class="text-ink-muted max-w-prose">
               One email at launch. Optional build updates. No spam, no resale, ever.
             </p>
-            <.navigate to="/#waitlist" class="button button--accent w-fit">
+            <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="button button--accent w-fit">
               Join the waitlist
             </.navigate>
           </div>
@@ -36,27 +36,27 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
                 <li>
-                  <.navigate to="/#highlights" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link link--accent">
                     Highlights
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/#scale" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#scale"} class="link link--accent">
                     Scale
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/#pricing" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#pricing"} class="link link--accent">
                     Pricing
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/#faq" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#faq"} class="link link--accent">
                     FAQ
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/#waitlist" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="link link--accent">
                     Waitlist
                   </.navigate>
                 </li>
@@ -69,7 +69,7 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
                 <li>
-                  <.navigate to="/tags" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/tags")} class="link link--accent">
                     Tags
                   </.navigate>
                 </li>
@@ -79,7 +79,7 @@ defmodule Soonex.Layouts.Root.Footer do
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/docs" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/docs")} class="link link--accent">
                     Documentation
                   </.navigate>
                 </li>
@@ -89,7 +89,7 @@ defmodule Soonex.Layouts.Root.Footer do
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="/#highlights" class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link link--accent">
                     Templates
                   </.navigate>
                 </li>
@@ -161,7 +161,7 @@ defmodule Soonex.Layouts.Root.Footer do
               <.heroicon name="hero-megaphone" />
             </.navigate>
             <.navigate
-              to="/feed.xml"
+              to={Soonex.Public.path("/feed.xml")}
               class="button button--circle button--ghost"
               aria_label="RSS"
             >

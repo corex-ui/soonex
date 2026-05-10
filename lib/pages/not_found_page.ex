@@ -26,7 +26,7 @@ defmodule Soonex.NotFoundPage do
         <p class="m-0 text-ink-muted">
           The URL may be mistyped, or the page may have moved. Try the home page.
         </p>
-        <.navigate to="/" class="button button--accent w-fit self-center">
+        <.navigate to={Soonex.Public.path("/")} class="button button--accent w-fit self-center">
           Back to home
         </.navigate>
       </div>

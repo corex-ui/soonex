@@ -24,7 +24,7 @@ defmodule Soonex.TagsIndexPage do
     ~H"""
     <article class="flex min-h-dvh flex-col px-space py-size-xl">
       <div class="mx-auto flex w-full max-w-3xl flex-col gap-space-lg">
-        <.navigate to="/" class="link link--accent w-fit">
+        <.navigate to={Soonex.Public.path("/")} class="link link--accent w-fit">
           Back to home
         </.navigate>
         <header class="flex flex-col gap-space-sm border-b border-border pb-space-lg">
@@ -35,7 +35,7 @@ defmodule Soonex.TagsIndexPage do
         </header>
         <ul :if={@sorted_tags != []} class="m-0 flex list-none flex-col gap-space-sm p-0">
           <li :for={{tag, posts} <- @sorted_tags}>
-            <.navigate to={tag.permalink} class="link link--accent">
+            <.navigate to={Soonex.Public.path(tag.permalink)} class="link link--accent">
               {tag.tag}
             </.navigate>
             <span class="text-ink-muted">

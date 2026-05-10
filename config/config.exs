@@ -9,6 +9,8 @@ config :tableau, :reloader,
 
 config :web_dev_utils, :reload_log, true
 
+config :soonex, :public_path_prefix, ""
+
 config :esbuild,
   version: "0.25.5",
   default: [
@@ -41,7 +43,7 @@ end
 
 config :tableau, :config,
   url: "http://localhost:4999",
-  include_dir: Path.expand("../static", __DIR__),
+  include_dir: Path.expand("../extra", __DIR__),
   converters: [md: Soonex.MDExConverter],
   markdown: [
     mdex: [

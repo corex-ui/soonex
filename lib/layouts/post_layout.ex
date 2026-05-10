@@ -27,10 +27,10 @@ defmodule Soonex.PostLayout do
     <article class="flex min-h-dvh flex-col px-space py-size-xl">
       <div class="mx-auto flex w-full max-w-3xl flex-col gap-space-lg">
         <div class="flex flex-col gap-space-sm sm:flex-row sm:flex-wrap sm:gap-space">
-          <.navigate to="/" class="link link--accent w-fit">
+          <.navigate to={Soonex.Public.path("/")} class="link link--accent w-fit">
             Back to home
           </.navigate>
-          <.navigate to="/tags" class="link link--accent w-fit">
+          <.navigate to={Soonex.Public.path("/tags")} class="link link--accent w-fit">
             Browse tags
           </.navigate>
         </div>
