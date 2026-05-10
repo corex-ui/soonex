@@ -79,6 +79,8 @@ MIX_ENV=prod mix build
 
 Outputs to `_site/`. In production, set **`SOONEX_PUBLIC_URL`** (for example in GitHub Actions or repository variables) so **`config/prod.exs`** can set **`config :tableau, :config, url:`** to your public origin; when unset, the default is **`https://corex-ui.github.io/soonex`** for the published demo. Override for your own domain as needed.
 
+GitHub Pages via [`.github/workflows/pages.yml`](.github/workflows/pages.yml): set repository **Settings → Pages → Build and deployment → Source** to **GitHub Actions** (not “Deploy from a branch”). Until that is enabled, `actions/deploy-pages` returns **404** when creating a deployment. Org-owned repos may also need Pages allowed by organization policy.
+
 After permalink or routing changes, remove stale directories under `_site/` (for example `rm -rf _site`) before rebuilding so old paths do not linger on disk.
 
 ## Custom 404 (static hosts)
