@@ -30,35 +30,35 @@ defmodule Soonex.HomePage.Faq do
               Corex.Content.new([
                 %{
                   value: "stack",
-                  trigger: "What is Soonex?",
+                  label: "What is Soonex?",
                   content:
                     "A Tableau-driven coming-soon site that demonstrates Corex on static HTML: countdown, highlights, metrics, pricing, FAQ, waitlist, Markdown journal post, and footer. Tableau emits files you can host on GitHub Pages, S3, or any CDN.",
                   meta: %{icon: "hero-squares-2x2"}
                 },
                 %{
                   value: "tableau",
-                  trigger: "How do builds and previews work?",
+                  label: "How do builds and previews work?",
                   content:
                     "The asset alias refreshes palette JSON, Designex, Tailwind, and esbuild. Tableau writes _site for production. The dev server watches HEEx and Markdown while you work. Journal posts live under _posts and render through MDEx.",
                   meta: %{icon: "hero-globe-alt"}
                 },
                 %{
                   value: "liveview",
-                  trigger: "What about Corex MCP?",
+                  label: "What about Corex MCP?",
                   content:
                     "In development, Corex can expose MCP tools backed by the component registry, list_components, get_component, so assistants pull slots and modifiers instead of inventing markup.",
                   meta: %{icon: "hero-bolt"}
                 },
                 %{
                   value: "themes",
-                  trigger: "Themes and modes?",
+                  label: "Themes and modes?",
                   content:
                     "data-theme and data-mode switch Neo, Uno, Duo, and Leo; theme and mode scripts in the layout sync controls and localStorage.",
                   meta: %{icon: "hero-swatch"}
                 },
                 %{
                   value: "next",
-                  trigger: "What comes after this static template?",
+                  label: "What comes after this static template?",
                   content:
                     "A fuller Phoenix Soonex application template is planned on top of the same Corex primitives, auth, data, and realtime, without throwing away this landing. Stay on the waitlist for migration notes.",
                   meta: %{icon: "hero-rocket-launch"}
@@ -69,7 +69,7 @@ defmodule Soonex.HomePage.Faq do
             <:trigger :let={item}>
               <span class="flex min-w-0 items-center gap-space">
                 <.heroicon name={item.meta.icon} />
-                <span class="min-w-0 text-start">{item.trigger}</span>
+                <span class="min-w-0 text-start">{item.label}</span>
               </span>
             </:trigger>
             <:content :let={item}>
