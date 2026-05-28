@@ -12,12 +12,12 @@ defmodule Soonex.HomePage.Highlights do
       aria-labelledby="soonex-highlights-heading"
       data-reveal
     >
-      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
         <div class="layout__section-intro gap-space-lg pb-space-lg">
           <h2 id="soonex-highlights-heading" class="text-ink-brand">
             Elixir from palette to page.
           </h2>
-          <p>
+          <p class="leading-relaxed">
             Palette, Corex, and Tailwind v4 read the same tokens. Scripts bundle from one app. Tableau ships static HTML built from HEEx you would use with LiveView, compiled ahead of deploy.
           </p>
         </div>
@@ -45,7 +45,7 @@ defmodule Soonex.HomePage.Highlights do
           </:item>
         </.marquee>
 
-        <ul class="m-0 grid list-none gap-space p-0 lg:grid-cols-3" data-stagger>
+        <ul class="m-0 grid list-none gap-space-lg p-0 lg:grid-cols-3" data-stagger>
           <%= for card <- [
                  %{
                    title: "Static build, Elixir-native",
@@ -63,9 +63,9 @@ defmodule Soonex.HomePage.Highlights do
                      "Corex exposes a component registry and MCP tools in development so assistants resolve slots, modifiers, and anatomy instead of guessing markup."
                  }
                ] do %>
-            <li class="min-w-0 rounded-xl border border-border bg-layer p-space-lg">
+            <li class="min-w-0 rounded-xl border border-border bg-layer p-size">
               <h3>{card.title}</h3>
-              <p>{card.body}</p>
+              <p class="leading-relaxed">{card.body}</p>
             </li>
           <% end %>
         </ul>

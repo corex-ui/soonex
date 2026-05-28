@@ -12,7 +12,7 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 ## Quick start
 
 ```shell
-cd templates/soonex
+cd soonex
 mix deps.get
 mix designex corex
 cd assets && npm install && cd ..

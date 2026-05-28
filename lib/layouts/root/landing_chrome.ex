@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Root.LandingChrome do
       class="fixed inset-x-0 top-0 z-50 flex w-full justify-center px-space pt-1 motion-safe:will-change-[opacity,transform]"
       style="opacity: 0; transform: translate3d(0, -100%, 0); pointer-events: none;"
     >
-      <div class="flex w-full max-w-4xl flex-col items-center gap-space-sm rounded-4xl rounded-t-none border border-t-0 border-border bg-layer px-size py-space-sm shadow-ui sm:flex-row sm:justify-center sm:gap-space-xl sm:py-space">
+      <div class="flex w-full max-w-4xl flex-col items-center gap-space rounded-4xl rounded-t-none border border-t-0 border-border bg-layer px-size py-space-sm shadow-ui sm:flex-row sm:justify-center sm:gap-space-xl sm:py-space">
         <p class="ui-label max-sm:sr-only uppercase tracking-widest text-ink-muted">
           Launching in
         </p>
@@ -36,7 +36,7 @@ defmodule Soonex.Layouts.Root.LandingChrome do
           countdown
           start_ms={@countdown_start_ms}
           target_ms={0}
-          class="timer timer--accent timer--text-xs sm:timer--text-sm timer--rounded-xl"
+          class="timer timer--brand timer--text-xs sm:timer--text-sm timer--rounded-xl"
         >
           <:day_label>Days</:day_label>
           <:hour_label>Hours</:hour_label>

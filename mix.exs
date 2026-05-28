@@ -9,7 +9,8 @@ defmodule Soonex.MixProject do
       start_permanent: Mix.env() == :prod,
       compilers: Mix.compilers(),
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      usage_rules: usage_rules()
     ]
   end
 
@@ -38,7 +39,7 @@ defmodule Soonex.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:corex, "~> 0.1.0-beta.5"},
+      {:corex, "~> 0.1.0"},
       {:color, "~> 0.11"},
       {:designex, "~> 1.0"},
       {:floki, "~> 0.38"},
@@ -53,8 +54,18 @@ defmodule Soonex.MixProject do
       {:wallaby, "~> 0.30", only: :test, runtime: false},
       {:a11y_audit, "~> 0.3.1", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false}
+      {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:usage_rules, "~> 1.1", only: :dev}
     ] ++ maybe_json_polyfill()
+  end
+
+  defp usage_rules do
+    [
+      skills: [
+        location: ".cursor/skills",
+        package_skills: [:corex]
+      ]
+    ]
   end
 
   defp maybe_json_polyfill do

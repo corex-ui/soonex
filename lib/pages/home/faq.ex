@@ -12,10 +12,10 @@ defmodule Soonex.HomePage.Faq do
       aria-labelledby="soonex-faq-heading"
       data-reveal
     >
-      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size">
-        <div class="layout__section-intro">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
+        <div class="layout__section-intro gap-space-lg">
           <h2 id="soonex-faq-heading" class="text-ink-brand">FAQ</h2>
-          <p>
+          <p class="leading-relaxed">
             How static Tableau, Corex MCP, Markdown posts, and the asset side of this repo fit together, and how it relates to a future Phoenix Soonex application template.
           </p>
         </div>

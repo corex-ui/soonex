@@ -15,17 +15,17 @@ defmodule Soonex.HomePage.Pricing do
       aria-labelledby="soonex-pricing-heading"
       data-reveal
     >
-      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size">
-        <div class="layout__section-intro">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
+        <div class="layout__section-intro gap-space-lg">
           <h2 id="soonex-pricing-heading" class="text-ink-brand">
             Soonex stays free. Corex stays free. This block is a pricing example.
           </h2>
-          <p>
+          <p class="leading-relaxed">
             Soonex is MIT-licensed and will remain free to use and fork. Corex is free. Most products still need a pricing section, below is sample copy, tiers, and a billing toggle you replace with your own plans and checkout.
           </p>
         </div>
 
-        <p class="m-0 text-center text-sm text-ink-muted">
+        <p class="m-0 text-center text-sm leading-relaxed text-ink-muted">
           Demonstrates Corex Switch wiring for monthly versus yearly display, swap labels and math for your billing rules.
         </p>
 
@@ -115,7 +115,7 @@ defmodule Soonex.HomePage.Pricing do
               data-studio-from-monthly={Map.get(tier, :studio_from_monthly)}
               data-studio-from-yearly={Map.get(tier, :studio_from_yearly)}
               class={[
-                "relative flex min-w-0 flex-col gap-space rounded-xl border bg-layer p-size-lg",
+                "relative flex min-w-0 flex-col gap-space-lg rounded-xl border bg-layer p-size-lg",
                 if(tier.featured,
                   do: "border-accent shadow-ui ring-1 ring-accent/30 lg:-translate-y-2",
                   else: "border-border"
@@ -133,7 +133,7 @@ defmodule Soonex.HomePage.Pricing do
                   Tier {String.pad_leading("#{idx + 1}", 2, "0")}
                 </p>
                 <h3>{tier.name}</h3>
-                <p class="m-0">{tier.blurb}</p>
+                <p class="m-0 leading-relaxed">{tier.blurb}</p>
               </div>
 
               <%= case tier.tier_key do %>
@@ -165,7 +165,7 @@ defmodule Soonex.HomePage.Pricing do
                   </div>
               <% end %>
 
-              <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
+              <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <%= for perk <- tier.perks do %>
                   <li class="flex items-start gap-space-sm text-start">
                     <.heroicon name="hero-check-circle" />

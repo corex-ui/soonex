@@ -13,14 +13,14 @@ defmodule Soonex.HomePage.Waitlist do
       data-reveal
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-space-xl lg:flex-row lg:items-start lg:justify-center lg:gap-x-space-xl">
-        <div class="flex w-full max-w-md flex-col items-center gap-space text-center">
+        <div class="flex w-full max-w-md flex-col items-center gap-space-lg text-center">
           <h2 id="soonex-waitlist-heading" class="text-ink-brand">
             Be there when Soonex ships.
           </h2>
-          <p class="m-0">
+          <p class="m-0 leading-relaxed">
             One launch email, optional build notes, no spam. Full Phoenix template lands after this static core. Get notified for both.
           </p>
-          <ul class="m-0 flex w-full list-none flex-col gap-space-sm p-0 text-start">
+          <ul class="m-0 flex w-full list-none flex-col gap-space p-0 text-start">
             <%= for line <- [
                   "Early access, two weeks before the public drop.",
                   "Launch mail only: you choose product updates or silence.",
@@ -37,7 +37,7 @@ defmodule Soonex.HomePage.Waitlist do
         <div class="w-full max-w-md min-w-0">
           <form
             id="soonex-waitlist-form"
-            class="flex flex-col gap-space"
+            class="flex flex-col gap-space-lg"
             data-waitlist-toast-title="Thanks for joining"
             data-waitlist-toast-description="This demo does not send or collect email. Point this form at your API or endpoint when you ship."
           >

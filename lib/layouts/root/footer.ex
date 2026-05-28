@@ -11,14 +11,14 @@ defmodule Soonex.Layouts.Root.Footer do
     <footer class="layout__footer">
       <div class="layout__footer__content">
         <div class="grid gap-space-xl lg:grid-cols-12 lg:gap-space-lg">
-          <div class="flex flex-col gap-space lg:col-span-4">
+          <div class="flex flex-col gap-space-lg lg:col-span-4">
             <span class="badge badge--accent w-fit">
               Coming soon · Q3 2026
             </span>
             <h2>
               Be there when Soonex ships.
             </h2>
-            <p class="text-ink-muted max-w-prose">
+            <p class="max-w-prose leading-relaxed text-ink-muted">
               One email at launch. Optional build updates. No spam, no resale, ever.
             </p>
             <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="button button--accent w-fit">
@@ -34,7 +34,7 @@ defmodule Soonex.Layouts.Root.Footer do
               <p class="ui-label uppercase tracking-widest text-ink-muted">
                 Product
               </p>
-              <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
+              <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
                   <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link link--accent">
                     Highlights
@@ -67,7 +67,7 @@ defmodule Soonex.Layouts.Root.Footer do
               <p class="ui-label uppercase tracking-widest text-ink-muted">
                 Resources
               </p>
-              <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
+              <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
                   <.navigate to={Soonex.Public.path("/tags")} class="link link--accent">
                     Tags
@@ -100,7 +100,7 @@ defmodule Soonex.Layouts.Root.Footer do
               <p class="ui-label uppercase tracking-widest text-ink-muted">
                 Company
               </p>
-              <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
+              <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
                   <.navigate to="#" class="link link--accent">About</.navigate>
                 </li>
@@ -119,7 +119,7 @@ defmodule Soonex.Layouts.Root.Footer do
               <p class="ui-label uppercase tracking-widest text-ink-muted">
                 Legal
               </p>
-              <ul class="m-0 flex list-none flex-col gap-space-sm p-0">
+              <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
                   <.navigate to="#" class="link link--accent">Privacy</.navigate>
                 </li>

@@ -57,23 +57,22 @@ defmodule Soonex.Layouts.Root.Demo do
                 </:item_indicator>
               </.select>
 
-              <.toggle_group
+              <.toggle
                 id="mode-switcher"
-                class="toggle-group toggle-group--sm toggle-group--duo toggle-group--circle"
-                multiple={false}
-                deselectable={true}
-                value={Soonex.Mode.toggle_value(@mode)}
+                class="toggle toggle--sm"
+                data-toggle-dual-label
+                pressed={@mode == "dark"}
                 dir="ltr"
-                on_value_change_client="corex:set-mode"
+                on_pressed_change_client="corex:set-mode"
               >
-                <:label class="sr-only">Color mode</:label>
-                <:item
-                  value="dark"
-                  aria_label="Toggle color mode"
-                >
-                  {Soonex.Mode.dual_icon()}
-                </:item>
-              </.toggle_group>
+                <span class="sr-only">Color mode</span>
+                <span>
+                  <.heroicon name="hero-moon" />
+                </span>
+                <span data-pressed>
+                  <.heroicon name="hero-sun" />
+                </span>
+              </.toggle>
             </div>
           </div>
         </:content>

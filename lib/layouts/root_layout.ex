@@ -225,13 +225,11 @@ defmodule Soonex.RootLayout do
   end
 
   defp page_path_from_page(page) when is_map(page) do
-    perm = page[:permalink] || page["permalink"]
-
-    cond do
-      is_binary(perm) and perm != "" ->
+    case page[:permalink] do
+      perm when is_binary(perm) and perm != "" ->
         if String.starts_with?(perm, "/"), do: perm, else: "/" <> perm
 
-      true ->
+      _ ->
         "/"
     end
   end

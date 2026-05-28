@@ -18,12 +18,12 @@ defmodule Soonex.NotFoundPage do
       class="flex min-h-dvh flex-col items-center justify-center gap-space-lg px-space py-size-xl text-center"
       aria-labelledby="soonex-not-found-heading"
     >
-      <div class="flex max-w-md flex-col gap-space">
+      <div class="flex max-w-md flex-col gap-space-lg">
         <p class="ui-label m-0 text-ink-muted">404</p>
         <h1 id="soonex-not-found-heading" class="m-0 text-4xl font-bold tracking-tight">
           Page not found
         </h1>
-        <p class="m-0 text-ink-muted">
+        <p class="m-0 leading-relaxed text-ink-muted">
           The URL may be mistyped, or the page may have moved. Try the home page.
         </p>
         <.navigate to={Soonex.Public.path("/")} class="button button--accent w-fit self-center">

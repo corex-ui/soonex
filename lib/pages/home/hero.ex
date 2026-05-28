@@ -40,11 +40,11 @@ defmodule Soonex.HomePage.Hero do
           <% end %>
         </h1>
 
-        <div class="flex max-w-xl flex-col gap-space-sm text-balance">
-          <h2 class="m-0 max-w-xl font-sans !text-base !font-normal leading-snug text-ink-muted md:!text-lg">
+        <div class="flex max-w-xl flex-col gap-space text-balance">
+          <h2 class="m-0 max-w-xl font-sans !text-base !font-normal leading-normal text-ink-muted md:!text-lg">
             <span class="text-ink-brand">Tableau</span>{" "} compiles HEEx to static files.
           </h2>
-          <h3 class="m-0 max-w-xl font-sans !text-base !font-normal leading-snug text-ink-muted md:!text-lg">
+          <h3 class="m-0 max-w-xl font-sans !text-base !font-normal leading-normal text-ink-muted md:!text-lg">
             <span class="text-ink-brand">Corex</span>{" "} covers components, tokens, Markdown, themes, and MCP for your editor.
           </h3>
         </div>
@@ -54,7 +54,7 @@ defmodule Soonex.HomePage.Hero do
           countdown
           start_ms={@countdown_ms}
           target_ms={0}
-          class="timer timer--accent timer--text-lg sm:timer--text-xl md:timer--text-2xl lg:timer--text-5xl timer--rounded-xl"
+          class="timer timer--brand timer--text-lg sm:timer--text-xl md:timer--text-2xl lg:timer--text-5xl timer--rounded-xl"
         >
           <:day_label>Days</:day_label>
           <:hour_label>Hours</:hour_label>
@@ -62,7 +62,7 @@ defmodule Soonex.HomePage.Hero do
           <:second_label>Sec</:second_label>
         </.timer>
 
-        <div class="flex w-full flex-col items-center gap-space-sm sm:flex-row sm:justify-center">
+        <div class="flex w-full flex-col items-center gap-space sm:flex-row sm:justify-center">
           <.navigate to="#waitlist" class="button button--accent">
             Join the waitlist
           </.navigate>

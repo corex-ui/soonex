@@ -17,36 +17,55 @@ defmodule Soonex.PostLayout do
         _ -> nil
       end
 
+    tags =
+      page
+      |> Map.get(:tags, [])
+      |> List.wrap()
+      |> Enum.filter(&is_binary/1)
+
     assigns =
       assigns
       |> Map.put(:post_title, title)
       |> Map.put(:post_description, description)
       |> Map.put(:post_date_label, date_label)
+      |> Map.put(:post_tags, tags)
 
     ~H"""
-    <article class="flex min-h-dvh flex-col px-space py-size-xl">
-      <div class="mx-auto flex w-full max-w-3xl flex-col gap-space-lg">
-        <div class="flex flex-col gap-space-sm sm:flex-row sm:flex-wrap sm:gap-space">
-          <.navigate to={Soonex.Public.path("/")} class="link link--accent w-fit">
-            Back to home
-          </.navigate>
-          <.navigate to={Soonex.Public.path("/tags")} class="link link--accent w-fit">
-            Browse tags
-          </.navigate>
+    <article class="blog blog--post">
+      <header class="blog__post-hero" aria-labelledby="post-heading">
+        <div class="blog__inner blog__post-hero__inner">
+          <div class="blog__post-toolbar">
+            <.navigate to={Soonex.Public.path("/")} class="blog__back link link--accent">
+              <.heroicon name="hero-arrow-left" class="blog__back__icon" /> Back to home
+            </.navigate>
+            <.navigate to={Soonex.Public.path("/tags")} class="blog__back link link--accent">
+              Browse tags
+            </.navigate>
+          </div>
+          <div class="blog__post-head">
+            <div :if={@post_date_label} class="blog__post-meta">
+              <p class="blog__eyebrow">{@post_date_label}</p>
+            </div>
+            <h1 id="post-heading" class="blog__display">{@post_title}</h1>
+            <p :if={@post_description} class="blog__lede blog__lede--post">{@post_description}</p>
+            <ul
+              :if={@post_tags != []}
+              class="blog__post-tags m-0 flex list-none flex-wrap gap-space-sm p-0"
+            >
+              <li :for={tag <- @post_tags}>
+                <span class="badge badge--muted badge--sm">{tag}</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <header class="flex flex-col gap-space-sm border-b border-border pb-space-lg">
-          <h1 class="m-0">{@post_title}</h1>
-          <%= if @post_date_label do %>
-            <p class="ui-label m-0 text-ink-muted">{@post_date_label}</p>
-          <% end %>
-          <%= if @post_description do %>
-            <p class="m-0 max-w-prose text-ink-muted">{@post_description}</p>
-          <% end %>
-        </header>
-        <div class="typo markdown max-w-none">
-          {{:safe, render(@inner_content)}}
+      </header>
+      <section class="blog__post-body" aria-label="Article">
+        <div class="blog__inner">
+          <div class="blog__article-shell typo markdown prose max-w-none">
+            {{:safe, render(@inner_content)}}
+          </div>
         </div>
-      </div>
+      </section>
     </article>
     """
   end
