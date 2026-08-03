@@ -14,7 +14,7 @@ defmodule Soonex.HomePage.Waitlist do
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-space-xl lg:flex-row lg:items-start lg:justify-center lg:gap-x-space-xl">
         <div class="flex w-full max-w-md flex-col items-center gap-space-lg text-center">
-          <h2 id="soonex-waitlist-heading" class="text-ink-brand">
+          <h2 id="soonex-waitlist-heading" class="text-brand-text">
             Be there when Soonex ships.
           </h2>
           <p class="m-0 leading-relaxed">
@@ -56,7 +56,7 @@ defmodule Soonex.HomePage.Waitlist do
               </div>
               <button
                 type="submit"
-                class="button button--accent button--sm"
+                class="button ui-accent ui-solid ui-size-sm"
               >
                 Join waitlist
               </button>
@@ -65,7 +65,7 @@ defmodule Soonex.HomePage.Waitlist do
               id="soonex-waitlist-updates"
               name="waitlist[updates]"
               checked={true}
-              class="checkbox checkbox--accent"
+              class="checkbox ui-accent"
             >
               <:indicator>
                 <.heroicon name="hero-check" />

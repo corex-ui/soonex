@@ -35,10 +35,10 @@ defmodule Soonex.PostLayout do
       <header class="blog__post-hero" aria-labelledby="post-heading">
         <div class="blog__inner blog__post-hero__inner">
           <div class="blog__post-toolbar">
-            <.navigate to={Soonex.Public.path("/")} class="blog__back link link--accent">
+            <.navigate to={Soonex.Public.path("/")} class="blog__back link ui-accent">
               <.heroicon name="hero-arrow-left" class="blog__back__icon" /> Back to home
             </.navigate>
-            <.navigate to={Soonex.Public.path("/tags")} class="blog__back link link--accent">
+            <.navigate to={Soonex.Public.path("/tags")} class="blog__back link ui-accent">
               Browse tags
             </.navigate>
           </div>
@@ -53,7 +53,7 @@ defmodule Soonex.PostLayout do
               class="blog__post-tags m-0 flex list-none flex-wrap gap-space-sm p-0"
             >
               <li :for={tag <- @post_tags}>
-                <span class="badge badge--muted badge--sm">{tag}</span>
+                <span class="badge ui-size-sm">{tag}</span>
               </li>
             </ul>
           </div>

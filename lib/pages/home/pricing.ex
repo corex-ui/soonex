@@ -17,7 +17,7 @@ defmodule Soonex.HomePage.Pricing do
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
         <div class="layout__section-intro gap-space-lg">
-          <h2 id="soonex-pricing-heading" class="text-ink-brand">
+          <h2 id="soonex-pricing-heading" class="text-brand-text">
             Soonex stays free. Corex stays free. This block is a pricing example.
           </h2>
           <p class="leading-relaxed">
@@ -36,7 +36,7 @@ defmodule Soonex.HomePage.Pricing do
 
           <.switch
             id="soonex-pricing-yearly"
-            class="switch switch--accent switch--sm"
+            class="switch ui-accent ui-size-sm"
             on_checked_change_client="soonex-pricing-billing"
             aria_label="Toggle yearly billing with twenty percent discount"
           >
@@ -64,7 +64,7 @@ defmodule Soonex.HomePage.Pricing do
                    cta_label: "Read the docs",
                    cta_to: :docs,
                    cta_external: false,
-                   cta_class: "button button--ghost",
+                   cta_class: "button ui-ghost",
                    featured: false
                  },
                  %{
@@ -84,7 +84,7 @@ defmodule Soonex.HomePage.Pricing do
                    cta_label: "Example primary CTA",
                    cta_to: "#waitlist",
                    cta_external: false,
-                   cta_class: "button button--accent",
+                   cta_class: "button ui-accent ui-solid",
                    featured: true
                  },
                  %{
@@ -105,7 +105,7 @@ defmodule Soonex.HomePage.Pricing do
                    cta_label: "Example contact CTA",
                    cta_to: "#",
                    cta_external: false,
-                   cta_class: "button button--ghost",
+                   cta_class: "button ui-ghost",
                    featured: false
                  }
                ]) do %>
@@ -115,7 +115,7 @@ defmodule Soonex.HomePage.Pricing do
               data-studio-from-monthly={Map.get(tier, :studio_from_monthly)}
               data-studio-from-yearly={Map.get(tier, :studio_from_yearly)}
               class={[
-                "relative flex min-w-0 flex-col gap-space-lg rounded-xl border bg-layer p-size-lg",
+                "relative flex min-w-0 flex-col gap-space-lg rounded-xl border bg-surface p-size-lg",
                 if(tier.featured,
                   do: "border-accent shadow-ui ring-1 ring-accent/30 lg:-translate-y-2",
                   else: "border-border"
@@ -123,7 +123,7 @@ defmodule Soonex.HomePage.Pricing do
               ]}
             >
               <%= if tier.featured do %>
-                <span class="badge badge--accent absolute right-space top-0 -translate-y-1/2">
+                <span class="badge ui-accent absolute right-space top-0 -translate-y-1/2">
                   Example highlight
                 </span>
               <% end %>
@@ -186,7 +186,7 @@ defmodule Soonex.HomePage.Pricing do
         </ul>
 
         <p class="m-0 text-center text-sm text-ink-muted">
-          Questions about the template or Corex? <.navigate to="#" class="link link--accent">hello@soonex.dev</.navigate>.
+          Questions about the template or Corex? <.navigate to="#" class="link ui-accent">hello@soonex.dev</.navigate>.
         </p>
       </div>
     </section>

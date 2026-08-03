@@ -14,7 +14,7 @@ defmodule Soonex.HomePage.Faq do
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
         <div class="layout__section-intro gap-space-lg">
-          <h2 id="soonex-faq-heading" class="text-ink-brand">FAQ</h2>
+          <h2 id="soonex-faq-heading" class="text-brand-text">FAQ</h2>
           <p class="leading-relaxed">
             How static Tableau, Corex MCP, Markdown posts, and the asset side of this repo fit together, and how it relates to a future Phoenix Soonex application template.
           </p>
@@ -23,7 +23,7 @@ defmodule Soonex.HomePage.Faq do
         <div class="min-w-0 w-full">
           <.accordion
             id="soonex-faq"
-            class="accordion accordion--accent accordion--sm sm:accordion--md lg:accordion--xl w-full max-w-6xl"
+            class="accordion ui-accent ui-size-sm sm:ui-size-md lg:ui-size-xl w-full max-w-6xl"
             multiple={false}
             value="stack"
             items={
@@ -39,7 +39,7 @@ defmodule Soonex.HomePage.Faq do
                   value: "tableau",
                   label: "How do builds and previews work?",
                   content:
-                    "The asset alias refreshes palette JSON, Designex, Tailwind, and esbuild. Tableau writes _site for production. The dev server watches HEEx and Markdown while you work. Journal posts live under _posts and render through MDEx.",
+                    "The asset alias runs mix corex.design.build, then Tailwind and esbuild. Tableau writes _site for production. The dev server watches HEEx and Markdown while you work. Journal posts live under _posts and render through MDEx.",
                   meta: %{icon: "hero-globe-alt"}
                 },
                 %{
@@ -82,7 +82,7 @@ defmodule Soonex.HomePage.Faq do
         </div>
 
         <p class="m-0 text-center text-sm">
-          Still deciding? <.navigate to="#waitlist" class="link link--brand">Join the waitlist</.navigate>. We ship quietly and read every reply.
+          Still deciding? <.navigate to="#waitlist" class="link ui-brand">Join the waitlist</.navigate>. We ship quietly and read every reply.
         </p>
       </div>
     </section>

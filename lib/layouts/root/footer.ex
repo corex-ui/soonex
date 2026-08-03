@@ -12,7 +12,7 @@ defmodule Soonex.Layouts.Root.Footer do
       <div class="layout__footer__content">
         <div class="grid gap-space-xl lg:grid-cols-12 lg:gap-space-lg">
           <div class="flex flex-col gap-space-lg lg:col-span-4">
-            <span class="badge badge--accent w-fit">
+            <span class="badge ui-accent w-fit">
               Coming soon · Q3 2026
             </span>
             <h2>
@@ -21,7 +21,10 @@ defmodule Soonex.Layouts.Root.Footer do
             <p class="max-w-prose leading-relaxed text-ink-muted">
               One email at launch. Optional build updates. No spam, no resale, ever.
             </p>
-            <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="button button--accent w-fit">
+            <.navigate
+              to={Soonex.Public.path("/") <> "#waitlist"}
+              class="button ui-accent ui-solid w-fit"
+            >
               Join the waitlist
             </.navigate>
           </div>
@@ -36,27 +39,27 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link ui-accent">
                     Highlights
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#scale"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#scale"} class="link ui-accent">
                     Scale
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#pricing"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#pricing"} class="link ui-accent">
                     Pricing
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#faq"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#faq"} class="link ui-accent">
                     FAQ
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#waitlist"} class="link ui-accent">
                     Waitlist
                   </.navigate>
                 </li>
@@ -69,27 +72,27 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
-                  <.navigate to={Soonex.Public.path("/tags")} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/tags")} class="link ui-accent">
                     Tags
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">
+                  <.navigate to="#" class="link ui-accent">
                     GitHub
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/docs")} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/docs")} class="link ui-accent">
                     Documentation
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">
+                  <.navigate to="#" class="link ui-accent">
                     Changelog
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link link--accent">
+                  <.navigate to={Soonex.Public.path("/") <> "#highlights"} class="link ui-accent">
                     Templates
                   </.navigate>
                 </li>
@@ -102,15 +105,15 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
-                  <.navigate to="#" class="link link--accent">About</.navigate>
+                  <.navigate to="#" class="link ui-accent">About</.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">
+                  <.navigate to="#" class="link ui-accent">
                     Contact
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">Press</.navigate>
+                  <.navigate to="#" class="link ui-accent">Press</.navigate>
                 </li>
               </ul>
             </div>
@@ -121,13 +124,13 @@ defmodule Soonex.Layouts.Root.Footer do
               </p>
               <ul class="m-0 flex list-none flex-col gap-space p-0">
                 <li>
-                  <.navigate to="#" class="link link--accent">Privacy</.navigate>
+                  <.navigate to="#" class="link ui-accent">Privacy</.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">Terms</.navigate>
+                  <.navigate to="#" class="link ui-accent">Terms</.navigate>
                 </li>
                 <li>
-                  <.navigate to="#" class="link link--accent">
+                  <.navigate to="#" class="link ui-accent">
                     License
                   </.navigate>
                 </li>
@@ -148,21 +151,21 @@ defmodule Soonex.Layouts.Root.Footer do
           >
             <.navigate
               to="#"
-              class="button button--circle button--ghost"
+              class="button ui-ghost ui-trigger--circle"
               aria_label="GitHub"
             >
               <.heroicon name="hero-code-bracket-square" />
             </.navigate>
             <.navigate
               to="#"
-              class="button button--circle button--ghost"
+              class="button ui-ghost ui-trigger--circle"
               aria_label="X / Twitter"
             >
               <.heroicon name="hero-megaphone" />
             </.navigate>
             <.navigate
               to={Soonex.Public.path("/feed.xml")}
-              class="button button--circle button--ghost"
+              class="button ui-ghost ui-trigger--circle"
               aria_label="RSS"
             >
               <.heroicon name="hero-rss" />

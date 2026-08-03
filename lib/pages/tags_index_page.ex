@@ -24,7 +24,7 @@ defmodule Soonex.TagsIndexPage do
     ~H"""
     <article class="flex min-h-dvh flex-col px-space py-size-xl">
       <div class="mx-auto flex w-full max-w-3xl flex-col gap-size">
-        <.navigate to={Soonex.Public.path("/")} class="link link--accent w-fit">
+        <.navigate to={Soonex.Public.path("/")} class="link ui-accent w-fit">
           Back to home
         </.navigate>
         <header class="flex flex-col gap-space border-b border-border pb-space-lg">
@@ -35,7 +35,7 @@ defmodule Soonex.TagsIndexPage do
         </header>
         <ul :if={@sorted_tags != []} class="m-0 flex list-none flex-col gap-space p-0">
           <li :for={{tag, posts} <- @sorted_tags}>
-            <.navigate to={Soonex.Public.path(tag.permalink)} class="link link--accent">
+            <.navigate to={Soonex.Public.path(tag.permalink)} class="link ui-accent">
               {tag.tag}
             </.navigate>
             <span class="text-ink-muted">
@@ -44,7 +44,7 @@ defmodule Soonex.TagsIndexPage do
           </li>
         </ul>
         <p :if={@sorted_tags == []} class="m-0 text-ink-muted">
-          No tags yet. Add a <code class="rounded-md bg-layer px-1 py-0.5 text-sm">tags:</code>
+          No tags yet. Add a <code class="rounded-md bg-surface px-1 py-0.5 text-sm">tags:</code>
           list to post front matter.
         </p>
       </div>

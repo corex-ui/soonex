@@ -42,10 +42,10 @@ defmodule Soonex.HomePage.Hero do
 
         <div class="flex max-w-xl flex-col gap-space text-balance">
           <h2 class="m-0 max-w-xl font-sans !text-base !font-normal leading-normal text-ink-muted md:!text-lg">
-            <span class="text-ink-brand">Tableau</span>{" "} compiles HEEx to static files.
+            <span class="text-brand-text">Tableau</span>{" "} compiles HEEx to static files.
           </h2>
           <h3 class="m-0 max-w-xl font-sans !text-base !font-normal leading-normal text-ink-muted md:!text-lg">
-            <span class="text-ink-brand">Corex</span>{" "} covers components, tokens, Markdown, themes, and MCP for your editor.
+            <span class="text-brand-text">Corex</span>{" "} covers components, tokens, Markdown, themes, and MCP for your editor.
           </h3>
         </div>
 
@@ -54,7 +54,7 @@ defmodule Soonex.HomePage.Hero do
           countdown
           start_ms={@countdown_ms}
           target_ms={0}
-          class="timer timer--brand timer--text-lg sm:timer--text-xl md:timer--text-2xl lg:timer--text-5xl timer--rounded-xl"
+          class="timer ui-brand ui-rounded-xl ui-size-xl"
         >
           <:day_label>Days</:day_label>
           <:hour_label>Hours</:hour_label>
@@ -63,10 +63,10 @@ defmodule Soonex.HomePage.Hero do
         </.timer>
 
         <div class="flex w-full flex-col items-center gap-space sm:flex-row sm:justify-center">
-          <.navigate to="#waitlist" class="button button--accent">
+          <.navigate to="#waitlist" class="button ui-accent ui-solid">
             Join the waitlist
           </.navigate>
-          <.navigate to={Soonex.Public.path("/docs")} class="button button--ghost">
+          <.navigate to={Soonex.Public.path("/docs")} class="button ui-ghost">
             Read the documentation <.heroicon name="hero-arrow-up-right" />
           </.navigate>
         </div>

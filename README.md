@@ -6,15 +6,16 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 
 ## Prerequisites
 
-- Elixir ~> 1.15
+- Elixir ~> 1.17
 - Node.js (for `npm install` in `assets/`)
+- Local Corex checkout at `../../corex` (path deps for `corex`, `corex_design`, `corex_mcp` until Hex 0.2.0). `mix link.corex` / build aliases symlink `deps/corex` for esbuild.
 
 ## Quick start
 
 ```shell
 cd soonex
 mix deps.get
-mix designex corex
+mix corex.design.build
 cd assets && npm install && cd ..
 mix tableau.server
 ```
@@ -30,7 +31,7 @@ Rebuild assets: `mix assets.build`.
 ## Customize (where to edit)
 
 - **Brand / SEO:** [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex), [`lib/pages/root_index_page.ex`](lib/pages/root_index_page.ex).
-- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match imports in [`assets/css/site.css`](assets/css/site.css).
+- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match themes in `config :corex_design`.
 - **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML; see [`_posts/2026-05-08-docs.md`](_posts/2026-05-08-docs.md).
 
@@ -46,13 +47,13 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 ## Corex assets and JS
 
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
-- Run **`mix designex corex`** after upgrading Corex.
-- Local Corex checkout: `{:corex, path: "../../corex"}` in `mix.exs`, then `mix deps.get`.
+- Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
+- Generated CSS lives under `assets/corex/` (gitignored).
 - Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); landing motion under [`assets/js/landing*.js`](assets/js).
 
 ## Production and hosting
 
-- GitHub Actions: [`.github/workflows/pages.yml`](.github/workflows/pages.yml). In the repo, set Pages **Source** to **GitHub Actions**.
+- GitHub Actions: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) publishes Pages **only after CI succeeds** on a **push to `main`**. In the repo, set Pages **Source** to **GitHub Actions**.
 - Clear `_site/` when permalinks change (`rm -rf _site`) so stale paths are not published.
 - **404:** [`lib/pages/not_found_page.ex`](lib/pages/not_found_page.ex) emits `_site/404.html` for static hosts. `mix tableau.server` 404 behavior is still Tableau’s default.
 

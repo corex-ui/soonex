@@ -14,7 +14,7 @@ defmodule Soonex.HomePage.Highlights do
     >
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-size-lg">
         <div class="layout__section-intro gap-space-lg pb-space-lg">
-          <h2 id="soonex-highlights-heading" class="text-ink-brand">
+          <h2 id="soonex-highlights-heading" class="text-brand-text">
             Elixir from palette to page.
           </h2>
           <p class="leading-relaxed">
@@ -24,7 +24,7 @@ defmodule Soonex.HomePage.Highlights do
 
         <.marquee
           id="soonex-marquee"
-          class="marquee marquee--accent max-w-none"
+          class="marquee ui-accent max-w-none"
           duration={28}
           spacing="2.5rem"
           pause_on_interaction={false}
@@ -55,7 +55,7 @@ defmodule Soonex.HomePage.Highlights do
                  %{
                    title: "Design pipeline in one app",
                    body:
-                     "Palette JSON feeds Designex and Corex component CSS. Tailwind v4 reads the same tokens so utilities and components stay aligned without hand-synced spreadsheets."
+                     "config :corex_design drives mix corex.design.build for themes and component CSS. Tailwind v4 reads the same tokens so utilities and components stay aligned without hand-synced spreadsheets."
                  },
                  %{
                    title: "MCP-aware components",
@@ -63,7 +63,7 @@ defmodule Soonex.HomePage.Highlights do
                      "Corex exposes a component registry and MCP tools in development so assistants resolve slots, modifiers, and anatomy instead of guessing markup."
                  }
                ] do %>
-            <li class="min-w-0 rounded-xl border border-border bg-layer p-size">
+            <li class="min-w-0 rounded-xl border border-border bg-surface p-size">
               <h3>{card.title}</h3>
               <p class="leading-relaxed">{card.body}</p>
             </li>
