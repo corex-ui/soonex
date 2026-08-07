@@ -27,7 +27,7 @@ defmodule Soonex.HomePage.Highlights do
       aria-labelledby="soonex-highlights-heading"
     >
       <div class={"#{Shell.stage()} home-stack flex flex-col"}>
-        <div class="flex max-w-2xl flex-col gap-size-md">
+        <div class="mx-auto flex w-full max-w-2xl flex-col items-center gap-size-md text-center lg:mx-0 lg:items-start lg:text-start">
           <h2 id="soonex-highlights-heading" class={Shell.section_heading()}>
             Lorem ipsum <span class="text-brand-text">dolor sit</span>
           </h2>

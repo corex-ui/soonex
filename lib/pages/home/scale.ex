@@ -15,7 +15,7 @@ defmodule Soonex.HomePage.Scale do
       class={"#{Shell.section()} home__numbers-section bg-ui-muted"}
       aria-labelledby="home-numbers-heading"
     >
-      <div class={"#{Shell.stage()} home-stack flex flex-col"}>
+      <div class={"#{Shell.stage()} home-stack flex flex-col items-center text-center lg:items-stretch lg:text-start"}>
         <p
           id="home-numbers-heading"
           class="m-0 text-sm font-semibold uppercase tracking-[0.18em] text-brand-text"
