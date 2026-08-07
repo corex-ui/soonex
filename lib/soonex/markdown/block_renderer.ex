@@ -14,7 +14,7 @@ defmodule Soonex.Markdown.BlockRenderer do
       <.code class="code max-w-none" language={@language} code={@code} />
       <.clipboard
         id={@clipboard_id}
-        class="clipboard clipboard--sm absolute top-2 right-2 z-10"
+        class="clipboard ui-size-sm absolute top-2 right-2 z-10"
         value={@code}
         input={false}
         trigger_aria_label="Copy code"

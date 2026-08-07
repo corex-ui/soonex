@@ -142,7 +142,7 @@ defmodule Soonex.RootLayout do
         <script type="module" src={Soonex.Public.path("/js/site.js")} />
       </head>
 
-      <body class="layout typo">
+      <body class="layout typo flex min-h-dvh flex-col bg-root text-ink antialiased">
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
@@ -150,7 +150,7 @@ defmodule Soonex.RootLayout do
 
         <main
           id="main-content"
-          class="layout__main"
+          class="layout__main flex-1"
           data-landing
         >
           {render(@inner_content)}
@@ -188,6 +188,9 @@ defmodule Soonex.RootLayout do
       page[:page_kind] == :home ->
         "#{site_name} · Elixir static site template"
 
+      page[:page_kind] == :blog_index ->
+        "Blog · #{site_name}"
+
       page[:page_kind] == :not_found ->
         "Page not found · #{site_name}"
 
@@ -206,6 +209,9 @@ defmodule Soonex.RootLayout do
     cond do
       page[:page_kind] == :home ->
         "Tableau + Corex coming-soon template: static HEEx, design tokens, Markdown. Join the #{site_name} waitlist."
+
+      page[:page_kind] == :blog_index ->
+        "Journal posts from the #{site_name} static site template."
 
       page[:page_kind] == :not_found ->
         "This URL is not available on the #{site_name} static site."

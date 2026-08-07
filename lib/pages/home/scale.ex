@@ -4,55 +4,60 @@ defmodule Soonex.HomePage.Scale do
   use Phoenix.Component
   use Corex
 
+  alias Soonex.Layouts.Shell
+
   attr(:stats_components, :integer, required: true)
 
   def scale(assigns) do
     ~H"""
     <section
       id="scale"
-      class="home__section home__section--alt home__numbers-section"
+      class={"#{Shell.section()} home__numbers-section bg-ui-muted"}
       aria-labelledby="home-numbers-heading"
-      data-reveal
     >
-      <div class="home__section__inner">
-        <h2 id="home-numbers-heading" class="sr-only text-ink-brand">
-          Corex by the numbers
-        </h2>
-        <div class="home__numbers">
+      <div class={"#{Shell.stage()} home-stack flex flex-col"}>
+        <p
+          id="home-numbers-heading"
+          class="m-0 text-sm font-semibold uppercase tracking-[0.18em] text-brand-text"
+        >
+          Lorem ipsum metrics
+        </p>
+
+        <div class="home__numbers rounded-xl border border-border bg-root">
           <div class="home__numbers__cell">
             <span class="home__numbers__value">
               {@stats_components}<span class="home__numbers__value__suffix">+</span>
             </span>
-            <span class="home__numbers__label">Components</span>
+            <span class="home__numbers__label">Lorem</span>
             <p class="home__numbers__hint">
-              Same Corex pieces in Phoenix controllers and HEEx, or static HEEx builds with Tableau.
+              Ipsum dolor sit amet, consectetur adipiscing elit sed do.
             </p>
           </div>
           <div class="home__numbers__cell">
             <span class="home__numbers__value">
               50<span class="home__numbers__value__suffix">+</span>
             </span>
-            <span class="home__numbers__label">API & Events</span>
+            <span class="home__numbers__label">Ipsum</span>
             <p class="home__numbers__hint">
-              Phoenix bindings such as phx-click in HEEx, client-side wiring from your templates, alongside JavaScript and TypeScript Corex hooks.
+              Eiusmod tempor incididunt ut labore et dolore magna.
             </p>
           </div>
           <div class="home__numbers__cell">
             <span class="home__numbers__value">
               100<span class="home__numbers__value__suffix">%</span>
             </span>
-            <span class="home__numbers__label">Open Source</span>
+            <span class="home__numbers__label">Dolor</span>
             <p class="home__numbers__hint">
-              MIT licensed, fork, ship, and extend without a license fee.
+              Ut enim ad minim veniam, quis nostrud exercitation.
             </p>
           </div>
           <div class="home__numbers__cell">
             <span class="home__numbers__value">
               A<span class="home__numbers__value__suffix">11y</span>
             </span>
-            <span class="home__numbers__label">Built in</span>
+            <span class="home__numbers__label">Sit amet</span>
             <p class="home__numbers__hint">
-              Keyboard flows, focus management, and ARIA patterns powered by Zag.js state machines.
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </div>

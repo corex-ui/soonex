@@ -4,15 +4,19 @@ defmodule Soonex.MixProject do
   def project do
     [
       app: :soonex,
-      version: "0.1.0",
-      elixir: "~> 1.15",
+      version: "0.2.0",
+      elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
-      compilers: Mix.compilers(),
+      compilers: Mix.compilers() ++ [:corex_design],
+      elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
       deps: deps(),
       usage_rules: usage_rules()
     ]
   end
+
+  defp elixirc_paths(env) when env in [:dev, :test], do: ["lib", "lib_dev"]
+  defp elixirc_paths(_), do: ["lib"]
 
   def cli do
     [preferred_envs: [test: :test]]
@@ -27,7 +31,7 @@ defmodule Soonex.MixProject do
 
   defp deps do
     [
-      {:tableau, "~> 0.26"},
+      {:tableau, "~> 0.30"},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:phoenix_live_view, "~> 1.0"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
@@ -39,9 +43,10 @@ defmodule Soonex.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:corex, "~> 0.1.0"},
+      {:corex, "~> 0.2.0"},
+      {:corex_design, "~> 0.2.0", runtime: false},
+      {:corex_mcp, "~> 0.2.0", only: [:dev, :test]},
       {:color, "~> 0.11"},
-      {:designex, "~> 1.0"},
       {:floki, "~> 0.38"},
       {:makeup, "~> 1.2"},
       {:makeup_elixir, "~> 1.0"},
@@ -79,25 +84,22 @@ defmodule Soonex.MixProject do
   defp aliases do
     [
       compile: ["compile"],
-      setup: ["deps.get"],
+      setup: ["deps.get", "corex.design.build"],
       "pre.test": [
-        "soonex.palette",
-        "designex corex",
+        "corex.design.build",
         "esbuild default",
         "tailwind default",
         "tableau.build"
       ],
       test: ["pre.test", "test"],
       "assets.build": [
-        "soonex.palette",
-        "designex corex",
+        "corex.design.build",
         "tailwind default",
         "esbuild default"
       ],
       build: [
         "compile",
-        "soonex.palette",
-        "designex corex",
+        "corex.design.build",
         "tableau.build",
         "tailwind default --minify",
         "esbuild default --minify"

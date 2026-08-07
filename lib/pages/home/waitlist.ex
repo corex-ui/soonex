@@ -4,74 +4,65 @@ defmodule Soonex.HomePage.Waitlist do
   use Phoenix.Component
   use Corex
 
+  alias Soonex.Layouts.Shell
+
   def waitlist(assigns) do
     ~H"""
     <section
       id="waitlist"
-      class="relative flex min-h-dvh flex-col justify-center border-y border-border bg-ui-muted px-space py-size-xl"
+      class="flex w-full flex-col border-y border-border bg-ui-muted py-size-xl"
       aria-labelledby="soonex-waitlist-heading"
-      data-reveal
     >
-      <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-space-xl lg:flex-row lg:items-start lg:justify-center lg:gap-x-space-xl">
-        <div class="flex w-full max-w-md flex-col items-center gap-space-lg text-center">
-          <h2 id="soonex-waitlist-heading" class="text-ink-brand">
-            Be there when Soonex ships.
-          </h2>
-          <p class="m-0 leading-relaxed">
-            One launch email, optional build notes, no spam. Full Phoenix template lands after this static core. Get notified for both.
-          </p>
-          <ul class="m-0 flex w-full list-none flex-col gap-space p-0 text-start">
-            <%= for line <- [
-                  "Early access, two weeks before the public drop.",
-                  "Launch mail only: you choose product updates or silence.",
-                  "One-click unsubscribe; we never sell or rent your email."
-                ] do %>
-              <li class="flex gap-space-sm text-start">
-                <.heroicon name="hero-check" />
-                <span class="text-sm">{line}</span>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+      <div class={"#{Shell.stage()} flex flex-col items-center"}>
+        <div class="flex w-full max-w-2xl flex-col items-center gap-size-lg text-center">
+          <div class="flex w-full max-w-2xl flex-col items-center gap-size-md">
+            <h2 id="soonex-waitlist-heading" class={Shell.section_heading()}>
+              Lorem ipsum <span class="text-brand-text">Soonex</span>
+            </h2>
+            <p class="m-0 max-w-2xl text-pretty text-center text-lg text-ink-muted">
+              Dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </div>
 
-        <div class="w-full max-w-md min-w-0">
           <form
             id="soonex-waitlist-form"
-            class="flex flex-col gap-space-lg"
+            class="flex w-full max-w-md flex-col items-stretch gap-space"
             data-waitlist-toast-title="Thanks for joining"
             data-waitlist-toast-description="This demo does not send or collect email. Point this form at your API or endpoint when you ship."
           >
-            <div class="flex flex-col gap-space-sm sm:flex-row sm:items-end sm:gap-space">
+            <div class="flex w-full items-stretch gap-space">
               <div class="min-w-0 flex-1">
                 <.native_input
                   type="email"
                   name="waitlist[email]"
                   id="soonex-waitlist-email"
                   required
-                  class="native-input"
+                  class="native-input ui-size-md ui-width-full"
                 >
                   <:label class="sr-only">Your email</:label>
-                  <:icon><.heroicon name="hero-envelope" class="icon" /></:icon>
                 </.native_input>
               </div>
               <button
                 type="submit"
-                class="button button--accent button--sm"
+                class="button ui-brand ui-solid ui-size-md shrink-0"
               >
                 Join waitlist
               </button>
             </div>
-            <.checkbox
-              id="soonex-waitlist-updates"
-              name="waitlist[updates]"
-              checked={true}
-              class="checkbox checkbox--accent"
-            >
-              <:indicator>
-                <.heroicon name="hero-check" />
-              </:indicator>
-              <:label>Send me build updates</:label>
-            </.checkbox>
+
+            <div class="flex justify-center pt-space-sm">
+              <.checkbox
+                id="soonex-waitlist-updates"
+                name="waitlist[updates]"
+                checked={true}
+                class="checkbox ui-accent ui-size-md"
+              >
+                <:indicator>
+                  <.heroicon name="hero-check" />
+                </:indicator>
+                <:label>Send me build updates</:label>
+              </.checkbox>
+            </div>
           </form>
         </div>
       </div>

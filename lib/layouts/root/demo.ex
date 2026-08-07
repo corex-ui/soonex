@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Root.Demo do
         resizable={false}
         translation={%Corex.FloatingPanel.Translation{close: "Close"}}
       >
-        <:trigger class="button button--sm">
+        <:trigger class="button ui-size-sm">
           <.heroicon name="hero-cog-6-tooth" /> Template Options
         </:trigger>
         <:title>Template Options</:title>
@@ -39,7 +39,7 @@ defmodule Soonex.Layouts.Root.Demo do
             <div class="flex flex-row items-end gap-space">
               <.select
                 id="theme-switcher"
-                class="select select--sm w-full min-w-0"
+                class="select ui-size-sm w-full min-w-0"
                 dir="ltr"
                 items={Soonex.Theme.select_items()}
                 value={[]}
@@ -59,7 +59,7 @@ defmodule Soonex.Layouts.Root.Demo do
 
               <.toggle
                 id="mode-switcher"
-                class="toggle toggle--sm"
+                class="toggle ui-size-sm"
                 data-toggle-dual-label
                 pressed={@mode == "dark"}
                 dir="ltr"
@@ -79,7 +79,7 @@ defmodule Soonex.Layouts.Root.Demo do
       </.floating_panel>
       <.navigate
         to="https://corex.gigalixirapp.com/templates"
-        class="button button--accent button--sm"
+        class="button ui-accent ui-solid ui-size-sm"
         external
       >
         Made with Corex <.heroicon name="hero-arrow-down-tray" />

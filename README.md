@@ -2,19 +2,20 @@
 
 English-only **Tableau** static site: Corex components, theme/mode toggles, and the same contrast pipeline as the SaaS template.
 
-**Related:** multi-locale variant at [github.com/corex-ui/soonex_i18n](https://github.com/corex-ui/soonex_i18n). Corex docs on Hex: [installation](https://hexdocs.pm/corex/installation.html), [API](https://hexdocs.pm/corex/api.html), [Events](https://hexdocs.pm/corex/events.html), [Tableau + Corex](https://hexdocs.pm/corex/tableau.html).
+**Related:** multi-locale variant at [github.com/corex-ui/soonex_i18n](https://github.com/corex-ui/soonex_i18n). Corex docs on Hex: [installation](https://hexdocs.pm/corex/installation.html), [Tableau + Corex](https://hexdocs.pm/corex/tableau.html), [Design](https://hexdocs.pm/corex/design.html), [update guide](https://hexdocs.pm/corex/update.html).
 
 ## Prerequisites
 
-- Elixir ~> 1.15
+- Elixir ~> 1.17
 - Node.js (for `npm install` in `assets/`)
+- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2.0`)
 
 ## Quick start
 
 ```shell
 cd soonex
 mix deps.get
-mix designex corex
+mix corex.design.build
 cd assets && npm install && cd ..
 mix tableau.server
 ```
@@ -30,9 +31,10 @@ Rebuild assets: `mix assets.build`.
 ## Customize (where to edit)
 
 - **Brand / SEO:** [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex), [`lib/pages/root_index_page.ex`](lib/pages/root_index_page.ex).
-- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match imports in [`assets/css/site.css`](assets/css/site.css).
+- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match themes in `config :corex_design`.
 - **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex).
-- **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML; see [`_posts/2026-05-08-docs.md`](_posts/2026-05-08-docs.md).
+- **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
+- **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
 
 MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tableau data, tags, and static extras** in the longer notes below.
 
@@ -46,13 +48,13 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 ## Corex assets and JS
 
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
-- Run **`mix designex corex`** after upgrading Corex.
-- Local Corex checkout: `{:corex, path: "../../corex"}` in `mix.exs`, then `mix deps.get`.
+- Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
+- Generated CSS lives under `assets/corex/` (gitignored).
 - Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); landing motion under [`assets/js/landing*.js`](assets/js).
 
 ## Production and hosting
 
-- GitHub Actions: [`.github/workflows/pages.yml`](.github/workflows/pages.yml). In the repo, set Pages **Source** to **GitHub Actions**.
+- GitHub Actions: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) publishes Pages **only after CI succeeds** on a **push to `main`**. In the repo, set Pages **Source** to **GitHub Actions**.
 - Clear `_site/` when permalinks change (`rm -rf _site`) so stale paths are not published.
 - **404:** [`lib/pages/not_found_page.ex`](lib/pages/not_found_page.ex) emits `_site/404.html` for static hosts. `mix tableau.server` 404 behavior is still Tableau’s default.
 
