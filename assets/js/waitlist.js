@@ -2,7 +2,10 @@ function dispatchLayoutToast(detail) {
   const root = document.getElementById("layout-toast")
   if (!(root instanceof HTMLElement)) return
   root.dispatchEvent(
-    new CustomEvent("toast:create", { bubbles: true, detail }),
+    new CustomEvent("corex:toast:create", {
+      bubbles: true,
+      detail: { group_id: "layout-toast", ...detail },
+    }),
   )
 }
 
@@ -20,7 +23,7 @@ export function initWaitlistForm() {
       title,
       description,
       type: "success",
-      duration: "6000",
+      duration: 6000,
     })
   })
 }
