@@ -33,23 +33,23 @@ defmodule Soonex.HomePage.Voces do
         spacing="1.5rem"
       >
         <:item :let={voice}>
-          <blockquote class={"#{Shell.frame()} flex h-full min-h-72 flex-col justify-between p-0 lg:min-h-80"}>
-            <div class="flex flex-1 flex-col justify-between gap-8 p-8 lg:p-10">
-              <p class="soonex-quote display m-0 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+          <blockquote class={"#{Shell.frame()} grid h-full min-h-72 grid-cols-1 overflow-hidden sm:grid-cols-5"}>
+            <div class="relative min-h-56 sm:col-span-2 sm:min-h-full">
+              <.photo
+                src={voice.src}
+                alt={voice.name}
+                width={800}
+                height={800}
+                class="absolute inset-0 size-full"
+              />
+            </div>
+            <div class="flex flex-col justify-between gap-8 p-8 sm:col-span-3 lg:p-10">
+              <p class="soonex-quote display m-0 text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl lg:text-3xl">
                 “{voice.quote}”
               </p>
-              <footer class="flex items-center gap-4">
-                <.photo
-                  src={voice.src}
-                  alt={voice.name}
-                  width={96}
-                  height={96}
-                  class="soonex-avatar soonex-avatar-lg"
-                />
-                <div class="flex flex-col">
-                  <cite class="not-italic text-sm font-semibold text-ink">{voice.name}</cite>
-                  <span class="text-sm text-ink-muted">{voice.role}</span>
-                </div>
+              <footer class="flex flex-col">
+                <cite class="not-italic text-sm font-semibold text-ink">{voice.name}</cite>
+                <span class="text-sm text-ink-muted">{voice.role}</span>
               </footer>
             </div>
           </blockquote>
