@@ -24,13 +24,11 @@ defmodule Soonex.Layouts.Root.LandingChrome do
       data-sticky-bar
       role="region"
       aria-label="Lorem ipsum"
-      class="fixed inset-x-0 top-0 z-50 flex w-full justify-center border-b border-border bg-surface/90 px-space-md py-space-sm backdrop-blur-md motion-safe:will-change-[opacity,transform]"
-      style="opacity: 0; transform: translate3d(0, -100%, 0); pointer-events: none;"
+      inert
+      class="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-6"
+      style="opacity: 0; transform: translate3d(0, -120%, 0);"
     >
-      <div class="flex w-full max-w-7xl flex-col items-center gap-space-sm sm:flex-row sm:justify-between">
-        <p class="ui-label max-sm:sr-only m-0 uppercase tracking-widest text-ink-muted">
-          Tempus fugit
-        </p>
+      <div class="pointer-events-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-3 border border-border bg-surface/90 px-3 py-2 shadow-sm backdrop-blur-md sm:gap-4 sm:px-4">
         <.timer
           id="soonex-sticky-countdown"
           countdown
@@ -45,7 +43,7 @@ defmodule Soonex.Layouts.Root.LandingChrome do
         </.timer>
         <.navigate
           to={Soonex.Public.path("/") <> "#epistula"}
-          class="button ui-brand ui-solid ui-size-sm"
+          class="button ui-brand ui-solid ui-size-sm shrink-0"
         >
           Scribe nomen
         </.navigate>

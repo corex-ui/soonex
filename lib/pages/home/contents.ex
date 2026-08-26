@@ -2,57 +2,66 @@ defmodule Soonex.HomePage.Contents do
   @moduledoc false
 
   use Phoenix.Component
-  use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Rows, only: [data_rows: 1]
+  import Soonex.Layouts.Section, only: [block: 1]
 
   def contents(assigns) do
     ~H"""
-    <section
-      id="index"
-      class={"#{Shell.section()} border-y border-border bg-surface"}
-      aria-labelledby="soonex-index-heading"
-    >
-      <div class={"#{Shell.stage()} grid grid-cols-1 gap-size-xl lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]"}>
-        <div class="flex flex-col gap-size-md">
-          <p class={Shell.eyebrow()}>Index</p>
-          <h2 id="soonex-index-heading" class={Shell.section_heading()}>
-            Capita <span class="text-brand-text">huius paginae</span>
-          </h2>
-          <p class={Shell.lede()}>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-          </p>
-        </div>
-
-        <ol class="m-0 flex list-none flex-col p-0">
-          <li :for={{n, href, title, blurb} <- entries()} class="border-t border-border last:border-b">
-            <.navigate
-              to={href}
-              class="link ui-nav flex items-baseline justify-between gap-space-lg py-space-xl text-ink no-underline"
-            >
-              <span class="flex min-w-0 flex-col gap-space-xs">
-                <span class="font-mono text-xs tracking-widest text-brand-text">{n}</span>
-                <span class="display text-2xl tracking-tight">{title}</span>
-                <span class="text-sm text-ink-muted">{blurb}</span>
-              </span>
-              <.heroicon name="hero-arrow-down" />
-            </.navigate>
-          </li>
-        </ol>
-      </div>
-    </section>
+    <.block id="index" labelledby="soonex-index-heading" eyebrow="Index" tone={:root}>
+      <:title>
+        Capita <span class="text-brand-text">huius paginae</span>
+      </:title>
+      <:lede>
+        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime.
+      </:lede>
+      <.data_rows id="soonex-index-list" items={entries()} icon="hero-arrow-down" />
+    </.block>
     """
   end
 
   defp entries do
-    [
-      {"I", "#principia", "Principia", "Lorem ipsum dolor sit amet, consectetur."},
-      {"II", "#capita", "Capita", "Sed do eiusmod tempor incididunt ut labore."},
-      {"III", "#kalendarium", "Kalendarium", "Ut enim ad minim veniam quis nostrud."},
-      {"IV", "#voces", "Voces", "Duis aute irure dolor in reprehenderit."},
-      {"V", "#acta", "Acta", "Excepteur sint occaecat cupidatat non proident."},
-      {"VI", "#quaestiones", "Quaestiones", "Sunt in culpa qui officia deserunt."},
-      {"VII", "#epistula", "Epistula", "Mollit anim id est laborum."}
-    ]
+    Corex.Content.new([
+      %{
+        label: "I",
+        content: "Tria fundamenta lorem ipsum dolor sit amet.",
+        meta: %{href: "#principia", title: "Principia", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "II",
+        content: "Sex argumenta sed do eiusmod tempor incididunt.",
+        meta: %{href: "#capita", title: "Capita", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "III",
+        content: "Tria officia ut enim ad minim veniam quis.",
+        meta: %{href: "#officia", title: "Officia", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "IV",
+        content: "Tempora ventura duis aute irure dolor.",
+        meta: %{href: "#kalendarium", title: "Kalendarium", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "V",
+        content: "Testimonia brevia excepteur sint occaecat.",
+        meta: %{href: "#voces", title: "Voces", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "VI",
+        content: "Recentiora scripta sunt in culpa qui officia.",
+        meta: %{href: "#acta", title: "Acta", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "VII",
+        content: "Saepe quaeruntur mollit anim id est laborum.",
+        meta: %{href: "#quaestiones", title: "Quaestiones", icon: "hero-arrow-down"}
+      },
+      %{
+        label: "VIII",
+        content: "Scribe nomen tuum ad epistulam lorem.",
+        meta: %{href: "#epistula", title: "Epistula", icon: "hero-arrow-down"}
+      }
+    ])
   end
 end

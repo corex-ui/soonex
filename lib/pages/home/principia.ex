@@ -4,48 +4,47 @@ defmodule Soonex.HomePage.Principia do
   use Phoenix.Component
   use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Section, only: [block: 1]
 
   def principia(assigns) do
     ~H"""
-    <section
+    <.block
       id="principia"
-      class={"#{Shell.section()} bg-root"}
-      aria-labelledby="soonex-principia-heading"
+      labelledby="soonex-principia-heading"
+      eyebrow="Principia"
+      tone={:surface}
+      align={:center}
     >
-      <div class={"#{Shell.stage()} #{Shell.stack()}"}>
-        <div class="flex max-w-2xl flex-col gap-size-md">
-          <p class={Shell.eyebrow()}>Principia</p>
-          <h2 id="soonex-principia-heading" class={Shell.section_heading()}>
-            Tria <span class="text-brand-text">fundamenta</span>
-          </h2>
-          <p class={Shell.lede()}>
-            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
-          </p>
+      <:title>
+        Tria <span class="text-brand-text">fundamenta</span>
+      </:title>
+      <:lede>
+        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
+      </:lede>
+      <dl class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
+        <div :for={{icon, title, body} <- pillars()} class="flex flex-col">
+          <dt class="flex items-center gap-x-3 text-base/7 font-semibold text-ink">
+            <span class="flex size-10 items-center justify-center border border-border bg-root text-brand-text">
+              <.heroicon name={icon} class="size-5" />
+            </span>
+            {title}
+          </dt>
+          <dd class="mt-4 flex flex-auto flex-col text-base/7 text-ink-muted">
+            <p class="m-0 flex-auto">{body}</p>
+          </dd>
         </div>
-
-        <div class="grid grid-cols-1 gap-space-lg lg:grid-cols-3">
-          <article
-            :for={{num, title, body} <- pillars()}
-            class={"#{Shell.panel()} flex flex-col gap-space-lg p-size"}
-          >
-            <p class="display m-0 text-5xl tracking-tighter text-brand-text">{num}</p>
-            <h3 class="display m-0 text-2xl tracking-tight">{title}</h3>
-            <p class="m-0 leading-relaxed text-ink-muted">{body}</p>
-          </article>
-        </div>
-      </div>
-    </section>
+      </dl>
+    </.block>
     """
   end
 
   defp pillars do
     [
-      {"I", "Lorem",
+      {"hero-sparkles", "Lorem",
        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
-      {"II", "Ipsum",
+      {"hero-squares-2x2", "Ipsum",
        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-      {"III", "Dolor",
+      {"hero-shield-check", "Dolor",
        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}
     ]
   end

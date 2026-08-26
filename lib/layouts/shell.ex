@@ -1,29 +1,42 @@
 defmodule Soonex.Layouts.Shell do
   @moduledoc false
 
-  def stage, do: "mx-auto w-full max-w-7xl px-space-md lg:px-space-xl"
+  # Marketing band used across Tailwind UI-style landings:
+  # <section class="py-24 sm:py-32">
+  #   <div class="mx-auto max-w-7xl px-6 lg:px-8">
+  #     <div class="mx-auto max-w-2xl">heading</div>
+  #     <div class="mt-16 sm:mt-20 lg:mt-24">content</div>
+  #   </div>
+  # </section>
 
-  def section,
-    do:
-      "scroll-mt-[calc(var(--spacing-size-lg)+var(--spacing-space))] flex w-full flex-col py-size-md sm:py-size-lg lg:py-size-xl"
+  def section, do: "scroll-mt-24 w-full py-24 sm:py-32"
+
+  def section_compact, do: "scroll-mt-24 w-full py-16 sm:py-20"
 
   def section_hero,
-    do:
-      "relative flex min-h-svh w-full flex-col justify-center overflow-x-clip py-size-lg sm:py-size-xl"
+    do: "relative flex min-h-svh w-full flex-col justify-center overflow-x-clip py-24 sm:py-32"
 
-  def stack, do: "flex flex-col gap-size-xl"
+  def stage, do: "mx-auto w-full max-w-7xl px-6 lg:px-8"
 
-  def lede, do: "m-0 max-w-2xl text-pretty text-lg text-ink-muted"
+  def intro, do: "mx-auto max-w-2xl lg:mx-0"
+
+  def intro_center, do: "mx-auto max-w-2xl lg:text-center"
+
+  def body, do: "mx-auto mt-16 w-full sm:mt-20 lg:mt-24"
+
+  def body_tight, do: "mx-auto mt-10 w-full sm:mt-12"
+
+  def eyebrow, do: "m-0 text-base/7 font-semibold text-brand-text"
 
   def section_heading,
-    do: "display m-0 text-balance text-3xl tracking-tighter text-ink sm:text-4xl lg:text-5xl"
+    do: "display mt-2 text-pretty text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
 
-  def eyebrow,
-    do: "m-0 text-xs font-medium uppercase tracking-[0.16em] text-brand-text"
+  def page_heading,
+    do: "display mt-2 text-pretty text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
 
-  def panel, do: "relative border border-border bg-surface"
+  def lede, do: "mt-6 max-w-2xl text-pretty text-lg/8 text-ink-muted"
 
-  def listing_row,
-    do:
-      "grid gap-space-md border-t border-border py-space-xl last:border-b md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-space-xl"
+  def panel, do: "relative overflow-hidden border border-border bg-surface"
+
+  def data_list, do: "data-list data-list--wide ui-accent ui-size-md w-full max-w-none"
 end

@@ -17,20 +17,27 @@ defmodule Soonex.NotFoundPage do
   def template(assigns) do
     ~H"""
     <section
-      class="flex min-h-dvh flex-col items-center justify-center gap-space-lg px-space-md py-size-xl text-center"
+      class={"#{Shell.section()} flex min-h-dvh flex-col items-center justify-center bg-root text-center"}
       aria-labelledby="soonex-not-found-heading"
     >
-      <div class={"#{Shell.panel()} flex max-w-md flex-col gap-space-lg p-size sm:p-size-lg"}>
-        <p class={Shell.eyebrow()}>404</p>
-        <h1 id="soonex-not-found-heading" class="display m-0 text-4xl tracking-tight">
-          Non inventus
-        </h1>
-        <p class="m-0 leading-relaxed text-ink-muted">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec via non est.
-        </p>
-        <.navigate to={Soonex.Public.path("/")} class="button ui-accent ui-solid w-fit self-center">
-          Ad initium
-        </.navigate>
+      <div class={Shell.stage()}>
+        <div class={"#{Shell.panel()} mx-auto flex max-w-lg flex-col items-center gap-6 px-8 py-16"}>
+          <p class={Shell.eyebrow()}>404</p>
+          <h1 id="soonex-not-found-heading" class="display m-0 text-4xl font-semibold tracking-tight">
+            Non inventus
+          </h1>
+          <p class="m-0 max-w-sm text-base/7 text-ink-muted">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec via non est.
+          </p>
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-4">
+            <.navigate to={Soonex.Public.path("/")} class="button ui-brand ui-solid ui-size-md">
+              Ad initium
+            </.navigate>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
+              Acta
+            </.navigate>
+          </div>
+        </div>
       </div>
     </section>
     """

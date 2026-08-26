@@ -10,45 +10,41 @@ defmodule Soonex.HomePage.Waitlist do
     ~H"""
     <section
       id="epistula"
-      class={"#{Shell.section()} bg-root"}
+      class={"#{Shell.section()} border-y border-border bg-surface"}
       aria-labelledby="soonex-waitlist-heading"
     >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-center gap-size-xl lg:grid-cols-2"}>
-        <div class="flex flex-col gap-size-md">
-          <p class={Shell.eyebrow()}>Epistula</p>
-          <h2 id="soonex-waitlist-heading" class={Shell.section_heading()}>
-            Scribe <span class="text-brand-text">nomen tuum</span>
-          </h2>
-          <p class={Shell.lede()}>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.
-          </p>
-        </div>
+      <div class={Shell.stage()}>
+        <div class="relative isolate overflow-hidden border border-border bg-root px-6 py-16 sm:px-16 lg:flex lg:items-center lg:gap-x-20 lg:px-20 lg:py-20">
+          <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:text-start">
+            <p class={Shell.eyebrow()}>Epistula</p>
+            <h2 id="soonex-waitlist-heading" class={Shell.section_heading()}>
+              Scribe <span class="text-brand-text">nomen tuum</span>
+            </h2>
+            <p class={"#{Shell.lede()} mx-auto lg:mx-0"}>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
+            </p>
+          </div>
 
-        <div class={"#{Shell.panel()} w-full p-size sm:p-size-lg"}>
           <form
             id="soonex-waitlist-form"
-            class="flex w-full flex-col items-stretch gap-space"
+            class="mx-auto mt-12 w-full max-w-md lg:mt-0"
             data-waitlist-toast-title="Gratias tibi"
             data-waitlist-toast-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec forma nihil colligit."
           >
-            <div class="flex w-full flex-col items-stretch gap-space sm:flex-row">
-              <div class="min-w-0 flex-1">
-                <.native_input
-                  type="email"
-                  name="waitlist[email]"
-                  id="soonex-waitlist-email"
-                  required
-                  class="native-input ui-size-md ui-width-full"
-                >
-                  <:label class="sr-only">Email</:label>
-                </.native_input>
-              </div>
-              <button type="submit" class="button ui-brand ui-solid ui-size-md shrink-0">
+            <div class="flex w-full flex-col items-stretch gap-4">
+              <.native_input
+                type="email"
+                name="waitlist[email]"
+                id="soonex-waitlist-email"
+                required
+                placeholder="nomen@lorem.ipsum"
+                class="native-input ui-size-md ui-width-full"
+              >
+                <:label>Epistula electronica</:label>
+              </.native_input>
+              <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
                 Mitte
               </button>
-            </div>
-
-            <div class="flex pt-space-sm">
               <.checkbox
                 id="soonex-waitlist-updates"
                 name="waitlist[updates]"

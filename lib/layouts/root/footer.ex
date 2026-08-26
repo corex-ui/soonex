@@ -18,51 +18,90 @@ defmodule Soonex.Layouts.Root.Footer do
       |> assign(:hexdocs, @hexdocs)
 
     ~H"""
-    <footer class="mt-auto border-t border-border bg-surface py-size-md sm:py-size-lg lg:py-size-xl">
-      <div class={"#{Shell.stage()} flex flex-col gap-space-xl"}>
-        <div class="grid gap-x-size-xl gap-y-space-xl sm:grid-cols-2 lg:grid-cols-4">
-          <div class="flex flex-col gap-space lg:col-span-2">
+    <footer class="mt-auto border-t border-border bg-surface py-16 sm:py-24">
+      <div class={Shell.stage()}>
+        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div class="max-w-md">
             <p class={Shell.eyebrow()}>Soonex</p>
-            <p class="m-0 max-w-md text-sm leading-relaxed text-ink-muted">
+            <p class="mt-6 text-sm/6 text-ink-muted">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-
-          <div class="flex flex-col gap-space-sm">
-            <p class="m-0 text-sm font-semibold text-ink">Paginae</p>
-            <.navigate to={Soonex.Public.path("/") <> "#principia"} class="link ui-nav ui-size-sm">
-              Principia
-            </.navigate>
-            <.navigate to={Soonex.Public.path("/") <> "#quaestiones"} class="link ui-nav ui-size-sm">
-              Quaestiones
-            </.navigate>
-            <.navigate to={Soonex.Public.path("/") <> "#epistula"} class="link ui-nav ui-size-sm">
-              Epistula
-            </.navigate>
-            <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav ui-size-sm">
-              Acta
-            </.navigate>
-            <.navigate to={Soonex.Public.path("/tags")} class="link ui-nav ui-size-sm">
-              Notae
-            </.navigate>
-          </div>
-
-          <div class="flex flex-col gap-space-sm">
-            <p class="m-0 text-sm font-semibold text-ink">Alia</p>
-            <.navigate to={Soonex.Public.path("/feed.xml")} class="link ui-nav ui-size-sm">
-              RSS
-            </.navigate>
-            <.navigate to={@github} class="link ui-nav ui-size-sm" external>
-              GitHub
-            </.navigate>
-            <.navigate to={@hexdocs} class="link ui-nav ui-size-sm" external>
-              Hexdocs
-            </.navigate>
+          <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
+            <div>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Paginae</p>
+              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+                <li>
+                  <.navigate
+                    to={Soonex.Public.path("/") <> "#principia"}
+                    class="link ui-nav ui-size-sm"
+                  >
+                    Principia
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate to={Soonex.Public.path("/") <> "#officia"} class="link ui-nav ui-size-sm">
+                    Officia
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate
+                    to={Soonex.Public.path("/") <> "#quaestiones"}
+                    class="link ui-nav ui-size-sm"
+                  >
+                    Quaestiones
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate
+                    to={Soonex.Public.path("/") <> "#epistula"}
+                    class="link ui-nav ui-size-sm"
+                  >
+                    Epistula
+                  </.navigate>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Acta</p>
+              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+                <li>
+                  <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav ui-size-sm">
+                    Omnia acta
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate to={Soonex.Public.path("/tags")} class="link ui-nav ui-size-sm">
+                    Notae
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate to={Soonex.Public.path("/feed.xml")} class="link ui-nav ui-size-sm">
+                    RSS
+                  </.navigate>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Alia</p>
+              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+                <li>
+                  <.navigate to={@github} class="link ui-nav ui-size-sm" external>
+                    GitHub
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate to={@hexdocs} class="link ui-nav ui-size-sm" external>
+                    Hexdocs
+                  </.navigate>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="flex flex-col gap-space border-t border-border pt-space-lg sm:flex-row sm:items-center sm:justify-between">
-          <p class="m-0 text-sm text-ink-muted">
+        <div class="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p class="m-0 text-sm/6 text-ink-muted">
             © {Date.utc_today().year} {@copyright_holder} · Lorem ipsum
           </p>
           <.navigate

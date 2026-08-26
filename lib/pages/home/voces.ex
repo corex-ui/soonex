@@ -4,51 +4,86 @@ defmodule Soonex.HomePage.Voces do
   use Phoenix.Component
   use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Section, only: [block: 1]
 
   def voces(assigns) do
     ~H"""
-    <section
-      id="voces"
-      class={"#{Shell.section()} border-y border-border bg-surface"}
-      aria-labelledby="soonex-voces-heading"
-    >
-      <div class={"#{Shell.stage()} #{Shell.stack()}"}>
-        <div class="flex max-w-2xl flex-col gap-size-md">
-          <p class={Shell.eyebrow()}>Voces</p>
-          <h2 id="soonex-voces-heading" class={Shell.section_heading()}>
-            Testimonia <span class="text-brand-text">brevia</span>
-          </h2>
-          <p class={Shell.lede()}>
-            Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis.
+    <.block id="voces" labelledby="soonex-voces-heading" eyebrow="Voces" tone={:surface}>
+      <:title>
+        Testimonia <span class="text-brand-text">brevia</span>
+      </:title>
+      <:lede>
+        Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi.
+      </:lede>
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <blockquote class="flex flex-col justify-between border border-border bg-root p-8 lg:col-span-2 lg:p-10">
+          <p class="display m-0 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+            “{featured().quote}”
           </p>
-        </div>
-
-        <div class="grid grid-cols-1 gap-space-lg lg:grid-cols-3">
+          <.voice_footer voice={featured()} />
+        </blockquote>
+        <div class="flex flex-col gap-8">
           <blockquote
-            :for={{quote, name, role} <- voices()}
-            class={"#{Shell.panel()} flex flex-col justify-between gap-size p-size"}
+            :for={voice <- supporting()}
+            class="flex flex-1 flex-col justify-between border border-border bg-root p-8"
           >
-            <p class="display m-0 text-xl leading-snug tracking-tight text-ink">“{quote}”</p>
-            <footer class="flex flex-col gap-space-xs">
-              <cite class="not-italic font-medium text-ink">{name}</cite>
-              <span class="text-sm text-ink-muted">{role}</span>
-            </footer>
+            <p class="display m-0 text-lg font-semibold leading-snug tracking-tight text-ink">
+              “{voice.quote}”
+            </p>
+            <.voice_footer voice={voice} />
           </blockquote>
         </div>
       </div>
-    </section>
+    </.block>
     """
   end
 
-  defp voices do
+  attr(:voice, :map, required: true)
+
+  defp voice_footer(assigns) do
+    ~H"""
+    <footer class="mt-8 flex items-center gap-4">
+      <.avatar id={@voice.id} src="" alt="" class="avatar ui-brand ui-solid ui-size-md">
+        <:fallback>
+          <span class="text-xs font-semibold">{@voice.initials}</span>
+        </:fallback>
+      </.avatar>
+      <div class="flex flex-col">
+        <cite class="not-italic text-sm font-semibold text-ink">{@voice.name}</cite>
+        <span class="text-sm text-ink-muted">{@voice.role}</span>
+      </div>
+    </footer>
+    """
+  end
+
+  defp featured do
+    %{
+      id: "soonex-avatar-aulus",
+      initials: "AL",
+      quote:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      name: "Aulus Lorem",
+      role: "Magister ipsum"
+    }
+  end
+
+  defp supporting do
     [
-      {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-       "Aulus Lorem", "Magister ipsum"},
-      {"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-       "Gaius Dolor", "Scriba sit amet"},
-      {"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-       "Lucia Magna", "Orator aliqua"}
+      %{
+        id: "soonex-avatar-gaius",
+        initials: "GD",
+        quote:
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+        name: "Gaius Dolor",
+        role: "Scriba sit amet"
+      },
+      %{
+        id: "soonex-avatar-lucia",
+        initials: "LM",
+        quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+        name: "Lucia Magna",
+        role: "Orator aliqua"
+      }
     ]
   end
 end
