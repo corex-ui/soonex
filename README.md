@@ -14,10 +14,15 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 
 ```shell
 cd soonex
-mix deps.get
-mix corex.design.build
-cd assets && npm install && cd ..
-mix tableau.server
+mix setup
+mix soonex.server
+```
+
+`assets/node_modules` is gitignored. If esbuild cannot resolve `"lenis"` (and suggests `./lenis`) or Tailwind cannot import `lenis.css`, install the npm packages and retry:
+
+```shell
+mix assets.setup
+mix soonex.server
 ```
 
 - Dev site: `http://localhost:4999` (home at `/`).
@@ -58,7 +63,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 
 ## Corex assets and JS
 
-- `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
+- `assets/js/site.js` imports `corex/*` and `lenis`; Esbuild resolves via **`NODE_PATH`** including `assets/node_modules` and `deps` ([`config/config.exs`](config/config.exs)). The Lenis bootstrap lives in [`assets/js/init-lenis.js`](assets/js/init-lenis.js) so the file is not mistaken for the npm package.
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
 - Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); sticky countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js).
