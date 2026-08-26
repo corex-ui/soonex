@@ -9,7 +9,6 @@ defmodule Soonex.RootLayout do
 
   import Soonex.Layouts.Root.Demo, only: [demo_site_controls: 1]
   import Soonex.Layouts.Root.Footer, only: [site_footer: 1]
-  import Soonex.Layouts.Root.LandingChrome, only: [landing_chrome: 1]
   import Soonex.Layouts.Root.Nav, only: [site_nav: 1]
 
   alias Phoenix.HTML
@@ -84,6 +83,7 @@ defmodule Soonex.RootLayout do
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="csrf-token" content={get_csrf_token()} />
 
+        <link rel="icon" href={Soonex.Public.path("/images/logo.svg")} type="image/svg+xml" />
         <link rel="icon" href={Soonex.Public.path("/images/favicon.ico")} sizes="48x48" />
         <link
           rel="icon"
@@ -159,8 +159,7 @@ defmodule Soonex.RootLayout do
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
-        <.landing_chrome countdown_start_ms={@countdown_start_ms} />
-        <.site_nav />
+        <.site_nav countdown_start_ms={@countdown_start_ms} page_path={@page_path} />
 
         <main
           id="main-content"
@@ -203,16 +202,16 @@ defmodule Soonex.RootLayout do
         "#{site_name} · Launch 1 September"
 
       page[:page_kind] == :blog_index ->
-        "Acta · #{site_name}"
+        "Journal · #{site_name}"
 
       page[:page_kind] == :not_found ->
-        "Non inventus · #{site_name}"
+        "Page not found · #{site_name}"
 
       page[:page_kind] == :tags_index ->
-        "Notae · #{site_name}"
+        "Tags · #{site_name}"
 
       tag_page?(page) ->
-        "#{page[:tag]} · Notae · #{site_name}"
+        "#{page[:tag]} · Tags · #{site_name}"
 
       true ->
         site_name
@@ -225,22 +224,22 @@ defmodule Soonex.RootLayout do
         "Soonex is a Tableau + Corex launch template: waitlist, countdown, and themes you customize in config."
 
       page[:page_kind] == :blog_index ->
-        "Lorem ipsum dolor sit amet — acta et notae from #{site_name}."
+        "Shipping notes and template log from #{site_name}."
 
       page[:page_kind] == :not_found ->
-        "Lorem ipsum: haec pagina non invenitur on #{site_name}."
+        "That page is not on #{site_name}."
 
       page[:page_kind] == :tags_index ->
-        "Lorem ipsum dolor sit amet, notae across #{site_name}."
+        "Browse journal tags on #{site_name}."
 
       tag_page?(page) ->
-        "Lorem ipsum tagged #{page[:tag]} on #{site_name}."
+        "Journal posts tagged #{page[:tag]} on #{site_name}."
 
       present_string?(page[:description]) ->
         page[:description]
 
       true ->
-        "Lorem ipsum dolor sit amet. Learn more about #{site_name}."
+        "#{site_name} is a Tableau + Corex launch template."
     end
   end
 

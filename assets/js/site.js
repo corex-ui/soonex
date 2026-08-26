@@ -19,7 +19,7 @@ const csrfToken = document
   ?.getAttribute("content")
 
 // Eager chrome (every page) — matches installer/my_app3 so Template Options is instant.
-// Lazy page hooks — Timer, Marquee, Accordion, etc. only when present.
+// Lazy page hooks — Timer, Marquee, Accordion, marketing widgets only when present.
 const liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
   hooks: {
@@ -38,6 +38,15 @@ const liveSocket = new LiveSocket("/live", Socket, {
       Accordion: () => import("corex/accordion"),
       Checkbox: () => import("corex/checkbox"),
       Avatar: () => import("corex/avatar"),
+      Pagination: () => import("corex/pagination"),
+      Carousel: () => import("corex/carousel"),
+      Tooltip: () => import("corex/tooltip"),
+      Collapsible: () => import("corex/collapsible"),
+      Switch: () => import("corex/switch"),
+      RadioGroup: () => import("corex/radio-group"),
+      TagsInput: () => import("corex/tags-input"),
+      NumberInput: () => import("corex/number-input"),
+      DatePicker: () => import("corex/date-picker"),
     }),
   },
 })

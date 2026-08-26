@@ -9,8 +9,6 @@ defmodule Soonex.HomePage.Hero do
   attr(:countdown_ms, :integer, required: true)
 
   def hero(assigns) do
-    assigns = assign(assigns, :theme_snippet, theme_snippet())
-
     ~H"""
     <header
       class={"#{Shell.section_hero()} bg-root"}
@@ -31,8 +29,8 @@ defmodule Soonex.HomePage.Hero do
 
             <p class={"#{Shell.lede()} max-w-xl"}>
               Soonex is an English Tableau template with Corex tokens, a waitlist, and a countdown
-              to 1 September. Change the brand in <code class="code">config :corex_design</code> —
-              contrast stays calculated.
+              to 1 September. Change the brand in <code class="code">config :corex_design</code>
+              — contrast stays calculated.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -46,64 +44,76 @@ defmodule Soonex.HomePage.Hero do
           </div>
 
           <div class="lg:col-span-5">
-            <div class={"#{Shell.panel()} flex w-full min-w-0 flex-col"}>
-              <div class="flex items-center gap-2 border-b border-border px-3 py-2">
-                <span class="size-2 rounded-full bg-border"></span>
-                <span class="size-2 rounded-full bg-border"></span>
-                <span class="size-2 rounded-full bg-border"></span>
-                <span class="ms-2 font-mono text-xs text-ink-muted">config.exs</span>
-              </div>
+            <div class={"#{Shell.panel()} flex w-full min-w-0 flex-col p-6 sm:p-8"}>
+              <p class={Shell.eyebrow()}>Waitlist</p>
+              <h2 class="display mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                Get launch notes first
+              </h2>
+              <p class="mt-3 text-sm/6 text-ink-muted">
+                One email. Tell us how you work. We will not store this form — it only fires a toast.
+              </p>
 
-              <div class="flex flex-col gap-6 p-6 sm:p-8">
-                <div class="flex items-start justify-between gap-4">
-                  <div>
-                    <p class={Shell.eyebrow()}>Public launch</p>
-                    <p
-                      id="hero-countdown-title"
-                      class="display mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-3xl"
-                    >
-                      1 September 2026
-                    </p>
-                  </div>
-                  <.clipboard
-                    id="soonex-theme-snippet"
-                    class="clipboard ui-brand ui-size-sm shrink-0"
-                    value={@theme_snippet}
-                    input={false}
-                    trigger_aria_label="Copy theme config"
-                  >
-                    <:copy>
-                      <.heroicon name="hero-clipboard" />
-                    </:copy>
-                    <:copied>
-                      <.heroicon name="hero-check" />
-                    </:copied>
-                  </.clipboard>
-                </div>
-
-                <.timer
-                  id="soonex-hero-countdown"
-                  countdown
-                  start_ms={@countdown_ms}
-                  target_ms={0}
-                  class="timer ui-success ui-size-lg w-full"
+              <form
+                id="soonex-hero-waitlist-form"
+                class="mt-8 flex w-full flex-col items-stretch gap-5"
+                data-waitlist-toast-title="You're on the list"
+                data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+              >
+                <.native_input
+                  type="email"
+                  name="waitlist[email]"
+                  id="soonex-hero-waitlist-email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@studio.dev"
+                  class="native-input ui-size-md ui-width-full"
                 >
-                  <:day_label>Days</:day_label>
-                  <:hour_label>Hours</:hour_label>
-                  <:minute_label>Min</:minute_label>
-                  <:second_label>Sec</:second_label>
-                </.timer>
+                  <:label>Email</:label>
+                </.native_input>
 
-                <.data_list
-                  class="data-list ui-accent ui-size-sm w-full max-w-none"
-                  items={launch_facts()}
-                />
+                <.radio_group
+                  id="soonex-hero-role"
+                  name="waitlist[role]"
+                  class="radio-group ui-brand ui-width-full"
+                  value="founder"
+                  items={[
+                    %{value: "founder", label: "Founder"},
+                    %{value: "engineer", label: "Engineer"},
+                    %{value: "designer", label: "Designer"}
+                  ]}
+                >
+                  <:label>I am a</:label>
+                </.radio_group>
 
-                <.code class="code code--wide ui-size-sm" language={:elixir} code={@theme_snippet} />
-              </div>
+                <.switch
+                  id="soonex-hero-notes"
+                  name="waitlist[notes]"
+                  checked
+                  class="switch ui-brand"
+                >
+                  <:label>Email me launch notes</:label>
+                </.switch>
+
+                <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
+                  Join waitlist
+                </button>
+              </form>
             </div>
           </div>
         </div>
+
+        <.timer
+          id="soonex-hero-countdown"
+          countdown
+          start_ms={@countdown_ms}
+          target_ms={0}
+          class="timer ui-success ui-size-lg mt-16 w-full"
+        >
+          <:day_label>Days</:day_label>
+          <:hour_label>Hours</:hour_label>
+          <:minute_label>Min</:minute_label>
+          <:second_label>Sec</:second_label>
+        </.timer>
 
         <dl class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
           <div
@@ -127,23 +137,5 @@ defmodule Soonex.HomePage.Hero do
       {"0 npm", "Corex hooks via Mix — no package.json"},
       {"1 September", "Public launch on the calendar"}
     ]
-  end
-
-  defp launch_facts do
-    Corex.Content.new([
-      %{label: "Date", content: "1 September 2026"},
-      %{label: "Status", content: "Waitlist open"},
-      %{label: "Stack", content: "Tableau + Corex"}
-    ])
-  end
-
-  defp theme_snippet do
-    """
-    config :corex_design,
-      themes: %{
-        neo: %{seeds: %{brand: "#2F4BDA"}}
-      }
-    """
-    |> String.trim()
   end
 end

@@ -1,5 +1,9 @@
 /* Tiny layout helpers that utilities cannot express. No theme recasts. */
 
+[data-motion="reduce"] [data-site-header] {
+  transition: none;
+}
+
 @media (width < 40rem) {
   .timer.ui-size-sm,
   .timer.ui-size-md,

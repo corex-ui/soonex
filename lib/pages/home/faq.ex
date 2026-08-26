@@ -8,16 +8,16 @@ defmodule Soonex.HomePage.Faq do
 
   def faq(assigns) do
     ~H"""
-    <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Quaestiones" layout={:sticky}>
+    <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
-        Saepe <span class="text-brand-text">quaeruntur</span>
+        Before you <span class="text-brand-text">fork</span>
       </:title>
       <:lede>
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
+        The sticky split stays here. Everywhere else, the band is the component.
       </:lede>
       <:actions>
         <.navigate to="#epistula" class="link ui-brand">
-          Scribe nomen <.heroicon name="hero-arrow-down" />
+          Join waitlist <.heroicon name="hero-arrow-down" />
         </.navigate>
       </:actions>
       <.accordion
@@ -25,7 +25,7 @@ defmodule Soonex.HomePage.Faq do
         class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
         multiple={false}
         collapsible={false}
-        value="alpha"
+        value="what"
         items={faq_items()}
       >
         <:trigger :let={item}>
@@ -45,40 +45,40 @@ defmodule Soonex.HomePage.Faq do
   defp faq_items do
     Corex.Content.new([
       %{
-        value: "alpha",
-        label: "Quid est lorem ipsum?",
+        value: "what",
+        label: "What is Soonex?",
         content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+          "A Tableau static site with Corex components. It is a launch template: waitlist, countdown, journal, and four theme overlays you edit in config."
       },
       %{
-        value: "beta",
-        label: "Unde venit dolor sit amet?",
+        value: "npm",
+        label: "Do I need npm?",
         content:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt."
+          "Not for Corex. Mix installs the hooks; Esbuild resolves corex/* from deps. There is no package.json in this repo."
       },
       %{
-        value: "gamma",
-        label: "Cur consectetur adipiscing elit?",
+        value: "themes",
+        label: "How do I change the brand?",
         content:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis."
+          "Overlay seeds, colors, radius, font, and typography under config :corex_design. Then mix corex.design.build. Do not lower contrast targets."
       },
       %{
-        value: "delta",
-        label: "Quando magnum aliqua finietur?",
+        value: "i18n",
+        label: "Is this the multi-locale variant?",
         content:
-          "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+          "No. soonex_i18n is a separate repository. This template is English-only on purpose."
       },
       %{
-        value: "epsilon",
-        label: "Quo vadit haec epistula?",
+        value: "waitlist",
+        label: "Does the waitlist store email?",
         content:
-          "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore."
+          "The demo forms prevent submit and fire a toast. Wire the same fields to your backend when you have one."
       },
       %{
-        value: "zeta",
-        label: "Quomodo officia tria iunguntur?",
+        value: "a11y",
+        label: "Where are accessibility preferences stored?",
         content:
-          "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi."
+          "In localStorage under phx:a11y. The Corex dialog is the official --a11y surface, not a custom panel."
       }
     ])
   end

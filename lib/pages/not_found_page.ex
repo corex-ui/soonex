@@ -4,13 +4,15 @@ defmodule Soonex.NotFoundPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/404.html",
-    title: "Non inventus",
-    description: "Lorem ipsum dolor sit amet — haec pagina non invenitur.",
+    title: "Page not found",
+    description: "That page is not on Soonex.",
     page_kind: :not_found,
     sitemap: %{priority: 0.2, changefreq: "yearly"}
 
   use Phoenix.Component
   use Corex
+
+  import Soonex.Layouts.Brand, only: [lockup: 1]
 
   alias Soonex.Layouts.Shell
 
@@ -22,19 +24,20 @@ defmodule Soonex.NotFoundPage do
     >
       <div class={Shell.stage()}>
         <div class={"#{Shell.panel()} mx-auto flex max-w-lg flex-col items-center gap-6 px-8 py-16"}>
+          <.lockup />
           <p class={Shell.eyebrow()}>404</p>
           <h1 id="soonex-not-found-heading" class="display m-0 text-4xl font-semibold tracking-tight">
-            Non inventus
+            Page not found
           </h1>
           <p class="m-0 max-w-sm text-base/7 text-ink-muted">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec via non est.
+            That URL is not on this site. Head home or read the shipping log.
           </p>
           <div class="mt-4 flex flex-wrap items-center justify-center gap-4">
             <.navigate to={Soonex.Public.path("/")} class="button ui-brand ui-solid ui-size-md">
-              Ad initium
+              Home
             </.navigate>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
-              Acta
+              Journal
             </.navigate>
           </div>
         </div>

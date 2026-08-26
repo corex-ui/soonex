@@ -7,7 +7,6 @@ defmodule Soonex.HomePage do
   import Soonex.HomePage.Hero, only: [hero: 1]
   import Soonex.HomePage.Socii, only: [socii: 1]
   import Soonex.HomePage.Contents, only: [contents: 1]
-  import Soonex.HomePage.Principia, only: [principia: 1]
   import Soonex.HomePage.Capita, only: [capita: 1]
   import Soonex.HomePage.Officia, only: [officia: 1]
   import Soonex.HomePage.Kalendarium, only: [kalendarium: 1]
@@ -36,7 +35,6 @@ defmodule Soonex.HomePage do
       <.hero countdown_ms={@countdown_ms} />
       <.socii />
       <.contents />
-      <.principia />
       <.capita />
       <.officia />
       <.kalendarium />

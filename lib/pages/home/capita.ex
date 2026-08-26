@@ -13,57 +13,74 @@ defmodule Soonex.HomePage.Capita do
     <.block
       id="capita"
       labelledby="soonex-capita-heading"
-      eyebrow="Capita"
-      tone={:root}
-      layout={:sticky}
+      eyebrow="Inside the template"
+      tone={:surface}
     >
       <:title>
-        Sex <span class="text-brand-text">argumenta</span>
+        What ships <span class="text-brand-text">on day one</span>
       </:title>
       <:lede>
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.
+        A waitlist, a journal, and chrome you can delete. Long copy stays behind a collapsible.
       </:lede>
       <div class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
-        <article
-          :for={{featured?, kicker, title, body} <- chapters()}
-          class={"flex flex-col bg-surface p-8 #{if featured?, do: "sm:col-span-2"}"}
-        >
-          <p class={Shell.eyebrow()}>{kicker}</p>
+        <article class="flex flex-col bg-root p-8 sm:col-span-2">
+          <p class={Shell.eyebrow()}>Overlays</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-            {title}
+            Host apps overlay Corex — they do not fork it
           </h3>
-          <p class="mt-4 flex-auto text-sm/6 text-ink-muted sm:text-base/7">{body}</p>
-          <div :if={featured?} class={"#{Shell.panel()} mt-8 bg-root"}>
-            <div class="flex items-center gap-2 border-b border-border px-3 py-2">
-              <span class="size-2 rounded-full bg-border"></span>
-              <span class="size-2 rounded-full bg-border"></span>
-              <span class="size-2 rounded-full bg-border"></span>
-              <span class="ms-2 font-mono text-xs text-ink-muted">lorem.ipsum</span>
-            </div>
-            <pre class="m-0 overflow-x-auto p-4 font-mono text-xs leading-6 text-ink-muted">sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua
-    quis nostrud exercitation ullamco</pre>
-          </div>
+          <p class="mt-4 text-sm/6 text-ink-muted sm:text-base/7">
+            Allowed per theme: seeds, light and dark colors, radius, font roles, and typography.
+            Density ladders live in top-level scales. Host overlays cannot set duration or opacity keys.
+          </p>
+          <.collapsible id="soonex-capita-collapsible" class="collapsible ui-width-full mt-6">
+            <:trigger>How the overlay works</:trigger>
+            <:closed>
+              <.heroicon name="hero-chevron-down" />
+            </:closed>
+            <:content>
+              <p class="m-0 max-w-2xl text-sm/6 text-ink-muted sm:text-base/7">
+                Edit <code class="code">config :corex_design</code>
+                in config/config.exs, then run <code class="code">mix corex.design.build</code>.
+                Contrast tokens stay <code class="code">:contrast</code>
+                so the solver keeps ink and links readable. Do not lower contrast targets to “soften”
+                a palette — raise seeds or targets if the build fails.
+              </p>
+            </:content>
+          </.collapsible>
+        </article>
+        <article :for={cell <- cells()} class="flex flex-col bg-surface p-8">
+          <p class={Shell.eyebrow()}>{cell.kicker}</p>
+          <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
+          <p class="mt-3 flex-auto text-sm/6 text-ink-muted">{cell.body}</p>
         </article>
       </div>
     </.block>
     """
   end
 
-  defp chapters do
+  defp cells do
     [
-      {true, "Caput I", "Sit amet consectetur",
-       "Adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
-      {false, "Caput II", "Ut enim ad minim",
-       "Veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."},
-      {false, "Caput III", "Duis aute irure",
-       "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."},
-      {false, "Caput IV", "Excepteur sint",
-       "Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit."},
-      {false, "Caput V", "Nemo enim ipsam",
-       "Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur."},
-      {false, "Caput VI", "Neque porro quisquam",
-       "Est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam."}
+      %{
+        kicker: "Waitlist",
+        title: "Email, role, and launch notes",
+        body:
+          "The hero card is the conversion object. The later band adds interests and team size."
+      },
+      %{
+        kicker: "Journal",
+        title: "Markdown posts with tags",
+        body: "Tableau posts, a card index, and a button pager. RSS is already wired."
+      },
+      %{
+        kicker: "Accessibility",
+        title: "Official Corex dialog",
+        body: "Text, contrast, motion, cursor, focus, and links — stored in localStorage."
+      },
+      %{
+        kicker: "Assets",
+        title: "No package.json",
+        body: "Esbuild and Tailwind run from Mix. Corex hooks resolve through NODE_PATH."
+      }
     ]
   end
 end

@@ -1,4 +1,5 @@
 const stickyRevealPx = 96
+const condensedPx = 8
 
 export function scrollProgress01() {
   const doc = document.documentElement
@@ -6,12 +7,17 @@ export function scrollProgress01() {
   return Math.min(1, Math.max(0, window.scrollY / maxScroll))
 }
 
-export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
-  const stickyEl = stickyBar instanceof HTMLElement ? stickyBar : null
+function motionReduce() {
+  return document.documentElement.getAttribute("data-motion") === "reduce"
+}
+
+export function bindLandingScrollChrome(header, countdown, heroBoundary, progressFill) {
+  const headerEl = header instanceof HTMLElement ? header : null
+  const countdownEl = countdown instanceof HTMLElement ? countdown : null
   const boundaryEl = heroBoundary instanceof HTMLElement ? heroBoundary : null
   const progressOk = progressFill instanceof HTMLElement
 
-  if (!stickyEl && !progressOk) {
+  if (!headerEl && !countdownEl && !progressOk) {
     return () => {}
   }
 
@@ -25,19 +31,30 @@ export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
         ? r.top <= stickyRevealPx
         : r.bottom <= stickyRevealPx
     }
-    return window.scrollY > stickyRevealPx
+    return true
+  }
+
+  const showCountdown = (show) => {
+    if (!countdownEl) {
+      return
+    }
+    countdownEl.toggleAttribute("data-shown", show)
+    countdownEl.toggleAttribute("aria-hidden", !show)
+    countdownEl.toggleAttribute("inert", !show)
+    countdownEl.hidden = !show
   }
 
   const tick = () => {
     if (!alive) {
       return
     }
-    if (stickyEl) {
-      const show = pastReveal()
-      stickyEl.toggleAttribute("data-shown", show)
-      stickyEl.toggleAttribute("aria-hidden", !show)
-      stickyEl.toggleAttribute("inert", !show)
+    if (headerEl) {
+      headerEl.toggleAttribute("data-condensed", window.scrollY > condensedPx)
+      if (motionReduce()) {
+        headerEl.style.transition = "none"
+      }
     }
+    showCountdown(pastReveal())
     if (progressOk) {
       const p = scrollProgress01()
       progressFill.style.transform = `scaleX(${p})`

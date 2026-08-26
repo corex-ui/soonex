@@ -13,16 +13,16 @@ defmodule Soonex.HomePage.Socii do
     <.block
       id="socii"
       labelledby="soonex-socii-heading"
-      eyebrow="Socii"
+      eyebrow="Stack"
       tone={:surface}
       align={:center}
       compact
     >
       <:title>
-        Notae <span class="text-brand-text">technicae</span>
+        Built on the Elixir <span class="text-brand-text">toolchain</span>
       </:title>
       <:lede>
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+        Mix installs Corex hooks. Tableau ships the static site. Tailwind tokens follow the theme.
       </:lede>
       <.marquee
         id="soonex-tech-marquee"

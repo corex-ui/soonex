@@ -4,29 +4,71 @@ defmodule Soonex.Layouts.Root.Nav do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Brand, only: [lockup: 1]
+
   alias Soonex.Layouts.Shell
+
+  attr(:countdown_start_ms, :integer, required: true)
+  attr(:page_path, :string, default: "/")
 
   def site_nav(assigns) do
     assigns = assign(assigns, :menu_items, menu_items())
 
     ~H"""
-    <header class="border-b border-border bg-root">
-      <div class={"#{Shell.stage()} flex items-center justify-between gap-4 py-4"}>
-        <.navigate to={Soonex.Public.path("/")} class="link ui-nav ui-size-sm font-semibold">
-          Soonex
-        </.navigate>
+    <header
+      data-site-header
+      class="sticky top-0 z-50 border-b border-transparent bg-root py-4 transition-[padding,border-color] duration-200 ease-out data-[condensed]:border-border data-[condensed]:py-2"
+    >
+      <div
+        data-scroll-progress
+        class="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px overflow-hidden bg-border"
+        aria-hidden="true"
+      >
+        <div
+          data-scroll-progress-fill
+          class="h-full w-full origin-left bg-brand will-change-transform"
+          style="transform: scaleX(0)"
+        >
+        </div>
+      </div>
+
+      <div class={"#{Shell.stage()} relative flex items-center justify-between gap-4"}>
+        <.lockup />
 
         <nav class="hidden items-center gap-x-6 lg:flex" aria-label="Primary">
           <.navigate
             :for={item <- desktop_links()}
             to={item.to}
-            class="link ui-nav ui-size-sm"
+            class={nav_link_class(@page_path, item)}
           >
             {item.label}
           </.navigate>
         </nav>
 
         <div class="flex items-center gap-3">
+          <div
+            id="soonex-header-countdown"
+            data-header-countdown
+            hidden
+            inert
+            aria-hidden="true"
+            class="max-md:hidden"
+          >
+            <div class="flex items-center gap-3">
+              <.timer
+                id="soonex-header-timer"
+                countdown
+                start_ms={@countdown_start_ms}
+                target_ms={0}
+                class="timer ui-success ui-rounded-md ui-size-sm"
+              >
+                <:day_label>Days</:day_label>
+                <:hour_label>Hours</:hour_label>
+                <:minute_label>Min</:minute_label>
+                <:second_label>Sec</:second_label>
+              </.timer>
+            </div>
+          </div>
           <.navigate
             to={Soonex.Public.path("/") <> "#epistula"}
             class="button ui-brand ui-solid ui-size-sm"
@@ -54,11 +96,26 @@ defmodule Soonex.Layouts.Root.Nav do
     """
   end
 
+  defp nav_link_class(page_path, item) do
+    current? = nav_current?(page_path, item)
+
+    [
+      "link ui-nav ui-size-sm relative after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:bg-brand after:transition-transform",
+      if(current?, do: "after:scale-x-100", else: "after:scale-x-0 hover:after:scale-x-100")
+    ]
+  end
+
+  defp nav_current?(page_path, %{id: :journal}) do
+    String.starts_with?(page_path, "/blog") or String.starts_with?(page_path, "/tags")
+  end
+
+  defp nav_current?(_page_path, _item), do: false
+
   defp desktop_links do
     [
-      %{label: "Product", to: Soonex.Public.path("/") <> "#principia"},
-      %{label: "Journal", to: Soonex.Public.path("/blog")},
-      %{label: "Questions", to: Soonex.Public.path("/") <> "#quaestiones"}
+      %{id: :product, label: "Product", to: Soonex.Public.path("/") <> "#principia"},
+      %{id: :journal, label: "Journal", to: Soonex.Public.path("/blog")},
+      %{id: :questions, label: "Questions", to: Soonex.Public.path("/") <> "#quaestiones"}
     ]
   end
 

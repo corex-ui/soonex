@@ -1,11 +1,15 @@
 /* Host polish after Corex. Tokens only. Prefer ui-* modifiers in HEEx. */
 
-.native-input.ui-width-full {
-  max-width: none;
-  width: 100%;
-}
-
-.clipboard.ui-width-full {
+.native-input.ui-width-full,
+.clipboard.ui-width-full,
+.radio-group.ui-width-full,
+.tags-input.ui-width-full,
+.number-input.ui-width-full,
+.date-picker.ui-width-full,
+.data-table.ui-width-full,
+.carousel.ui-width-full,
+.collapsible.ui-width-full,
+.switch.ui-width-full {
   max-width: none;
   width: 100%;
 }

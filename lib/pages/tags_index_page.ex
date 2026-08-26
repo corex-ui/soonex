@@ -4,72 +4,65 @@ defmodule Soonex.TagsIndexPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/tags",
-    title: "Notae",
+    title: "Tags",
     page_kind: :tags_index,
     sitemap: %{priority: 0.5, changefreq: "weekly"}
 
   use Phoenix.Component
   use Corex
 
-  import Soonex.Layouts.Rows, only: [data_rows: 1]
+  import Soonex.Layouts.Articles, only: [pager: 1]
 
   alias Soonex.Layouts.Shell
 
   def template(assigns) do
     tags = Map.get(assigns, :tags, %{})
 
-    items =
+    tag_cards =
       tags
       |> Map.to_list()
       |> Enum.sort_by(fn {_tag, posts} -> length(posts) end, :desc)
       |> Enum.map(fn {tag, posts} ->
-        count = length(posts)
-
         %{
-          label: "#{count}",
-          content: if(count == 1, do: "post", else: "posts"),
-          meta: %{
-            href: Soonex.Public.path(tag.permalink),
-            title: tag.tag
-          }
+          label: tag.tag,
+          href: Soonex.Public.path(tag.permalink),
+          count: length(posts)
         }
       end)
-      |> Corex.Content.new()
 
-    assigns = Map.put(assigns, :tag_items, items)
+    assigns = Map.put(assigns, :tag_cards, tag_cards)
 
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
       <div class={Shell.stage()}>
-        <nav class="flex flex-wrap items-center gap-3" aria-label="Tags">
-          <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
-            <.heroicon name="hero-arrow-left" /> Ad acta
-          </.navigate>
-        </nav>
+        <.layout_heading class="layout-heading" subtitle_tag="p">
+          <:title>Tags</:title>
+          <:subtitle>Browse the journal by topic</:subtitle>
+          <:actions>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              <.heroicon name="hero-arrow-left" /> Journal
+            </.navigate>
+          </:actions>
+        </.layout_heading>
 
-        <div class={"#{Shell.sticky_grid()} mt-10"}>
-          <header class={Shell.sticky_intro()} aria-labelledby="tags-heading">
-            <p class={Shell.eyebrow()}>Notae</p>
-            <h1 id="tags-heading" class={Shell.page_heading()}>
-              Omnes <span class="text-brand-text">notae</span>
-            </h1>
-            <p class={Shell.lede()}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-            </p>
-            <p class="mt-6 text-sm/6">
-              <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
-                Omnia acta
-              </.navigate>
-            </p>
-          </header>
-
-          <div class={Shell.sticky_body()}>
-            <.data_rows
-              id="soonex-tags-list"
-              items={@tag_items}
-              empty="Lorem ipsum — nullae notae."
-            />
+        <div class="mt-16">
+          <div :if={@tag_cards == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
+            <p class="m-0">No tags yet.</p>
           </div>
+          <div
+            :if={@tag_cards != []}
+            class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3"
+          >
+            <article :for={tag <- @tag_cards} class="flex flex-col bg-surface p-8">
+              <h2 class="display m-0 text-xl font-semibold tracking-tight text-ink">
+                <.navigate to={tag.href} class="link ui-nav">{tag.label}</.navigate>
+              </h2>
+              <p class="mt-3 text-sm/6 text-ink-muted">
+                {tag.count} {if tag.count == 1, do: "post", else: "posts"}
+              </p>
+            </article>
+          </div>
+          <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={1} />
         </div>
       </div>
     </article>

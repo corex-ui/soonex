@@ -36,13 +36,13 @@ Rebuild assets: `mix assets.build`.
 
 ## Customize (where to edit)
 
-- **Brand / SEO:** [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex), [`lib/pages/root_index_page.ex`](lib/pages/root_index_page.ex).
-- **Themes:** overlay stock presets in [`config/config.exs`](config/config.exs) (`config :corex_design, themes: %{…}`). Seeds and `dimensions.radius` steps only — contrast stays calculated, and `*_scale` keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
+- **Brand / SEO:** lockup in [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg); titles in [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex).
+- **Themes:** overlay **all allowed keys** per theme in [`config/config.exs`](config/config.exs) (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`) plus top-level `scales:`. Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
 - **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); `corex_design` must stay a **runtime** dep.
 - **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
-- **Chrome:** [`assets/css/chrome.css`](assets/css/chrome.css) and [`assets/css/hosts.css`](assets/css/hosts.css) (tiny, after `corex.css`). Layout is Tailwind + Corex tokens in HEEx. No token opacity (`bg-surface/90`).
-- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Most bands use the FAQ sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
-- **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
+- **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); condensed + countdown `hidden`/`inert` in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js). [`assets/css/hosts.css`](assets/css/hosts.css) is tiny, after `corex.css`. No token opacity (`bg-surface/90`).
+- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Only FAQ uses the sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
+- **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex) (`layout_heading`, cards, pagination); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
 
 MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tableau data, tags, and static extras** in the longer notes below.
@@ -59,7 +59,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js), a11y head script; sticky countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js) (`data-shown`, transform only).
+- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js), a11y head script; header condensed + countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js) (`hidden` + `inert` until past the hero sentinel).
 
 ## Production and hosting
 

@@ -4,6 +4,8 @@ defmodule Soonex.Layouts.Root.Footer do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Brand, only: [lockup: 1]
+
   alias Soonex.Layouts.Shell
 
   @github "https://github.com/corex-ui/soonex"
@@ -22,26 +24,27 @@ defmodule Soonex.Layouts.Root.Footer do
       <div class={Shell.stage()}>
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
           <div class="max-w-md">
-            <p class={Shell.eyebrow()}>Soonex</p>
+            <.lockup />
             <p class="mt-6 text-sm/6 text-ink-muted">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              An English Tableau template with Corex tokens, a waitlist, and a countdown to 1
+              September. Change the brand in config — contrast stays calculated.
             </p>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Paginae</p>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Product</p>
               <ul class="mt-6 flex list-none flex-col gap-4 p-0">
                 <li>
                   <.navigate
                     to={Soonex.Public.path("/") <> "#principia"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Principia
+                    Features
                   </.navigate>
                 </li>
                 <li>
                   <.navigate to={Soonex.Public.path("/") <> "#officia"} class="link ui-nav ui-size-sm">
-                    Officia
+                    Plans
                   </.navigate>
                 </li>
                 <li>
@@ -49,7 +52,7 @@ defmodule Soonex.Layouts.Root.Footer do
                     to={Soonex.Public.path("/") <> "#quaestiones"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Quaestiones
+                    Questions
                   </.navigate>
                 </li>
                 <li>
@@ -57,22 +60,22 @@ defmodule Soonex.Layouts.Root.Footer do
                     to={Soonex.Public.path("/") <> "#epistula"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Epistula
+                    Waitlist
                   </.navigate>
                 </li>
               </ul>
             </div>
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Acta</p>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Journal</p>
               <ul class="mt-6 flex list-none flex-col gap-4 p-0">
                 <li>
                   <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav ui-size-sm">
-                    Omnia acta
+                    All posts
                   </.navigate>
                 </li>
                 <li>
                   <.navigate to={Soonex.Public.path("/tags")} class="link ui-nav ui-size-sm">
-                    Notae
+                    Tags
                   </.navigate>
                 </li>
                 <li>
@@ -83,7 +86,7 @@ defmodule Soonex.Layouts.Root.Footer do
               </ul>
             </div>
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Alia</p>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Elsewhere</p>
               <ul class="mt-6 flex list-none flex-col gap-4 p-0">
                 <li>
                   <.navigate to={@github} class="link ui-nav ui-size-sm" external>
@@ -102,7 +105,7 @@ defmodule Soonex.Layouts.Root.Footer do
 
         <div class="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p class="m-0 text-sm/6 text-ink-muted">
-            © {Date.utc_today().year} {@copyright_holder} · Lorem ipsum
+            © {Date.utc_today().year} {@copyright_holder}
           </p>
           <.navigate
             to={Soonex.Public.path("/") <> "#epistula"}

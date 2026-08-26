@@ -6,14 +6,15 @@ export function initLanding() {
     return () => {}
   }
 
-  const stickyBar = document.querySelector("[data-sticky-bar]")
+  const header = document.querySelector("[data-site-header]")
+  const countdown = document.querySelector("[data-header-countdown]")
   const heroBoundary =
     root.querySelector("[data-hero-sentinel]") ||
     root.querySelector("[data-hero-boundary]") ||
     root.querySelector("[data-hero]")
   const progressFill = document.querySelector("[data-scroll-progress-fill]")
 
-  const teardown = bindLandingScrollChrome(stickyBar, heroBoundary, progressFill)
+  const teardown = bindLandingScrollChrome(header, countdown, heroBoundary, progressFill)
 
   window.addEventListener("pagehide", teardown, { once: true })
 

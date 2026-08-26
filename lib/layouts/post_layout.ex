@@ -15,7 +15,7 @@ defmodule Soonex.PostLayout do
 
     date_label =
       case date do
-        %DateTime{} -> Calendar.strftime(date, "%Y-%m-%d")
+        %DateTime{} -> Calendar.strftime(date, "%d %B %Y")
         _ -> nil
       end
 
@@ -35,39 +35,33 @@ defmodule Soonex.PostLayout do
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
       <div class={Shell.stage()}>
-        <nav class="flex flex-wrap items-center gap-3" aria-label="Post">
-          <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
-            <.heroicon name="hero-arrow-left" /> Ad acta
+        <.layout_heading class="layout-heading" subtitle_tag="p">
+          <:title>{@post_title}</:title>
+          <:subtitle>
+            <span :if={@post_date_label}>{@post_date_label}</span>
+            <span :if={@post_date_label && @post_description}> · </span>
+            <span :if={@post_description}>{@post_description}</span>
+          </:subtitle>
+          <:actions>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              <.heroicon name="hero-arrow-left" /> Journal
+            </.navigate>
+          </:actions>
+        </.layout_heading>
+
+        <div :if={@post_tags != []} class="mt-8 flex flex-wrap items-center gap-3">
+          <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+            <li :for={tag <- @post_tags}>
+              <span class="badge ui-size-sm">{tag}</span>
+            </li>
+          </ul>
+          <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
+            All tags
           </.navigate>
-        </nav>
+        </div>
 
-        <div class={"#{Shell.sticky_grid()} mt-10"}>
-          <header class={"#{Shell.sticky_intro()}"} aria-labelledby="post-heading">
-            <p :if={@post_date_label} class={Shell.eyebrow()}>{@post_date_label}</p>
-            <h1 id="post-heading" class={Shell.page_heading()}>
-              {@post_title}
-            </h1>
-            <p :if={@post_description} class={Shell.lede()}>
-              {@post_description}
-            </p>
-            <div class="mt-6 flex flex-wrap items-center gap-3">
-              <ul
-                :if={@post_tags != []}
-                class="m-0 flex list-none flex-wrap gap-2 p-0"
-              >
-                <li :for={tag <- @post_tags}>
-                  <span class="badge ui-size-sm">{tag}</span>
-                </li>
-              </ul>
-              <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-                Notae
-              </.navigate>
-            </div>
-          </header>
-
-          <div class="typo markdown prose min-w-0 lg:col-span-7">
-            {{:safe, render(@inner_content)}}
-          </div>
+        <div class="typo markdown prose mt-12 min-w-0 max-w-3xl">
+          {{:safe, render(@inner_content)}}
         </div>
       </div>
     </article>

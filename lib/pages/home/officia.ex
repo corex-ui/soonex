@@ -11,15 +11,14 @@ defmodule Soonex.HomePage.Officia do
     <.block
       id="officia"
       labelledby="soonex-officia-heading"
-      eyebrow="Officia"
-      tone={:surface}
-      layout={:sticky}
+      eyebrow="Plans"
+      tone={:root}
     >
       <:title>
-        Tria <span class="text-brand-text">munera</span>
+        Pick a <span class="text-brand-text">starting shape</span>
       </:title>
       <:lede>
-        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur.
+        Same template, three ways to ship it. The table is the product — not a widget gallery.
       </:lede>
       <.tabs
         id="soonex-officia"
@@ -27,7 +26,7 @@ defmodule Soonex.HomePage.Officia do
         indicator
         multiple={false}
         collapsible={false}
-        value="scriptio"
+        value="compare"
         items={offices()}
       >
         <:trigger :let={item}>{item.label}</:trigger>
@@ -37,11 +36,17 @@ defmodule Soonex.HomePage.Officia do
               {item.meta.headline}
             </p>
             <p class="m-0 max-w-2xl text-base/7 text-ink-muted">{item.content}</p>
-            <.data_list
-              orientation="horizontal"
-              class="data-list data-list--wide ui-accent ui-size-sm w-full max-w-none"
-              items={item.meta.points}
-            />
+            <.data_table
+              :if={item.value == "compare"}
+              id="soonex-plan-table"
+              class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
+              rows={plan_rows()}
+            >
+              <:col :let={row} label="Feature">{row.feature}</:col>
+              <:col :let={row} label="Launch">{row.launch}</:col>
+              <:col :let={row} label="Studio">{row.studio}</:col>
+              <:col :let={row} label="Agency">{row.agency}</:col>
+            </.data_table>
           </div>
         </:content>
       </.tabs>
@@ -52,50 +57,65 @@ defmodule Soonex.HomePage.Officia do
   defp offices do
     Corex.Content.new([
       %{
-        value: "scriptio",
-        label: "Scriptio",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        meta: %{
-          headline: "Litterae et acta",
-          points:
-            Corex.Content.new([
-              %{label: "Acta", content: "Sed ut perspiciatis unde omnis iste natus."},
-              %{label: "Notae", content: "Nemo enim ipsam voluptatem quia voluptas."},
-              %{label: "Index", content: "Neque porro quisquam est qui dolorem."}
-            ])
-        }
+        value: "compare",
+        label: "Compare",
+        content: "What you keep when you fork Soonex. Nothing here is billed — it is a map.",
+        meta: %{headline: "Launch, Studio, Agency"}
       },
       %{
-        value: "oratio",
-        label: "Oratio",
+        value: "launch",
+        label: "Launch",
         content:
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        meta: %{
-          headline: "Voces in foro",
-          points:
-            Corex.Content.new([
-              %{label: "Forum", content: "Duis aute irure dolor in reprehenderit."},
-              %{label: "Chorus", content: "Excepteur sint occaecat cupidatat non."},
-              %{label: "Echo", content: "Sunt in culpa qui officia deserunt mollit."}
-            ])
-        }
+          "Waitlist, countdown, four theme overlays, and a journal. Enough to publish before the product exists.",
+        meta: %{headline: "Ship the site first"}
       },
       %{
-        value: "numerus",
-        label: "Numerus",
+        value: "studio",
+        label: "Studio",
         content:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        meta: %{
-          headline: "Rationes et numeri",
-          points:
-            Corex.Content.new([
-              %{label: "Summa", content: "At vero eos et accusamus et iusto odio."},
-              %{label: "Modus", content: "Et harum quidem rerum facilis est et."},
-              %{label: "Finis", content: "Temporibus autem quibusdam et aut officiis."}
-            ])
-        }
+          "Keep the overlays and add your own bands. Swap the waitlist for a real backend when you have one.",
+        meta: %{headline: "Own the chrome"}
       }
     ])
+  end
+
+  defp plan_rows do
+    [
+      %{
+        id: "themes",
+        feature: "Theme overlays",
+        launch: "Brand seed",
+        studio: "Full maps",
+        agency: "Full maps + scales"
+      },
+      %{
+        id: "waitlist",
+        feature: "Waitlist",
+        launch: "Email",
+        studio: "Email + role",
+        agency: "Email, tags, team size"
+      },
+      %{
+        id: "journal",
+        feature: "Journal",
+        launch: "Index",
+        studio: "Index + tags",
+        agency: "Index, tags, RSS"
+      },
+      %{
+        id: "npm",
+        feature: "npm for Corex",
+        launch: "None",
+        studio: "None",
+        agency: "None"
+      },
+      %{
+        id: "a11y",
+        feature: "Accessibility dialog",
+        launch: "Yes",
+        studio: "Yes",
+        agency: "Yes"
+      }
+    ]
   end
 end
