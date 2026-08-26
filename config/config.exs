@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Elixir static site template: Tableau, Corex, tokens, Tailwind v4, Markdown posts. Waitlist for launch updates."
+    "Tableau + Corex launch template: waitlist, countdown, and themes you customize in config."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -84,7 +84,27 @@ config :corex_design,
   output: "assets/corex",
   default_theme: :neo,
   default_mode: :light,
-  themes: [:neo, :uno, :duo, :leo],
+  # Preset ids with seed/radius overlays. Contrast tokens stay calculated.
+  # Empty map `%{}` keeps a preset unchanged. Host overlays cannot set *scale keys
+  # (radius_scale, space_scale, …); per-theme radius uses dimensions.radius steps.
+  # See Corex.Design.Theme.Validator.
+  themes: %{
+    neo: %{
+      seeds: %{brand: "#2F4BDA"},
+      dimensions: %{
+        radius: %{sm: 0.5, md: 0.8, lg: 1.05, xl: 1.3}
+      }
+    },
+    uno: %{
+      seeds: %{brand: "#0F766E"}
+    },
+    duo: %{
+      seeds: %{brand: "#6D28D9"}
+    },
+    leo: %{
+      seeds: %{brand: "#C2410C"}
+    }
+  },
   modes: [:light, :dark],
   scales: [],
   components: [
@@ -101,6 +121,9 @@ config :corex_design,
     :select,
     :tabs,
     :toggle,
+    :"toggle-group",
+    :dialog,
+    :menu,
     :"native-input",
     :checkbox,
     :"data-list",
@@ -111,7 +134,8 @@ config :corex_design,
     :"floating-panel",
     :scrollbar
   ],
-  semantics: [:accent, :brand, :alert, :info, :success]
+  semantics: [:accent, :brand, :alert, :info, :success],
+  accessibility: true
 
 config :phoenix, json_library: Jason
 

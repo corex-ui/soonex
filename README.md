@@ -37,9 +37,10 @@ Rebuild assets: `mix assets.build`.
 ## Customize (where to edit)
 
 - **Brand / SEO:** [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex), [`lib/pages/root_index_page.ex`](lib/pages/root_index_page.ex).
-- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match themes in `config :corex_design`.
+- **Themes:** overlay stock presets in [`config/config.exs`](config/config.exs) (`config :corex_design, themes: %{…}`). Seeds and `dimensions.radius` steps only — contrast stays calculated, and `*_scale` keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
+- **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); `corex_design` must stay a **runtime** dep.
 - **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
-- **Chrome:** [`assets/css/chrome.css`](assets/css/chrome.css) (tiny). Layout is Tailwind + Corex tokens in HEEx.
+- **Chrome:** [`assets/css/chrome.css`](assets/css/chrome.css) and [`assets/css/hosts.css`](assets/css/hosts.css) (tiny, after `corex.css`). Layout is Tailwind + Corex tokens in HEEx. No token opacity (`bg-surface/90`).
 - **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Most bands use the FAQ sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
 - **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
@@ -58,7 +59,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); sticky countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js).
+- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js), a11y head script; sticky countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js) (`data-shown`, transform only).
 
 ## Production and hosting
 

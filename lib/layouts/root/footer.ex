@@ -108,7 +108,7 @@ defmodule Soonex.Layouts.Root.Footer do
             to={Soonex.Public.path("/") <> "#epistula"}
             class="button ui-brand ui-solid ui-size-sm w-fit"
           >
-            Scribe nomen
+            Join waitlist
           </.navigate>
         </div>
       </div>

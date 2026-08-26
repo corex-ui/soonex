@@ -10,6 +10,7 @@ defmodule Soonex.RootLayout do
   import Soonex.Layouts.Root.Demo, only: [demo_site_controls: 1]
   import Soonex.Layouts.Root.Footer, only: [site_footer: 1]
   import Soonex.Layouts.Root.LandingChrome, only: [landing_chrome: 1]
+  import Soonex.Layouts.Root.Nav, only: [site_nav: 1]
 
   alias Phoenix.HTML
   alias Phoenix.HTML.Safe
@@ -72,10 +73,12 @@ defmodule Soonex.RootLayout do
       data-mode={@mode}
       data-themes={Enum.join(Soonex.Theme.themes(), ",")}
       data-default-theme={Soonex.Theme.default_theme()}
+      {Soonex.Accessibility.data_attrs()}
     >
       <head>
         {Soonex.Theme.head_script()}
         {Soonex.Mode.head_script()}
+        {Soonex.Accessibility.head_script()}
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -157,6 +160,7 @@ defmodule Soonex.RootLayout do
 
         <.demo_site_controls mode={@mode} />
         <.landing_chrome countdown_start_ms={@countdown_start_ms} />
+        <.site_nav />
 
         <main
           id="main-content"
@@ -196,7 +200,7 @@ defmodule Soonex.RootLayout do
         page[:title]
 
       page[:page_kind] == :home ->
-        "#{site_name} · Lorem ipsum"
+        "#{site_name} · Launch 1 September"
 
       page[:page_kind] == :blog_index ->
         "Acta · #{site_name}"
@@ -218,7 +222,7 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
+        "Soonex is a Tableau + Corex launch template: waitlist, countdown, and themes you customize in config."
 
       page[:page_kind] == :blog_index ->
         "Lorem ipsum dolor sit amet — acta et notae from #{site_name}."

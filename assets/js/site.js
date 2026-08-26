@@ -7,6 +7,10 @@ import { FloatingPanel } from "corex/floating-panel"
 import { Toast } from "corex/toast"
 import { Select } from "corex/select"
 import { Toggle } from "corex/toggle"
+import { Dialog } from "corex/dialog"
+import { ToggleGroup } from "corex/toggle-group"
+import { Menu } from "corex/menu"
+import { Clipboard } from "corex/clipboard"
 import { initLanding } from "./landing.js"
 import { initWaitlistForm } from "./waitlist.js"
 
@@ -23,6 +27,10 @@ const liveSocket = new LiveSocket("/live", Socket, {
     Toast,
     Select,
     Toggle,
+    Dialog,
+    ToggleGroup,
+    Menu,
+    Clipboard,
     ...hooks({
       Tabs: () => import("corex/tabs"),
       Timer: () => import("corex/timer"),
@@ -30,7 +38,6 @@ const liveSocket = new LiveSocket("/live", Socket, {
       Accordion: () => import("corex/accordion"),
       Checkbox: () => import("corex/checkbox"),
       Avatar: () => import("corex/avatar"),
-      Clipboard: () => import("corex/clipboard"),
     }),
   },
 })

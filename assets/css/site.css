@@ -3,6 +3,7 @@
 
 @import "./fonts.css";
 @import "../corex/corex.css";
+@import "./hosts.css";
 @source "../corex";
 @source "../../lib";
 

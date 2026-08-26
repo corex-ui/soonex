@@ -15,11 +15,6 @@ export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
     return () => {}
   }
 
-  if (stickyEl) {
-    stickyEl.style.transition =
-      "opacity 0.25s ease-out, transform 0.25s ease-out"
-  }
-
   let alive = true
   let rafId = null
 
@@ -39,10 +34,7 @@ export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
     }
     if (stickyEl) {
       const show = pastReveal()
-      stickyEl.style.opacity = show ? "1" : "0"
-      stickyEl.style.transform = show
-        ? "translate3d(0, 0, 0)"
-        : "translate3d(0, -120%, 0)"
+      stickyEl.toggleAttribute("data-shown", show)
       stickyEl.toggleAttribute("aria-hidden", !show)
       stickyEl.toggleAttribute("inert", !show)
     }

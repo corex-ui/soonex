@@ -16,7 +16,7 @@ defmodule Soonex.Layouts.Shell do
   def section_hero,
     do: "relative flex min-h-svh w-full flex-col justify-center overflow-x-clip py-24 sm:py-32"
 
-  def stage, do: "mx-auto w-full max-w-7xl px-6 lg:px-8"
+  def stage, do: "mx-auto w-full max-w-[90rem] px-6 lg:px-8"
 
   def intro, do: "mx-auto max-w-2xl lg:mx-0"
 

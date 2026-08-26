@@ -45,7 +45,7 @@ defmodule Soonex.MixProject do
        compile: false,
        depth: 1},
       {:corex, "~> 0.2.1"},
-      {:corex_design, "~> 0.2.1", runtime: false},
+      {:corex_design, "~> 0.2.1"},
       {:corex_mcp, "~> 0.2.1", only: [:dev, :test]},
       {:color, "~> 0.11"},
       {:floki, "~> 0.38"},

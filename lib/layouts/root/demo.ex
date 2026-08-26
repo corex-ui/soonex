@@ -4,6 +4,8 @@ defmodule Soonex.Layouts.Root.Demo do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Accessibility, only: [accessibility_panel: 1]
+
   attr(:mode, :any, required: true)
 
   def demo_site_controls(assigns) do
@@ -13,6 +15,7 @@ defmodule Soonex.Layouts.Root.Demo do
       aria-label="Demo site controls"
       class="fixed bottom-space end-space z-50 flex flex-col items-end gap-space"
     >
+      <.accessibility_panel />
       <.floating_panel
         id="site-controls"
         class="floating-panel"

@@ -14,6 +14,10 @@
 - Add `mix soonex.server` / `mix soonex.port_check` so a taken :4999 fails with the occupant instead of Tableau's premature “server started” log.
 - Drop Lenis and `assets/package.json`; native `scroll-smooth` is enough.
 - Content sections share the FAQ sticky split (`layout={:sticky}`). FAQ accordion is single-open and not collapsible, with the first item open.
+- Enable Corex accessibility (`accessibility: true`) with the official `--a11y` dialog (localStorage, no Phoenix plug). `corex_design` is a runtime dependency for that.
+- Customize stock themes only via `config :corex_design` theme maps (seed + `dimensions.radius` overlays; contrast stays calculated). Hosts cannot set `radius_scale` / `space_scale`.
+- Full-bleed stage (`max-w-[90rem]`), global top nav, and a product hero (countdown + clipboard theme snippet).
+- Sticky chip uses `data-shown` + transform (no token opacity). Tiny `hosts.css` after `corex.css`.
 
 ## 0.2.0
 
