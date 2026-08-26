@@ -48,6 +48,8 @@ export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
         ? "translate3d(0, 0, 0)"
         : "translate3d(0, -100%, 0)"
       stickyEl.style.pointerEvents = show ? "auto" : "none"
+      stickyEl.toggleAttribute("aria-hidden", !show)
+      stickyEl.toggleAttribute("inert", !show)
     }
     if (progressOk) {
       const p = scrollProgress01()

@@ -62,7 +62,7 @@ defmodule Soonex.HomePage.Hero do
           </div>
         </div>
 
-        <div class={"#{Shell.paper()} mx-auto w-full max-w-lg rotate-[-1.25deg] p-size md:p-size-lg lg:mx-0 lg:max-w-none"}>
+        <div class={"#{Shell.paper()} mx-auto w-full min-w-0 max-w-lg rotate-[-1.25deg] p-size md:p-size-lg lg:mx-0 lg:max-w-none"}>
           <p class={Shell.eyebrow()}>Launching in</p>
           <p
             id="hero-countdown-title"

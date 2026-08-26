@@ -54,6 +54,14 @@
   background-size: 140px 140px;
 }
 
+/* Keep four Corex timer segments on one row at phone widths (ui-size-lg is 5xl). */
+@media (width < 40rem) {
+  .timer.ui-size-lg {
+    --timer-digit: var(--text-3xl);
+    --timer-digit-leading: var(--text-3xl--line-height);
+  }
+}
+
 .paper-tab {
   position: relative;
 }

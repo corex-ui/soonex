@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Root.LandingChrome do
       class="fixed inset-x-0 top-0 z-50 flex w-full justify-center px-space-md pt-[3px] motion-safe:will-change-[opacity,transform]"
       style="opacity: 0; transform: translate3d(0, -100%, 0); pointer-events: none;"
     >
-      <div class={"paper-tab #{Soonex.Layouts.Shell.paper()} flex w-fit max-w-full flex-col items-center gap-space rounded-none rounded-b-md border-t-0 px-size py-space-sm sm:flex-row sm:justify-center sm:gap-space-xl sm:py-space"}>
+      <div class={"paper-tab #{Soonex.Layouts.Shell.paper()} flex w-full max-w-full flex-col items-center gap-space rounded-none rounded-b-md border-t-0 px-size py-space-sm sm:w-fit sm:flex-row sm:justify-center sm:gap-space-xl sm:py-space"}>
         <p class="ui-label max-sm:sr-only uppercase tracking-widest text-ink-muted">
           Launching in
         </p>
