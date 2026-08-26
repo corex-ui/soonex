@@ -49,7 +49,7 @@ config :tableau, :config,
     mdex: [
       extension: [
         table: true,
-        header_ids: "",
+        header_id_prefix: "",
         tasklist: true,
         strikethrough: true,
         autolink: true,

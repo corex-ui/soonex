@@ -32,6 +32,7 @@ defmodule Soonex.MixProject do
   defp deps do
     [
       {:tableau, "~> 0.30"},
+      {:mdex, "~> 0.13.2", override: true},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:phoenix_live_view, "~> 1.0"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},

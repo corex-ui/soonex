@@ -10,6 +10,7 @@
 - Sticky countdown is a centered `w-fit` chip, not a full-width bar.
 - Index, acta, blog, and tags lists use Corex `data-list` with the arrow at the end of each row.
 - Add Socii (marquee), Officia (tabs), and Numeri (stats); FAQ stays on Corex accordion.
+- Override Tableau's `mdex ~> 0.11.1` pin to `mdex ~> 0.13.2` (CVE-2026-53426 / 53427 / 53428 / 53429 / 54888 / 54889).
 
 ## 0.2.0
 
