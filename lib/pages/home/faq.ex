@@ -10,23 +10,24 @@ defmodule Soonex.HomePage.Faq do
     ~H"""
     <section
       id="faq"
-      class={"#{Shell.section()} border-y border-border bg-ui-muted"}
+      class={"#{Shell.section()} border-y border-border bg-surface"}
       aria-labelledby="soonex-faq-heading"
     >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-start justify-items-center gap-size-xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:justify-items-stretch"}>
-        <div class="mx-auto flex w-full max-w-2xl flex-col items-center justify-self-center gap-size-md text-center lg:mx-0 lg:max-w-none lg:items-start lg:justify-self-auto lg:text-start lg:sticky lg:top-40">
+      <div class={"#{Shell.stage()} grid grid-cols-1 items-start gap-size-xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)]"}>
+        <div class="mx-auto flex w-full max-w-2xl flex-col items-center gap-size-md text-center lg:mx-0 lg:max-w-none lg:items-start lg:sticky lg:top-40 lg:text-start">
+          <p class={Shell.eyebrow()}>FAQ</p>
           <h2 id="soonex-faq-heading" class={Shell.section_heading()}>
-            Lorem <span class="text-brand-text">FAQ</span>
+            Folded <span class="text-brand-text">questions</span>
           </h2>
           <p class={Shell.lede()}>
-            Ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+            How the template is cut, printed, and shipped. Join the waitlist if you want build notes.
           </p>
           <p class="m-0 text-sm">
             <.navigate to="#waitlist" class="link ui-brand">Join the waitlist</.navigate>
           </p>
         </div>
 
-        <div class="mx-auto flex w-full max-w-2xl justify-center justify-self-center lg:mx-0 lg:block lg:max-w-none lg:justify-self-auto">
+        <div class="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-none">
           <.accordion
             id="soonex-faq"
             class="accordion ui-accent ui-size-sm sm:ui-size-md lg:ui-size-xl mx-auto w-full max-w-none"
@@ -69,9 +70,9 @@ defmodule Soonex.HomePage.Faq do
     Corex.Content.new([
       %{
         value: "stack",
-        label: "Lorem ipsum dolor sit amet?",
+        label: "What is Soonex built with?",
         content:
-          "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+          "Tableau compiles HEEx pages to static HTML. Corex supplies accessible components and design tokens. Tailwind v4 maps those tokens to utilities.",
         meta: %{
           tech: [
             %{name: "Tableau", src: "/images/tech/tableau.jpg"},
@@ -82,9 +83,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "builds",
-        label: "Sed do eiusmod tempor?",
+        label: "How do I rebuild design CSS?",
         content:
-          "Incididunt ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+          "Run mix corex.design.build after upgrading Corex or changing config :corex_design. Then mix assets.build (or mix tableau.server in dev).",
         meta: %{
           tech: [
             %{name: "Tailwind", src: "/images/tech/tailwind.svg"},
@@ -94,9 +95,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "mcp",
-        label: "Ut enim ad minim veniam?",
+        label: "Is Corex MCP available here?",
         content:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "In MIX_ENV=dev, Corex MCP listens at http://localhost:4004/corex/mcp while Tableau stays on 4999. See .cursor/mcp.json.",
         meta: %{
           tech: [
             %{name: "Phoenix", src: "/images/tech/phoenix.svg"},
@@ -107,9 +108,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "themes",
-        label: "Excepteur sint occaecat?",
+        label: "Can I switch themes and modes?",
         content:
-          "Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "Yes. The floating Template Options panel writes data-theme and data-mode. Fonts for neo, uno, duo, and leo are self-hosted.",
         meta: %{
           tech: [
             %{name: "CSS", src: "/images/tech/css.svg"},
@@ -119,9 +120,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "next",
-        label: "Anim id est laborum?",
+        label: "Where does the waitlist go?",
         content:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+          "The demo form only shows a toast. Point it at your API, newsletter, or worker when you ship.",
         meta: %{
           tech: [
             %{name: "Phoenix", src: "/images/tech/phoenix.svg"},

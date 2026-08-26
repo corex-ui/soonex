@@ -2,14 +2,13 @@
 @plugin "../vendor/heroicons";
 @import "../node_modules/lenis/dist/lenis.css";
 
+@import "./fonts.css";
 @import "../corex/corex.css";
 @source "../corex";
 @source "../../lib";
 
-@import "./blog.css";
+@import "./paper.css";
 @import "./prose.css";
-@import "./home.css";
-@import "./home-numbers.css";
 
 @custom-variant dark (&:where([data-mode=dark], [data-mode=dark] *));
 

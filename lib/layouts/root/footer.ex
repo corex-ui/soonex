@@ -4,6 +4,8 @@ defmodule Soonex.Layouts.Root.Footer do
   use Phoenix.Component
   use Corex
 
+  alias Soonex.Layouts.Shell
+
   @github "https://github.com/corex-ui/soonex"
   @hexdocs "https://hexdocs.pm/corex"
 
@@ -16,13 +18,11 @@ defmodule Soonex.Layouts.Root.Footer do
       |> assign(:hexdocs, @hexdocs)
 
     ~H"""
-    <footer class="border-t border-border bg-surface px-space py-size-lg">
-      <div class="mx-auto flex w-fit max-w-[min(100%,56rem)] flex-col gap-space-xl rounded-4xl border border-border bg-root px-size py-size shadow-ui sm:px-size-lg sm:py-size-lg">
+    <footer class="mt-auto border-t border-border bg-surface py-size-md sm:py-size-lg lg:py-size-xl">
+      <div class={"#{Shell.stage()} flex flex-col gap-space-xl"}>
         <div class="grid gap-x-size-xl gap-y-space-xl sm:grid-cols-2 lg:grid-cols-3">
           <div class="flex flex-col gap-space">
-            <p class="m-0 text-sm font-semibold uppercase tracking-[0.18em] text-brand-text">
-              Soonex
-            </p>
+            <p class={Shell.eyebrow()}>Soonex</p>
             <p class="m-0 max-w-sm text-sm leading-relaxed text-ink-muted">
               Tableau static site template with Corex components, tokens, and MCP—fork it, ship it, stay free.
             </p>
@@ -81,8 +81,7 @@ defmodule Soonex.Layouts.Root.Footer do
                   fill="currentColor"
                 />
               </svg>
-              GitHub
-              <.heroicon name="hero-arrow-top-right-on-square" />
+              GitHub <.heroicon name="hero-arrow-top-right-on-square" />
             </.navigate>
             <.navigate to={@hexdocs} class="button ui-ghost ui-size-sm" external>
               <img
@@ -91,9 +90,7 @@ defmodule Soonex.Layouts.Root.Footer do
                 class="icon size-[1.1em] object-contain"
                 width="18"
                 height="18"
-              />
-              Hexdocs
-              <.heroicon name="hero-arrow-top-right-on-square" />
+              /> Hexdocs <.heroicon name="hero-arrow-top-right-on-square" />
             </.navigate>
           </div>
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Upgrade Corex packages to 0.2.1 (`corex`, `corex_design`, `corex_mcp`).
+- Paper-cut visual identity: local fonts, full-width token layout, sticky launch tab.
+- Drop homepage/blog BEM CSS in favor of inline Tailwind + Corex tokens.
+
 ## 0.2.0
 
 - Upgrade to Corex 0.2 (`corex`, `corex_design`, `corex_mcp`); replace Designex with `mix corex.design.build`.

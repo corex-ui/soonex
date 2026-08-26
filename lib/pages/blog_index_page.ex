@@ -26,53 +26,59 @@ defmodule Soonex.BlogIndexPage do
 
     ~H"""
     <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
-      <nav class="blog__nav" aria-label="Blog">
+      <nav class="flex flex-wrap items-center gap-space-sm" aria-label="Blog">
         <.navigate to={Soonex.Public.path("/")} class="link ui-nav w-fit">
           <.heroicon name="hero-arrow-left" /> Back to home
         </.navigate>
       </nav>
 
-      <header class="blog__hero" aria-labelledby="blog-index-heading">
-        <div class="blog__head">
-          <p class="blog__eyebrow">Journal</p>
-          <h1 id="blog-index-heading" class="blog__display">
-            All <span class="blog__display__accent">posts</span>
-          </h1>
-          <p class="blog__lede">
-            Markdown in
-            <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">_posts/</code>
-            — compiled by Tableau into static pages you can host anywhere.
-          </p>
-          <p class="blog__meta">
-            <span>
-              {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
-            </span>
-            <span aria-hidden="true">·</span>
-            <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-              Browse tags
-            </.navigate>
-          </p>
-        </div>
+      <header class="flex max-w-2xl flex-col gap-space" aria-labelledby="blog-index-heading">
+        <p class={Shell.eyebrow()}>Journal</p>
+        <h1
+          id="blog-index-heading"
+          class="display m-0 text-balance text-4xl tracking-tighter text-ink sm:text-5xl"
+        >
+          All <span class="text-brand-text">posts</span>
+        </h1>
+        <p class="m-0 max-w-xl text-pretty text-lg text-ink-muted">
+          Markdown in
+          <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">_posts/</code>
+          — compiled by Tableau into static pages you can host anywhere.
+        </p>
+        <p class="m-0 flex flex-wrap items-center gap-space-sm text-sm text-ink-muted">
+          <span>
+            {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
+          </span>
+          <span aria-hidden="true">·</span>
+          <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
+            Browse tags
+          </.navigate>
+        </p>
       </header>
 
-      <ul :if={@sorted_posts != []} class="blog__grid m-0 list-none p-0">
+      <ul :if={@sorted_posts != []} class="m-0 list-none p-0">
         <li :for={post <- @sorted_posts}>
-          <.navigate to={Soonex.Public.path(post.permalink)} class={"#{Shell.card()}"}>
-            <div class="blog__card__top">
-              <p :if={post_date_label(post)} class="blog__card__date">{post_date_label(post)}</p>
-              <span :if={is_nil(post_date_label(post))}></span>
-              <.heroicon name="hero-arrow-right" class="blog__card__arrow" />
-            </div>
-            <h2 class="blog__card__title">{post[:title] || "Untitled"}</h2>
-            <p :if={post[:description]} class="blog__card__excerpt">{post[:description]}</p>
-            <ul
-              :if={post_tags(post) != []}
-              class="m-0 flex list-none flex-wrap gap-space-sm p-0 blog__card__tags"
-            >
-              <li :for={tag <- post_tags(post)}>
-                <span class="badge ui-size-sm">{tag}</span>
-              </li>
-            </ul>
+          <.navigate
+            to={Soonex.Public.path(post.permalink)}
+            class={"#{Shell.listing_row()} link ui-nav text-ink no-underline"}
+          >
+            <span class="font-mono text-sm tracking-wide text-brand-text">
+              {post_date_label(post) || "Post"}
+            </span>
+            <span class="min-w-0">
+              <span class="display m-0 block text-xl tracking-tight text-ink">{post[:title] ||
+                "Untitled"}</span>
+              <span :if={post[:description]} class="mt-space-xs block text-sm text-ink-muted">
+                {post[:description]}
+              </span>
+              <span
+                :if={post_tags(post) != []}
+                class="mt-space flex flex-wrap gap-space-sm"
+              >
+                <span :for={tag <- post_tags(post)} class="badge ui-size-sm">{tag}</span>
+              </span>
+            </span>
+            <.heroicon name="hero-arrow-right" />
           </.navigate>
         </li>
       </ul>

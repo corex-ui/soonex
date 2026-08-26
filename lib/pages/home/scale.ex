@@ -12,52 +12,57 @@ defmodule Soonex.HomePage.Scale do
     ~H"""
     <section
       id="scale"
-      class={"#{Shell.section()} home__numbers-section bg-ui-muted"}
+      class={"#{Shell.section()} bg-root"}
       aria-labelledby="home-numbers-heading"
     >
-      <div class={"#{Shell.stage()} home-stack flex flex-col items-center text-center lg:items-stretch lg:text-start"}>
-        <p
-          id="home-numbers-heading"
-          class="m-0 text-sm font-semibold uppercase tracking-[0.18em] text-brand-text"
-        >
-          Lorem ipsum metrics
+      <div class={"#{Shell.stage()} #{Shell.stack()}"}>
+        <p id="home-numbers-heading" class={Shell.eyebrow()}>
+          Metrics
         </p>
 
-        <div class="home__numbers rounded-xl border border-border bg-root">
-          <div class="home__numbers__cell">
-            <span class="home__numbers__value">
-              {@stats_components}<span class="home__numbers__value__suffix">+</span>
+        <div class="grid grid-cols-1 gap-space-lg sm:grid-cols-2 xl:grid-cols-4">
+          <div class={"#{Shell.paper()} flex flex-col gap-space p-size"}>
+            <span class="display m-0 text-5xl tracking-tighter text-ink sm:text-6xl">
+              {@stats_components}<span class="text-brand-text">+</span>
             </span>
-            <span class="home__numbers__label">Lorem</span>
-            <p class="home__numbers__hint">
-              Ipsum dolor sit amet, consectetur adipiscing elit sed do.
+            <span class="text-sm font-semibold uppercase tracking-[0.14em] text-ink">
+              Components
+            </span>
+            <p class="m-0 text-sm text-ink-muted">
+              Corex pieces available to compose the launch page.
             </p>
           </div>
-          <div class="home__numbers__cell">
-            <span class="home__numbers__value">
-              50<span class="home__numbers__value__suffix">+</span>
+          <div class={"#{Shell.paper()} flex flex-col gap-space p-size"}>
+            <span class="display m-0 text-5xl tracking-tighter text-ink sm:text-6xl">
+              50<span class="text-brand-text">+</span>
             </span>
-            <span class="home__numbers__label">Ipsum</span>
-            <p class="home__numbers__hint">
-              Eiusmod tempor incididunt ut labore et dolore magna.
+            <span class="text-sm font-semibold uppercase tracking-[0.14em] text-ink">
+              Tokens
+            </span>
+            <p class="m-0 text-sm text-ink-muted">
+              Color, space, and type scales from Corex Design.
             </p>
           </div>
-          <div class="home__numbers__cell">
-            <span class="home__numbers__value">
-              100<span class="home__numbers__value__suffix">%</span>
+          <div class={"#{Shell.paper()} flex flex-col gap-space p-size"}>
+            <span class="display m-0 text-5xl tracking-tighter text-ink sm:text-6xl">
+              100<span class="text-brand-text">%</span>
             </span>
-            <span class="home__numbers__label">Dolor</span>
-            <p class="home__numbers__hint">
-              Ut enim ad minim veniam, quis nostrud exercitation.
+            <span class="text-sm font-semibold uppercase tracking-[0.14em] text-ink">
+              Static
+            </span>
+            <p class="m-0 text-sm text-ink-muted">
+              Tableau build output you can host anywhere.
             </p>
           </div>
-          <div class="home__numbers__cell">
-            <span class="home__numbers__value">
-              A<span class="home__numbers__value__suffix">11y</span>
+          <div class={"#{Shell.paper()} flex flex-col gap-space p-size"}>
+            <span class="display m-0 text-5xl tracking-tighter text-ink sm:text-6xl">
+              A<span class="text-brand-text">11y</span>
             </span>
-            <span class="home__numbers__label">Sit amet</span>
-            <p class="home__numbers__hint">
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <span class="text-sm font-semibold uppercase tracking-[0.14em] text-ink">
+              First
+            </span>
+            <p class="m-0 text-sm text-ink-muted">
+              Corex components and an axe check on the home page.
             </p>
           </div>
         </div>

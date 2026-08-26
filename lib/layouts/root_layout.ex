@@ -65,7 +65,7 @@ defmodule Soonex.RootLayout do
     ~H"""
     <!DOCTYPE html>
     <html
-      class="lenis"
+      class="lenis scroll-smooth motion-reduce:scroll-auto"
       lang="en"
       dir="ltr"
       data-theme={@theme}
@@ -135,14 +135,24 @@ defmodule Soonex.RootLayout do
         <meta name="twitter:image" content={@og_image_url} />
 
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="preload"
+          href={Soonex.Public.path("/fonts/nunito-sans-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+        <link
+          rel="preload"
+          href={Soonex.Public.path("/fonts/fraunces-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
         />
         <link rel="stylesheet" href={Soonex.Public.path("/css/site.css")} />
         <script type="module" src={Soonex.Public.path("/js/site.js")} />
       </head>
 
-      <body class="layout typo flex min-h-dvh flex-col bg-root text-ink antialiased">
+      <body class="layout typo paper-grain flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
