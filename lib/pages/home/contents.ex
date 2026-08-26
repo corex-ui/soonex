@@ -31,6 +31,7 @@ defmodule Soonex.HomePage.Contents do
               <span class="flex size-10 items-center justify-center border border-border bg-surface text-brand-text">
                 <.heroicon name={feature.icon} class="size-5" />
               </span>
+              <span class="sr-only">{feature.title}</span>
             </:trigger>
             <:content>{feature.tip}</:content>
           </.tooltip>

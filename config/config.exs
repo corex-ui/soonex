@@ -102,6 +102,29 @@ contrast = fn seed, against, target ->
   %{kind: :contrast, seed: seed, against: against, target: target * 1.0}
 end
 
+# Host color maps replace the preset mode (resolved_spec?/1). Keep *-contrast and
+# *-text so solid brand/accent buttons stay readable. Do not lower these targets.
+with_on = fn colors ->
+  colors
+  |> Map.merge(%{
+    alert: fill.(0.44, :alert),
+    info: fill.(0.4, :info),
+    success: fill.(0.38, :success)
+  })
+  |> Map.merge(%{
+    "accent-contrast" => contrast.(:neutral, :accent, 9.5),
+    "brand-contrast" => contrast.(:neutral, :brand, 9.5),
+    "alert-contrast" => contrast.(:neutral, :alert, 9.5),
+    "info-contrast" => contrast.(:neutral, :info, 9.5),
+    "success-contrast" => contrast.(:neutral, :success, 9.5),
+    "accent-text" => contrast.(:accent, :ui, 4.6),
+    "brand-text" => contrast.(:brand, :ui, 4.6),
+    "alert-text" => contrast.(:alert, :ui, 4.6),
+    "info-text" => contrast.(:info, :ui, 4.6),
+    "success-text" => contrast.(:success, :ui, 4.6)
+  })
+end
+
 config :corex_design,
   output: "assets/corex",
   default_theme: :neo,
@@ -119,32 +142,34 @@ config :corex_design,
         success: "#15803D"
       },
       colors: %{
-        light: %{
-          root: l.(0.99, :neutral),
-          surface: l.(0.965, :neutral),
-          ui: fill.(0.93, :neutral),
-          accent: fill.(0.24, :accent),
-          brand: fill.(0.4, :brand),
-          ink: contrast.(:accent, :root, 12),
-          "ink-muted": contrast.(:accent, :root, 6.0),
-          link: contrast.(:brand, :root, 5.5),
-          border: contrast.(:neutral, :ui, 1.28),
-          focus: contrast.(:brand, :ui, 2.3),
-          shadow: contrast.(:accent, :root, 1.1)
-        },
-        dark: %{
-          root: l.(0.055, :accent),
-          surface: l.(0.095, :accent),
-          ui: fill.(0.155, :accent),
-          accent: fill.(0.5, :accent),
-          brand: fill.(0.54, :brand),
-          ink: contrast.(:neutral, :root, 13),
-          "ink-muted": contrast.(:neutral, :root, 6.6),
-          link: contrast.(:brand, :root, 6.2),
-          border: contrast.(:neutral, :ui, 1.32),
-          focus: contrast.(:brand, :ui, 2.4),
-          shadow: contrast.(:accent, :root, 1.18)
-        }
+        light:
+          with_on.(%{
+            root: l.(0.99, :neutral),
+            surface: l.(0.965, :neutral),
+            ui: fill.(0.93, :neutral),
+            accent: fill.(0.24, :accent),
+            brand: fill.(0.4, :brand),
+            ink: contrast.(:accent, :root, 12),
+            "ink-muted": contrast.(:accent, :root, 6.0),
+            link: contrast.(:brand, :root, 5.5),
+            border: contrast.(:neutral, :ui, 1.28),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.1)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.055, :accent),
+            surface: l.(0.095, :accent),
+            ui: fill.(0.155, :accent),
+            accent: fill.(0.5, :accent),
+            brand: fill.(0.54, :brand),
+            ink: contrast.(:neutral, :root, 13),
+            "ink-muted": contrast.(:neutral, :root, 6.6),
+            link: contrast.(:brand, :root, 6.2),
+            border: contrast.(:neutral, :ui, 1.32),
+            focus: contrast.(:brand, :ui, 2.4),
+            shadow: contrast.(:accent, :root, 1.18)
+          })
       },
       dimensions: %{
         radius: %{
@@ -200,32 +225,34 @@ config :corex_design,
         success: "#166534"
       },
       colors: %{
-        light: %{
-          root: l.(0.99, :neutral),
-          surface: l.(0.97, :neutral),
-          ui: fill.(0.94, :neutral),
-          accent: fill.(0.3, :accent),
-          brand: fill.(0.36, :brand),
-          ink: contrast.(:accent, :root, 10),
-          "ink-muted": contrast.(:accent, :root, 5.5),
-          link: contrast.(:brand, :root, 5.8),
-          border: contrast.(:neutral, :ui, 1.22),
-          focus: contrast.(:brand, :ui, 2.2),
-          shadow: contrast.(:accent, :root, 1.06)
-        },
-        dark: %{
-          root: l.(0.065, :accent),
-          surface: l.(0.11, :accent),
-          ui: fill.(0.175, :accent),
-          accent: fill.(0.52, :accent),
-          brand: fill.(0.52, :brand),
-          ink: contrast.(:neutral, :root, 12.5),
-          "ink-muted": contrast.(:neutral, :root, 6.2),
-          link: contrast.(:brand, :root, 7.0),
-          border: contrast.(:neutral, :ui, 1.28),
-          focus: contrast.(:brand, :ui, 2.3),
-          shadow: contrast.(:accent, :root, 1.14)
-        }
+        light:
+          with_on.(%{
+            root: l.(0.99, :neutral),
+            surface: l.(0.97, :neutral),
+            ui: fill.(0.94, :neutral),
+            accent: fill.(0.3, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 10),
+            "ink-muted": contrast.(:accent, :root, 5.5),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:neutral, :ui, 1.22),
+            focus: contrast.(:brand, :ui, 2.2),
+            shadow: contrast.(:accent, :root, 1.06)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.065, :accent),
+            surface: l.(0.11, :accent),
+            ui: fill.(0.175, :accent),
+            accent: fill.(0.52, :accent),
+            brand: fill.(0.52, :brand),
+            ink: contrast.(:neutral, :root, 12.5),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.28),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.14)
+          })
       },
       dimensions: %{
         radius: %{
@@ -273,32 +300,34 @@ config :corex_design,
         success: "#3F6B4E"
       },
       colors: %{
-        light: %{
-          root: l.(0.99, :neutral),
-          surface: l.(0.97, :neutral),
-          ui: fill.(0.94, :neutral),
-          accent: fill.(0.34, :accent),
-          brand: fill.(0.42, :brand),
-          ink: contrast.(:accent, :root, 9.5),
-          "ink-muted": contrast.(:accent, :root, 5.2),
-          link: contrast.(:brand, :root, 5.6),
-          border: contrast.(:neutral, :ui, 1.14),
-          focus: contrast.(:brand, :ui, 2.15),
-          shadow: contrast.(:accent, :root, 1.28)
-        },
-        dark: %{
-          root: l.(0.075, :accent),
-          surface: l.(0.125, :accent),
-          ui: fill.(0.195, :accent),
-          accent: fill.(0.5, :accent),
-          brand: fill.(0.56, :brand),
-          ink: contrast.(:neutral, :root, 12),
-          "ink-muted": contrast.(:neutral, :root, 6.2),
-          link: contrast.(:brand, :root, 7.0),
-          border: contrast.(:neutral, :ui, 1.18),
-          focus: contrast.(:brand, :ui, 2.3),
-          shadow: contrast.(:accent, :root, 1.32)
-        }
+        light:
+          with_on.(%{
+            root: l.(0.99, :neutral),
+            surface: l.(0.97, :neutral),
+            ui: fill.(0.94, :neutral),
+            accent: fill.(0.34, :accent),
+            brand: fill.(0.42, :brand),
+            ink: contrast.(:accent, :root, 9.5),
+            "ink-muted": contrast.(:accent, :root, 5.2),
+            link: contrast.(:brand, :root, 5.6),
+            border: contrast.(:neutral, :ui, 1.14),
+            focus: contrast.(:brand, :ui, 2.15),
+            shadow: contrast.(:accent, :root, 1.28)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.075, :accent),
+            surface: l.(0.125, :accent),
+            ui: fill.(0.195, :accent),
+            accent: fill.(0.5, :accent),
+            brand: fill.(0.56, :brand),
+            ink: contrast.(:neutral, :root, 12),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.18),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.32)
+          })
       },
       dimensions: %{
         radius: %{
@@ -350,32 +379,34 @@ config :corex_design,
         success: "#166534"
       },
       colors: %{
-        light: %{
-          root: l.(0.985, :neutral),
-          surface: l.(0.96, :neutral),
-          ui: fill.(0.92, :neutral),
-          accent: fill.(0.16, :accent),
-          brand: fill.(0.36, :brand),
-          ink: contrast.(:accent, :root, 12),
-          "ink-muted": contrast.(:accent, :root, 5.8),
-          link: contrast.(:brand, :root, 5.8),
-          border: contrast.(:accent, :ui, 1.55),
-          focus: contrast.(:brand, :ui, 2.5),
-          shadow: contrast.(:accent, :root, 1.04)
-        },
-        dark: %{
-          root: l.(0.04, :accent),
-          surface: l.(0.085, :accent),
-          ui: fill.(0.145, :accent),
-          accent: fill.(0.48, :accent),
-          brand: fill.(0.5, :brand),
-          ink: contrast.(:neutral, :root, 14),
-          "ink-muted": contrast.(:neutral, :root, 6.8),
-          link: contrast.(:brand, :root, 7.2),
-          border: contrast.(:neutral, :ui, 1.42),
-          focus: contrast.(:brand, :ui, 2.6),
-          shadow: contrast.(:accent, :root, 1.06)
-        }
+        light:
+          with_on.(%{
+            root: l.(0.985, :neutral),
+            surface: l.(0.96, :neutral),
+            ui: fill.(0.92, :neutral),
+            accent: fill.(0.16, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 12),
+            "ink-muted": contrast.(:accent, :root, 5.8),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:accent, :ui, 1.55),
+            focus: contrast.(:brand, :ui, 2.5),
+            shadow: contrast.(:accent, :root, 1.04)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.04, :accent),
+            surface: l.(0.085, :accent),
+            ui: fill.(0.145, :accent),
+            accent: fill.(0.48, :accent),
+            brand: fill.(0.5, :brand),
+            ink: contrast.(:neutral, :root, 14),
+            "ink-muted": contrast.(:neutral, :root, 6.8),
+            link: contrast.(:brand, :root, 7.2),
+            border: contrast.(:neutral, :ui, 1.42),
+            focus: contrast.(:brand, :ui, 2.6),
+            shadow: contrast.(:accent, :root, 1.06)
+          })
       },
       dimensions: %{
         radius: %{

@@ -37,7 +37,7 @@ defmodule Soonex.HomePage.Officia do
             </p>
             <p class="m-0 max-w-2xl text-base/7 text-ink-muted">{item.content}</p>
             <.data_table
-              :if={item.value == "compare"}
+              :if={item.meta[:table]}
               id="soonex-plan-table"
               class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
               rows={plan_rows()}
@@ -60,7 +60,7 @@ defmodule Soonex.HomePage.Officia do
         value: "compare",
         label: "Compare",
         content: "What you keep when you fork Soonex. Nothing here is billed — it is a map.",
-        meta: %{headline: "Launch, Studio, Agency"}
+        meta: %{headline: "Launch, Studio, Agency", table: true}
       },
       %{
         value: "launch",
