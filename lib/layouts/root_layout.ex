@@ -136,14 +136,14 @@ defmodule Soonex.RootLayout do
 
         <link
           rel="preload"
-          href={Soonex.Public.path("/fonts/nunito-sans-latin-wght-normal.woff2")}
+          href={Soonex.Public.path("/fonts/manrope-latin-wght-normal.woff2")}
           as="font"
           type="font/woff2"
           crossorigin
         />
         <link
           rel="preload"
-          href={Soonex.Public.path("/fonts/fraunces-latin-wght-normal.woff2")}
+          href={Soonex.Public.path("/fonts/outfit-latin-wght-normal.woff2")}
           as="font"
           type="font/woff2"
           crossorigin
@@ -152,7 +152,7 @@ defmodule Soonex.RootLayout do
         <script type="module" src={Soonex.Public.path("/js/site.js")} />
       </head>
 
-      <body class="layout typo paper-grain flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">
+      <body class="layout typo flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
@@ -196,19 +196,19 @@ defmodule Soonex.RootLayout do
         page[:title]
 
       page[:page_kind] == :home ->
-        "#{site_name} · Elixir static site template"
+        "#{site_name} · Lorem ipsum"
 
       page[:page_kind] == :blog_index ->
-        "Blog · #{site_name}"
+        "Acta · #{site_name}"
 
       page[:page_kind] == :not_found ->
-        "Page not found · #{site_name}"
+        "Non inventus · #{site_name}"
 
       page[:page_kind] == :tags_index ->
-        "Tags · #{site_name}"
+        "Notae · #{site_name}"
 
       tag_page?(page) ->
-        "#{page[:tag]} · Tags · #{site_name}"
+        "#{page[:tag]} · Notae · #{site_name}"
 
       true ->
         site_name
@@ -218,25 +218,25 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Tableau + Corex coming-soon template: static HEEx, design tokens, Markdown. Join the #{site_name} waitlist."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
 
       page[:page_kind] == :blog_index ->
-        "Journal posts from the #{site_name} static site template."
+        "Lorem ipsum dolor sit amet — acta et notae from #{site_name}."
 
       page[:page_kind] == :not_found ->
-        "This URL is not available on the #{site_name} static site."
+        "Lorem ipsum: haec pagina non invenitur on #{site_name}."
 
       page[:page_kind] == :tags_index ->
-        "Browse tags on the #{site_name} static site."
+        "Lorem ipsum dolor sit amet, notae across #{site_name}."
 
       tag_page?(page) ->
-        "Posts tagged #{page[:tag]} on the #{site_name} static site."
+        "Lorem ipsum tagged #{page[:tag]} on #{site_name}."
 
       present_string?(page[:description]) ->
         page[:description]
 
       true ->
-        "A coming-soon static site. Learn more about #{site_name}."
+        "Lorem ipsum dolor sit amet. Learn more about #{site_name}."
     end
   end
 

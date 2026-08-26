@@ -4,7 +4,7 @@ defmodule Soonex.TagsIndexPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/tags",
-    title: "Tags",
+    title: "Notae",
     page_kind: :tags_index,
     sitemap: %{priority: 0.5, changefreq: "weekly"}
 
@@ -27,24 +27,24 @@ defmodule Soonex.TagsIndexPage do
     <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
       <nav class="flex flex-wrap items-center gap-space-sm" aria-label="Tags">
         <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
-          <.heroicon name="hero-arrow-left" /> Back to blog
+          <.heroicon name="hero-arrow-left" /> Ad acta
         </.navigate>
       </nav>
 
       <header class="flex max-w-2xl flex-col gap-space" aria-labelledby="tags-heading">
-        <p class={Shell.eyebrow()}>Blog</p>
+        <p class={Shell.eyebrow()}>Notae</p>
         <h1
           id="tags-heading"
           class="display m-0 text-balance text-4xl tracking-tighter text-ink sm:text-5xl"
         >
-          Browse <span class="text-brand-text">tags</span>
+          Omnes <span class="text-brand-text">notae</span>
         </h1>
         <p class="m-0 max-w-xl text-pretty text-lg text-ink-muted">
-          Browse topics across your posts. Every tag is a static Tableau page.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
         </p>
         <p class="m-0 text-sm">
           <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
-            All posts
+            Omnia acta
           </.navigate>
         </p>
       </header>
@@ -69,9 +69,7 @@ defmodule Soonex.TagsIndexPage do
       </ul>
 
       <p :if={@sorted_tags == []} class="m-0 text-ink-muted">
-        No tags yet. Add a
-        <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">tags:</code>
-        list to post front matter.
+        Lorem ipsum — nullae notae.
       </p>
     </article>
     """

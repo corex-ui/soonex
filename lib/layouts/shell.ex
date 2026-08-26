@@ -21,8 +21,7 @@ defmodule Soonex.Layouts.Shell do
   def eyebrow,
     do: "m-0 text-xs font-medium uppercase tracking-[0.16em] text-brand-text"
 
-  def paper,
-    do: "relative border border-border bg-surface shadow-[4px_4px_0_0_var(--color-ink)]"
+  def panel, do: "relative border border-border bg-surface"
 
   def listing_row,
     do:

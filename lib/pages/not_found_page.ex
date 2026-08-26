@@ -4,8 +4,8 @@ defmodule Soonex.NotFoundPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/404.html",
-    title: "Page not found",
-    description: "The page you requested is not part of this static site.",
+    title: "Non inventus",
+    description: "Lorem ipsum dolor sit amet — haec pagina non invenitur.",
     page_kind: :not_found,
     sitemap: %{priority: 0.2, changefreq: "yearly"}
 
@@ -20,16 +20,16 @@ defmodule Soonex.NotFoundPage do
       class="flex min-h-dvh flex-col items-center justify-center gap-space-lg px-space-md py-size-xl text-center"
       aria-labelledby="soonex-not-found-heading"
     >
-      <div class={"#{Shell.paper()} flex max-w-md flex-col gap-space-lg p-size sm:p-size-lg"}>
+      <div class={"#{Shell.panel()} flex max-w-md flex-col gap-space-lg p-size sm:p-size-lg"}>
         <p class={Shell.eyebrow()}>404</p>
         <h1 id="soonex-not-found-heading" class="display m-0 text-4xl tracking-tight">
-          Page not found
+          Non inventus
         </h1>
         <p class="m-0 leading-relaxed text-ink-muted">
-          The URL may be mistyped, or the page may have moved. Try the home page.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Haec via non est.
         </p>
         <.navigate to={Soonex.Public.path("/")} class="button ui-accent ui-solid w-fit self-center">
-          Back to home
+          Ad initium
         </.navigate>
       </div>
     </section>

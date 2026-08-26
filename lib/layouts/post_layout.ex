@@ -36,7 +36,7 @@ defmodule Soonex.PostLayout do
     <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
       <nav class="flex flex-wrap items-center gap-space-sm" aria-label="Post">
         <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
-          <.heroicon name="hero-arrow-left" /> Back to blog
+          <.heroicon name="hero-arrow-left" /> Ad acta
         </.navigate>
       </nav>
 
@@ -64,7 +64,7 @@ defmodule Soonex.PostLayout do
             </li>
           </ul>
           <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-            Browse tags
+            Notae
           </.navigate>
         </div>
       </header>

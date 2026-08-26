@@ -22,18 +22,18 @@ defmodule Soonex.HomePage.Highlights do
 
     ~H"""
     <section
-      id="highlights"
-      class={"#{Shell.section()} border-y border-border bg-surface"}
+      id="acta"
+      class={"#{Shell.section()} bg-root"}
       aria-labelledby="soonex-highlights-heading"
     >
       <div class={"#{Shell.stage()} #{Shell.stack()}"}>
-        <div class="mx-auto flex w-full max-w-2xl flex-col items-center gap-size-md text-center lg:mx-0 lg:items-start lg:text-start">
-          <p class={Shell.eyebrow()}>Journal</p>
+        <div class="flex max-w-2xl flex-col gap-size-md">
+          <p class={Shell.eyebrow()}>Acta</p>
           <h2 id="soonex-highlights-heading" class={Shell.section_heading()}>
-            Latest <span class="text-brand-text">cuts</span>
+            Recentiora <span class="text-brand-text">scripta</span>
           </h2>
           <p class={Shell.lede()}>
-            Recent posts from the template journal, plus the stack that prints the site.
+            Quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.
           </p>
         </div>
 
@@ -67,11 +67,11 @@ defmodule Soonex.HomePage.Highlights do
               class={"#{Shell.listing_row()} link ui-nav text-ink no-underline"}
             >
               <span class="font-mono text-sm tracking-wide text-brand-text">
-                {post_date_label(post) || "Journal"}
+                {post_date_label(post) || "Acta"}
               </span>
               <span class="min-w-0">
                 <span class="display m-0 block text-xl tracking-tight text-ink">{post[:title] ||
-                  "Untitled"}</span>
+                  "Lorem ipsum"}</span>
                 <span :if={post[:description]} class="mt-space-xs block text-sm text-ink-muted">
                   {post[:description]}
                 </span>
@@ -81,25 +81,11 @@ defmodule Soonex.HomePage.Highlights do
           </li>
         </ul>
 
-        <ul :if={@highlight_posts == []} class="m-0 list-none p-0">
-          <li>
-            <.navigate
-              to={Soonex.Public.path("/blog")}
-              class={"#{Shell.listing_row()} link ui-nav text-ink no-underline"}
-            >
-              <span class="font-mono text-sm tracking-wide text-brand-text">Journal</span>
-              <span class="min-w-0">
-                <span class="display m-0 block text-xl tracking-tight text-ink">
-                  Open the journal
-                </span>
-                <span class="mt-space-xs block text-sm text-ink-muted">
-                  Add Markdown files to _posts/ and they show up here.
-                </span>
-              </span>
-              <.heroicon name="hero-arrow-right" />
-            </.navigate>
-          </li>
-        </ul>
+        <p class="m-0 text-sm">
+          <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand">
+            Omnia acta
+          </.navigate>
+        </p>
       </div>
     </section>
     """

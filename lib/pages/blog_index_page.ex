@@ -4,7 +4,7 @@ defmodule Soonex.BlogIndexPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/blog",
-    title: "Blog",
+    title: "Acta",
     page_kind: :blog_index,
     sitemap: %{priority: 0.7, changefreq: "weekly"}
 
@@ -28,22 +28,20 @@ defmodule Soonex.BlogIndexPage do
     <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
       <nav class="flex flex-wrap items-center gap-space-sm" aria-label="Blog">
         <.navigate to={Soonex.Public.path("/")} class="link ui-nav w-fit">
-          <.heroicon name="hero-arrow-left" /> Back to home
+          <.heroicon name="hero-arrow-left" /> Ad initium
         </.navigate>
       </nav>
 
       <header class="flex max-w-2xl flex-col gap-space" aria-labelledby="blog-index-heading">
-        <p class={Shell.eyebrow()}>Journal</p>
+        <p class={Shell.eyebrow()}>Acta</p>
         <h1
           id="blog-index-heading"
           class="display m-0 text-balance text-4xl tracking-tighter text-ink sm:text-5xl"
         >
-          All <span class="text-brand-text">posts</span>
+          Omnia <span class="text-brand-text">scripta</span>
         </h1>
         <p class="m-0 max-w-xl text-pretty text-lg text-ink-muted">
-          Markdown in
-          <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">_posts/</code>
-          — compiled by Tableau into static pages you can host anywhere.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <p class="m-0 flex flex-wrap items-center gap-space-sm text-sm text-ink-muted">
           <span>
@@ -51,7 +49,7 @@ defmodule Soonex.BlogIndexPage do
           </span>
           <span aria-hidden="true">·</span>
           <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-            Browse tags
+            Notae
           </.navigate>
         </p>
       </header>
@@ -83,9 +81,7 @@ defmodule Soonex.BlogIndexPage do
         </li>
       </ul>
       <p :if={@sorted_posts == []} class="m-0 text-ink-muted">
-        No posts yet. Add Markdown files to
-        <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">_posts/</code>
-        to get started.
+        Lorem ipsum dolor sit amet — nulla acta adhuc.
       </p>
     </article>
     """

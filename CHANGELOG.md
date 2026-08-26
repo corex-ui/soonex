@@ -3,7 +3,8 @@
 ## 0.2.1
 
 - Upgrade Corex packages to 0.2.1 (`corex`, `corex_design`, `corex_mcp`).
-- Paper-cut visual identity: local fonts, full-width token layout, sticky launch tab.
+- Keep stock Corex themes (neo/uno/duo/leo) and self-host their type stacks.
+- Rebuild home, blog, and footer as a Lorem Ipsum template with extra sections.
 - Drop homepage/blog BEM CSS in favor of inline Tailwind + Corex tokens.
 
 ## 0.2.0

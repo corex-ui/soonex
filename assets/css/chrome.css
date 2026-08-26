@@ -1,0 +1,20 @@
+/* Tiny layout helpers that utilities cannot express. No theme recasts. */
+
+@media (width < 40rem) {
+  .timer.ui-size-sm,
+  .timer.ui-size-md,
+  .timer.ui-size-lg {
+    --timer-digit: var(--text-xl);
+    --timer-digit-leading: var(--text-xl--line-height);
+  }
+
+  .timer [data-scope="timer"][data-part="area"] {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--spacing-space-xs);
+  }
+}
+
+.marquee [data-scope="marquee"][data-part="edge"] {
+  --edge-background: var(--color-surface);
+}

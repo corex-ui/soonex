@@ -7,7 +7,7 @@
 @source "../corex";
 @source "../../lib";
 
-@import "./paper.css";
+@import "./chrome.css";
 @import "./prose.css";
 
 @custom-variant dark (&:where([data-mode=dark], [data-mode=dark] *));
