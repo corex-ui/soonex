@@ -28,7 +28,7 @@ defmodule Soonex.Layouts.Root.LandingChrome do
       class="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-6"
       style="opacity: 0; transform: translate3d(0, -120%, 0);"
     >
-      <div class="pointer-events-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-3 border border-border bg-surface/90 px-3 py-2 shadow-sm backdrop-blur-md sm:gap-4 sm:px-4">
+      <div class="pointer-events-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-3 rounded-xl border border-border bg-surface/90 px-3 py-2 shadow-sm backdrop-blur-md sm:gap-4 sm:px-4">
         <.timer
           id="soonex-sticky-countdown"
           countdown
