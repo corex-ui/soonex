@@ -134,9 +134,9 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#EDE8E1",
-        accent: "#14161C",
-        brand: "#2F4BDA",
+        neutral: "#F3EDE3",
+        accent: "#191614",
+        brand: "#2A4DFF",
         alert: "#B42318",
         info: "#0E7490",
         success: "#15803D"
@@ -173,14 +173,14 @@ config :corex_design,
       },
       dimensions: %{
         radius: %{
-          xs: 0.28,
-          sm: 0.48,
-          md: 0.82,
-          lg: 1.1,
-          xl: 1.4,
-          "2xl": 1.8,
-          "3xl": 2.2,
-          "4xl": 2.8,
+          xs: 0.42,
+          sm: 0.72,
+          md: 1.05,
+          lg: 1.45,
+          xl: 1.9,
+          "2xl": 2.5,
+          "3xl": 3.2,
+          "4xl": 4.0,
           full: 9999
         },
         font: %{
@@ -217,9 +217,9 @@ config :corex_design,
     },
     uno: %{
       seeds: %{
-        neutral: "#E4E9EC",
-        accent: "#12181F",
-        brand: "#0F766E",
+        neutral: "#D7E8E3",
+        accent: "#071614",
+        brand: "#0B8F7B",
         alert: "#B91C1C",
         info: "#0369A1",
         success: "#166534"
@@ -256,14 +256,14 @@ config :corex_design,
       },
       dimensions: %{
         radius: %{
-          xs: 0.06,
-          sm: 0.1,
-          md: 0.16,
-          lg: 0.24,
-          xl: 0.34,
-          "2xl": 0.46,
-          "3xl": 0.6,
-          "4xl": 0.78,
+          xs: 0.08,
+          sm: 0.14,
+          md: 0.22,
+          lg: 0.32,
+          xl: 0.44,
+          "2xl": 0.58,
+          "3xl": 0.74,
+          "4xl": 0.92,
           full: 9999
         },
         font: %{
@@ -292,9 +292,9 @@ config :corex_design,
     },
     duo: %{
       seeds: %{
-        neutral: "#EFEAE3",
-        accent: "#2A241C",
-        brand: "#6D28D9",
+        neutral: "#F7EDE4",
+        accent: "#3A2618",
+        brand: "#7C3AED",
         alert: "#9F1239",
         info: "#3D5278",
         success: "#3F6B4E"
@@ -331,14 +331,14 @@ config :corex_design,
       },
       dimensions: %{
         radius: %{
-          xs: 0.32,
-          sm: 0.52,
-          md: 0.88,
-          lg: 1.2,
-          xl: 1.55,
-          "2xl": 2.05,
-          "3xl": 2.7,
-          "4xl": 3.4,
+          xs: 0.55,
+          sm: 0.9,
+          md: 1.3,
+          lg: 1.8,
+          xl: 2.35,
+          "2xl": 3.1,
+          "3xl": 4.0,
+          "4xl": 5.0,
           full: 9999
         },
         font: %{
@@ -371,9 +371,9 @@ config :corex_design,
     },
     leo: %{
       seeds: %{
-        neutral: "#E8E6E1",
-        accent: "#0A0A0A",
-        brand: "#C2410C",
+        neutral: "#E6DCCE",
+        accent: "#0C0C0C",
+        brand: "#E2410A",
         alert: "#C41E1E",
         info: "#0369A1",
         success: "#166534"
@@ -450,7 +450,6 @@ config :corex_design,
     space: [xs: 1, sm: 2, md: 3, lg: 5, xl: 6],
     size: [xs: 6, sm: 8, md: 11, lg: 13, xl: 15],
     text: [md: 1.02, lg: 1.15, xl: 1.28, "2xl": 1.55],
-    radius: [xs: 0.15, sm: 0.28, md: 0.42, lg: 0.6, xl: 0.85],
     weight: [normal: 400, medium: 500, semibold: 600, bold: 700]
   ],
   components: [

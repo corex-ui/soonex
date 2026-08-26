@@ -104,9 +104,12 @@ defmodule Soonex.Layouts.Root.Footer do
         </div>
 
         <div class="mt-16 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p class="m-0 text-sm/6 text-ink-muted">
-            © {Date.utc_today().year} {@copyright_holder}
-          </p>
+          <div class="flex flex-col gap-2">
+            <p class="m-0 text-sm/6 text-ink-muted">
+              © {Date.utc_today().year} {@copyright_holder}
+            </p>
+            <p class="m-0 text-xs/6 text-ink-muted">{Soonex.Layouts.Media.credits()}</p>
+          </div>
           <.navigate
             to={Soonex.Public.path("/") <> "#epistula"}
             class="button ui-brand ui-solid ui-size-sm w-fit"

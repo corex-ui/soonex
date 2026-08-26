@@ -6,6 +6,8 @@ defmodule Soonex.HomePage.Officia do
 
   import Soonex.Layouts.Section, only: [block: 1]
 
+  alias Soonex.Layouts.Shell
+
   def officia(assigns) do
     ~H"""
     <.block
@@ -20,36 +22,38 @@ defmodule Soonex.HomePage.Officia do
       <:lede>
         Same template, three ways to ship it. The table is the product — not a widget gallery.
       </:lede>
-      <.tabs
-        id="soonex-officia"
-        class="tabs tabs--wide ui-brand ui-size-md mx-auto w-full max-w-none"
-        indicator
-        multiple={false}
-        collapsible={false}
-        value="compare"
-        items={offices()}
-      >
-        <:trigger :let={item}>{item.label}</:trigger>
-        <:content :let={item}>
-          <div class="flex flex-col gap-6 text-start">
-            <p class="display m-0 text-2xl font-semibold tracking-tight text-ink">
-              {item.meta.headline}
-            </p>
-            <p class="m-0 max-w-2xl text-base/7 text-ink-muted">{item.content}</p>
-            <.data_table
-              :if={item.meta[:table]}
-              id="soonex-plan-table"
-              class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
-              rows={plan_rows()}
-            >
-              <:col :let={row} label="Feature">{row.feature}</:col>
-              <:col :let={row} label="Launch">{row.launch}</:col>
-              <:col :let={row} label="Studio">{row.studio}</:col>
-              <:col :let={row} label="Agency">{row.agency}</:col>
-            </.data_table>
-          </div>
-        </:content>
-      </.tabs>
+      <div class={"#{Shell.panel()} mt-4 p-4 sm:p-6"}>
+        <.tabs
+          id="soonex-officia"
+          class="tabs tabs--wide ui-brand ui-size-md mx-auto w-full max-w-none"
+          indicator
+          multiple={false}
+          collapsible={false}
+          value="compare"
+          items={offices()}
+        >
+          <:trigger :let={item}>{item.label}</:trigger>
+          <:content :let={item}>
+            <div class="flex flex-col gap-6 text-start">
+              <p class="display m-0 text-2xl font-semibold tracking-tight text-ink">
+                {item.meta.headline}
+              </p>
+              <p class="m-0 max-w-2xl text-base/7 text-ink-muted">{item.content}</p>
+              <.data_table
+                :if={item.meta[:table]}
+                id="soonex-plan-table"
+                class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
+                rows={plan_rows()}
+              >
+                <:col :let={row} label="Feature">{row.feature}</:col>
+                <:col :let={row} label="Launch">{row.launch}</:col>
+                <:col :let={row} label="Studio">{row.studio}</:col>
+                <:col :let={row} label="Agency">{row.agency}</:col>
+              </.data_table>
+            </div>
+          </:content>
+        </.tabs>
+      </div>
     </.block>
     """
   end

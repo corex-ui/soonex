@@ -4,6 +4,8 @@ defmodule Soonex.HomePage.Hero do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Media, only: [photo: 1]
+
   alias Soonex.Layouts.Shell
 
   attr(:countdown_ms, :integer, required: true)
@@ -16,21 +18,20 @@ defmodule Soonex.HomePage.Hero do
       data-hero-boundary
     >
       <div class={Shell.stage()}>
-        <div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-12">
-          <div class="flex w-full flex-col lg:col-span-7" data-hero>
-            <span class="badge ui-brand ui-size-sm">Launching 1 September</span>
+        <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-8">
+          <div class="flex w-full flex-col justify-center lg:col-span-5" data-hero>
+            <span class="badge ui-brand ui-size-sm w-fit">Launching 1 September</span>
 
             <h1
               id="soonex-headline"
-              class="display mt-6 text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl"
+              class="display mt-6 text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-8xl"
             >
-              Publish the launch site <span class="text-brand-text">before the product ships.</span>
+              The launch site, <span class="text-brand-text">before the product.</span>
             </h1>
 
-            <p class={"#{Shell.lede()} max-w-xl"}>
-              Soonex is an English Tableau template with Corex tokens, a waitlist, and a countdown
-              to 1 September. Change the brand in <code class="code">config :corex_design</code>
-              — contrast stays calculated.
+            <p class={"#{Shell.lede()} max-w-lg"}>
+              A Tableau + Corex waitlist with a countdown, a journal, and four themes you actually
+              retint in <code class="code">config :corex_design</code>.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -41,63 +42,93 @@ defmodule Soonex.HomePage.Hero do
                 Read the log <.heroicon name="hero-arrow-up-right" />
               </.navigate>
             </div>
+
+            <div class="mt-10 flex items-center gap-4">
+              <ul class="soonex-avatars m-0 list-none p-0">
+                <li :for={person <- people()}>
+                  <.photo
+                    src={person.src}
+                    alt={person.alt}
+                    width={72}
+                    height={72}
+                    class="soonex-avatar"
+                    loading="eager"
+                  />
+                </li>
+              </ul>
+              <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
+                Studios already on the list — the form only fires a toast in this demo.
+              </p>
+            </div>
           </div>
 
-          <div class="lg:col-span-5">
-            <div class={"#{Shell.panel()} flex w-full min-w-0 flex-col p-6 sm:p-8"}>
-              <p class={Shell.eyebrow()}>Waitlist</p>
-              <h2 class="display mt-2 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                Get launch notes first
-              </h2>
-              <p class="mt-3 text-sm/6 text-ink-muted">
-                One email. Tell us how you work. We will not store this form — it only fires a toast.
-              </p>
+          <div class="lg:col-span-7">
+            <div class={"#{Shell.frame()} relative min-h-[28rem] lg:min-h-[36rem]"}>
+              <.photo
+                src="/images/photos/hero.jpg"
+                alt="Sunlit studio with long work tables and hanging task lamps"
+                width={1600}
+                height={1200}
+                class="absolute inset-0 size-full"
+                loading="eager"
+              />
+              <div class="relative z-[1] flex min-h-[28rem] items-end p-4 sm:p-6 lg:min-h-[36rem]">
+                <div class={"#{Shell.panel()} w-full max-w-md p-5 sm:p-6"}>
+                  <p class={Shell.eyebrow()}>Waitlist</p>
+                  <h2 class="display mt-1 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                    Get launch notes first
+                  </h2>
+                  <p class="mt-2 text-sm/6 text-ink-muted">
+                    One email. Tell us how you work. Nothing is stored.
+                  </p>
 
-              <form
-                id="soonex-hero-waitlist-form"
-                class="mt-8 flex w-full flex-col items-stretch gap-5"
-                data-waitlist-toast-title="You're on the list"
-                data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
-              >
-                <.native_input
-                  type="email"
-                  name="waitlist[email]"
-                  id="soonex-hero-waitlist-email"
-                  required
-                  autocomplete="email"
-                  placeholder="you@studio.dev"
-                  class="native-input ui-size-md ui-width-full"
-                >
-                  <:label>Email</:label>
-                </.native_input>
+                  <form
+                    id="soonex-hero-waitlist-form"
+                    class="mt-5 flex w-full flex-col items-stretch gap-4"
+                    data-waitlist-toast-title="You're on the list"
+                    data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+                  >
+                    <.native_input
+                      type="email"
+                      name="waitlist[email]"
+                      id="soonex-hero-waitlist-email"
+                      required
+                      autocomplete="email"
+                      placeholder="you@studio.dev"
+                      class="native-input ui-size-md ui-width-full"
+                    >
+                      <:label>Email</:label>
+                    </.native_input>
 
-                <.radio_group
-                  id="soonex-hero-role"
-                  name="waitlist[role]"
-                  class="radio-group ui-brand ui-width-full"
-                  value="founder"
-                  items={[
-                    %{value: "founder", label: "Founder"},
-                    %{value: "engineer", label: "Engineer"},
-                    %{value: "designer", label: "Designer"}
-                  ]}
-                >
-                  <:label>I am a</:label>
-                </.radio_group>
+                    <.radio_group
+                      id="soonex-hero-role"
+                      name="waitlist[role]"
+                      class="radio-group ui-brand ui-width-full"
+                      value="founder"
+                      items={[
+                        %{value: "founder", label: "Founder"},
+                        %{value: "engineer", label: "Engineer"},
+                        %{value: "designer", label: "Designer"}
+                      ]}
+                    >
+                      <:label>I am a</:label>
+                    </.radio_group>
 
-                <.switch
-                  id="soonex-hero-notes"
-                  name="waitlist[notes]"
-                  checked
-                  class="switch ui-brand"
-                >
-                  <:label>Email me launch notes</:label>
-                </.switch>
+                    <.switch
+                      id="soonex-hero-notes"
+                      name="waitlist[notes]"
+                      checked
+                      class="switch ui-brand"
+                    >
+                      <:label>Email me launch notes</:label>
+                    </.switch>
 
-                <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
-                  Join waitlist
-                </button>
-              </form>
+                    <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
+                      Join waitlist
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -107,23 +138,13 @@ defmodule Soonex.HomePage.Hero do
           countdown
           start_ms={@countdown_ms}
           target_ms={0}
-          class="timer ui-success ui-size-lg mt-16 w-full"
+          class="timer ui-success ui-size-lg mt-14 w-full"
         >
           <:day_label>Days</:day_label>
           <:hour_label>Hours</:hour_label>
           <:minute_label>Min</:minute_label>
           <:second_label>Sec</:second_label>
         </.timer>
-
-        <dl class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
-          <div
-            :for={{stat, caption} <- metrics()}
-            class="flex flex-col-reverse gap-y-1 border-l border-border pl-6"
-          >
-            <dt class="text-sm/6 text-ink-muted">{caption}</dt>
-            <dd class="display m-0 text-3xl font-semibold tracking-tight text-ink">{stat}</dd>
-          </div>
-        </dl>
       </div>
     </header>
 
@@ -131,11 +152,11 @@ defmodule Soonex.HomePage.Hero do
     """
   end
 
-  defp metrics do
+  defp people do
     [
-      {"4 themes", "neo, uno, duo, and leo in config"},
-      {"0 npm", "Corex hooks via Mix — no package.json"},
-      {"1 September", "Public launch on the calendar"}
+      %{src: "/images/people/amira.jpg", alt: "Amira N."},
+      %{src: "/images/people/jonas.jpg", alt: "Jonas K."},
+      %{src: "/images/people/leah.jpg", alt: "Leah M."}
     ]
   end
 end

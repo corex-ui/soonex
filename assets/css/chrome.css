@@ -1,7 +1,17 @@
-/* Tiny layout helpers that utilities cannot express. No theme recasts. */
+/* Tiny layout helpers that utilities cannot express. */
 
 [data-motion="reduce"] [data-site-header] {
   transition: none;
+}
+
+/* Header countdown stays ui-size-sm in markup; digits need to actually read small. */
+[data-site-header] .timer.ui-size-sm {
+  --timer-digit: var(--text-lg);
+  --timer-digit-leading: var(--text-lg--line-height);
+}
+
+[data-site-header] .timer [data-scope="timer"][data-part="item"] {
+  height: 1.35em;
 }
 
 @media (width < 40rem) {
@@ -19,8 +29,49 @@
   }
 }
 
+.soonex-frame {
+  border-radius: var(--radius-2xl);
+}
+
+.soonex-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.soonex-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.soonex-avatars li + li {
+  margin-inline-start: calc(var(--spacing-space-sm) * -1);
+}
+
+.soonex-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-root);
+}
+
+.soonex-avatar-lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.marquee img {
+  filter: grayscale(1);
+}
+
+[data-mode="dark"] .marquee img {
+  filter: grayscale(1) invert(1);
+}
+
 .marquee [data-scope="marquee"][data-part="edge"] {
-  --edge-background: var(--color-surface);
+  --edge-background: var(--color-root);
 }
 
 .data-list.data-list--wide,

@@ -4,6 +4,7 @@ defmodule Soonex.HomePage.Highlights do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
 
   alias Soonex.Layouts.Shell
@@ -48,20 +49,30 @@ defmodule Soonex.HomePage.Highlights do
         spacing="1.5rem"
       >
         <:item :let={post}>
-          <article class="flex h-full min-h-56 flex-col border border-border bg-surface p-8">
-            <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
-            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">
-              {post[:title] || "Untitled"}
-            </h3>
-            <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
-              {post[:description]}
-            </p>
-            <.navigate
-              to={Soonex.Public.path(post.permalink)}
-              class="link ui-brand mt-6 w-fit"
-            >
-              Read <.heroicon name="hero-arrow-up-right" />
-            </.navigate>
+          <article class={"#{Shell.frame()} flex h-full min-h-80 flex-col overflow-hidden"}>
+            <div :if={cover(post)} class="relative aspect-[16/10] overflow-hidden">
+              <.photo
+                src={cover(post).src}
+                alt={cover(post).alt}
+                width={1400}
+                height={900}
+              />
+            </div>
+            <div class="flex flex-1 flex-col p-8">
+              <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
+              <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">
+                {post[:title] || "Untitled"}
+              </h3>
+              <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
+                {post[:description]}
+              </p>
+              <.navigate
+                to={Soonex.Public.path(post.permalink)}
+                class="link ui-brand mt-6 w-fit"
+              >
+                Read <.heroicon name="hero-arrow-up-right" />
+              </.navigate>
+            </div>
           </article>
         </:item>
         <:prev_trigger>
@@ -73,6 +84,14 @@ defmodule Soonex.HomePage.Highlights do
       </.carousel>
     </.block>
     """
+  end
+
+  defp cover(post) do
+    src = post[:image]
+
+    if is_binary(src) and src != "" do
+      %{src: src, alt: post[:image_alt] || post[:title] || "Journal cover"}
+    end
   end
 
   defp date_label(%{date: %DateTime{} = date}), do: Calendar.strftime(date, "%d %B %Y")

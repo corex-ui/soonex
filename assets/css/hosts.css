@@ -30,3 +30,138 @@
 pre.code.code--wide {
   max-width: none;
 }
+
+/*
+  Per-theme ui-* personality. Corex recipes read --ctl-radius from
+  ui-rounded-*; these host rules retune that axis so neo/uno/duo/leo
+  do not share one corner language.
+*/
+[data-theme="neo"] :is(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+) {
+  --ctl-radius: var(--radius-xl);
+}
+
+[data-theme="uno"] :is(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+) {
+  --ctl-radius: var(--radius-sm);
+}
+
+[data-theme="duo"] :is(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+) {
+  --ctl-radius: var(--radius-2xl);
+}
+
+[data-theme="leo"] :is(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+) {
+  --ctl-radius: var(--radius-none);
+}
+
+[data-theme="leo"] :is(.button, .badge) {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-theme="uno"] .display {
+  letter-spacing: -0.03em;
+}
+
+[data-theme="duo"] blockquote,
+[data-theme="duo"] .soonex-quote {
+  font-family: var(--font-serif);
+}

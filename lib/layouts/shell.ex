@@ -14,7 +14,7 @@ defmodule Soonex.Layouts.Shell do
   def section_compact, do: "scroll-mt-24 w-full py-16 sm:py-20"
 
   def section_hero,
-    do: "relative flex min-h-svh w-full flex-col justify-center overflow-x-clip py-24 sm:py-32"
+    do: "relative flex min-h-svh w-full flex-col justify-center overflow-x-clip py-16 sm:py-24"
 
   def stage, do: "mx-auto w-full max-w-[90rem] px-6 lg:px-8"
 
@@ -45,7 +45,10 @@ defmodule Soonex.Layouts.Shell do
 
   def lede, do: "mt-6 max-w-2xl text-pretty text-lg/8 text-ink-muted"
 
-  def panel, do: "relative overflow-hidden border border-border bg-surface"
+  def panel,
+    do: "soonex-frame relative overflow-hidden border border-border bg-surface"
+
+  def frame, do: "soonex-frame relative overflow-hidden border border-border bg-surface"
 
   def data_list, do: "data-list data-list--wide ui-accent ui-size-md w-full max-w-none"
 end

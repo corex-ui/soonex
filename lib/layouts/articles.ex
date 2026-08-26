@@ -4,6 +4,8 @@ defmodule Soonex.Layouts.Articles do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Media, only: [photo: 1]
+
   alias Soonex.Layouts.Shell
 
   attr(:posts, :list, required: true)
@@ -14,22 +16,27 @@ defmodule Soonex.Layouts.Articles do
     <div :if={@posts == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
       <p class="m-0">{@empty}</p>
     </div>
-    <div
-      :if={@posts != []}
-      class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2"
-    >
-      <article :for={post <- @posts} class="flex flex-col bg-surface p-8">
-        <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
-        <h2 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-          <.navigate to={Soonex.Public.path(post.permalink)} class="link ui-nav">
-            {post[:title] || "Untitled"}
-          </.navigate>
-        </h2>
-        <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
-          {post[:description]}
-        </p>
-        <div :if={post_tags(post) != []} class="mt-6 flex flex-wrap gap-2">
-          <span :for={tag <- post_tags(post)} class="badge ui-size-sm">{tag}</span>
+    <div :if={@posts != []} class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <article
+        :for={post <- @posts}
+        class={"#{Shell.frame()} flex flex-col overflow-hidden bg-surface"}
+      >
+        <div :if={cover(post)} class="relative aspect-[16/10] overflow-hidden">
+          <.photo src={cover(post).src} alt={cover(post).alt} width={1400} height={900} />
+        </div>
+        <div class="flex flex-1 flex-col p-8">
+          <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
+          <h2 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+            <.navigate to={Soonex.Public.path(post.permalink)} class="link ui-nav">
+              {post[:title] || "Untitled"}
+            </.navigate>
+          </h2>
+          <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
+            {post[:description]}
+          </p>
+          <div :if={post_tags(post) != []} class="mt-6 flex flex-wrap gap-2">
+            <span :for={tag <- post_tags(post)} class="badge ui-size-sm">{tag}</span>
+          </div>
         </div>
       </article>
     </div>
@@ -60,6 +67,14 @@ defmodule Soonex.Layouts.Articles do
       </:ellipsis>
     </.pagination>
     """
+  end
+
+  defp cover(post) do
+    src = post[:image]
+
+    if is_binary(src) and src != "" do
+      %{src: src, alt: post[:image_alt] || post[:title] || "Journal cover"}
+    end
   end
 
   defp date_label(%{date: %DateTime{} = date}), do: Calendar.strftime(date, "%d %B %Y")

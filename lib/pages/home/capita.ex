@@ -4,6 +4,7 @@ defmodule Soonex.HomePage.Capita do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
 
   alias Soonex.Layouts.Shell
@@ -22,23 +23,32 @@ defmodule Soonex.HomePage.Capita do
       <:lede>
         A waitlist, a journal, and chrome you can delete. Long copy stays behind a collapsible.
       </:lede>
-      <div class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
-        <article class="flex flex-col bg-root p-8 sm:col-span-2">
-          <p class={Shell.eyebrow()}>Overlays</p>
-          <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-            Host apps overlay Corex — they do not fork it
-          </h3>
-          <p class="mt-4 text-sm/6 text-ink-muted sm:text-base/7">
-            Allowed per theme: seeds, light and dark colors, radius, font roles, and typography.
-            Density ladders live in top-level scales. Host overlays cannot set duration or opacity keys.
-          </p>
-          <.collapsible id="soonex-capita-collapsible" class="collapsible ui-width-full mt-6">
-            <:trigger>How the overlay works</:trigger>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <article class={"#{Shell.frame()} relative min-h-80 sm:col-span-2 lg:col-span-4 lg:min-h-[28rem]"}>
+          <.photo
+            src="/images/photos/studio.jpg"
+            alt="A calm studio interior with a low sofa, plants, and a large window"
+            width={1400}
+            height={1600}
+            class="absolute inset-0 size-full"
+          />
+          <div class="absolute inset-x-0 bottom-0 border-t border-border bg-root p-6 sm:p-8">
+            <p class={Shell.eyebrow()}>Overlays</p>
+            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+              Host apps overlay Corex — they do not fork it
+            </h3>
+          </div>
+        </article>
+
+        <article class={"#{Shell.panel()} flex flex-col p-6 sm:p-8 lg:col-span-2"}>
+          <p class={Shell.eyebrow()}>How it works</p>
+          <.collapsible id="soonex-capita-collapsible" class="collapsible ui-width-full mt-4">
+            <:trigger>Open the overlay notes</:trigger>
             <:closed>
               <.heroicon name="hero-chevron-down" />
             </:closed>
             <:content>
-              <p class="m-0 max-w-2xl text-sm/6 text-ink-muted sm:text-base/7">
+              <p class="m-0 text-sm/6 text-ink-muted sm:text-base/7">
                 Edit <code class="code">config :corex_design</code>
                 in config/config.exs, then run <code class="code">mix corex.design.build</code>.
                 Contrast tokens stay <code class="code">:contrast</code>
@@ -48,7 +58,11 @@ defmodule Soonex.HomePage.Capita do
             </:content>
           </.collapsible>
         </article>
-        <article :for={cell <- cells()} class="flex flex-col bg-surface p-8">
+
+        <article
+          :for={cell <- cells()}
+          class={"#{Shell.panel()} flex flex-col p-6 sm:p-8 lg:col-span-2"}
+        >
           <p class={Shell.eyebrow()}>{cell.kicker}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
           <p class="mt-3 flex-auto text-sm/6 text-ink-muted">{cell.body}</p>
@@ -68,18 +82,13 @@ defmodule Soonex.HomePage.Capita do
       },
       %{
         kicker: "Journal",
-        title: "Markdown posts with tags",
-        body: "Tableau posts, a card index, and a button pager. RSS is already wired."
+        title: "Markdown posts with covers",
+        body: "Tableau posts, a card index with photography, and a button pager. RSS is wired."
       },
       %{
         kicker: "Accessibility",
         title: "Official Corex dialog",
         body: "Text, contrast, motion, cursor, focus, and links — stored in localStorage."
-      },
-      %{
-        kicker: "Assets",
-        title: "No package.json",
-        body: "Esbuild and Tailwind run from Mix. Corex hooks resolve through NODE_PATH."
       }
     ]
   end

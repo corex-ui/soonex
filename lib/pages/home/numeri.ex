@@ -5,6 +5,8 @@ defmodule Soonex.HomePage.Numeri do
 
   import Soonex.Layouts.Section, only: [block: 1]
 
+  alias Soonex.Layouts.Shell
+
   def numeri(assigns) do
     ~H"""
     <.block
@@ -21,10 +23,10 @@ defmodule Soonex.HomePage.Numeri do
       <:lede>
         What you get when you fork the template — not vanity metrics.
       </:lede>
-      <dl class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div
           :for={{stat, caption} <- stats()}
-          class="flex flex-col-reverse gap-y-2 bg-root px-6 py-10 text-center"
+          class={"#{Shell.panel()} flex flex-col-reverse gap-y-2 px-6 py-10 text-center"}
         >
           <dt class="text-sm/6 text-ink-muted">{caption}</dt>
           <dd class="display m-0 text-4xl font-semibold tracking-tight text-ink">{stat}</dd>

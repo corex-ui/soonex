@@ -143,6 +143,7 @@
   .typo.prose.markdown img {
     max-width: min(100%, 40rem);
     height: auto;
+    border-radius: var(--radius-xl);
   }
 
   .typo.prose.markdown img[src*="/images/tech/"] {

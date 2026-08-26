@@ -4,7 +4,10 @@ defmodule Soonex.HomePage.Voces do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
+
+  alias Soonex.Layouts.Shell
 
   def voces(assigns) do
     assigns = assign(assigns, :voices, voices())
@@ -20,7 +23,7 @@ defmodule Soonex.HomePage.Voces do
         From teams who <span class="text-brand-text">ship static first</span>
       </:title>
       <:lede>
-        Quotes ride a carousel. That is what the component is for.
+        Quotes ride a carousel. Portraits are Unsplash. That is what the component is for.
       </:lede>
       <.carousel
         id="soonex-voces-carousel"
@@ -30,21 +33,25 @@ defmodule Soonex.HomePage.Voces do
         spacing="1.5rem"
       >
         <:item :let={voice}>
-          <blockquote class="flex h-full min-h-56 flex-col justify-between border border-border bg-surface p-8 lg:p-10">
-            <p class="display m-0 text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl">
-              “{voice.quote}”
-            </p>
-            <footer class="mt-8 flex items-center gap-4">
-              <.avatar id={voice.id} src="" alt="" class="avatar ui-brand ui-solid ui-size-md">
-                <:fallback>
-                  <span class="text-xs font-semibold">{voice.initials}</span>
-                </:fallback>
-              </.avatar>
-              <div class="flex flex-col">
-                <cite class="not-italic text-sm font-semibold text-ink">{voice.name}</cite>
-                <span class="text-sm text-ink-muted">{voice.role}</span>
-              </div>
-            </footer>
+          <blockquote class={"#{Shell.frame()} flex h-full min-h-72 flex-col justify-between p-0 lg:min-h-80"}>
+            <div class="flex flex-1 flex-col justify-between gap-8 p-8 lg:p-10">
+              <p class="soonex-quote display m-0 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+                “{voice.quote}”
+              </p>
+              <footer class="flex items-center gap-4">
+                <.photo
+                  src={voice.src}
+                  alt={voice.name}
+                  width={96}
+                  height={96}
+                  class="soonex-avatar soonex-avatar-lg"
+                />
+                <div class="flex flex-col">
+                  <cite class="not-italic text-sm font-semibold text-ink">{voice.name}</cite>
+                  <span class="text-sm text-ink-muted">{voice.role}</span>
+                </div>
+              </footer>
+            </div>
           </blockquote>
         </:item>
         <:prev_trigger>
@@ -61,24 +68,21 @@ defmodule Soonex.HomePage.Voces do
   defp voices do
     [
       %{
-        id: "soonex-avatar-amira",
-        initials: "AN",
+        src: "/images/people/amira.jpg",
         quote:
           "We published the waitlist in a day. The brand overlay in config was the only design file we needed.",
         name: "Amira N.",
         role: "Founder, studio launch"
       },
       %{
-        id: "soonex-avatar-jonas",
-        initials: "JK",
+        src: "/images/people/jonas.jpg",
         quote:
           "No npm for Corex hooks meant the Mix pipeline stayed the source of truth. Theme switch actually retints.",
         name: "Jonas K.",
         role: "Staff engineer"
       },
       %{
-        id: "soonex-avatar-leah",
-        initials: "LM",
+        src: "/images/people/leah.jpg",
         quote:
           "The header countdown stays gone until you pass the hero. That is the kind of paper cut a launch site cannot show.",
         name: "Leah M.",

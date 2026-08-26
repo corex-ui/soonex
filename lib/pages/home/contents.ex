@@ -24,12 +24,12 @@ defmodule Soonex.HomePage.Contents do
       <:lede>
         Each band on this page has one job. Tokens stay in config. Hooks stay in Mix.
       </:lede>
-      <ul class="grid grid-cols-1 gap-8 sm:grid-cols-3">
+      <ul class="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
         <li :for={feature <- features()} class="flex flex-col">
           <.tooltip id={feature.tooltip_id} class="tooltip">
             <:trigger>
-              <span class="flex size-10 items-center justify-center border border-border bg-surface text-brand-text">
-                <.heroicon name={feature.icon} class="size-5" />
+              <span class="display text-4xl font-semibold tracking-tight text-brand-text sm:text-5xl">
+                {feature.index}
               </span>
               <span class="sr-only">{feature.title}</span>
             </:trigger>
@@ -42,12 +42,10 @@ defmodule Soonex.HomePage.Contents do
         </li>
       </ul>
 
-      <div class={"#{Shell.panel()} mt-12 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"}>
-        <div>
+      <div class={"#{Shell.panel()} mt-16 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"}>
+        <div class="min-w-0">
           <p class={Shell.eyebrow()}>Customize in config</p>
-          <p class="mt-2 font-mono text-sm text-ink">
-            {String.trim(@theme_snippet)}
-          </p>
+          <pre class="mt-3 overflow-x-auto font-mono text-xs/6 text-ink sm:text-sm/6"><code>{String.trim(@theme_snippet)}</code></pre>
         </div>
         <.clipboard
           id="soonex-theme-snippet"
@@ -71,24 +69,24 @@ defmodule Soonex.HomePage.Contents do
   defp features do
     [
       %{
+        index: "01",
         tooltip_id: "soonex-feature-tokens",
-        icon: "hero-swatch",
-        tip: "Seeds and contrast live in config :corex_design",
-        title: "Tokens, not hand-rolled CSS",
+        tip: "Seeds, radius, and type live in config :corex_design",
+        title: "Tokens, not a CSS fork",
         body:
           "Overlay seeds, colors, radius, and type per theme. Contrast targets stay at preset strength so axe stays green."
       },
       %{
+        index: "02",
         tooltip_id: "soonex-feature-themes",
-        icon: "hero-squares-2x2",
-        tip: "neo, uno, duo, and leo each retint root, surface, and brand",
-        title: "Four themes that actually change",
+        tip: "neo is pill, uno is tight, duo is soft, leo is square",
+        title: "Four themes that disagree",
         body:
-          "Template Options is not a hue shift on the same gray. Radius and type stacks move with the palette."
+          "Template Options is not a hue shift on the same gray. Radius, type, and ui-* control corners move with the palette."
       },
       %{
+        index: "03",
         tooltip_id: "soonex-feature-mix",
-        icon: "hero-cube",
         tip: "mix corex.design.build — no package.json for Corex",
         title: "Zero npm for Corex hooks",
         body:
@@ -99,7 +97,10 @@ defmodule Soonex.HomePage.Contents do
 
   defp theme_snippet do
     """
-    config :corex_design, themes: %{neo: %{seeds: %{brand: "#2F4BDA"}}}
+    config :corex_design,
+      themes: %{
+        neo: %{seeds: %{brand: "#2A4DFF"}, dimensions: %{radius: %{xl: 1.9}}}
+      }
     """
     |> String.trim()
   end
