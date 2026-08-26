@@ -40,34 +40,36 @@ defmodule Soonex.TagsIndexPage do
 
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
-      <div class={"#{Shell.stage()} flex flex-col"}>
+      <div class={Shell.stage()}>
         <nav class="flex flex-wrap items-center gap-3" aria-label="Tags">
           <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
             <.heroicon name="hero-arrow-left" /> Ad acta
           </.navigate>
         </nav>
 
-        <header class={"#{Shell.intro()} mt-10"} aria-labelledby="tags-heading">
-          <p class={Shell.eyebrow()}>Notae</p>
-          <h1 id="tags-heading" class={Shell.page_heading()}>
-            Omnes <span class="text-brand-text">notae</span>
-          </h1>
-          <p class={Shell.lede()}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-          </p>
-          <p class="mt-6 text-sm/6">
-            <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
-              Omnia acta
-            </.navigate>
-          </p>
-        </header>
+        <div class={"#{Shell.sticky_grid()} mt-10"}>
+          <header class={Shell.sticky_intro()} aria-labelledby="tags-heading">
+            <p class={Shell.eyebrow()}>Notae</p>
+            <h1 id="tags-heading" class={Shell.page_heading()}>
+              Omnes <span class="text-brand-text">notae</span>
+            </h1>
+            <p class={Shell.lede()}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+            </p>
+            <p class="mt-6 text-sm/6">
+              <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
+                Omnia acta
+              </.navigate>
+            </p>
+          </header>
 
-        <div class={Shell.body()}>
-          <.data_rows
-            id="soonex-tags-list"
-            items={@tag_items}
-            empty="Lorem ipsum — nullae notae."
-          />
+          <div class={Shell.sticky_body()}>
+            <.data_rows
+              id="soonex-tags-list"
+              items={@tag_items}
+              empty="Lorem ipsum — nullae notae."
+            />
+          </div>
         </div>
       </div>
     </article>

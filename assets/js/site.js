@@ -7,7 +7,6 @@ import { FloatingPanel } from "corex/floating-panel"
 import { Toast } from "corex/toast"
 import { Select } from "corex/select"
 import { Toggle } from "corex/toggle"
-import { initLenis } from "./init-lenis.js"
 import { initLanding } from "./landing.js"
 import { initWaitlistForm } from "./waitlist.js"
 
@@ -37,7 +36,6 @@ const liveSocket = new LiveSocket("/live", Socket, {
 })
 
 liveSocket.disableDebug()
-initLenis()
 liveSocket.connect()
 
 if (document.querySelector("[data-landing]")) {

@@ -21,7 +21,13 @@ defmodule Soonex.HomePage.Highlights do
     assigns = assign(assigns, :highlight_items, Rows.from_posts(posts))
 
     ~H"""
-    <.block id="acta" labelledby="soonex-highlights-heading" eyebrow="Acta" tone={:surface}>
+    <.block
+      id="acta"
+      labelledby="soonex-highlights-heading"
+      eyebrow="Acta"
+      tone={:surface}
+      layout={:sticky}
+    >
       <:title>
         Recentiora <span class="text-brand-text">scripta</span>
       </:title>

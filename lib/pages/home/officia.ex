@@ -13,7 +13,7 @@ defmodule Soonex.HomePage.Officia do
       labelledby="soonex-officia-heading"
       eyebrow="Officia"
       tone={:surface}
-      align={:center}
+      layout={:sticky}
     >
       <:title>
         Tria <span class="text-brand-text">munera</span>

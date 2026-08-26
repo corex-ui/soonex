@@ -10,17 +10,23 @@ defmodule Soonex.HomePage.Capita do
 
   def capita(assigns) do
     ~H"""
-    <.block id="capita" labelledby="soonex-capita-heading" eyebrow="Capita" tone={:root}>
+    <.block
+      id="capita"
+      labelledby="soonex-capita-heading"
+      eyebrow="Capita"
+      tone={:root}
+      layout={:sticky}
+    >
       <:title>
         Sex <span class="text-brand-text">argumenta</span>
       </:title>
       <:lede>
         At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.
       </:lede>
-      <div class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
         <article
           :for={{featured?, kicker, title, body} <- chapters()}
-          class={"flex flex-col bg-surface p-8 #{if featured?, do: "sm:col-span-2 lg:row-span-2"}"}
+          class={"flex flex-col bg-surface p-8 #{if featured?, do: "sm:col-span-2"}"}
         >
           <p class={Shell.eyebrow()}>{kicker}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">

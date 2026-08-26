@@ -4,52 +4,41 @@ defmodule Soonex.HomePage.Faq do
   use Phoenix.Component
   use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Section, only: [block: 1]
 
   def faq(assigns) do
     ~H"""
-    <section
-      id="quaestiones"
-      class={"#{Shell.section()} bg-root"}
-      aria-labelledby="soonex-faq-heading"
-    >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-12"}>
-        <div class={"#{Shell.intro()} lg:sticky lg:top-28 lg:col-span-5"}>
-          <p class={Shell.eyebrow()}>Quaestiones</p>
-          <h2 id="soonex-faq-heading" class={Shell.section_heading()}>
-            Saepe <span class="text-brand-text">quaeruntur</span>
-          </h2>
-          <p class={Shell.lede()}>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
-          </p>
-          <p class="mt-8">
-            <.navigate to="#epistula" class="link ui-brand">
-              Scribe nomen <.heroicon name="hero-arrow-down" />
-            </.navigate>
-          </p>
-        </div>
-
-        <div class="w-full lg:col-span-7">
-          <.accordion
-            id="soonex-faq"
-            class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
-            multiple={true}
-            value={["alpha"]}
-            items={faq_items()}
-          >
-            <:trigger :let={item}>
-              <span class="min-w-0 text-start">{item.label}</span>
-            </:trigger>
-            <:content :let={item}>
-              <p class="m-0 text-base/7">{item.content}</p>
-            </:content>
-            <:indicator>
-              <.heroicon name="hero-chevron-right" />
-            </:indicator>
-          </.accordion>
-        </div>
-      </div>
-    </section>
+    <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Quaestiones" layout={:sticky}>
+      <:title>
+        Saepe <span class="text-brand-text">quaeruntur</span>
+      </:title>
+      <:lede>
+        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod.
+      </:lede>
+      <:actions>
+        <.navigate to="#epistula" class="link ui-brand">
+          Scribe nomen <.heroicon name="hero-arrow-down" />
+        </.navigate>
+      </:actions>
+      <.accordion
+        id="soonex-faq"
+        class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
+        multiple={false}
+        collapsible={false}
+        value="alpha"
+        items={faq_items()}
+      >
+        <:trigger :let={item}>
+          <span class="min-w-0 text-start">{item.label}</span>
+        </:trigger>
+        <:content :let={item}>
+          <p class="m-0 text-base/7">{item.content}</p>
+        </:content>
+        <:indicator>
+          <.heroicon name="hero-chevron-right" />
+        </:indicator>
+      </.accordion>
+    </.block>
     """
   end
 

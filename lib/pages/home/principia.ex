@@ -13,7 +13,7 @@ defmodule Soonex.HomePage.Principia do
       labelledby="soonex-principia-heading"
       eyebrow="Principia"
       tone={:surface}
-      align={:center}
+      layout={:sticky}
     >
       <:title>
         Tria <span class="text-brand-text">fundamenta</span>
@@ -21,16 +21,16 @@ defmodule Soonex.HomePage.Principia do
       <:lede>
         Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
       </:lede>
-      <dl class="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
-        <div :for={{icon, title, body} <- pillars()} class="flex flex-col">
+      <dl class="m-0 flex flex-col divide-y divide-border p-0">
+        <div :for={{icon, title, body} <- pillars()} class="flex flex-col py-8 first:pt-0 last:pb-0">
           <dt class="flex items-center gap-x-3 text-base/7 font-semibold text-ink">
             <span class="flex size-10 items-center justify-center border border-border bg-root text-brand-text">
               <.heroicon name={icon} class="size-5" />
             </span>
             {title}
           </dt>
-          <dd class="mt-4 flex flex-auto flex-col text-base/7 text-ink-muted">
-            <p class="m-0 flex-auto">{body}</p>
+          <dd class="mt-4 text-base/7 text-ink-muted">
+            <p class="m-0">{body}</p>
           </dd>
         </div>
       </dl>

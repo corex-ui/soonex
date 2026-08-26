@@ -1,10 +1,6 @@
 const stickyRevealPx = 96
 
 export function scrollProgress01() {
-  const lenis = globalThis.__landingLenis
-  if (lenis && typeof lenis.progress === "number") {
-    return Math.min(1, Math.max(0, lenis.progress))
-  }
   const doc = document.documentElement
   const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight)
   return Math.min(1, Math.max(0, window.scrollY / maxScroll))

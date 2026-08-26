@@ -19,7 +19,6 @@ config :esbuild,
     env: %{
       "NODE_PATH" =>
         [
-          Path.expand("../assets/node_modules", __DIR__),
           Path.expand("../deps", __DIR__),
           Path.expand("../node_modules", __DIR__)
         ]

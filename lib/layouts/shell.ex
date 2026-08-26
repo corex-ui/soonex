@@ -26,6 +26,15 @@ defmodule Soonex.Layouts.Shell do
 
   def body_tight, do: "mx-auto mt-10 w-full sm:mt-12"
 
+  # FAQ-style split: sticky intro column, content beside it.
+  def sticky_grid,
+    do: "grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-12"
+
+  def sticky_intro,
+    do: "mx-auto max-w-2xl lg:sticky lg:top-28 lg:col-span-5 lg:mx-0"
+
+  def sticky_body, do: "w-full min-w-0 lg:col-span-7"
+
   def eyebrow, do: "m-0 text-base/7 font-semibold text-brand-text"
 
   def section_heading,

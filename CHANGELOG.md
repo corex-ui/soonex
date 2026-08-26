@@ -12,7 +12,8 @@
 - Add Socii (marquee), Officia (tabs), and Numeri (stats); FAQ stays on Corex accordion.
 - Override Tableau's `mdex ~> 0.11.1` pin to `mdex ~> 0.13.2` (CVE-2026-53426 / 53427 / 53428 / 53429 / 54888 / 54889).
 - Add `mix soonex.server` / `mix soonex.port_check` so a taken :4999 fails with the occupant instead of Tableau's premature “server started” log.
-- `mix setup` runs `npm ci` in `assets/`; esbuild `NODE_PATH` includes `assets/node_modules`; Lenis bootstrap renamed to `init-lenis.js` so `"lenis"` resolves to the npm package.
+- Drop Lenis and `assets/package.json`; native `scroll-smooth` is enough.
+- Content sections share the FAQ sticky split (`layout={:sticky}`). FAQ accordion is single-open and not collapsible, with the first item open.
 
 ## 0.2.0
 

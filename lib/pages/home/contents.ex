@@ -8,7 +8,7 @@ defmodule Soonex.HomePage.Contents do
 
   def contents(assigns) do
     ~H"""
-    <.block id="index" labelledby="soonex-index-heading" eyebrow="Index" tone={:root}>
+    <.block id="index" labelledby="soonex-index-heading" eyebrow="Index" tone={:root} layout={:sticky}>
       <:title>
         Capita <span class="text-brand-text">huius paginae</span>
       </:title>

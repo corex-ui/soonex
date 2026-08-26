@@ -85,10 +85,8 @@ defmodule Soonex.MixProject do
   defp aliases do
     [
       compile: ["compile"],
-      setup: ["deps.get", "corex.design.build", "assets.setup"],
-      "assets.setup": ["cmd --cd assets npm ci"],
+      setup: ["deps.get", "corex.design.build"],
       "pre.test": [
-        "soonex.assets_check",
         "corex.design.build",
         "esbuild default",
         "tailwind default",
@@ -97,14 +95,12 @@ defmodule Soonex.MixProject do
       test: ["pre.test", "test"],
       server: ["soonex.server"],
       "assets.build": [
-        "soonex.assets_check",
         "corex.design.build",
         "tailwind default",
         "esbuild default"
       ],
       build: [
         "compile",
-        "soonex.assets_check",
         "corex.design.build",
         "tableau.build",
         "tailwind default --minify",

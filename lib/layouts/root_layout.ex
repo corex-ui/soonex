@@ -65,7 +65,7 @@ defmodule Soonex.RootLayout do
     ~H"""
     <!DOCTYPE html>
     <html
-      class="lenis scroll-smooth motion-reduce:scroll-auto"
+      class="scroll-smooth motion-reduce:scroll-auto"
       lang="en"
       dir="ltr"
       data-theme={@theme}

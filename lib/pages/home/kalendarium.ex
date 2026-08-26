@@ -13,6 +13,7 @@ defmodule Soonex.HomePage.Kalendarium do
       labelledby="soonex-kalendarium-heading"
       eyebrow="Kalendarium"
       tone={:root}
+      layout={:sticky}
     >
       <:title>
         Tempora <span class="text-brand-text">ventura</span>

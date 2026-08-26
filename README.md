@@ -7,7 +7,6 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 ## Prerequisites
 
 - Elixir ~> 1.17
-- Node.js (for `npm install` in `assets/`)
 - Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2.1`)
 
 ## Quick start
@@ -15,13 +14,6 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 ```shell
 cd soonex
 mix setup
-mix soonex.server
-```
-
-`assets/node_modules` is gitignored. If esbuild cannot resolve `"lenis"` (and suggests `./lenis`) or Tailwind cannot import `lenis.css`, install the npm packages and retry:
-
-```shell
-mix assets.setup
 mix soonex.server
 ```
 
@@ -48,7 +40,7 @@ Rebuild assets: `mix assets.build`.
 - **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match themes in `config :corex_design`.
 - **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
 - **Chrome:** [`assets/css/chrome.css`](assets/css/chrome.css) (tiny). Layout is Tailwind + Corex tokens in HEEx.
-- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex).
+- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Most bands use the FAQ sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
 - **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
 
@@ -63,7 +55,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 
 ## Corex assets and JS
 
-- `assets/js/site.js` imports `corex/*` and `lenis`; Esbuild resolves via **`NODE_PATH`** including `assets/node_modules` and `deps` ([`config/config.exs`](config/config.exs)). The Lenis bootstrap lives in [`assets/js/init-lenis.js`](assets/js/init-lenis.js) so the file is not mistaken for the npm package.
+- `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
 - Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); sticky countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js).

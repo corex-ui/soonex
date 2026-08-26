@@ -34,41 +34,40 @@ defmodule Soonex.PostLayout do
 
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
-      <div class={"#{Shell.stage()} flex flex-col"}>
+      <div class={Shell.stage()}>
         <nav class="flex flex-wrap items-center gap-3" aria-label="Post">
           <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
             <.heroicon name="hero-arrow-left" /> Ad acta
           </.navigate>
         </nav>
 
-        <header
-          class={"#{Shell.intro()} mt-10 border-b border-border pb-10"}
-          aria-labelledby="post-heading"
-        >
-          <p :if={@post_date_label} class={Shell.eyebrow()}>{@post_date_label}</p>
-          <h1 id="post-heading" class={Shell.page_heading()}>
-            {@post_title}
-          </h1>
-          <p :if={@post_description} class={Shell.lede()}>
-            {@post_description}
-          </p>
-          <div class="mt-6 flex flex-wrap items-center gap-3">
-            <ul
-              :if={@post_tags != []}
-              class="m-0 flex list-none flex-wrap gap-2 p-0"
-            >
-              <li :for={tag <- @post_tags}>
-                <span class="badge ui-size-sm">{tag}</span>
-              </li>
-            </ul>
-            <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-              Notae
-            </.navigate>
-          </div>
-        </header>
+        <div class={"#{Shell.sticky_grid()} mt-10"}>
+          <header class={"#{Shell.sticky_intro()}"} aria-labelledby="post-heading">
+            <p :if={@post_date_label} class={Shell.eyebrow()}>{@post_date_label}</p>
+            <h1 id="post-heading" class={Shell.page_heading()}>
+              {@post_title}
+            </h1>
+            <p :if={@post_description} class={Shell.lede()}>
+              {@post_description}
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <ul
+                :if={@post_tags != []}
+                class="m-0 flex list-none flex-wrap gap-2 p-0"
+              >
+                <li :for={tag <- @post_tags}>
+                  <span class="badge ui-size-sm">{tag}</span>
+                </li>
+              </ul>
+              <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
+                Notae
+              </.navigate>
+            </div>
+          </header>
 
-        <div class="typo markdown prose mt-16 max-w-3xl">
-          {{:safe, render(@inner_content)}}
+          <div class="typo markdown prose min-w-0 lg:col-span-7">
+            {{:safe, render(@inner_content)}}
+          </div>
         </div>
       </div>
     </article>

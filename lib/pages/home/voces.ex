@@ -8,31 +8,35 @@ defmodule Soonex.HomePage.Voces do
 
   def voces(assigns) do
     ~H"""
-    <.block id="voces" labelledby="soonex-voces-heading" eyebrow="Voces" tone={:surface}>
+    <.block
+      id="voces"
+      labelledby="soonex-voces-heading"
+      eyebrow="Voces"
+      tone={:surface}
+      layout={:sticky}
+    >
       <:title>
         Testimonia <span class="text-brand-text">brevia</span>
       </:title>
       <:lede>
         Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi.
       </:lede>
-      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        <blockquote class="flex flex-col justify-between border border-border bg-root p-8 lg:col-span-2 lg:p-10">
+      <div class="flex flex-col gap-8">
+        <blockquote class="flex flex-col justify-between border border-border bg-root p-8 lg:p-10">
           <p class="display m-0 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
             “{featured().quote}”
           </p>
           <.voice_footer voice={featured()} />
         </blockquote>
-        <div class="flex flex-col gap-8">
-          <blockquote
-            :for={voice <- supporting()}
-            class="flex flex-1 flex-col justify-between border border-border bg-root p-8"
-          >
-            <p class="display m-0 text-lg font-semibold leading-snug tracking-tight text-ink">
-              “{voice.quote}”
-            </p>
-            <.voice_footer voice={voice} />
-          </blockquote>
-        </div>
+        <blockquote
+          :for={voice <- supporting()}
+          class="flex flex-col justify-between border border-border bg-root p-8"
+        >
+          <p class="display m-0 text-lg font-semibold leading-snug tracking-tight text-ink">
+            “{voice.quote}”
+          </p>
+          <.voice_footer voice={voice} />
+        </blockquote>
       </div>
     </.block>
     """

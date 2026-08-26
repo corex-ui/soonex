@@ -29,34 +29,36 @@ defmodule Soonex.BlogIndexPage do
 
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
-      <div class={"#{Shell.stage()} flex flex-col"}>
+      <div class={Shell.stage()}>
         <nav class="flex flex-wrap items-center gap-3" aria-label="Blog">
           <.navigate to={Soonex.Public.path("/")} class="link ui-nav w-fit">
             <.heroicon name="hero-arrow-left" /> Ad initium
           </.navigate>
         </nav>
 
-        <header class={"#{Shell.intro()} mt-10"} aria-labelledby="blog-index-heading">
-          <p class={Shell.eyebrow()}>Acta</p>
-          <h1 id="blog-index-heading" class={Shell.page_heading()}>
-            Omnia <span class="text-brand-text">scripta</span>
-          </h1>
-          <p class={Shell.lede()}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p class="mt-6 flex flex-wrap items-center gap-3 text-sm/6 text-ink-muted">
-            <span>
-              {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
-            </span>
-            <span aria-hidden="true">·</span>
-            <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
-              Notae
-            </.navigate>
-          </p>
-        </header>
+        <div class={"#{Shell.sticky_grid()} mt-10"}>
+          <header class={Shell.sticky_intro()} aria-labelledby="blog-index-heading">
+            <p class={Shell.eyebrow()}>Acta</p>
+            <h1 id="blog-index-heading" class={Shell.page_heading()}>
+              Omnia <span class="text-brand-text">scripta</span>
+            </h1>
+            <p class={Shell.lede()}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p class="mt-6 flex flex-wrap items-center gap-3 text-sm/6 text-ink-muted">
+              <span>
+                {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
+              </span>
+              <span aria-hidden="true">·</span>
+              <.navigate to={Soonex.Public.path("/tags")} class="link ui-brand ui-size-sm">
+                Notae
+              </.navigate>
+            </p>
+          </header>
 
-        <div class={Shell.body()}>
-          <.data_rows id="soonex-blog-list" items={@sorted_items} />
+          <div class={Shell.sticky_body()}>
+            <.data_rows id="soonex-blog-list" items={@sorted_items} />
+          </div>
         </div>
       </div>
     </article>

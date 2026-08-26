@@ -10,6 +10,7 @@ defmodule Soonex.Layouts.Section do
   attr(:eyebrow, :string, required: true)
   attr(:tone, :atom, default: :root)
   attr(:align, :atom, default: :start)
+  attr(:layout, :atom, default: :stack, values: [:stack, :sticky])
   attr(:compact, :boolean, default: false)
 
   slot(:title, required: true)
@@ -24,23 +25,23 @@ defmodule Soonex.Layouts.Section do
       class={"#{section_class(@compact)} #{tone_class(@tone)}"}
       aria-labelledby={@labelledby}
     >
-      <div class={Shell.stage()}>
-        <div class={intro_class(@align)}>
+      <div class={stage_class(@layout)}>
+        <div class={intro_class(@layout, @align)}>
           <p class={Shell.eyebrow()}>{@eyebrow}</p>
           <h2 id={@labelledby} class={Shell.section_heading()}>
             {render_slot(@title)}
           </h2>
-          <p :if={@lede != []} class={"#{Shell.lede()} #{lede_align(@align)}"}>
+          <p :if={@lede != []} class={"#{Shell.lede()} #{lede_align(@layout, @align)}"}>
             {render_slot(@lede)}
           </p>
           <div
             :if={@actions != []}
-            class={"mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 #{actions_align(@align)}"}
+            class={"mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 #{actions_align(@layout, @align)}"}
           >
             {render_slot(@actions)}
           </div>
         </div>
-        <div class={body_class(@compact)}>
+        <div class={body_class(@layout, @compact)}>
           {render_slot(@inner_block)}
         </div>
       </div>
@@ -54,15 +55,22 @@ defmodule Soonex.Layouts.Section do
   defp tone_class(:root), do: "bg-root"
   defp tone_class(:surface), do: "border-y border-border bg-surface"
 
-  defp intro_class(:start), do: Shell.intro()
-  defp intro_class(:center), do: Shell.intro_center()
+  defp stage_class(:sticky), do: "#{Shell.stage()} #{Shell.sticky_grid()}"
+  defp stage_class(:stack), do: Shell.stage()
 
-  defp lede_align(:center), do: "mx-auto"
-  defp lede_align(:start), do: ""
+  defp intro_class(:sticky, _align), do: Shell.sticky_intro()
+  defp intro_class(:stack, :center), do: Shell.intro_center()
+  defp intro_class(:stack, :start), do: Shell.intro()
 
-  defp actions_align(:center), do: "justify-center"
-  defp actions_align(:start), do: ""
+  defp lede_align(:sticky, _align), do: ""
+  defp lede_align(:stack, :center), do: "mx-auto"
+  defp lede_align(:stack, :start), do: ""
 
-  defp body_class(true), do: Shell.body_tight()
-  defp body_class(false), do: Shell.body()
+  defp actions_align(:sticky, _align), do: ""
+  defp actions_align(:stack, :center), do: "justify-center"
+  defp actions_align(:stack, :start), do: ""
+
+  defp body_class(:sticky, _compact), do: Shell.sticky_body()
+  defp body_class(:stack, true), do: Shell.body_tight()
+  defp body_class(:stack, false), do: Shell.body()
 end
