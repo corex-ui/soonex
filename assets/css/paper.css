@@ -54,11 +54,19 @@
   background-size: 140px 140px;
 }
 
-/* Keep four Corex timer segments on one row at phone widths (ui-size-lg is 5xl). */
+/* Phone: Corex timers default to wrap + 5xl digits, which stacks the reel. */
 @media (width < 40rem) {
+  .timer.ui-size-sm,
+  .timer.ui-size-md,
   .timer.ui-size-lg {
-    --timer-digit: var(--text-3xl);
-    --timer-digit-leading: var(--text-3xl--line-height);
+    --timer-digit: var(--text-xl);
+    --timer-digit-leading: var(--text-xl--line-height);
+  }
+
+  .timer [data-scope="timer"][data-part="area"] {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--spacing-space-xs);
   }
 }
 
