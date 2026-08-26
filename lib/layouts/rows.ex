@@ -28,7 +28,7 @@ defmodule Soonex.Layouts.Rows do
       <:content :let={item}>
         <.navigate
           to={row_href(item)}
-          class="link ui-nav flex w-full min-w-0 items-center justify-between gap-x-6 text-ink no-underline"
+          class="link ui-nav flex w-full max-w-none min-w-0 items-center justify-between gap-x-6 text-ink no-underline"
         >
           <span class="flex min-w-0 flex-col gap-1">
             <span class="display text-lg tracking-tight text-ink sm:text-xl">{row_title(item)}</span>

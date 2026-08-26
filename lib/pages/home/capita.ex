@@ -55,7 +55,9 @@ defmodule Soonex.HomePage.Capita do
       {false, "Caput IV", "Excepteur sint",
        "Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit."},
       {false, "Caput V", "Nemo enim ipsam",
-       "Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur."}
+       "Voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur."},
+      {false, "Caput VI", "Neque porro quisquam",
+       "Est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam."}
     ]
   end
 end
