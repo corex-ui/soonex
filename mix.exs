@@ -93,6 +93,7 @@ defmodule Soonex.MixProject do
         "tableau.build"
       ],
       test: ["pre.test", "test"],
+      server: ["soonex.server"],
       "assets.build": [
         "corex.design.build",
         "tailwind default",

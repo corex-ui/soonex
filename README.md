@@ -26,6 +26,15 @@ mix tableau.server
 
 With `MIX_ENV=dev`, Corex MCP listens at `http://localhost:4004/corex/mcp` (Tableau stays on 4999). Configure your editor using [`.cursor/mcp.json`](.cursor/mcp.json) as an example.
 
+`mix tableau.server` logs “server started on http://localhost:4999/” **before** Bandit binds. If you then see `:eaddrinuse`, another process already owns 4999 (a leftover Tableau, Wallaby, or `python -m http.server 4999`). Stop it, then retry:
+
+```shell
+ss -ltnp 'sport = :4999'          # Linux
+lsof -nP -iTCP:4999 -sTCP:LISTEN  # macOS
+kill <pid>
+mix soonex.server                 # port check, then tableau.server
+```
+
 Rebuild assets: `mix assets.build`.
 
 ## Customize (where to edit)
