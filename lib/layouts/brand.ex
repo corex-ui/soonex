@@ -14,15 +14,15 @@ defmodule Soonex.Layouts.Brand do
     <.navigate
       to={@to}
       type="href"
-      class={["link ui-nav ui-size-sm flex items-center gap-2 no-underline", @class]}
+      class={["link ui-nav ui-size-md flex items-center gap-2 no-underline", @class]}
     >
-      <.mark class="size-7 shrink-0" />
-      <span class="display text-base font-semibold tracking-tight text-ink">Soonex</span>
+      <.mark class="size-8 shrink-0" />
+      <span class="display text-lg font-semibold tracking-tight text-ink">Soonex</span>
     </.navigate>
     """
   end
 
-  attr(:class, :any, default: "size-7")
+  attr(:class, :any, default: "size-8")
 
   def mark(assigns) do
     ~H"""
