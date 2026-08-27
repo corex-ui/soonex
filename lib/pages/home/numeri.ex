@@ -18,7 +18,7 @@ defmodule Soonex.HomePage.Numeri do
       compact
     >
       <:title>
-        Lorem ipsum <span class="text-brand-text">dolor sit</span>
+        Aliqua ut enim <span class="text-brand-text">ad minim</span>
       </:title>
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

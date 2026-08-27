@@ -18,7 +18,7 @@ defmodule Soonex.HomePage.Waitlist do
       tone={:surface}
     >
       <:title>
-        Lorem ipsum <span class="text-brand-text">dolor sit</span>
+        Commodo <span class="text-brand-text">consequat</span>
       </:title>
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

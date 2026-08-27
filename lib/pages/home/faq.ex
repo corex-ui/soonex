@@ -10,7 +10,7 @@ defmodule Soonex.HomePage.Faq do
     ~H"""
     <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
-        Lorem ipsum <span class="text-brand-text">dolor sit</span>
+        Laboris nisi ut <span class="text-brand-text">aliquip</span>
       </:title>
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

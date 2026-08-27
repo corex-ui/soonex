@@ -28,7 +28,7 @@ defmodule Soonex.HomePage.Highlights do
       tone={:root}
     >
       <:title>
-        Lorem ipsum <span class="text-brand-text">dolor sit</span>
+        Veniam quis <span class="text-brand-text">nostrud</span>
       </:title>
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
