@@ -19,7 +19,7 @@ html[data-motion="reduce"] {
     }
 
     to {
-      transform: translateY(0);
+      transform: none;
     }
   }
 
