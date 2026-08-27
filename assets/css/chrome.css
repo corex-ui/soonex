@@ -39,12 +39,15 @@ html[data-motion="reduce"] {
 }
 
 .soonex-card-motion {
-  transition: border-color var(--duration-fast) var(--soonex-ease);
+  transition:
+    border-color var(--duration-fast) var(--soonex-ease),
+    box-shadow var(--duration-fast) var(--soonex-ease);
 }
 
 @media (hover: hover) {
   .soonex-card-motion:hover {
     border-color: var(--color-brand);
+    box-shadow: var(--shadow-sm);
   }
 }
 
