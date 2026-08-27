@@ -97,7 +97,7 @@ defmodule Soonex.HomePage.Hero do
                       placeholder="you@studio.dev"
                       class="native-input ui-size-md ui-width-full"
                     >
-                      <:label>Email</:label>
+                      <:label class="sr-only">Email</:label>
                     </.native_input>
 
                     <.radio_group
@@ -111,7 +111,7 @@ defmodule Soonex.HomePage.Hero do
                         %{value: "designer", label: "Designer"}
                       ]}
                     >
-                      <:label>I am a</:label>
+                      <:label><span class="sr-only">I am a</span></:label>
                     </.radio_group>
 
                     <.switch

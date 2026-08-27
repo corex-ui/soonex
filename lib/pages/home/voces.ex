@@ -30,7 +30,9 @@ defmodule Soonex.HomePage.Voces do
         class="carousel ui-brand ui-width-full max-w-none"
         items={@voices}
         loop
+        orientation="vertical"
         spacing="1.5rem"
+        padding="2.5rem"
       >
         <:item :let={voice}>
           <blockquote class={"#{Shell.frame()} grid h-full min-h-80 grid-cols-1 overflow-hidden sm:grid-cols-5 sm:items-stretch"}>
@@ -55,10 +57,10 @@ defmodule Soonex.HomePage.Voces do
           </blockquote>
         </:item>
         <:prev_trigger>
-          <.heroicon name="hero-arrow-left" />
+          <.heroicon name="hero-chevron-up" />
         </:prev_trigger>
         <:next_trigger>
-          <.heroicon name="hero-arrow-right" />
+          <.heroicon name="hero-chevron-down" />
         </:next_trigger>
       </.carousel>
     </.block>

@@ -10,12 +10,15 @@ defmodule Soonex.HomePage.Waitlist do
   alias Soonex.Layouts.Shell
 
   def waitlist(assigns) do
+    assigns = assign(assigns, :role_items, role_items())
+
     ~H"""
     <.block
       id="epistula"
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
       tone={:surface}
+      align={:center}
     >
       <:title>
         Commodo <span class="text-brand-text">consequat</span>
@@ -23,8 +26,8 @@ defmodule Soonex.HomePage.Waitlist do
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
-      <div class="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
-        <div class={"#{Shell.frame()} relative min-h-72 lg:col-span-5 lg:min-h-full"}>
+      <div class="mx-auto flex w-full max-w-lg flex-col gap-6">
+        <div class={"#{Shell.frame()} relative min-h-56 overflow-hidden sm:min-h-64"}>
           <.photo
             src="/images/photos/orbit.jpg"
             alt="Earth from orbit against a dark sky"
@@ -35,7 +38,7 @@ defmodule Soonex.HomePage.Waitlist do
         </div>
         <form
           id="soonex-waitlist-form"
-          class={"#{Shell.panel()} w-full p-8 sm:p-10 lg:col-span-7"}
+          class={"#{Shell.panel()} w-full p-8 sm:p-10"}
           data-waitlist-toast-title="You're on the list"
           data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
         >
@@ -49,8 +52,27 @@ defmodule Soonex.HomePage.Waitlist do
               placeholder="you@studio.dev"
               class="native-input ui-size-md ui-width-full"
             >
-              <:label>Email</:label>
+              <:label class="sr-only">Email</:label>
             </.native_input>
+
+            <.select
+              id="soonex-waitlist-role"
+              name="waitlist[role]"
+              class="select ui-brand ui-size-md ui-width-full"
+              value={["founder"]}
+              positioning={
+                %Corex.Positioning{
+                  placement: "bottom-start",
+                  same_width: true
+                }
+              }
+              items={@role_items}
+            >
+              <:label>Role</:label>
+              <:trigger>
+                <.heroicon name="hero-chevron-down" />
+              </:trigger>
+            </.select>
 
             <.tags_input
               id="soonex-waitlist-interests"
@@ -96,18 +118,6 @@ defmodule Soonex.HomePage.Waitlist do
               <:label>Email me launch notes</:label>
             </.switch>
 
-            <.checkbox
-              id="soonex-waitlist-updates"
-              name="waitlist[updates]"
-              checked={true}
-              class="checkbox ui-accent ui-size-md"
-            >
-              <:indicator>
-                <.heroicon name="hero-check" />
-              </:indicator>
-              <:label>I understand this is a demo form</:label>
-            </.checkbox>
-
             <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
               Join waitlist
             </button>
@@ -116,5 +126,13 @@ defmodule Soonex.HomePage.Waitlist do
       </div>
     </.block>
     """
+  end
+
+  defp role_items do
+    Corex.List.new([
+      %{label: "Founder", value: "founder"},
+      %{label: "Engineer", value: "engineer"},
+      %{label: "Designer", value: "designer"}
+    ])
   end
 end

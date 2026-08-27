@@ -59,6 +59,9 @@ export function bindLandingScrollChrome(header, countdown, heroBoundary, progres
       const p = scrollProgress01()
       progressFill.style.transform = `scaleX(${p})`
       progressFill.style.transformOrigin = "left center"
+      if (motionReduce()) {
+        progressFill.style.transition = "none"
+      }
     }
     rafId = requestAnimationFrame(tick)
   }

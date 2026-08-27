@@ -12,9 +12,10 @@ defmodule Soonex.HomePage.Socii do
       <.marquee
         id="soonex-tech-marquee"
         class="marquee ui-accent ui-width-full max-w-none"
-        duration={32}
+        duration={24}
         spacing="3.5rem"
         pause_on_interaction={true}
+        auto_fill
         items={@tech}
       >
         <:item :let={item}>

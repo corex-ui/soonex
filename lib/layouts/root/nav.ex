@@ -12,7 +12,7 @@ defmodule Soonex.Layouts.Root.Nav do
   attr(:page_path, :string, default: "/")
 
   def site_nav(assigns) do
-    assigns = assign(assigns, :menu_items, menu_items())
+    assigns = assign(assigns, :nav_select_items, nav_select_items())
 
     ~H"""
     <header
@@ -33,7 +33,30 @@ defmodule Soonex.Layouts.Root.Nav do
       </div>
 
       <div data-header-bar class={"#{Shell.stage()} relative flex items-center justify-between gap-4"}>
-        <.lockup />
+        <div class="flex min-w-0 items-center gap-3">
+          <.select
+            id="soonex-mobile-nav"
+            class="select ui-size-sm ui-width-fit soonex-nav-select lg:hidden"
+            redirect
+            update_trigger={false}
+            positioning={
+              %Corex.Positioning{
+                placement: "bottom-start",
+                same_width: false,
+                gutter: 8,
+                fit_viewport: true,
+                strategy: "fixed"
+              }
+            }
+            translation={%Corex.Select.Translation{placeholder: "Open menu"}}
+            items={@nav_select_items}
+          >
+            <:trigger>
+              <.heroicon name="hero-bars-3" />
+            </:trigger>
+          </.select>
+          <.lockup />
+        </div>
 
         <nav class="hidden items-center gap-x-6 lg:flex" aria-label="Primary">
           <.navigate
@@ -74,21 +97,6 @@ defmodule Soonex.Layouts.Root.Nav do
           >
             Join waitlist
           </.navigate>
-          <.menu
-            id="soonex-mobile-nav"
-            class="menu ui-size-sm ui-width-fit lg:hidden"
-            redirect
-            aria_label="Open menu"
-            items={@menu_items}
-          >
-            <:trigger>
-              <.heroicon name="hero-bars-3" />
-              <span class="sr-only">Open menu</span>
-            </:trigger>
-            <:indicator>
-              <.heroicon name="hero-chevron-down" />
-            </:indicator>
-          </.menu>
         </div>
       </div>
     </header>
@@ -118,8 +126,8 @@ defmodule Soonex.Layouts.Root.Nav do
     ]
   end
 
-  defp menu_items do
-    Corex.Tree.new([
+  defp nav_select_items do
+    Corex.List.new([
       %{
         label: "Product",
         value: "principia",

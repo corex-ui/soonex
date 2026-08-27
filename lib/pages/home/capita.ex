@@ -2,7 +2,6 @@ defmodule Soonex.HomePage.Capita do
   @moduledoc false
 
   use Phoenix.Component
-  use Corex
 
   import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
@@ -24,7 +23,7 @@ defmodule Soonex.HomePage.Capita do
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
-        <article class={"#{Shell.frame()} relative min-h-80 sm:col-span-2 lg:col-span-4 lg:min-h-[28rem]"}>
+        <article class={"#{Shell.frame()} soonex-card-motion relative min-h-80 sm:col-span-2 lg:col-span-4 lg:min-h-[28rem]"}>
           <.photo
             src="/images/photos/studio.jpg"
             alt="A calm studio interior with a low sofa, plants, and a large window"
@@ -40,26 +39,9 @@ defmodule Soonex.HomePage.Capita do
           </div>
         </article>
 
-        <article class={"#{Shell.panel()} flex flex-col p-6 sm:p-8 lg:col-span-2"}>
-          <p class={Shell.eyebrow()}>Ipsum</p>
-          <.collapsible id="soonex-capita-collapsible" class="collapsible ui-width-full mt-4">
-            <:trigger>Read more</:trigger>
-            <:closed>
-              <.heroicon name="hero-chevron-down" />
-            </:closed>
-            <:content>
-              <p class="m-0 text-sm/6 text-ink-muted sm:text-base/7">
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat.
-              </p>
-            </:content>
-          </.collapsible>
-        </article>
-
         <article
           :for={cell <- cells()}
-          class={"#{Shell.panel()} flex flex-col p-6 sm:p-8 lg:col-span-2"}
+          class={"#{Shell.panel()} soonex-card-motion flex flex-col p-6 sm:p-8 lg:col-span-2"}
         >
           <p class={Shell.eyebrow()}>{cell.kicker}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
@@ -72,6 +54,12 @@ defmodule Soonex.HomePage.Capita do
 
   defp cells do
     [
+      %{
+        kicker: "Ipsum",
+        title: "Sed do eiusmod tempor",
+        body:
+          "Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
       %{
         kicker: "Dolor",
         title: "Sit amet consectetur",

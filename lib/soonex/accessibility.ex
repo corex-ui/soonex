@@ -110,7 +110,9 @@ defmodule Soonex.Accessibility do
 
   def accessibility_dialog_id, do: "a11y-dialog"
 
-  attr(:trigger_class, :string, default: "button ui-ghost ui-size-sm ui-trigger--circle")
+  attr(:trigger_class, :string,
+    default: "button ui-ghost ui-size-md ui-trigger--circle p-0 soonex-a11y-trigger"
+  )
 
   def accessibility_panel(assigns) do
     assigns = assign(assigns, :axes, Accessibility.axes())
@@ -134,7 +136,7 @@ defmodule Soonex.Accessibility do
           stroke-width="1.75"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="size-5"
+          class="size-6"
           aria-hidden="true"
         >
           <circle cx="12" cy="12" r="9.25" />

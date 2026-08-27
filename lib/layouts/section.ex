@@ -49,8 +49,8 @@ defmodule Soonex.Layouts.Section do
     """
   end
 
-  defp section_class(true), do: Shell.section_compact()
-  defp section_class(false), do: Shell.section()
+  defp section_class(true), do: "#{Shell.section_compact()} soonex-reveal"
+  defp section_class(false), do: "#{Shell.section()} soonex-reveal"
 
   defp tone_class(:root), do: "bg-root"
   defp tone_class(:surface), do: "border-y border-border bg-surface"

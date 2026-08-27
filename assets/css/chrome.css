@@ -1,6 +1,59 @@
 /* Tiny layout helpers that utilities cannot express. */
 
+html {
+  scroll-behavior: smooth;
+}
+
+html[data-motion="reduce"] {
+  scroll-behavior: auto;
+}
+
 [data-motion="reduce"] [data-site-header] {
+  transition: none;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes soonex-reveal {
+    from {
+      transform: translateY(var(--spacing-space));
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .soonex-reveal {
+    animation-name: soonex-reveal;
+    animation-duration: var(--duration-slow);
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  html[data-motion="reduce"] .soonex-reveal {
+    animation: none;
+    transform: none;
+  }
+}
+
+.soonex-card-motion {
+  transition:
+    transform var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+@media (hover: hover) {
+  .soonex-card-motion:hover {
+    transform: translateY(calc(var(--spacing-space-sm) * -1));
+    border-color: var(--color-brand);
+  }
+}
+
+html[data-motion="reduce"] .soonex-card-motion,
+html[data-motion="reduce"] .soonex-card-motion:hover {
+  transform: none;
   transition: none;
 }
 
@@ -77,14 +130,6 @@
 .soonex-avatar-lg {
   width: 3.5rem;
   height: 3.5rem;
-}
-
-.marquee img {
-  filter: grayscale(1);
-}
-
-[data-mode="dark"] .marquee img {
-  filter: grayscale(1) invert(1);
 }
 
 .marquee [data-scope="marquee"][data-part="edge"] {

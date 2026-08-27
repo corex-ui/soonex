@@ -23,16 +23,19 @@ defmodule Soonex.HomePage.Officia do
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <article :for={plan <- plans()} class={"#{Shell.panel()} flex flex-col p-6 sm:p-8"}>
+        <article
+          :for={plan <- plans()}
+          class={"#{Shell.panel()} soonex-card-motion flex flex-col p-6 sm:p-8"}
+        >
           <p class={Shell.eyebrow()}>{plan.name}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{plan.headline}</h3>
           <p class="mt-3 flex-auto text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
         </article>
       </div>
-      <div class={"#{Shell.panel()} mt-4 overflow-hidden p-4 sm:p-6"}>
+      <div class="mt-4 flex justify-center overflow-x-auto">
         <.data_table
           id="soonex-plan-table"
-          class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
+          class="data-table ui-brand ui-size-sm ui-width-fit max-h-none"
           rows={plan_rows()}
         >
           <:col :let={row} label="Feature">{row.feature}</:col>

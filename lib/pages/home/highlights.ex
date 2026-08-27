@@ -46,7 +46,9 @@ defmodule Soonex.HomePage.Highlights do
         id="soonex-acta-carousel"
         class="carousel ui-brand ui-width-full max-w-none"
         items={@highlight_posts}
+        orientation="vertical"
         spacing="1.5rem"
+        padding="2.5rem"
       >
         <:item :let={post}>
           <article class={"#{Shell.frame()} flex h-full min-h-80 flex-col overflow-hidden"}>
@@ -68,18 +70,18 @@ defmodule Soonex.HomePage.Highlights do
               </p>
               <.navigate
                 to={Soonex.Public.path(post.permalink)}
-                class="link ui-brand mt-6 w-fit"
+                class="button ui-ghost ui-brand ui-size-sm mt-6 w-fit"
               >
-                Read <.heroicon name="hero-arrow-up-right" />
+                Read more <.heroicon name="hero-arrow-up-right" />
               </.navigate>
             </div>
           </article>
         </:item>
         <:prev_trigger>
-          <.heroicon name="hero-arrow-left" />
+          <.heroicon name="hero-chevron-up" />
         </:prev_trigger>
         <:next_trigger>
-          <.heroicon name="hero-arrow-right" />
+          <.heroicon name="hero-chevron-down" />
         </:next_trigger>
       </.carousel>
     </.block>
