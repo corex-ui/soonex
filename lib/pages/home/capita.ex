@@ -2,6 +2,7 @@ defmodule Soonex.HomePage.Capita do
   @moduledoc false
 
   use Phoenix.Component
+  use Corex
 
   import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
@@ -17,13 +18,14 @@ defmodule Soonex.HomePage.Capita do
       tone={:surface}
     >
       <:title>
-        Consectetur <span class="text-brand-text">adipiscing elit</span>
+        What you actually <span class="text-brand-text">ship</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        One landing, one journal, four themes, and chrome that already knows the date. The rest is
+        copy and stills you own.
       </:lede>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
-        <article class={"#{Shell.frame()} soonex-card-motion relative min-h-80 sm:col-span-2 lg:col-span-4 lg:min-h-[28rem]"}>
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        <article class={"#{Shell.frame()} soonex-card-motion relative min-h-80 lg:col-span-8 lg:min-h-[32rem]"}>
           <.photo
             src="/images/photos/studio.jpg"
             alt="A calm studio interior with a low sofa, plants, and a large window"
@@ -32,22 +34,25 @@ defmodule Soonex.HomePage.Capita do
             class="absolute inset-0 size-full"
           />
           <div class="absolute inset-x-0 bottom-0 border-t border-border bg-root p-6 sm:p-8">
-            <p class={Shell.eyebrow()}>Lorem</p>
+            <p class={Shell.eyebrow()}>Template</p>
             <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-              Ipsum dolor sit amet consectetur adipiscing elit
+              Waitlist, journal, and a countdown aimed at 1 September
             </h3>
           </div>
         </article>
 
-        <article
-          :for={cell <- cells()}
-          class={"#{Shell.panel()} soonex-card-motion flex flex-col p-6 sm:p-8 lg:col-span-2"}
-        >
-          <p class={Shell.eyebrow()}>{cell.kicker}</p>
-          <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
-          <p class="mt-3 flex-auto text-sm/6 text-ink-muted">{cell.body}</p>
-        </article>
+        <div class="flex flex-col gap-4 lg:col-span-4">
+          <article
+            :for={cell <- cells()}
+            class={"#{Shell.panel()} soonex-card-motion flex flex-1 flex-col p-6 sm:p-8"}
+          >
+            <p class={Shell.eyebrow()}>{cell.kicker}</p>
+            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
+            <p class="mt-3 flex-auto text-sm/6 text-ink-muted">{cell.body}</p>
+          </article>
+        </div>
       </div>
+      <.data_list class={"#{Shell.data_list()} mt-4"} items={ships()} />
     </.block>
     """
   end
@@ -55,27 +60,26 @@ defmodule Soonex.HomePage.Capita do
   defp cells do
     [
       %{
-        kicker: "Ipsum",
-        title: "Sed do eiusmod tempor",
+        kicker: "Journal",
+        title: "Markdown posts, covers, tags",
         body:
-          "Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          "Add a file under the journal route, rebuild, and the cover, date, and title show up. The index paginates on the client."
       },
       %{
-        kicker: "Dolor",
-        title: "Sit amet consectetur",
+        kicker: "Controls",
+        title: "Corex, not a custom kit",
         body:
-          "Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      },
-      %{
-        kicker: "Sit",
-        title: "Ut enim ad minim",
-        body: "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
-      },
-      %{
-        kicker: "Amet",
-        title: "Duis aute irure dolor",
-        body: "In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          "Select, accordion, tabs, carousel, and the waitlist fields are upstream Corex. Host CSS only retunes layout tokens."
       }
     ]
+  end
+
+  defp ships do
+    Corex.Content.new([
+      %{label: "Waitlist", content: "Email, role, interests, team size, launch notes, toast"},
+      %{label: "Themes", content: "neo, uno, duo, and leo from config overlays"},
+      %{label: "Journal", content: "Six shipping-log posts and tag pages"},
+      %{label: "Chrome", content: "Countdown, accessibility, Template Options"}
+    ])
   end
 end

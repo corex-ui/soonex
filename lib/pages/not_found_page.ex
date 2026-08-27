@@ -30,7 +30,7 @@ defmodule Soonex.NotFoundPage do
             Page not found
           </h1>
           <p class="m-0 max-w-sm text-base/7 text-ink-muted">
-            That URL is not on this site. Head home or read the shipping log.
+            That URL is not on Soonex. Head home for the waitlist, or read the shipping log.
           </p>
           <div class="mt-4 flex flex-wrap items-center justify-center gap-4">
             <.navigate to={Soonex.Public.path("/")} class="button ui-brand ui-solid ui-size-md">

@@ -1,9 +1,9 @@
 ---
 layout: Soonex.PostLayout
-title: Temporibus autem quibusdam et aut
+title: Accessible controls that persist on device
 date: 2026-08-02 11:00:00 +0000
 permalink: /blog/temporibus-autem/
-description: Officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint.
+description: Zoom, contrast, motion, cursor, focus, and link underline — Corex accessibility, stored in local storage.
 image: /images/covers/overlay.jpg
 image_alt: Soft abstract color field in warm paper tones
 tags:
@@ -14,23 +14,23 @@ sitemap:
   changefreq: monthly
 ---
 
-Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+The person-in-circle control at the corner opens zoom, contrast, motion, cursor, focus, and link underline for this device. Choices persist in **local storage** and write data attributes on the document.
 
-## Itaque earum rerum
+## What reduced motion does
 
-Hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+Scroll reveal and card lift live in host CSS. Set Motion to Reduced in Accessibility and those animations stop.
 
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+> Reset returns the defaults. The condensed header and progress bar stay as chrome.
 
-### Ordered
+### Order of operations
 
-1. At vero eos et accusamus
-2. Et iusto odio dignissimos ducimus
-3. Qui blanditiis praesentium voluptatum
+1. Open Accessibility
+2. Set Motion to Reduced
+3. Confirm the hero and journal still read
 
 > [!WARNING]
-> Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+> Host CSS must not set overlay scale, duration, or opacity. Theme.Validator will reject those keys.
 
-Use **bold**, *italic*, and `inline code` in the same paragraph when you need emphasis variety.
+Use **bold**, *italic*, and `inline code` in the same paragraph when you document the dialog.
 
-![Lorem Open Graph placeholder](/images/og.svg)
+![Soonex Open Graph](/images/og.svg)

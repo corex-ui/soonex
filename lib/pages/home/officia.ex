@@ -17,32 +17,25 @@ defmodule Soonex.HomePage.Officia do
       tone={:root}
     >
       <:title>
-        Sed do eiusmod <span class="text-brand-text">tempor</span>
+        Pick a lane. <span class="text-brand-text">Ship the same core.</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Every plan is the same Soonex fork. The columns describe how far you take the template before
+        1 September.
       </:lede>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <article
           :for={plan <- plans()}
           class={"#{Shell.panel()} soonex-card-motion flex flex-col p-6 sm:p-8"}
         >
           <p class={Shell.eyebrow()}>{plan.name}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{plan.headline}</h3>
-          <p class="mt-3 flex-auto text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
+          <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
+          <.data_list class={"#{Shell.data_list()} mt-6"} items={Corex.Content.new(plan.items)} />
+          <.navigate to="#epistula" class={"#{plan.cta_class} mt-8 w-full"}>
+            {plan.cta}
+          </.navigate>
         </article>
-      </div>
-      <div class="mt-4 flex justify-center overflow-x-auto">
-        <.data_table
-          id="soonex-plan-table"
-          class="data-table ui-brand ui-size-sm ui-width-fit max-h-none"
-          rows={plan_rows()}
-        >
-          <:col :let={row} label="Feature">{row.feature}</:col>
-          <:col :let={row} label="Launch">{row.launch}</:col>
-          <:col :let={row} label="Studio">{row.studio}</:col>
-          <:col :let={row} label="Agency">{row.agency}</:col>
-        </.data_table>
       </div>
     </.block>
     """
@@ -52,58 +45,39 @@ defmodule Soonex.HomePage.Officia do
     [
       %{
         name: "Launch",
-        headline: "Lorem ipsum dolor",
-        body: "Sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
+        headline: "Fork and replace the copy",
+        body: "One theme, the waitlist, and the journal. Enough to put a date on the page.",
+        cta: "Join waitlist",
+        cta_class: "button ui-ghost ui-size-md ui-width-full",
+        items: [
+          %{label: "Site", content: "Waitlist landing and Markdown journal"},
+          %{label: "Theme", content: "Keep neo, or switch once in config"},
+          %{label: "Date", content: "Countdown aimed at 1 September"}
+        ]
       },
       %{
         name: "Studio",
-        headline: "Ut enim ad minim",
-        body: "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
+        headline: "Four themes, real stills",
+        body: "Treat Template Options as a client review. Photography and the shipping log stay.",
+        cta: "Join waitlist",
+        cta_class: "button ui-brand ui-solid ui-size-md ui-width-full",
+        items: [
+          %{label: "Themes", content: "neo, uno, duo, and leo on this device"},
+          %{label: "Journal", content: "Covers, tags, and client pagination"},
+          %{label: "Chrome", content: "Header timer, toast, and clone strip"}
+        ]
       },
       %{
         name: "Agency",
-        headline: "Duis aute irure",
-        body: "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."
-      }
-    ]
-  end
-
-  defp plan_rows do
-    [
-      %{
-        id: "lorem",
-        feature: "Lorem ipsum",
-        launch: "Dolor",
-        studio: "Sit amet",
-        agency: "Consectetur"
-      },
-      %{
-        id: "ipsum",
-        feature: "Adipiscing elit",
-        launch: "Sed do",
-        studio: "Eiusmod",
-        agency: "Tempor"
-      },
-      %{
-        id: "dolor",
-        feature: "Incididunt ut",
-        launch: "Labore",
-        studio: "Et dolore",
-        agency: "Magna aliqua"
-      },
-      %{
-        id: "sit",
-        feature: "Ut enim ad",
-        launch: "Minim",
-        studio: "Veniam",
-        agency: "Quis nostrud"
-      },
-      %{
-        id: "amet",
-        feature: "Exercitation",
-        launch: "Ullamco",
-        studio: "Laboris",
-        agency: "Nisi ut"
+        headline: "Accessible by default",
+        body: "Ship the a11y dialog, reduced motion, and a clone path your team can repeat.",
+        cta: "Join waitlist",
+        cta_class: "button ui-ghost ui-size-md ui-width-full",
+        items: [
+          %{label: "A11y", content: "Zoom, contrast, motion, focus, underline"},
+          %{label: "Stack", content: "Mix, Tailwind, esbuild — no npm"},
+          %{label: "Handoff", content: "Clone, mix setup, mix soonex.server"}
+        ]
       }
     ]
   end

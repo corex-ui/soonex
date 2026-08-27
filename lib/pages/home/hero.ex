@@ -37,19 +37,19 @@ defmodule Soonex.HomePage.Hero do
               id="soonex-headline"
               class="display mt-6 text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-8xl"
             >
-              Lorem ipsum dolor <span class="text-brand-text">sit amet.</span>
+              Soonex <span class="text-brand-text">ships 1 September.</span>
             </h1>
 
             <p class={"#{Shell.lede()} max-w-lg"}>
-              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+              The first Corex plus Tableau waitlist template. Fork it, theme it in config, keep the
+              journal and countdown, and launch with accessible controls.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <.navigate to="#epistula" class="button ui-brand ui-solid ui-size-lg">
+              <.navigate to="#epistula" class="button ui-brand ui-solid ui-size-md">
                 Join waitlist
               </.navigate>
-              <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-lg">
+              <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
                 Read the log <.heroicon name="hero-arrow-up-right" />
               </.navigate>
             </div>
@@ -70,10 +70,10 @@ defmodule Soonex.HomePage.Hero do
                   <div class={"#{Shell.panel()} w-full max-w-md p-5 sm:p-6"}>
                     <p class={Shell.eyebrow()}>Waitlist</p>
                     <h2 class="display mt-1 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-                      Lorem ipsum dolor sit
+                      Reserve a September seat
                     </h2>
                     <p class="mt-2 text-sm/6 text-ink-muted">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                      This demo does not collect addresses. Submit still shows the launch toast.
                     </p>
 
                     <form
@@ -125,20 +125,19 @@ defmodule Soonex.HomePage.Hero do
                 </div>
 
                 <div class={"#{Shell.panel()} flex w-full max-w-md items-center gap-4 self-center p-3 sm:px-4 sm:py-3"}>
-                  <ul class="soonex-avatars m-0 list-none p-0">
-                    <li :for={person <- people()}>
-                      <.photo
-                        src={person.src}
-                        alt={person.alt}
-                        width={72}
-                        height={72}
-                        class="soonex-avatar"
-                        loading="eager"
-                      />
-                    </li>
-                  </ul>
+                  <div class="soonex-avatars">
+                    <.avatar
+                      :for={person <- people()}
+                      id={person.id}
+                      src={Soonex.Public.path(person.src)}
+                      alt={person.alt}
+                      class="avatar ui-size-sm"
+                    >
+                      <:fallback>{person.initials}</:fallback>
+                    </.avatar>
+                  </div>
                   <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
+                    Studios already cloning the repo for a 1 September launch.
                   </p>
                 </div>
               </div>
@@ -154,9 +153,24 @@ defmodule Soonex.HomePage.Hero do
 
   defp people do
     [
-      %{src: "/images/people/amira.jpg", alt: "Amira N."},
-      %{src: "/images/people/jonas.jpg", alt: "Jonas K."},
-      %{src: "/images/people/leah.jpg", alt: "Leah M."}
+      %{
+        id: "soonex-hero-avatar-amira",
+        src: "/images/people/amira.jpg",
+        alt: "Amira N.",
+        initials: "AN"
+      },
+      %{
+        id: "soonex-hero-avatar-jonas",
+        src: "/images/people/jonas.jpg",
+        alt: "Jonas K.",
+        initials: "JK"
+      },
+      %{
+        id: "soonex-hero-avatar-leah",
+        src: "/images/people/leah.jpg",
+        alt: "Leah M.",
+        initials: "LM"
+      }
     ]
   end
 end

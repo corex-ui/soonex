@@ -10,10 +10,10 @@ defmodule Soonex.HomePage.Faq do
     ~H"""
     <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
-        Laboris nisi ut <span class="text-brand-text">aliquip</span>
+        Before you <span class="text-brand-text">clone</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        What ships, what is demo-only, and how themes, motion, and the journal behave after you fork.
       </:lede>
       <:actions>
         <.navigate to="#epistula" class="link ui-brand">
@@ -24,7 +24,7 @@ defmodule Soonex.HomePage.Faq do
         id="soonex-faq"
         class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
         multiple={false}
-        collapsible={false}
+        collapsible={true}
         value="ships"
         items={faq_items()}
       >
@@ -66,7 +66,7 @@ defmodule Soonex.HomePage.Faq do
         value: "journal",
         label: "Where does the journal live, and can I add posts?",
         content:
-          "Posts are Markdown under the journal route. The home carousel is a short reading list; the index paginates the rest. Add a file, rebuild, and the cover, date, and title show up. Tags stay optional."
+          "Posts are Markdown under the journal route. The home carousel is a short reading list; the index paginates the rest with the Corex pager on the client — no LiveView round trip. Add a file, rebuild, and the cover, date, and title show up. Tags stay optional."
       },
       %{
         value: "motion",
@@ -84,7 +84,7 @@ defmodule Soonex.HomePage.Faq do
         value: "toolchain",
         label: "Do I need npm or a JavaScript bundler to start?",
         content:
-          "No. Mix, Tailwind, and esbuild already in the project are enough. There is no package.json and no Lenis. Select, marquee, carousel, and accordion are Corex hooks. Host scripts only bind header chrome and the waitlist toast."
+          "No. Mix, Tailwind, and esbuild already in the project are enough. There is no package.json and no Lenis. Tabs, carousel, and accordion are Corex hooks. Host scripts bind header chrome, the waitlist toast, and journal pagination."
       },
       %{
         value: "countdown",
@@ -94,9 +94,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "brand",
-        label: "Can I keep the photography and marquee after a rebrand?",
+        label: "Can I keep the photography after a rebrand?",
         content:
-          "Yes. Swap the stills and the lockup. The marquee is Corex as-is, with color marks and a fade to the page root. Grey filters are gone on purpose so logos stay on-brand. Pause on hover still holds a mark in place."
+          "Yes. Swap the stills and the lockup. Toolchain marks live in the footer as static SVGs, not a marquee. Host CSS does not own the photos."
       }
     ])
   end

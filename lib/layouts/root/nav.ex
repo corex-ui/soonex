@@ -93,7 +93,7 @@ defmodule Soonex.Layouts.Root.Nav do
           </div>
           <.navigate
             to={Soonex.Public.path("/") <> "#epistula"}
-            class="button ui-brand ui-solid ui-size-sm"
+            class="button ui-brand ui-solid ui-size-md"
           >
             Join waitlist
           </.navigate>

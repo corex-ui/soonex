@@ -134,9 +134,9 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#EEEAE4",
-        accent: "#161618",
-        brand: "#1D4ED8",
+        neutral: "#F3F0E8",
+        accent: "#12141C",
+        brand: "#1E40AF",
         alert: "#B42318",
         info: "#0E7490",
         success: "#15803D"
@@ -217,9 +217,9 @@ config :corex_design,
     },
     uno: %{
       seeds: %{
-        neutral: "#D7E8E3",
-        accent: "#071614",
-        brand: "#0F766E",
+        neutral: "#B9E0D4",
+        accent: "#031814",
+        brand: "#0D9488",
         alert: "#B91C1C",
         info: "#0369A1",
         success: "#166534"
@@ -292,9 +292,9 @@ config :corex_design,
     },
     duo: %{
       seeds: %{
-        neutral: "#F7EDE4",
-        accent: "#3A2618",
-        brand: "#C2410C",
+        neutral: "#F6E2CC",
+        accent: "#3F1F0F",
+        brand: "#B45309",
         alert: "#9F1239",
         info: "#3D5278",
         success: "#3F6B4E"
@@ -331,14 +331,14 @@ config :corex_design,
       },
       dimensions: %{
         radius: %{
-          xs: 0.55,
-          sm: 0.9,
-          md: 1.3,
-          lg: 1.8,
-          xl: 2.35,
-          "2xl": 3.1,
-          "3xl": 4.0,
-          "4xl": 5.0,
+          xs: 0.7,
+          sm: 1.1,
+          md: 1.6,
+          lg: 2.2,
+          xl: 2.9,
+          "2xl": 3.8,
+          "3xl": 5.0,
+          "4xl": 6.5,
           full: 9999
         },
         font: %{
@@ -371,9 +371,9 @@ config :corex_design,
     },
     leo: %{
       seeds: %{
-        neutral: "#E6DCCE",
-        accent: "#0C0C0C",
-        brand: "#E2410A",
+        neutral: "#D2C19A",
+        accent: "#050505",
+        brand: "#EA580C",
         alert: "#C41E1E",
         info: "#0369A1",
         success: "#166534"
@@ -389,7 +389,7 @@ config :corex_design,
             ink: contrast.(:accent, :root, 12),
             "ink-muted": contrast.(:accent, :root, 5.8),
             link: contrast.(:brand, :root, 5.8),
-            border: contrast.(:accent, :ui, 1.55),
+            border: contrast.(:accent, :ui, 1.75),
             focus: contrast.(:brand, :ui, 2.5),
             shadow: contrast.(:accent, :root, 1.04)
           }),

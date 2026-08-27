@@ -2,6 +2,7 @@ defmodule Soonex.HomePage.Numeri do
   @moduledoc false
 
   use Phoenix.Component
+  use Corex
 
   import Soonex.Layouts.Section, only: [block: 1]
 
@@ -12,36 +13,27 @@ defmodule Soonex.HomePage.Numeri do
     <.block
       id="numeri"
       labelledby="soonex-numeri-heading"
-      eyebrow="Numbers"
+      eyebrow="Facts"
       tone={:surface}
-      align={:center}
       compact
     >
       <:title>
-        Aliqua ut enim <span class="text-brand-text">ad minim</span>
+        What is actually <span class="text-brand-text">true</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        No vanity counters. These are the numbers this template ships with.
       </:lede>
-      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div
-          :for={{stat, caption} <- stats()}
-          class={"#{Shell.panel()} flex flex-col-reverse gap-y-2 px-6 py-10 text-center"}
-        >
-          <dt class="text-sm/6 text-ink-muted">{caption}</dt>
-          <dd class="display m-0 text-4xl font-semibold tracking-tight text-ink">{stat}</dd>
-        </div>
-      </dl>
+      <.data_list class={Shell.data_list()} items={facts()} />
     </.block>
     """
   end
 
-  defp stats do
-    [
-      {"128", "Lorem ipsum"},
-      {"24", "Dolor sit amet"},
-      {"1 Sep", "Consectetur"},
-      {"6", "Adipiscing elit"}
-    ]
+  defp facts do
+    Corex.Content.new([
+      %{label: "Themes", content: "4 — neo, uno, duo, leo"},
+      %{label: "Journal", content: "6 shipping-log posts"},
+      %{label: "npm", content: "0 — Mix, Tailwind, esbuild"},
+      %{label: "Launch", content: "1 September"}
+    ])
   end
 end

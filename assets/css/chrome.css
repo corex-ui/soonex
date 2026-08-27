@@ -131,52 +131,28 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   align-items: center;
 }
 
-.soonex-avatars li + li {
+.soonex-avatars .avatar + .avatar {
   margin-inline-start: calc(var(--spacing-space-sm) * -1);
 }
 
-.soonex-avatar {
-  width: 2.25rem;
-  height: 2.25rem;
-  object-fit: cover;
-  border-radius: var(--radius-full);
+.soonex-avatars .avatar [data-scope="avatar"][data-part="root"] {
   border: 2px solid var(--color-root);
 }
 
-.soonex-avatar-lg {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-/* Corex demo: duration={20} spacing="2rem" pause_on_interaction, no ui-accent.
-   Zag writes a speed-derived --marquee-duration on every render, then Corex
-   overwrites it from data-duration. That flicker restarts the CSS animation. */
-#soonex-tech-marquee.marquee [data-scope="marquee"][data-part="root"] {
-  --marquee-duration: 20s !important;
-}
-
-#soonex-tech-marquee.marquee[data-loading],
-#soonex-tech-marquee.marquee:not([data-loading]) {
-  opacity: 1;
-  transition: none;
-}
-
-.marquee [data-scope="marquee"][data-part="content"] {
+.soonex-toolchain {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: var(--spacing-space);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.marquee [data-scope="marquee"][data-part="edge"] {
-  --edge-background: var(--color-root);
-}
-
-.marquee [data-scope="marquee"][data-part="edge"][data-side="start"],
-.marquee [data-scope="marquee"][data-part="edge"][data-side="end"] {
-  width: 8%;
-  max-width: 5rem;
-}
-
-html[data-motion="reduce"] .marquee [data-scope="marquee"][data-part="content"] {
-  animation: none;
+.soonex-toolchain img {
+  display: block;
+  height: var(--spacing-size);
+  width: auto;
 }
 
 .data-list.data-list--wide,

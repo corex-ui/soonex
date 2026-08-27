@@ -47,9 +47,9 @@
 }
 
 .carousel.ui-width-full
-  [data-scope="carousel"][data-part="root"][data-orientation="vertical"] {
-  max-height: min(80svh, var(--container-md));
-  padding-inline-end: var(--spacing-space);
+  [data-scope="carousel"][data-part="root"][data-orientation="horizontal"] {
+  max-height: none;
+  aspect-ratio: auto;
 }
 
 .select.soonex-nav-select [data-scope="select"][data-part="trigger"] {
@@ -115,8 +115,54 @@
   padding-block: var(--spacing-space);
 }
 
+.collapsible.ui-width-full [data-scope="collapsible"][data-part="trigger"] {
+  max-width: none;
+  width: 100%;
+}
+
+.tabs.tabs--wide [data-scope="tabs"][data-part="list"] {
+  width: 100%;
+  max-width: none;
+  justify-content: flex-start;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="item"] {
+  align-items: stretch;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="item"] > * {
+  width: 100%;
+  height: 100%;
+}
+
 pre.code.code--wide {
   max-width: none;
+}
+
+/*
+  Soonex control language. There is no ui-input utility — triggers and field
+  hosts share --ctl-* so header CTA, waitlist submit, and inputs read as one family.
+*/
+:is(
+  .button.ui-trigger--circle,
+  .button.ui-trigger--square,
+  .native-input,
+  .select,
+  .tags-input,
+  .number-input
+) {
+  --ctl-space: var(--spacing-space);
+  --ctl-size: var(--spacing-size);
+  --ctl-text: var(--text-base);
+}
+
+.select [data-scope="select"][data-part="trigger"],
+.menu [data-scope="menu"][data-part="trigger"],
+.dialog [data-scope="dialog"][data-part="trigger"] {
+  --ctl-radius: inherit;
+  --ctl-size: var(--ctl-size, var(--spacing-size));
+  --ctl-space: var(--ctl-space, var(--spacing-space));
+  --ctl-text: var(--ctl-text, var(--text-base));
 }
 
 /*
@@ -208,7 +254,7 @@ pre.code.code--wide {
   .dialog,
   .floating-panel
 ) {
-  --ctl-radius: var(--radius-2xl);
+  --ctl-radius: var(--radius-3xl);
 }
 
 [data-theme="leo"] :is(

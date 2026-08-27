@@ -4,7 +4,6 @@ defmodule Soonex.HomePage.Voces do
   use Phoenix.Component
   use Corex
 
-  import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
 
   alias Soonex.Layouts.Shell
@@ -20,47 +19,46 @@ defmodule Soonex.HomePage.Voces do
       tone={:root}
     >
       <:title>
-        Ut labore et <span class="text-brand-text">dolore magna</span>
+        From studios <span class="text-brand-text">already forking</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Quotes from the people putting Soonex on a September calendar — not a component gallery.
       </:lede>
       <.carousel
         id="soonex-voces-carousel"
         class="carousel ui-brand ui-width-full max-w-none"
         items={@voices}
         loop
-        orientation="vertical"
+        orientation="horizontal"
         spacing="1.5rem"
         padding="2.5rem"
       >
         <:item :let={voice}>
-          <blockquote class={"#{Shell.frame()} grid h-full min-h-80 grid-cols-1 overflow-hidden sm:grid-cols-5 sm:items-stretch"}>
-            <div class="relative min-h-64 sm:col-span-2 sm:min-h-[28rem]">
-              <.photo
-                src={voice.src}
+          <blockquote class={"#{Shell.panel()} flex h-full min-h-72 flex-col justify-between gap-8 p-8 sm:p-10 lg:p-12"}>
+            <p class="soonex-quote display m-0 text-balance text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl lg:text-4xl">
+              “{voice.quote}”
+            </p>
+            <footer class="flex items-center gap-4">
+              <.avatar
+                id={voice.id}
+                src={Soonex.Public.path(voice.src)}
                 alt={voice.name}
-                width={800}
-                height={800}
-                class="absolute inset-0 size-full"
-              />
-            </div>
-            <div class="flex min-h-0 flex-col justify-center gap-8 p-8 sm:col-span-3 lg:p-12">
-              <p class="soonex-quote display m-0 flex-1 text-balance text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl">
-                “{voice.quote}”
-              </p>
-              <footer class="flex flex-col">
+                class="avatar ui-size-md"
+              >
+                <:fallback>{voice.initials}</:fallback>
+              </.avatar>
+              <div class="flex flex-col">
                 <cite class="not-italic text-sm font-semibold text-ink">{voice.name}</cite>
                 <span class="text-sm text-ink-muted">{voice.role}</span>
-              </footer>
-            </div>
+              </div>
+            </footer>
           </blockquote>
         </:item>
         <:prev_trigger>
-          <.heroicon name="hero-chevron-up" />
+          <.heroicon name="hero-chevron-left" />
         </:prev_trigger>
         <:next_trigger>
-          <.heroicon name="hero-chevron-down" />
+          <.heroicon name="hero-chevron-right" />
         </:next_trigger>
       </.carousel>
     </.block>
@@ -70,23 +68,29 @@ defmodule Soonex.HomePage.Voces do
   defp voices do
     [
       %{
+        id: "soonex-voice-amira",
         src: "/images/people/amira.jpg",
+        initials: "AN",
         quote:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "We forked on a Thursday, swapped the stills Friday, and the waitlist toast was already the one we wanted to ship.",
         name: "Amira N.",
         role: "Founder, studio launch"
       },
       %{
+        id: "soonex-voice-jonas",
         src: "/images/people/jonas.jpg",
+        initials: "JK",
         quote:
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "No package.json, no LiveView pager, no forked Corex CSS. Mix setup and the controls are the upstream ones.",
         name: "Jonas K.",
         role: "Staff engineer"
       },
       %{
+        id: "soonex-voice-leah",
         src: "/images/people/leah.jpg",
+        initials: "LM",
         quote:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "neo, uno, duo, and leo finally feel like four products. Template Options is how we review with clients.",
         name: "Leah M.",
         role: "Product designer"
       }

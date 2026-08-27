@@ -221,16 +221,16 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+        "Soonex is the first Corex plus Tableau waitlist template. Fork, theme, journal, countdown, and ship 1 September."
 
       page[:page_kind] == :blog_index ->
-        "Lorem ipsum dolor sit amet from #{site_name}."
+        "Shipping notes from #{site_name}: themes, countdown, clone steps, and the road to 1 September."
 
       page[:page_kind] == :not_found ->
-        "That page is not on #{site_name}."
+        "That page is not on #{site_name}. Head home or read the shipping log."
 
       page[:page_kind] == :tags_index ->
-        "Browse journal tags on #{site_name}."
+        "Browse the #{site_name} journal by topic — themes, launch, studio, and notes."
 
       tag_page?(page) ->
         "Journal posts tagged #{page[:tag]} on #{site_name}."
@@ -239,7 +239,7 @@ defmodule Soonex.RootLayout do
         page[:description]
 
       true ->
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        "Soonex is the first Corex plus Tableau waitlist template. Fork, theme, and ship 1 September."
     end
   end
 

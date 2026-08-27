@@ -19,30 +19,21 @@ defmodule Soonex.HomePage.Contents do
       tone={:root}
     >
       <:title>
-        Lorem ipsum <span class="text-brand-text">dolor sit amet</span>
+        Fork once. <span class="text-brand-text">Theme in config.</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Soonex is a static Tableau site with Corex controls already on the page. No LiveView events,
+        no npm, no forked component CSS.
       </:lede>
-      <ul class="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
-        <li :for={feature <- features()} class="flex flex-col">
-          <.tooltip id={feature.tooltip_id} class="tooltip">
-            <:trigger>
-              <span class="display text-4xl font-semibold tracking-tight text-brand-text sm:text-5xl">
-                {feature.index}
-              </span>
-              <span class="sr-only">{feature.title}</span>
-            </:trigger>
-            <:content>{feature.tip}</:content>
-          </.tooltip>
-          <h3 class="display mt-5 text-xl font-semibold tracking-tight text-ink">
-            {feature.title}
-          </h3>
-          <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{feature.body}</p>
-        </li>
-      </ul>
+      <.tabs
+        id="soonex-product-tabs"
+        class="tabs tabs--wide ui-brand ui-size-md"
+        indicator
+        value="overview"
+        items={product_tabs()}
+      />
 
-      <div class={"#{Shell.panel()} mt-16 p-6 sm:p-8"}>
+      <div class={"#{Shell.panel()} mt-12 p-6 sm:p-8"}>
         <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-8">
           <div class="min-w-0 lg:max-w-sm">
             <p class={Shell.eyebrow()}>Quick start</p>
@@ -71,33 +62,27 @@ defmodule Soonex.HomePage.Contents do
     """
   end
 
-  defp features do
-    [
+  defp product_tabs do
+    Corex.Content.new([
       %{
-        index: "01",
-        tooltip_id: "soonex-feature-tokens",
-        tip: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        title: "Lorem ipsum dolor",
-        body:
-          "Sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        value: "overview",
+        label: "Overview",
+        content:
+          "A waitlist landing page, a Markdown journal, countdown chrome, and the Corex controls already wired on this page. Photography, copy, and the launch date are yours to replace."
       },
       %{
-        index: "02",
-        tooltip_id: "soonex-feature-themes",
-        tip: "Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-        title: "Ut enim ad minim",
-        body:
-          "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        value: "themes",
+        label: "Themes",
+        content:
+          "neo, uno, duo, and leo live in config. Template Options switches them on this device so they read as four products, not four tints. Host CSS retunes layout; it does not copy Corex recipes."
       },
       %{
-        index: "03",
-        tooltip_id: "soonex-feature-mix",
-        tip: "Duis aute irure dolor in reprehenderit in voluptate velit.",
-        title: "Duis aute irure",
-        body:
-          "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        value: "mix",
+        label: "Mix",
+        content:
+          "Mix, Tailwind, and esbuild already in the project are enough. There is no package.json and no Lenis. Host scripts bind the header, the waitlist toast, and journal pagination on the client."
       }
-    ]
+    ])
   end
 
   defp snippet do

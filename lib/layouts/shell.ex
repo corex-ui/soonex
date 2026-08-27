@@ -48,7 +48,7 @@ defmodule Soonex.Layouts.Shell do
   def panel,
     do: "soonex-frame relative overflow-hidden border border-border bg-surface"
 
-  def frame, do: "soonex-frame relative overflow-hidden border border-border bg-surface"
+  def frame, do: "soonex-frame relative overflow-hidden"
 
   def data_list, do: "data-list data-list--wide ui-accent ui-size-md w-full max-w-none"
 end

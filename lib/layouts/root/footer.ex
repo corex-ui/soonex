@@ -18,6 +18,7 @@ defmodule Soonex.Layouts.Root.Footer do
       assigns
       |> assign(:github, @github)
       |> assign(:hexdocs, @hexdocs)
+      |> assign(:toolchain, toolchain())
 
     ~H"""
     <footer class="mt-auto border-t border-border bg-surface py-16 sm:py-24">
@@ -26,9 +27,18 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="mt-6 text-sm/6 text-ink-muted">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
+              The first Corex plus Tableau waitlist template. Fork, theme, and ship 1 September.
             </p>
+            <ul class="soonex-toolchain mt-8">
+              <li :for={mark <- @toolchain}>
+                <img
+                  src={Soonex.Public.path(mark.src)}
+                  alt={mark.alt}
+                  width="32"
+                  height="32"
+                />
+              </li>
+            </ul>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
             <div>
@@ -112,7 +122,7 @@ defmodule Soonex.Layouts.Root.Footer do
           </div>
           <.navigate
             to={Soonex.Public.path("/") <> "#epistula"}
-            class="button ui-brand ui-solid ui-size-sm w-fit"
+            class="button ui-brand ui-solid ui-size-md w-fit"
           >
             Join waitlist
           </.navigate>
@@ -120,5 +130,16 @@ defmodule Soonex.Layouts.Root.Footer do
       </div>
     </footer>
     """
+  end
+
+  defp toolchain do
+    [
+      %{src: "/images/tech/elixir.svg", alt: "Elixir"},
+      %{src: "/images/tech/phoenix.svg", alt: "Phoenix"},
+      %{src: "/images/tech/tableau.svg", alt: "Tableau"},
+      %{src: "/images/tech/zag.svg", alt: "Zag"},
+      %{src: "/images/tech/tailwind.svg", alt: "Tailwind CSS"},
+      %{src: "/images/tech/hex.svg", alt: "Hex"}
+    ]
   end
 end

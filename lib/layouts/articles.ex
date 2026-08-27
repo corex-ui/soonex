@@ -16,10 +16,15 @@ defmodule Soonex.Layouts.Articles do
     <div :if={@posts == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
       <p class="m-0">{@empty}</p>
     </div>
-    <div :if={@posts != []} class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div
+      :if={@posts != []}
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2"
+      data-soonex-page-list
+    >
       <article
         :for={post <- @posts}
-        class={"#{Shell.frame()} flex flex-col overflow-hidden bg-surface"}
+        data-soonex-page-item
+        class={"#{Shell.panel()} flex flex-col overflow-hidden"}
       >
         <div :if={cover(post)} class="relative aspect-[16/10] overflow-hidden">
           <.photo src={cover(post).src} alt={cover(post).alt} width={1400} height={900} />
@@ -49,13 +54,14 @@ defmodule Soonex.Layouts.Articles do
 
   def pager(assigns) do
     ~H"""
-    <div class="mt-12 flex justify-center">
+    <div :if={@count > @page_size} class="mt-12 flex justify-center">
       <.pagination
         id={@id}
         class="pagination ui-brand ui-size-sm"
         count={@count}
         page_size={@page_size}
         type={:button}
+        on_page_change_client="pagination-page-changed"
       >
         <:prev_trigger>
           <.heroicon name="hero-chevron-left" />

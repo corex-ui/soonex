@@ -20,10 +20,11 @@ defmodule Soonex.HomePage.Waitlist do
       align={:center}
     >
       <:title>
-        Commodo <span class="text-brand-text">consequat</span>
+        Join the <span class="text-brand-text">September list</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Tell us your role, interests, and team size. This demo does not store addresses — submit still
+        shows the launch toast.
       </:lede>
       <form
         id="soonex-waitlist-form"
@@ -66,7 +67,7 @@ defmodule Soonex.HomePage.Waitlist do
           <.tags_input
             id="soonex-waitlist-interests"
             name="waitlist[interests]"
-            class="tags-input ui-brand ui-width-full"
+            class="tags-input ui-brand ui-size-md ui-width-full"
             value={[]}
             translation={
               %Corex.TagsInput.Translation{
@@ -83,7 +84,7 @@ defmodule Soonex.HomePage.Waitlist do
           <.number_input
             id="soonex-waitlist-team"
             name="waitlist[team_size]"
-            class="number-input ui-brand ui-width-full"
+            class="number-input ui-brand ui-size-md ui-width-full"
             min={1.0}
             max={200.0}
             step={1.0}

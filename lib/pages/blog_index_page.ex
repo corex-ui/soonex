@@ -32,7 +32,8 @@ defmodule Soonex.BlogIndexPage do
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>Journal</:title>
           <:subtitle>
-            {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
+            Shipping notes for the Corex waitlist template — {@blog_count}
+            {if @blog_count == 1, do: "post", else: "posts"}.
           </:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/")} class="button ui-ghost ui-size-sm">
@@ -44,7 +45,7 @@ defmodule Soonex.BlogIndexPage do
           </:actions>
         </.layout_heading>
 
-        <div class="mt-16">
+        <div class="mt-16" data-soonex-page="soonex-blog-pagination" data-soonex-page-size="3">
           <.cards posts={@sorted_posts} />
           <.pager id="soonex-blog-pagination" count={@blog_count} page_size={3} />
         </div>

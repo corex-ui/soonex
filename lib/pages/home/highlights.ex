@@ -28,10 +28,10 @@ defmodule Soonex.HomePage.Highlights do
       tone={:root}
     >
       <:title>
-        Veniam quis <span class="text-brand-text">nostrud</span>
+        From the <span class="text-brand-text">shipping log</span>
       </:title>
       <:lede>
-        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Short notes on the fork, the four themes, and the September target. The index paginates the rest.
       </:lede>
       <:actions>
         <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand">
@@ -46,12 +46,12 @@ defmodule Soonex.HomePage.Highlights do
         id="soonex-acta-carousel"
         class="carousel ui-brand ui-width-full max-w-none"
         items={@highlight_posts}
-        orientation="vertical"
+        orientation="horizontal"
         spacing="1.5rem"
         padding="2.5rem"
       >
         <:item :let={post}>
-          <article class={"#{Shell.frame()} flex h-full min-h-80 flex-col overflow-hidden"}>
+          <article class={"#{Shell.panel()} flex h-full min-h-80 flex-col overflow-hidden"}>
             <div :if={cover(post)} class="relative aspect-[16/10] overflow-hidden">
               <.photo
                 src={cover(post).src}
@@ -78,10 +78,10 @@ defmodule Soonex.HomePage.Highlights do
           </article>
         </:item>
         <:prev_trigger>
-          <.heroicon name="hero-chevron-up" />
+          <.heroicon name="hero-chevron-left" />
         </:prev_trigger>
         <:next_trigger>
-          <.heroicon name="hero-chevron-down" />
+          <.heroicon name="hero-chevron-right" />
         </:next_trigger>
       </.carousel>
     </.block>

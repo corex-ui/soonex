@@ -5,7 +5,6 @@ defmodule Soonex.HomePage do
   use Corex
 
   import Soonex.HomePage.Hero, only: [hero: 1]
-  import Soonex.HomePage.Socii, only: [socii: 1]
   import Soonex.HomePage.Contents, only: [contents: 1]
   import Soonex.HomePage.Capita, only: [capita: 1]
   import Soonex.HomePage.Officia, only: [officia: 1]
@@ -33,7 +32,6 @@ defmodule Soonex.HomePage do
     ~H"""
     <div id="home" class="w-full text-ink">
       <.hero countdown_ms={@countdown_ms} />
-      <.socii />
       <.contents />
       <.capita />
       <.officia />
