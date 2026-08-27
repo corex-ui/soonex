@@ -135,8 +135,35 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   height: 3.5rem;
 }
 
+/* Corex demo: duration={20} spacing="2rem" pause_on_interaction, no ui-accent.
+   Zag writes a speed-derived --marquee-duration on every render, then Corex
+   overwrites it from data-duration. That flicker restarts the CSS animation. */
+#soonex-tech-marquee.marquee [data-scope="marquee"][data-part="root"] {
+  --marquee-duration: 20s !important;
+}
+
+#soonex-tech-marquee.marquee[data-loading],
+#soonex-tech-marquee.marquee:not([data-loading]) {
+  opacity: 1;
+  transition: none;
+}
+
+.marquee [data-scope="marquee"][data-part="content"] {
+  align-items: center;
+}
+
 .marquee [data-scope="marquee"][data-part="edge"] {
   --edge-background: var(--color-root);
+}
+
+.marquee [data-scope="marquee"][data-part="edge"][data-side="start"],
+.marquee [data-scope="marquee"][data-part="edge"][data-side="end"] {
+  width: 8%;
+  max-width: 5rem;
+}
+
+html[data-motion="reduce"] .marquee [data-scope="marquee"][data-part="content"] {
+  animation: none;
 }
 
 .data-list.data-list--wide,
