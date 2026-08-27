@@ -64,15 +64,20 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   min-height: var(--spacing-size);
 }
 
-/* Header timer stays in flow (invisible until reveal) so the bar never jumps. */
+/* Header timer stays in flow (invisible until reveal) so the bar never jumps.
+   Corex digits flip in a 2em window (`top: calc(var(--value) * -2em)`). Do not
+   shrink that window — it clips the strip. Compact the type instead. */
 [data-site-header] .timer.ui-size-sm {
   --timer-digit: var(--text-sm);
-  --timer-digit-leading: var(--text-sm--line-height);
+  --timer-digit-leading: 2;
 }
 
-[data-site-header] .timer [data-scope="timer"][data-part="item"],
+[data-site-header] .timer [data-scope="timer"][data-part="area"] {
+  align-items: center;
+}
+
 [data-site-header] .timer [data-scope="timer"][data-part="separator"] {
-  height: 1.25em;
+  align-self: center;
 }
 
 [data-site-header] .timer [data-scope="timer"][data-part="item-label"] {
