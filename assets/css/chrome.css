@@ -27,7 +27,7 @@ html[data-motion="reduce"] {
     animation-name: soonex-reveal;
     animation-duration: var(--duration-slow);
     animation-timing-function: var(--soonex-ease);
-    animation-fill-mode: both;
+    animation-fill-mode: none;
     animation-timeline: view();
     animation-range: entry 0% entry 40%;
   }
