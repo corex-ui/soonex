@@ -26,7 +26,7 @@ html[data-motion="reduce"] {
   .soonex-reveal {
     animation-name: soonex-reveal;
     animation-duration: var(--duration-slow);
-    animation-timing-function: ease-out;
+    animation-timing-function: var(--soonex-ease);
     animation-fill-mode: both;
     animation-timeline: view();
     animation-range: entry 0% entry 40%;
@@ -39,22 +39,22 @@ html[data-motion="reduce"] {
 }
 
 .soonex-card-motion {
-  transition:
-    transform var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
+  transition: border-color var(--duration-fast) var(--soonex-ease);
 }
 
 @media (hover: hover) {
   .soonex-card-motion:hover {
-    transform: translateY(calc(var(--spacing-space-sm) * -1));
     border-color: var(--color-brand);
   }
 }
 
 html[data-motion="reduce"] .soonex-card-motion,
 html[data-motion="reduce"] .soonex-card-motion:hover {
-  transform: none;
   transition: none;
+}
+
+[data-site-header] {
+  transition: border-color var(--duration-normal) var(--soonex-ease);
 }
 
 [data-site-header] [data-header-bar] {

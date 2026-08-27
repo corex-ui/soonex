@@ -134,9 +134,9 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#F3EDE3",
-        accent: "#191614",
-        brand: "#2A4DFF",
+        neutral: "#EEEAE4",
+        accent: "#161618",
+        brand: "#1D4ED8",
         alert: "#B42318",
         info: "#0E7490",
         success: "#15803D"
@@ -173,14 +173,14 @@ config :corex_design,
       },
       dimensions: %{
         radius: %{
-          xs: 0.42,
-          sm: 0.72,
-          md: 1.05,
-          lg: 1.45,
-          xl: 1.9,
-          "2xl": 2.5,
-          "3xl": 3.2,
-          "4xl": 4.0,
+          xs: 0.28,
+          sm: 0.48,
+          md: 0.72,
+          lg: 1.0,
+          xl: 1.25,
+          "2xl": 1.5,
+          "3xl": 1.9,
+          "4xl": 2.4,
           full: 9999
         },
         font: %{
@@ -219,7 +219,7 @@ config :corex_design,
       seeds: %{
         neutral: "#D7E8E3",
         accent: "#071614",
-        brand: "#0B8F7B",
+        brand: "#0F766E",
         alert: "#B91C1C",
         info: "#0369A1",
         success: "#166534"
@@ -294,7 +294,7 @@ config :corex_design,
       seeds: %{
         neutral: "#F7EDE4",
         accent: "#3A2618",
-        brand: "#7C3AED",
+        brand: "#C2410C",
         alert: "#9F1239",
         info: "#3D5278",
         success: "#3F6B4E"

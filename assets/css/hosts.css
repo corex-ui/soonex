@@ -1,5 +1,14 @@
 /* Host polish after Corex. Tokens only. Prefer ui-* modifiers in HEEx. */
 
+[data-theme] {
+  --soonex-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button,
+.link.ui-nav {
+  transition-timing-function: var(--soonex-ease);
+}
+
 .native-input.ui-width-full,
 .clipboard.ui-width-full,
 .radio-group.ui-width-full,
