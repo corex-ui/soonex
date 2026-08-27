@@ -32,7 +32,7 @@ defmodule Soonex.BlogIndexPage do
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>Journal</:title>
           <:subtitle>
-            {@blog_count} {if @blog_count == 1, do: "post", else: "posts"} · shipping notes for the template
+            {@blog_count} {if @blog_count == 1, do: "post", else: "posts"}
           </:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/")} class="button ui-ghost ui-size-sm">
@@ -46,7 +46,7 @@ defmodule Soonex.BlogIndexPage do
 
         <div class="mt-16">
           <.cards posts={@sorted_posts} />
-          <.pager id="soonex-blog-pagination" count={@blog_count} page_size={1} />
+          <.pager id="soonex-blog-pagination" count={@blog_count} page_size={3} />
         </div>
       </div>
     </article>

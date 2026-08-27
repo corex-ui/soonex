@@ -10,10 +10,10 @@ defmodule Soonex.HomePage.Faq do
     ~H"""
     <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
-        Before you <span class="text-brand-text">fork</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit</span>
       </:title>
       <:lede>
-        The sticky split stays here. Everywhere else, the band is the component.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <:actions>
         <.navigate to="#epistula" class="link ui-brand">
@@ -46,39 +46,39 @@ defmodule Soonex.HomePage.Faq do
     Corex.Content.new([
       %{
         value: "what",
-        label: "What is Soonex?",
+        label: "Lorem ipsum dolor sit amet?",
         content:
-          "A Tableau static site with Corex components. It is a launch template: waitlist, countdown, journal, and four theme overlays you edit in config."
+          "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
       },
       %{
         value: "npm",
-        label: "Do I need npm?",
+        label: "Quis nostrud exercitation ullamco?",
         content:
-          "Not for Corex. Mix installs the hooks; Esbuild resolves corex/* from deps. There is no package.json in this repo."
+          "Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore."
       },
       %{
         value: "themes",
-        label: "How do I change the brand?",
+        label: "Eu fugiat nulla pariatur?",
         content:
-          "Overlay seeds, colors, radius, font, and typography under config :corex_design. Then mix corex.design.build. Do not lower contrast targets."
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       },
       %{
         value: "i18n",
-        label: "Is this the multi-locale variant?",
+        label: "Sed ut perspiciatis unde omnis?",
         content:
-          "No. soonex_i18n is a separate repository. This template is English-only on purpose."
+          "Iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore."
       },
       %{
         value: "waitlist",
-        label: "Does the waitlist store email?",
+        label: "Veritatis et quasi architecto?",
         content:
-          "The demo forms prevent submit and fire a toast. Wire the same fields to your backend when you have one."
+          "Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
       },
       %{
         value: "a11y",
-        label: "Where are accessibility preferences stored?",
+        label: "Sed quia consequuntur magni?",
         content:
-          "In localStorage under phx:a11y. The Corex dialog is the official --a11y surface, not a custom panel."
+          "Dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet."
       }
     ])
   end

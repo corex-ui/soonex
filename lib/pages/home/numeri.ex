@@ -18,10 +18,10 @@ defmodule Soonex.HomePage.Numeri do
       compact
     >
       <:title>
-        Small surface, <span class="text-brand-text">full overlay</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit</span>
       </:title>
       <:lede>
-        What you get when you fork the template — not vanity metrics.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div
@@ -38,10 +38,10 @@ defmodule Soonex.HomePage.Numeri do
 
   defp stats do
     [
-      {"4", "Theme overlays"},
-      {"0", "npm packages for Corex"},
-      {"1 Sep", "Public launch"},
-      {"6", "Accessibility axes"}
+      {"128", "Lorem ipsum"},
+      {"24", "Dolor sit amet"},
+      {"1 Sep", "Consectetur"},
+      {"6", "Adipiscing elit"}
     ]
   end
 end

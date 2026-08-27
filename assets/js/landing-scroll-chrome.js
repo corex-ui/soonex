@@ -41,7 +41,7 @@ export function bindLandingScrollChrome(header, countdown, heroBoundary, progres
     countdownEl.toggleAttribute("data-shown", show)
     countdownEl.toggleAttribute("aria-hidden", !show)
     countdownEl.toggleAttribute("inert", !show)
-    countdownEl.hidden = !show
+    countdownEl.classList.toggle("invisible", !show)
   }
 
   const tick = () => {

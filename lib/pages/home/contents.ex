@@ -9,7 +9,7 @@ defmodule Soonex.HomePage.Contents do
   alias Soonex.Layouts.Shell
 
   def contents(assigns) do
-    assigns = assign(assigns, :theme_snippet, theme_snippet())
+    assigns = assign(assigns, :snippet, snippet())
 
     ~H"""
     <.block
@@ -19,10 +19,10 @@ defmodule Soonex.HomePage.Contents do
       tone={:root}
     >
       <:title>
-        Three reasons to <span class="text-brand-text">start here</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit amet</span>
       </:title>
       <:lede>
-        Each band on this page has one job. Tokens stay in config. Hooks stay in Mix.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <ul class="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
         <li :for={feature <- features()} class="flex flex-col">
@@ -44,15 +44,15 @@ defmodule Soonex.HomePage.Contents do
 
       <div class={"#{Shell.panel()} mt-16 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"}>
         <div class="min-w-0">
-          <p class={Shell.eyebrow()}>Customize in config</p>
-          <pre class="mt-3 overflow-x-auto font-mono text-xs/6 text-ink sm:text-sm/6"><code>{String.trim(@theme_snippet)}</code></pre>
+          <p class={Shell.eyebrow()}>Lorem ipsum</p>
+          <pre class="mt-3 overflow-x-auto font-mono text-xs/6 text-ink sm:text-sm/6"><code>{@snippet}</code></pre>
         </div>
         <.clipboard
           id="soonex-theme-snippet"
           class="clipboard ui-brand ui-size-sm shrink-0"
-          value={@theme_snippet}
+          value={@snippet}
           input={false}
-          trigger_aria_label="Copy theme config"
+          trigger_aria_label="Copy"
         >
           <:copy>
             <.heroicon name="hero-clipboard" />
@@ -71,37 +71,31 @@ defmodule Soonex.HomePage.Contents do
       %{
         index: "01",
         tooltip_id: "soonex-feature-tokens",
-        tip: "Seeds, radius, and type live in config :corex_design",
-        title: "Tokens, not a CSS fork",
+        tip: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        title: "Lorem ipsum dolor",
         body:
-          "Overlay seeds, colors, radius, and type per theme. Contrast targets stay at preset strength so axe stays green."
+          "Sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       %{
         index: "02",
         tooltip_id: "soonex-feature-themes",
-        tip: "neo is pill, uno is tight, duo is soft, leo is square",
-        title: "Four themes that disagree",
+        tip: "Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+        title: "Ut enim ad minim",
         body:
-          "Template Options is not a hue shift on the same gray. Radius, type, and ui-* control corners move with the palette."
+          "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       },
       %{
         index: "03",
         tooltip_id: "soonex-feature-mix",
-        tip: "mix corex.design.build — no package.json for Corex",
-        title: "Zero npm for Corex hooks",
+        tip: "Duis aute irure dolor in reprehenderit in voluptate velit.",
+        title: "Duis aute irure",
         body:
-          "Esbuild resolves corex/* from Mix deps. Add a component in config, rebuild CSS, lazy-hook it in site.js."
+          "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
       }
     ]
   end
 
-  defp theme_snippet do
-    """
-    config :corex_design,
-      themes: %{
-        neo: %{seeds: %{brand: "#2A4DFF"}, dimensions: %{radius: %{xl: 1.9}}}
-      }
-    """
-    |> String.trim()
+  defp snippet do
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   end
 end

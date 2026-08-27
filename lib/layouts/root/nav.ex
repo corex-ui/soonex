@@ -17,7 +17,7 @@ defmodule Soonex.Layouts.Root.Nav do
     ~H"""
     <header
       data-site-header
-      class="sticky top-0 z-50 border-b border-transparent bg-root py-4 transition-[padding,border-color] duration-200 ease-out data-[condensed]:border-border data-[condensed]:py-2"
+      class="sticky top-0 z-50 border-b border-transparent bg-root py-3 transition-[border-color] duration-200 ease-out data-[condensed]:border-border"
     >
       <div
         data-scroll-progress
@@ -32,7 +32,7 @@ defmodule Soonex.Layouts.Root.Nav do
         </div>
       </div>
 
-      <div class={"#{Shell.stage()} relative flex items-center justify-between gap-4"}>
+      <div data-header-bar class={"#{Shell.stage()} relative flex items-center justify-between gap-4"}>
         <.lockup />
 
         <nav class="hidden items-center gap-x-6 lg:flex" aria-label="Primary">
@@ -49,10 +49,9 @@ defmodule Soonex.Layouts.Root.Nav do
           <div
             id="soonex-header-countdown"
             data-header-countdown
-            hidden
             inert
             aria-hidden="true"
-            class="max-md:hidden"
+            class="invisible max-md:hidden"
           >
             <div class="flex items-center gap-3">
               <.timer

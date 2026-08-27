@@ -62,7 +62,7 @@ defmodule Soonex.TagsIndexPage do
               </p>
             </article>
           </div>
-          <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={1} />
+          <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={6} />
         </div>
       </div>
     </article>

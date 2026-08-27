@@ -26,8 +26,8 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="mt-6 text-sm/6 text-ink-muted">
-              An English Tableau template with Corex tokens, a waitlist, and a countdown to 1
-              September. Change the brand in config — contrast stays calculated.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">

@@ -126,7 +126,21 @@ defmodule Soonex.Accessibility do
       final_focus={"dialog:#{accessibility_dialog_id()}:trigger"}
     >
       <:trigger class={@trigger_class} aria_label="Accessibility">
-        <.heroicon name="hero-adjustments-horizontal" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-5"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9.25" />
+          <circle cx="12" cy="8" r="1.35" fill="currentColor" stroke="none" />
+          <path d="M8.25 11.25h7.5M12 11.5v3.25M9.5 18l2.5-3.25L14.5 18" />
+        </svg>
       </:trigger>
       <:title>Accessibility</:title>
       <:description>

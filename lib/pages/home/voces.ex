@@ -20,10 +20,10 @@ defmodule Soonex.HomePage.Voces do
       tone={:root}
     >
       <:title>
-        From teams who <span class="text-brand-text">ship static first</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit amet</span>
       </:title>
       <:lede>
-        Quotes ride a carousel. Portraits are Unsplash. That is what the component is for.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <.carousel
         id="soonex-voces-carousel"
@@ -33,8 +33,8 @@ defmodule Soonex.HomePage.Voces do
         spacing="1.5rem"
       >
         <:item :let={voice}>
-          <blockquote class={"#{Shell.frame()} grid h-full min-h-72 grid-cols-1 overflow-hidden sm:grid-cols-5"}>
-            <div class="relative min-h-56 sm:col-span-2 sm:min-h-full">
+          <blockquote class={"#{Shell.frame()} grid h-full min-h-80 grid-cols-1 overflow-hidden sm:grid-cols-5 sm:items-stretch"}>
+            <div class="relative min-h-64 sm:col-span-2 sm:min-h-[28rem]">
               <.photo
                 src={voice.src}
                 alt={voice.name}
@@ -43,8 +43,8 @@ defmodule Soonex.HomePage.Voces do
                 class="absolute inset-0 size-full"
               />
             </div>
-            <div class="flex flex-col justify-between gap-8 p-8 sm:col-span-3 lg:p-10">
-              <p class="soonex-quote display m-0 text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl lg:text-3xl">
+            <div class="flex min-h-0 flex-col justify-center gap-8 p-8 sm:col-span-3 lg:p-12">
+              <p class="soonex-quote display m-0 flex-1 text-balance text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl">
                 “{voice.quote}”
               </p>
               <footer class="flex flex-col">
@@ -70,21 +70,21 @@ defmodule Soonex.HomePage.Voces do
       %{
         src: "/images/people/amira.jpg",
         quote:
-          "We published the waitlist in a day. The brand overlay in config was the only design file we needed.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         name: "Amira N.",
         role: "Founder, studio launch"
       },
       %{
         src: "/images/people/jonas.jpg",
         quote:
-          "No npm for Corex hooks meant the Mix pipeline stayed the source of truth. Theme switch actually retints.",
+          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         name: "Jonas K.",
         role: "Staff engineer"
       },
       %{
         src: "/images/people/leah.jpg",
         quote:
-          "The header countdown stays gone until you pass the hero. That is the kind of paper cut a launch site cannot show.",
+          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
         name: "Leah M.",
         role: "Product designer"
       }

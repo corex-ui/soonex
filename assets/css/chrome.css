@@ -4,14 +4,31 @@
   transition: none;
 }
 
-/* Header countdown stays ui-size-sm in markup; digits need to actually read small. */
-[data-site-header] .timer.ui-size-sm {
-  --timer-digit: var(--text-lg);
-  --timer-digit-leading: var(--text-lg--line-height);
+[data-site-header] [data-header-bar] {
+  min-height: var(--spacing-size);
 }
 
-[data-site-header] .timer [data-scope="timer"][data-part="item"] {
-  height: 1.35em;
+/* Header timer stays in flow (invisible until reveal) so the bar never jumps. */
+[data-site-header] .timer.ui-size-sm {
+  --timer-digit: var(--text-sm);
+  --timer-digit-leading: var(--text-sm--line-height);
+}
+
+[data-site-header] .timer [data-scope="timer"][data-part="item"],
+[data-site-header] .timer [data-scope="timer"][data-part="separator"] {
+  height: 1.25em;
+}
+
+[data-site-header] .timer [data-scope="timer"][data-part="item-label"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 @media (width < 40rem) {

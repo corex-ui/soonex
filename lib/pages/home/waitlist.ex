@@ -18,10 +18,10 @@ defmodule Soonex.HomePage.Waitlist do
       tone={:surface}
     >
       <:title>
-        Save a <span class="text-brand-text">seat</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit</span>
       </:title>
       <:lede>
-        Email, interests, and team size. The demo still only toasts — nothing is stored.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <div class="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
         <div class={"#{Shell.frame()} relative min-h-72 lg:col-span-5 lg:min-h-full"}>

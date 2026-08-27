@@ -26,12 +26,12 @@ defmodule Soonex.HomePage.Hero do
               id="soonex-headline"
               class="display mt-6 text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-8xl"
             >
-              The launch site, <span class="text-brand-text">before the product.</span>
+              Lorem ipsum dolor <span class="text-brand-text">sit amet.</span>
             </h1>
 
             <p class={"#{Shell.lede()} max-w-lg"}>
-              A Tableau + Corex waitlist with a countdown, a journal, and four themes you actually
-              retint in <code class="code">config :corex_design</code>.
+              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+              aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -57,7 +57,7 @@ defmodule Soonex.HomePage.Hero do
                 </li>
               </ul>
               <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
-                Studios already on the list — the form only fires a toast in this demo.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
               </p>
             </div>
           </div>
@@ -72,14 +72,14 @@ defmodule Soonex.HomePage.Hero do
                 class="absolute inset-0 size-full"
                 loading="eager"
               />
-              <div class="relative z-[1] flex min-h-[28rem] items-end p-4 sm:p-6 lg:min-h-[36rem]">
+              <div class="relative z-[1] flex min-h-[28rem] items-center justify-center p-4 sm:p-6 lg:min-h-[36rem]">
                 <div class={"#{Shell.panel()} w-full max-w-md p-5 sm:p-6"}>
                   <p class={Shell.eyebrow()}>Waitlist</p>
                   <h2 class="display mt-1 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
-                    Get launch notes first
+                    Lorem ipsum dolor sit
                   </h2>
                   <p class="mt-2 text-sm/6 text-ink-muted">
-                    One email. Tell us how you work. Nothing is stored.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
                   </p>
 
                   <form

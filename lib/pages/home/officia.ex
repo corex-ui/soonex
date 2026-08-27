@@ -17,108 +17,90 @@ defmodule Soonex.HomePage.Officia do
       tone={:root}
     >
       <:title>
-        Pick a <span class="text-brand-text">starting shape</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit</span>
       </:title>
       <:lede>
-        Same template, three ways to ship it. The table is the product — not a widget gallery.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
-      <div class={"#{Shell.panel()} mt-4 p-4 sm:p-6"}>
-        <.tabs
-          id="soonex-officia"
-          class="tabs tabs--wide ui-brand ui-size-md mx-auto w-full max-w-none"
-          indicator
-          multiple={false}
-          collapsible={false}
-          value="compare"
-          items={offices()}
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <article :for={plan <- plans()} class={"#{Shell.panel()} flex flex-col p-6 sm:p-8"}>
+          <p class={Shell.eyebrow()}>{plan.name}</p>
+          <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{plan.headline}</h3>
+          <p class="mt-3 flex-auto text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
+        </article>
+      </div>
+      <div class={"#{Shell.panel()} mt-4 overflow-hidden p-4 sm:p-6"}>
+        <.data_table
+          id="soonex-plan-table"
+          class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
+          rows={plan_rows()}
         >
-          <:trigger :let={item}>{item.label}</:trigger>
-          <:content :let={item}>
-            <div class="flex flex-col gap-6 text-start">
-              <p class="display m-0 text-2xl font-semibold tracking-tight text-ink">
-                {item.meta.headline}
-              </p>
-              <p class="m-0 max-w-2xl text-base/7 text-ink-muted">{item.content}</p>
-              <.data_table
-                :if={item.meta[:table]}
-                id="soonex-plan-table"
-                class="data-table ui-brand ui-size-sm ui-width-full max-w-none max-h-none"
-                rows={plan_rows()}
-              >
-                <:col :let={row} label="Feature">{row.feature}</:col>
-                <:col :let={row} label="Launch">{row.launch}</:col>
-                <:col :let={row} label="Studio">{row.studio}</:col>
-                <:col :let={row} label="Agency">{row.agency}</:col>
-              </.data_table>
-            </div>
-          </:content>
-        </.tabs>
+          <:col :let={row} label="Feature">{row.feature}</:col>
+          <:col :let={row} label="Launch">{row.launch}</:col>
+          <:col :let={row} label="Studio">{row.studio}</:col>
+          <:col :let={row} label="Agency">{row.agency}</:col>
+        </.data_table>
       </div>
     </.block>
     """
   end
 
-  defp offices do
-    Corex.Content.new([
+  defp plans do
+    [
       %{
-        value: "compare",
-        label: "Compare",
-        content: "What you keep when you fork Soonex. Nothing here is billed — it is a map.",
-        meta: %{headline: "Launch, Studio, Agency", table: true}
+        name: "Launch",
+        headline: "Lorem ipsum dolor",
+        body: "Sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
       },
       %{
-        value: "launch",
-        label: "Launch",
-        content:
-          "Waitlist, countdown, four theme overlays, and a journal. Enough to publish before the product exists.",
-        meta: %{headline: "Ship the site first"}
+        name: "Studio",
+        headline: "Ut enim ad minim",
+        body: "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
       },
       %{
-        value: "studio",
-        label: "Studio",
-        content:
-          "Keep the overlays and add your own bands. Swap the waitlist for a real backend when you have one.",
-        meta: %{headline: "Own the chrome"}
+        name: "Agency",
+        headline: "Duis aute irure",
+        body: "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."
       }
-    ])
+    ]
   end
 
   defp plan_rows do
     [
       %{
-        id: "themes",
-        feature: "Theme overlays",
-        launch: "Brand seed",
-        studio: "Full maps",
-        agency: "Full maps + scales"
+        id: "lorem",
+        feature: "Lorem ipsum",
+        launch: "Dolor",
+        studio: "Sit amet",
+        agency: "Consectetur"
       },
       %{
-        id: "waitlist",
-        feature: "Waitlist",
-        launch: "Email",
-        studio: "Email + role",
-        agency: "Email, tags, team size"
+        id: "ipsum",
+        feature: "Adipiscing elit",
+        launch: "Sed do",
+        studio: "Eiusmod",
+        agency: "Tempor"
       },
       %{
-        id: "journal",
-        feature: "Journal",
-        launch: "Index",
-        studio: "Index + tags",
-        agency: "Index, tags, RSS"
+        id: "dolor",
+        feature: "Incididunt ut",
+        launch: "Labore",
+        studio: "Et dolore",
+        agency: "Magna aliqua"
       },
       %{
-        id: "npm",
-        feature: "npm for Corex",
-        launch: "None",
-        studio: "None",
-        agency: "None"
+        id: "sit",
+        feature: "Ut enim ad",
+        launch: "Minim",
+        studio: "Veniam",
+        agency: "Quis nostrud"
       },
       %{
-        id: "a11y",
-        feature: "Accessibility dialog",
-        launch: "Yes",
-        studio: "Yes",
-        agency: "Yes"
+        id: "amet",
+        feature: "Exercitation",
+        launch: "Ullamco",
+        studio: "Laboris",
+        agency: "Nisi ut"
       }
     ]
   end

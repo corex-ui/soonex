@@ -49,23 +49,25 @@ defmodule Soonex.Layouts.Articles do
 
   def pager(assigns) do
     ~H"""
-    <.pagination
-      id={@id}
-      class="pagination ui-brand ui-size-sm mt-12"
-      count={@count}
-      page_size={@page_size}
-      type={:button}
-    >
-      <:prev_trigger>
-        <.heroicon name="hero-chevron-left" />
-      </:prev_trigger>
-      <:next_trigger>
-        <.heroicon name="hero-chevron-right" />
-      </:next_trigger>
-      <:ellipsis>
-        <.heroicon name="hero-ellipsis-horizontal" />
-      </:ellipsis>
-    </.pagination>
+    <div class="mt-12 flex justify-center">
+      <.pagination
+        id={@id}
+        class="pagination ui-brand ui-size-sm"
+        count={@count}
+        page_size={@page_size}
+        type={:button}
+      >
+        <:prev_trigger>
+          <.heroicon name="hero-chevron-left" />
+        </:prev_trigger>
+        <:next_trigger>
+          <.heroicon name="hero-chevron-right" />
+        </:next_trigger>
+        <:ellipsis>
+          <.heroicon name="hero-ellipsis-horizontal" />
+        </:ellipsis>
+      </.pagination>
+    </div>
     """
   end
 

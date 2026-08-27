@@ -221,10 +221,10 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Soonex is a Tableau + Corex launch template: waitlist, countdown, and themes you customize in config."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
 
       page[:page_kind] == :blog_index ->
-        "Shipping notes and template log from #{site_name}."
+        "Lorem ipsum dolor sit amet from #{site_name}."
 
       page[:page_kind] == :not_found ->
         "That page is not on #{site_name}."
@@ -239,7 +239,7 @@ defmodule Soonex.RootLayout do
         page[:description]
 
       true ->
-        "#{site_name} is a Tableau + Corex launch template."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     end
   end
 

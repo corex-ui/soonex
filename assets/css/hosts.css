@@ -14,6 +14,21 @@
   width: 100%;
 }
 
+.carousel.ui-width-full {
+  max-height: none;
+  isolation: isolate;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="root"] {
+  aspect-ratio: auto;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="control"] {
+  z-index: 1;
+}
+
 .menu.ui-width-fit [data-scope="menu"][data-part="root"] > [data-scope="menu"][data-part="trigger"] {
   width: auto;
   min-width: var(--ctl-size, var(--spacing-size));

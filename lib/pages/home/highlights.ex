@@ -28,10 +28,10 @@ defmodule Soonex.HomePage.Highlights do
       tone={:root}
     >
       <:title>
-        Latest <span class="text-brand-text">notes</span>
+        Lorem ipsum <span class="text-brand-text">dolor sit</span>
       </:title>
       <:lede>
-        Shipping log for the template. Cards move in a carousel; the full index lives on /blog.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
       <:actions>
         <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand">

@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Soonex">
   <rect width="1200" height="630" fill="#f4f1ea"/>
   <rect x="48" y="48" width="1104" height="534" rx="28" fill="#ece7dc" stroke="#d9d2c4" stroke-width="1"/>
-  <g transform="translate(96 92)" fill="none" stroke="#2F4BDA" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M34.5 11c0-3.15-2.73-5.4-6.82-5.4H18.6C13.92 5.6 10.72 8.7 10.72 13.05c0 3.97 3.08 6.82 7.65 7.12h10.8c1.62 0 2.92 1.23 2.92 2.77s-1.3 2.77-2.92 2.77H18.6c-5.85 0-10.5 4.42-10.5 9.9 0 5.32 4.35 9.37 10.5 9.37h10.05c4.72 0 8.25-3 8.25-6.97"/>
+  <g transform="translate(96 88)" fill="#2F4BDA">
+    <path
+      fill-rule="evenodd"
+      d="M20 4h24a16 16 0 0 1 16 16v24a16 16 0 0 1-16 16H20A16 16 0 0 1 4 44V20A16 16 0 0 1 20 4Zm12 12.5 3.4 10.3 10.3 3.2-10.3 3.2L32 43.5l-3.4-10.3-10.3-3.2 10.3-3.2L32 16.5Z"
+      clip-rule="evenodd"
+    />
   </g>
-  <path transform="translate(96 92)" d="M31.7 6.3 40 3.45l1.57 6.82-4.2-1.35-2.1 2.1-2.7-2.7 2.1-2.1z" fill="#2F4BDA"/>
-  <text x="168" y="148" fill="#1b1c16" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Soonex</text>
-  <text x="96" y="320" fill="#1b1c16" font-family="ui-sans-serif, system-ui, sans-serif" font-size="64" font-weight="800">Publish the launch site first.</text>
-  <text x="96" y="400" fill="#5c5a52" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28">Tableau · Corex · waitlist · 1 September</text>
-  <text x="96" y="528" fill="#5c5a52" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">Four themes in config. Zero npm for Corex hooks.</text>
+  <text x="176" y="148" fill="#1b1c16" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Soonex</text>
+  <text x="96" y="320" fill="#1b1c16" font-family="ui-sans-serif, system-ui, sans-serif" font-size="64" font-weight="800">Lorem ipsum dolor sit amet.</text>
+  <text x="96" y="400" fill="#5c5a52" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28">Consectetur adipiscing elit · 1 September</text>
+  <text x="96" y="528" fill="#5c5a52" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">Sed do eiusmod tempor incididunt ut labore.</text>
 </svg>
