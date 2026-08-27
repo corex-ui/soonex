@@ -23,6 +23,7 @@ export function bindLandingScrollChrome(header, countdown, heroBoundary, progres
 
   let alive = true
   let rafId = null
+  let lastHeaderOffset = ""
 
   const pastReveal = () => {
     if (boundaryEl) {
@@ -52,6 +53,11 @@ export function bindLandingScrollChrome(header, countdown, heroBoundary, progres
       headerEl.toggleAttribute("data-condensed", window.scrollY > condensedPx)
       if (motionReduce()) {
         headerEl.style.transition = "none"
+      }
+      const offset = `${headerEl.getBoundingClientRect().height}px`
+      if (offset !== lastHeaderOffset) {
+        lastHeaderOffset = offset
+        document.documentElement.style.setProperty("--soonex-header-offset", offset)
       }
     }
     showCountdown(pastReveal())

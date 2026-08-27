@@ -35,7 +35,7 @@ defmodule Soonex.HomePage.Kalendarium do
       <ol class="relative m-0 list-none border-s border-border p-0">
         <li :for={beat <- beats()} class="relative min-h-[70svh] ps-10 pb-24 last:pb-0">
           <span class="absolute -start-[5px] top-6 size-2.5 bg-brand [border-radius:var(--radius-full)]"></span>
-          <div class="lg:sticky lg:top-28 z-[1] border-b border-border bg-surface py-4">
+          <div class="soonex-sticky-beat border-b border-border bg-surface py-4">
             <p class="m-0 font-mono text-sm tracking-wide text-brand-text">{beat.moment}</p>
             <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
               {beat.title}

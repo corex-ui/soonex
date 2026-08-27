@@ -64,6 +64,14 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   min-height: var(--spacing-size);
 }
 
+@media (width >= 64rem) {
+  .soonex-sticky-beat {
+    position: sticky;
+    top: var(--soonex-header-offset);
+    z-index: 1;
+  }
+}
+
 /* Header timer stays in flow (invisible until reveal) so the bar never jumps.
    Corex digits flip in a 2em window (`top: calc(var(--value) * -2em)`). Do not
    shrink that window — it clips the strip. Compact the type instead. */
