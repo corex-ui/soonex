@@ -42,25 +42,30 @@ defmodule Soonex.HomePage.Contents do
         </li>
       </ul>
 
-      <div class={"#{Shell.panel()} mt-16 flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"}>
-        <div class="min-w-0">
-          <p class={Shell.eyebrow()}>Lorem ipsum</p>
-          <pre class="mt-3 overflow-x-auto font-mono text-xs/6 text-ink sm:text-sm/6"><code>{@snippet}</code></pre>
+      <div class={"#{Shell.panel()} mt-16 p-6 sm:p-8"}>
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-8">
+          <div class="min-w-0 lg:max-w-sm">
+            <p class={Shell.eyebrow()}>Quick start</p>
+            <p class="mt-2 text-sm/6 text-ink-muted sm:text-base/7">
+              Clone the template, then run mix setup and mix soonex.server.
+            </p>
+          </div>
+          <.clipboard
+            id="soonex-theme-snippet"
+            class="clipboard ui-brand ui-width-full ui-size-md min-w-0 flex-1"
+            value={@snippet}
+          >
+            <:label>Clone</:label>
+            <:copy>
+              <.heroicon name="hero-clipboard" />
+              <span>Copy</span>
+            </:copy>
+            <:copied>
+              <.heroicon name="hero-check" />
+              <span>Copied</span>
+            </:copied>
+          </.clipboard>
         </div>
-        <.clipboard
-          id="soonex-theme-snippet"
-          class="clipboard ui-brand ui-size-sm shrink-0"
-          value={@snippet}
-          input={false}
-          trigger_aria_label="Copy"
-        >
-          <:copy>
-            <.heroicon name="hero-clipboard" />
-          </:copy>
-          <:copied>
-            <.heroicon name="hero-check" />
-          </:copied>
-        </.clipboard>
       </div>
     </.block>
     """
@@ -96,6 +101,6 @@ defmodule Soonex.HomePage.Contents do
   end
 
   defp snippet do
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "git clone https://github.com/corex-ui/soonex.git"
   end
 end
