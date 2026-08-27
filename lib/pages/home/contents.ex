@@ -52,7 +52,7 @@ defmodule Soonex.HomePage.Contents do
           </div>
           <.clipboard
             id="soonex-theme-snippet"
-            class="clipboard ui-brand ui-width-full ui-size-md min-w-0 flex-1"
+            class="clipboard ui-brand ui-solid ui-width-full ui-size-md min-w-0 flex-1"
             value={@snippet}
           >
             <:label>Clone</:label>
