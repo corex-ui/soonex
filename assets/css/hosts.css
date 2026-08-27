@@ -50,7 +50,7 @@
   justify-content: center;
 }
 
-.select.soonex-nav-select [data-scope="select"][data-part="item-text"] {
+.select.soonex-nav-select [data-scope="select"][data-part="trigger"] > [data-part="item-text"] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -60,6 +60,12 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.select.soonex-nav-select [data-scope="select"][data-part="content"] {
+  z-index: 60;
+  min-width: var(--container-3xs);
+  width: max-content;
 }
 
 .native-input [data-scope="native-input"][data-part="label"]:has(.sr-only),
