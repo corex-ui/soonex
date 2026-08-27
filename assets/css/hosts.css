@@ -97,8 +97,9 @@
 }
 
 .soonex-a11y-trigger svg {
-  width: var(--text-2xl);
-  height: var(--text-2xl);
+  /* Corex buttons pin child SVGs to 1em !important; fill the circle instead. */
+  width: var(--ctl-size, var(--spacing-size)) !important;
+  height: var(--ctl-size, var(--spacing-size)) !important;
 }
 
 .menu.ui-width-fit [data-scope="menu"][data-part="root"] > [data-scope="menu"][data-part="trigger"] {

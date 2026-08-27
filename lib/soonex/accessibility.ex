@@ -136,7 +136,6 @@ defmodule Soonex.Accessibility do
           stroke-width="1.75"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="size-6"
           aria-hidden="true"
         >
           <circle cx="12" cy="12" r="9.25" />
