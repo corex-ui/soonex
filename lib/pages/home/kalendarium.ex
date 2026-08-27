@@ -76,7 +76,7 @@ defmodule Soonex.HomePage.Kalendarium do
                 </.navigate>
               </nav>
             </div>
-            <aside class="flex min-w-0 flex-col gap-4 lg:col-span-5">
+            <div class="flex min-w-0 flex-col gap-4 lg:col-span-5">
               <div :if={beat.cards != []} class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
                 <article
                   :for={card <- beat.cards}
@@ -95,7 +95,7 @@ defmodule Soonex.HomePage.Kalendarium do
                 class={"#{Shell.data_list()}"}
                 items={Corex.Content.new(beat.facts)}
               />
-            </aside>
+            </div>
           </div>
         </li>
       </ol>
