@@ -51,6 +51,12 @@ defmodule Soonex.HomePage.Kalendarium do
               >
                 <li :for={point <- beat.points}>{point}</li>
               </ul>
+              <blockquote :if={beat.quote} class={"#{Shell.panel()} p-6 sm:p-8"}>
+                <p class="soonex-quote display m-0 text-balance text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl">
+                  “{beat.quote.text}”
+                </p>
+                <footer class="mt-4 text-sm/6 text-ink-muted">{beat.quote.cite}</footer>
+              </blockquote>
               <div :if={beat.image} class={"#{Shell.frame()} relative mt-2 min-h-56 overflow-hidden"}>
                 <.photo
                   src={beat.image.src}
@@ -71,12 +77,6 @@ defmodule Soonex.HomePage.Kalendarium do
               </nav>
             </div>
             <aside class="flex min-w-0 flex-col gap-4 lg:col-span-5">
-              <blockquote :if={beat.quote} class={"#{Shell.panel()} p-6 sm:p-8"}>
-                <p class="soonex-quote display m-0 text-balance text-xl font-semibold leading-snug tracking-tight text-ink sm:text-2xl">
-                  “{beat.quote.text}”
-                </p>
-                <footer class="mt-4 text-sm/6 text-ink-muted">{beat.quote.cite}</footer>
-              </blockquote>
               <div :if={beat.cards != []} class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1">
                 <article
                   :for={card <- beat.cards}
