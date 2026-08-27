@@ -4,7 +4,6 @@ defmodule Soonex.HomePage.Waitlist do
   use Phoenix.Component
   use Corex
 
-  import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
 
   alias Soonex.Layouts.Shell
@@ -26,104 +25,93 @@ defmodule Soonex.HomePage.Waitlist do
       <:lede>
         Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </:lede>
-      <div class="mx-auto flex w-full max-w-lg flex-col gap-6">
-        <div class={"#{Shell.frame()} relative min-h-56 overflow-hidden sm:min-h-64"}>
-          <.photo
-            src="/images/photos/orbit.jpg"
-            alt="Earth from orbit against a dark sky"
-            width={1400}
-            height={900}
-            class="absolute inset-0 size-full"
-          />
+      <form
+        id="soonex-waitlist-form"
+        class={"#{Shell.panel()} mx-auto w-full max-w-lg p-8 sm:p-10"}
+        data-waitlist-toast-title="You're on the list"
+        data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+      >
+        <div class="flex w-full flex-col items-stretch gap-5">
+          <.native_input
+            type="email"
+            name="waitlist[email]"
+            id="soonex-waitlist-email"
+            required
+            autocomplete="email"
+            placeholder="you@studio.dev"
+            class="native-input ui-size-md ui-width-full"
+          >
+            <:label class="sr-only">Email</:label>
+          </.native_input>
+
+          <.select
+            id="soonex-waitlist-role"
+            name="waitlist[role]"
+            class="select ui-brand ui-size-md ui-width-full"
+            value={["founder"]}
+            positioning={
+              %Corex.Positioning{
+                placement: "bottom-start",
+                same_width: true
+              }
+            }
+            items={@role_items}
+          >
+            <:label>Role</:label>
+            <:trigger>
+              <.heroicon name="hero-chevron-down" />
+            </:trigger>
+          </.select>
+
+          <.tags_input
+            id="soonex-waitlist-interests"
+            name="waitlist[interests]"
+            class="tags-input ui-brand ui-width-full"
+            value={[]}
+            translation={
+              %Corex.TagsInput.Translation{
+                placeholder: "Add an interest and press Enter"
+              }
+            }
+          >
+            <:label>Interests</:label>
+            <:close>
+              <.heroicon name="hero-x-mark" />
+            </:close>
+          </.tags_input>
+
+          <.number_input
+            id="soonex-waitlist-team"
+            name="waitlist[team_size]"
+            class="number-input ui-brand ui-width-full"
+            min={1.0}
+            max={200.0}
+            step={1.0}
+            value="2"
+          >
+            <:label>Team size</:label>
+            <:decrement_trigger>
+              <.heroicon name="hero-chevron-down" class="icon" />
+            </:decrement_trigger>
+            <:increment_trigger>
+              <.heroicon name="hero-chevron-up" class="icon" />
+            </:increment_trigger>
+          </.number_input>
+
+          <.switch
+            id="soonex-waitlist-notes"
+            name="waitlist[notes]"
+            checked
+            class="switch ui-brand"
+          >
+            <:label>Email me launch notes</:label>
+          </.switch>
+
+          <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
+            Join waitlist
+          </button>
         </div>
-        <form
-          id="soonex-waitlist-form"
-          class={"#{Shell.panel()} w-full p-8 sm:p-10"}
-          data-waitlist-toast-title="You're on the list"
-          data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
-        >
-          <div class="flex w-full flex-col items-stretch gap-5">
-            <.native_input
-              type="email"
-              name="waitlist[email]"
-              id="soonex-waitlist-email"
-              required
-              autocomplete="email"
-              placeholder="you@studio.dev"
-              class="native-input ui-size-md ui-width-full"
-            >
-              <:label class="sr-only">Email</:label>
-            </.native_input>
-
-            <.select
-              id="soonex-waitlist-role"
-              name="waitlist[role]"
-              class="select ui-brand ui-size-md ui-width-full"
-              value={["founder"]}
-              positioning={
-                %Corex.Positioning{
-                  placement: "bottom-start",
-                  same_width: true
-                }
-              }
-              items={@role_items}
-            >
-              <:label>Role</:label>
-              <:trigger>
-                <.heroicon name="hero-chevron-down" />
-              </:trigger>
-            </.select>
-
-            <.tags_input
-              id="soonex-waitlist-interests"
-              name="waitlist[interests]"
-              class="tags-input ui-brand ui-width-full"
-              value={[]}
-              translation={
-                %Corex.TagsInput.Translation{
-                  placeholder: "Add an interest and press Enter"
-                }
-              }
-            >
-              <:label>Interests</:label>
-              <:close>
-                <.heroicon name="hero-x-mark" />
-              </:close>
-            </.tags_input>
-
-            <.number_input
-              id="soonex-waitlist-team"
-              name="waitlist[team_size]"
-              class="number-input ui-brand ui-width-full"
-              min={1.0}
-              max={200.0}
-              step={1.0}
-              value="2"
-            >
-              <:label>Team size</:label>
-              <:decrement_trigger>
-                <.heroicon name="hero-chevron-down" class="icon" />
-              </:decrement_trigger>
-              <:increment_trigger>
-                <.heroicon name="hero-chevron-up" class="icon" />
-              </:increment_trigger>
-            </.number_input>
-
-            <.switch
-              id="soonex-waitlist-notes"
-              name="waitlist[notes]"
-              checked
-              class="switch ui-brand"
-            >
-              <:label>Email me launch notes</:label>
-            </.switch>
-
-            <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
-              Join waitlist
-            </button>
-          </div>
-        </form>
-      </div>
+      </form>
     </.block>
     """
   end
