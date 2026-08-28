@@ -33,7 +33,7 @@ defmodule Soonex.HomePage.Officia do
           <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
           <ul class={Shell.feature_list()}>
             <li :for={item <- plan.items} class="flex items-start gap-3">
-              <span class="badge ui-brand ui-ghost ui-size-sm shrink-0">{item.label}</span>
+              <span class="badge ui-brand ui-size-sm shrink-0">{item.label}</span>
               <span class="min-w-0 text-sm/6 text-ink-muted">{item.content}</span>
             </li>
           </ul>

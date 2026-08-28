@@ -44,7 +44,7 @@ defmodule Soonex.HomePage.Kalendarium do
           <div class="mt-6 flex min-w-0 flex-col gap-4">
             <p class="m-0 text-base/7 text-ink-muted">{beat.lede}</p>
             <div :if={beat.facts != []} class={"#{Shell.chip_row()} mt-1"}>
-              <span :for={fact <- beat.facts} class="badge ui-accent ui-ghost ui-size-sm">
+              <span :for={fact <- beat.facts} class="badge ui-brand ui-size-sm">
                 {fact.label}: {fact.content}
               </span>
             </div>

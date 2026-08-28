@@ -121,17 +121,31 @@
   width: 100%;
 }
 
+.tabs.ui-width-full {
+  max-width: none;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="root"] {
+  width: 100%;
+}
+
 .tabs.ui-width-full [data-scope="tabs"][data-part="list"] {
+  display: flex;
   width: 100%;
   max-width: none;
   flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
 }
 
 .tabs.ui-width-full [data-scope="tabs"][data-part="trigger"] {
-  flex: 1 1 0%;
-  width: auto;
+  display: flex;
+  flex: 1 1 0;
+  width: 0;
   min-width: 0;
+  max-width: none;
   justify-content: center;
+  text-align: center;
 }
 
 .tabs.ui-width-full [data-scope="tabs"][data-part="content"][data-orientation="horizontal"] {
@@ -246,6 +260,27 @@ pre.code.code--wide {
   same recipe on button/badge/toggle) onto Soonex's per-theme corner.
 */
 @layer utilities {
+  .tabs.ui-width-full {
+    max-width: none;
+    width: 100%;
+  }
+
+  .tabs.ui-width-full [data-scope="tabs"][data-part="list"] {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .tabs.ui-width-full [data-scope="tabs"][data-part="trigger"] {
+    display: flex;
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    max-width: none;
+    justify-content: center;
+  }
+
   .ui-trigger--square {
     border-radius: var(--soonex-ctl-radius, var(--radius-md));
     --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
