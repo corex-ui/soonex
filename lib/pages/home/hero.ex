@@ -16,7 +16,7 @@ defmodule Soonex.HomePage.Hero do
       data-hero-boundary
     >
       <div class={Shell.stage()}>
-        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-8">
           <div class="flex w-full flex-col justify-center lg:col-span-5" data-hero>
             <h1 id="soonex-headline" class="text-pretty">
               Soonex <span class="text-brand-text">ships 1 September.</span>
@@ -35,27 +35,10 @@ defmodule Soonex.HomePage.Hero do
                 Read the log <.heroicon name="hero-arrow-up-right" />
               </.navigate>
             </div>
-
-            <div class="mt-10 flex items-center gap-4">
-              <div class="soonex-avatars">
-                <.avatar
-                  :for={person <- people()}
-                  id={person.id}
-                  src={Soonex.Public.path(person.src)}
-                  alt={person.alt}
-                  class="avatar ui-size-sm"
-                >
-                  <:fallback>{person.initials}</:fallback>
-                </.avatar>
-              </div>
-              <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
-                Studios already cloning the repo for a 1 September launch.
-              </p>
-            </div>
           </div>
 
           <div class="lg:col-span-7">
-            <div class={"#{Shell.frame()} relative min-h-[22rem] sm:min-h-[28rem] lg:min-h-[32rem]"}>
+            <div class={"#{Shell.frame()} relative min-h-[28rem] lg:min-h-[36rem]"}>
               <.photo
                 src="/images/photos/hero.jpg"
                 alt="Sunlit studio with long work tables and hanging task lamps"
@@ -64,6 +47,82 @@ defmodule Soonex.HomePage.Hero do
                 class="absolute inset-0 size-full"
                 loading="eager"
               />
+              <div class="relative z-[1] flex min-h-[28rem] flex-col justify-between gap-6 p-4 sm:p-6 lg:min-h-[36rem]">
+                <div class="flex flex-1 items-center justify-center">
+                  <div class={"#{Shell.panel()} w-full max-w-md p-5 sm:p-6"}>
+                    <small class={Shell.eyebrow()}>Waitlist</small>
+                    <h2 class="mt-1 text-pretty">
+                      Reserve a September seat
+                    </h2>
+                    <p class="lede mt-2">
+                      This demo does not collect addresses. Submit still shows the launch toast.
+                    </p>
+
+                    <form
+                      id="soonex-hero-waitlist-form"
+                      class="mt-5 flex w-full flex-col items-stretch gap-4"
+                      data-waitlist-toast-title="You're on the list"
+                      data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+                    >
+                      <.native_input
+                        type="email"
+                        name="waitlist[email]"
+                        id="soonex-hero-waitlist-email"
+                        required
+                        autocomplete="email"
+                        placeholder="you@studio.dev"
+                        class="native-input ui-size-md ui-width-full"
+                      >
+                        <:label class="sr-only">Email</:label>
+                      </.native_input>
+
+                      <.radio_group
+                        id="soonex-hero-role"
+                        name="waitlist[role]"
+                        class="radio-group ui-brand ui-width-full"
+                        value="founder"
+                        items={[
+                          %{value: "founder", label: "Founder"},
+                          %{value: "engineer", label: "Engineer"},
+                          %{value: "designer", label: "Designer"}
+                        ]}
+                      >
+                        <:label><span class="sr-only">I am a</span></:label>
+                      </.radio_group>
+
+                      <.switch
+                        id="soonex-hero-notes"
+                        name="waitlist[notes]"
+                        checked
+                        class="switch ui-brand"
+                      >
+                        <:label>Email me launch notes</:label>
+                      </.switch>
+
+                      <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
+                        Join waitlist
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div class={"#{Shell.panel()} flex w-full max-w-md items-center gap-4 self-center p-3 sm:px-4 sm:py-3"}>
+                  <div class="soonex-avatars">
+                    <.avatar
+                      :for={person <- people()}
+                      id={person.id}
+                      src={Soonex.Public.path(person.src)}
+                      alt={person.alt}
+                      class="avatar ui-size-sm"
+                    >
+                      <:fallback>{person.initials}</:fallback>
+                    </.avatar>
+                  </div>
+                  <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
+                    Studios already cloning the repo for a 1 September launch.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
