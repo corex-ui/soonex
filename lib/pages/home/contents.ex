@@ -27,7 +27,7 @@ defmodule Soonex.HomePage.Contents do
       </:lede>
       <.tabs
         id="soonex-product-tabs"
-        class="tabs tabs--wide ui-brand ui-size-md"
+        class="tabs ui-brand ui-size-md ui-width-full"
         indicator
         value="overview"
         items={product_tabs()}

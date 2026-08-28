@@ -43,11 +43,11 @@ defmodule Soonex.HomePage.Kalendarium do
           </div>
           <div class="mt-6 flex min-w-0 flex-col gap-4">
             <p class="m-0 text-base/7 text-ink-muted">{beat.lede}</p>
-            <.data_list
-              :if={beat.facts != []}
-              class={Shell.data_list()}
-              items={Corex.Content.new(beat.facts)}
-            />
+            <div :if={beat.facts != []} class={"#{Shell.chip_row()} mt-1"}>
+              <span :for={fact <- beat.facts} class="badge ui-accent ui-ghost ui-size-sm">
+                {fact.label}: {fact.content}
+              </span>
+            </div>
             <.collapsible
               id={beat.note_id}
               class="collapsible ui-brand ui-size-sm ui-width-full"

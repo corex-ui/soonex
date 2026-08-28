@@ -2,7 +2,6 @@ defmodule Soonex.HomePage.Numeri do
   @moduledoc false
 
   use Phoenix.Component
-  use Corex
 
   import Soonex.Layouts.Section, only: [block: 1]
 
@@ -23,17 +22,25 @@ defmodule Soonex.HomePage.Numeri do
       <:lede>
         No vanity counters. These are the numbers this template ships with.
       </:lede>
-      <.data_list class={Shell.data_list()} items={facts()} />
+      <div class={Shell.stat_grid()}>
+        <article :for={fact <- facts()} class={Shell.stat()}>
+          <p class="m-0 text-sm font-semibold tracking-wide text-brand-text">{fact.label}</p>
+          <p class="display m-0 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            {fact.value}
+          </p>
+          <p class="m-0 text-sm/6 text-ink-muted">{fact.detail}</p>
+        </article>
+      </div>
     </.block>
     """
   end
 
   defp facts do
-    Corex.Content.new([
-      %{label: "Themes", content: "4 — neo, uno, duo, leo"},
-      %{label: "Journal", content: "6 shipping-log posts"},
-      %{label: "npm", content: "0 — Mix, Tailwind, esbuild"},
-      %{label: "Launch", content: "1 September"}
-    ])
+    [
+      %{label: "Themes", value: "4", detail: "neo, uno, duo, leo"},
+      %{label: "Journal", value: "6", detail: "Shipping-log posts"},
+      %{label: "npm", value: "0", detail: "Mix, Tailwind, esbuild"},
+      %{label: "Launch", value: "1 Sep", detail: "Countdown target"}
+    ]
   end
 end

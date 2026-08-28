@@ -50,5 +50,11 @@ defmodule Soonex.Layouts.Shell do
 
   def frame, do: "soonex-frame relative overflow-hidden"
 
-  def data_list, do: "data-list data-list--wide ui-accent ui-size-md w-full max-w-none"
+  def stat_grid, do: "grid grid-cols-2 gap-4 lg:grid-cols-4"
+
+  def stat, do: "#{panel()} flex min-h-36 flex-col justify-between gap-6 p-6 sm:p-8"
+
+  def feature_list, do: "m-0 mt-6 flex list-none flex-col gap-3 p-0"
+
+  def chip_row, do: "flex flex-wrap items-center gap-2"
 end

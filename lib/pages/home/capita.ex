@@ -2,7 +2,6 @@ defmodule Soonex.HomePage.Capita do
   @moduledoc false
 
   use Phoenix.Component
-  use Corex
 
   import Soonex.Layouts.Media, only: [photo: 1]
   import Soonex.Layouts.Section, only: [block: 1]
@@ -52,7 +51,6 @@ defmodule Soonex.HomePage.Capita do
           </article>
         </div>
       </div>
-      <.data_list class={"#{Shell.data_list()} mt-4"} items={ships()} />
     </.block>
     """
   end
@@ -72,14 +70,5 @@ defmodule Soonex.HomePage.Capita do
           "Select, accordion, tabs, carousel, and the waitlist fields are upstream Corex. Host CSS only retunes layout tokens."
       }
     ]
-  end
-
-  defp ships do
-    Corex.Content.new([
-      %{label: "Waitlist", content: "Email, role, interests, team size, launch notes, toast"},
-      %{label: "Themes", content: "neo, uno, duo, and leo from config overlays"},
-      %{label: "Journal", content: "Six shipping-log posts and tag pages"},
-      %{label: "Chrome", content: "Countdown, accessibility, Template Options"}
-    ])
   end
 end

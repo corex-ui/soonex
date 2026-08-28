@@ -3,6 +3,7 @@
 [data-theme] {
   --soonex-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --soonex-header-offset: calc(var(--spacing-size) + 1.5rem);
+  --soonex-ctl-radius: var(--radius-lg);
 }
 
 .button,
@@ -120,10 +121,22 @@
   width: 100%;
 }
 
-.tabs.tabs--wide [data-scope="tabs"][data-part="list"] {
+.tabs.ui-width-full [data-scope="tabs"][data-part="list"] {
   width: 100%;
   max-width: none;
-  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="trigger"] {
+  flex: 1 1 0%;
+  width: auto;
+  min-width: 0;
+  justify-content: center;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="content"][data-orientation="horizontal"] {
+  border-end-start-radius: var(--soonex-ctl-radius, var(--radius-md));
+  border-end-end-radius: var(--soonex-ctl-radius, var(--radius-md));
 }
 
 .carousel.ui-width-full [data-scope="carousel"][data-part="item"] {
@@ -166,98 +179,26 @@ pre.code.code--wide {
 }
 
 /*
-  Per-theme ui-* personality. Corex recipes read --ctl-radius from
-  ui-rounded-*; these host rules retune that axis so neo/uno/duo/leo
-  do not share one corner language.
+  Shared Soonex radius. :where() keeps specificity at 0 so ui-rounded-*
+  on a host still wins. Circles stay full.
 */
-[data-theme="neo"] :is(
-  .button,
-  .badge,
-  .native-input,
-  .avatar,
-  .menu,
-  .select,
-  .tabs,
-  .toast,
-  .pagination,
-  .clipboard,
-  .accordion,
-  .collapsible,
-  .carousel,
-  .date-picker,
-  .tags-input,
-  .number-input,
-  .radio-group,
-  .data-table,
-  .switch,
-  .checkbox,
-  .timer,
-  .tooltip,
-  .dialog,
-  .floating-panel
-) {
-  --ctl-radius: var(--radius-xl);
+[data-theme="neo"] {
+  --soonex-ctl-radius: var(--radius-xl);
 }
 
-[data-theme="uno"] :is(
-  .button,
-  .badge,
-  .native-input,
-  .avatar,
-  .menu,
-  .select,
-  .tabs,
-  .toast,
-  .pagination,
-  .clipboard,
-  .accordion,
-  .collapsible,
-  .carousel,
-  .date-picker,
-  .tags-input,
-  .number-input,
-  .radio-group,
-  .data-table,
-  .switch,
-  .checkbox,
-  .timer,
-  .tooltip,
-  .dialog,
-  .floating-panel
-) {
-  --ctl-radius: var(--radius-sm);
+[data-theme="uno"] {
+  --soonex-ctl-radius: var(--radius-sm);
 }
 
-[data-theme="duo"] :is(
-  .button,
-  .badge,
-  .native-input,
-  .avatar,
-  .menu,
-  .select,
-  .tabs,
-  .toast,
-  .pagination,
-  .clipboard,
-  .accordion,
-  .collapsible,
-  .carousel,
-  .date-picker,
-  .tags-input,
-  .number-input,
-  .radio-group,
-  .data-table,
-  .switch,
-  .checkbox,
-  .timer,
-  .tooltip,
-  .dialog,
-  .floating-panel
-) {
-  --ctl-radius: var(--radius-3xl);
+[data-theme="duo"] {
+  --soonex-ctl-radius: var(--radius-3xl);
 }
 
-[data-theme="leo"] :is(
+[data-theme="leo"] {
+  --soonex-ctl-radius: var(--radius-none);
+}
+
+:where(
   .button,
   .badge,
   .native-input,
@@ -282,8 +223,8 @@ pre.code.code--wide {
   .tooltip,
   .dialog,
   .floating-panel
-) {
-  --ctl-radius: var(--radius-none);
+):not(.ui-trigger--circle) {
+  --ctl-radius: var(--soonex-ctl-radius);
 }
 
 [data-theme="leo"] :is(.button, .badge) {
@@ -298,4 +239,30 @@ pre.code.code--wide {
 [data-theme="duo"] blockquote,
 [data-theme="duo"] .soonex-quote {
   font-family: var(--font-serif);
+}
+
+/*
+  Corex pins ui-trigger--square to radius-sm. Map square triggers (and the
+  same recipe on button/badge/toggle) onto Soonex's per-theme corner.
+*/
+@layer utilities {
+  .ui-trigger--square {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .button.ui-trigger--square,
+  .badge.ui-trigger--square {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .toggle.ui-trigger--square [data-scope="toggle"][data-part="root"] {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .ui-solid:not(.ui-trigger--square):not(.ui-trigger--circle) {
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-lg));
+  }
 }

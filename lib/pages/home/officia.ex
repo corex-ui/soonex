@@ -31,7 +31,12 @@ defmodule Soonex.HomePage.Officia do
           <p class={Shell.eyebrow()}>{plan.name}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{plan.headline}</h3>
           <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
-          <.data_list class={"#{Shell.data_list()} mt-6"} items={Corex.Content.new(plan.items)} />
+          <ul class={Shell.feature_list()}>
+            <li :for={item <- plan.items} class="flex items-start gap-3">
+              <span class="badge ui-brand ui-ghost ui-size-sm shrink-0">{item.label}</span>
+              <span class="min-w-0 text-sm/6 text-ink-muted">{item.content}</span>
+            </li>
+          </ul>
           <.navigate to="#epistula" class={"#{plan.cta_class} mt-8 w-full"}>
             {plan.cta}
           </.navigate>

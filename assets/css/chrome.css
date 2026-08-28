@@ -116,7 +116,7 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
 }
 
 .soonex-frame {
-  border-radius: var(--radius-2xl);
+  border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
 }
 
 .soonex-photo {
@@ -153,45 +153,4 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   display: block;
   height: var(--spacing-size);
   width: auto;
-}
-
-.data-list.data-list--wide,
-.tabs.tabs--wide {
-  max-width: none;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="item"] {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="label"] {
-  min-width: 4.5rem;
-  max-width: 8rem;
-  width: auto;
-  flex: 0 0 auto;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="content"] {
-  display: flex;
-  flex: 1 1 0%;
-  width: auto;
-  min-width: 0;
-  align-items: center;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="content"]
-  .link {
-  max-width: none;
-  width: 100%;
 }
