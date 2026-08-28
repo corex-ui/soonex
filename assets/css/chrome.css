@@ -105,7 +105,7 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   .timer.ui-size-md,
   .timer.ui-size-lg {
     --timer-digit: var(--text-xl);
-    --timer-digit-leading: var(--text-xl--line-height);
+    --timer-digit-leading: 2;
   }
 
   .timer [data-scope="timer"][data-part="area"] {
