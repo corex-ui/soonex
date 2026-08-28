@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Section do
     >
       <div class={stage_class(@layout)}>
         <div class={intro_class(@layout, @align)}>
-          <p class={Shell.eyebrow()}>{@eyebrow}</p>
+          <small class={Shell.eyebrow()}>{@eyebrow}</small>
           <h2 id={@labelledby} class={Shell.section_heading()}>
             {render_slot(@title)}
           </h2>

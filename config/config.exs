@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Tableau + Corex launch template: waitlist, countdown, and themes you customize in config."
+    "A waitlist you can fork. Four themes in config. A journal. A countdown aimed at 1 September."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -195,20 +195,34 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter}
+          letter_spacing: {:tracking, :tighter},
+          font_size: {:text, :"5xl"},
+          sm: %{font_size: {:text, :"6xl"}},
+          lg: %{font_size: {:text, :"8xl"}}
         },
         "h2" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight}
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"4xl"},
+          sm: %{font_size: {:text, :"5xl"}}
         },
-        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "h3" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :semibold},
+          font_size: {:text, :xl}
+        },
         "h4" => %{font_family: {:font, :sans}, font_weight: {:weight, :semibold}},
         "p" => %{line_height: {:leading, :relaxed}},
-        "p.display" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter}
+        "p.lede" => %{
+          font_size: {:text, :lg},
+          line_height: {:leading, :relaxed},
+          color: "var(--color-ink-muted)"
+        },
+        "small.eyebrow" => %{
+          font_weight: {:weight, :semibold},
+          font_size: {:text, :base},
+          color: "var(--color-brand-text)"
         },
         "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
@@ -278,13 +292,32 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tight}
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"4xl"},
+          sm: %{font_size: {:text, :"5xl"}},
+          lg: %{font_size: {:text, :"6xl"}}
         },
-        "h2" => %{font_family: {:font, :display}, letter_spacing: {:tracking, :tight}},
+        "h2" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :semibold},
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"3xl"},
+          sm: %{font_size: {:text, :"4xl"}}
+        },
         "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :medium}},
         "h4" => %{font_weight: {:weight, :medium}},
         "p" => %{line_height: {:leading, :snug}},
-        "p.display" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "p.lede" => %{
+          font_size: {:text, :lg},
+          line_height: {:leading, :snug},
+          color: "var(--color-ink-muted)"
+        },
+        "small.eyebrow" => %{
+          font_weight: {:weight, :medium},
+          font_size: {:text, :sm},
+          letter_spacing: {:tracking, :wide},
+          color: "var(--color-brand-text)"
+        },
         "blockquote" => %{font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}
@@ -353,16 +386,31 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight}
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"5xl"},
+          sm: %{font_size: {:text, :"6xl"}},
+          lg: %{font_size: {:text, :"7xl"}}
         },
-        "h2" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "h2" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :semibold},
+          font_size: {:text, :"4xl"},
+          sm: %{font_size: {:text, :"5xl"}}
+        },
         "h3" => %{font_family: {:font, :display}},
         "h4" => %{font_family: {:font, :serif}, font_weight: {:weight, :medium}},
         "p" => %{line_height: {:leading, :relaxed}},
-        "p.display" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight}
+        "p.lede" => %{
+          font_family: {:font, :serif},
+          font_style: :italic,
+          font_size: {:text, :lg},
+          line_height: {:leading, :relaxed},
+          color: "var(--color-ink-muted)"
+        },
+        "small.eyebrow" => %{
+          font_family: {:font, :sans},
+          font_weight: {:weight, :semibold},
+          color: "var(--color-brand-text)"
         },
         "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
@@ -429,16 +477,38 @@ config :corex_design,
         }
       },
       typography: %{
-        "h1" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
-        "h2" => %{font_weight: {:weight, :semibold}},
+        "h1" => %{
+          font_weight: {:weight, :semibold},
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"4xl"},
+          sm: %{font_size: {:text, :"5xl"}},
+          lg: %{font_size: {:text, :"6xl"}}
+        },
+        "h2" => %{
+          font_weight: {:weight, :semibold},
+          font_size: {:text, :"3xl"},
+          sm: %{font_size: {:text, :"4xl"}}
+        },
         "h3" => %{font_weight: {:weight, :medium}},
         "h4" => %{
           font_weight: {:weight, :medium},
           letter_spacing: {:tracking, :widest},
-          font_size: {:text, :sm}
+          font_size: {:text, :sm},
+          text_transform: "uppercase"
         },
         "p" => %{line_height: {:leading, :snug}},
-        "p.display" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
+        "p.lede" => %{
+          font_size: {:text, :lg},
+          line_height: {:leading, :snug},
+          color: "var(--color-ink-muted)"
+        },
+        "small.eyebrow" => %{
+          font_weight: {:weight, :medium},
+          font_size: {:text, :sm},
+          letter_spacing: {:tracking, :widest},
+          text_transform: "uppercase",
+          color: "var(--color-brand-text)"
+        },
         "blockquote" => %{font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}

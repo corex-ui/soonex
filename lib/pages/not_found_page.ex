@@ -25,11 +25,11 @@ defmodule Soonex.NotFoundPage do
       <div class={Shell.stage()}>
         <div class={"#{Shell.panel()} mx-auto flex max-w-lg flex-col items-center gap-6 px-8 py-16"}>
           <.lockup />
-          <p class={Shell.eyebrow()}>404</p>
-          <h1 id="soonex-not-found-heading" class="display m-0 text-4xl font-semibold tracking-tight">
+          <small class={Shell.eyebrow()}>404</small>
+          <h1 id="soonex-not-found-heading" class="m-0 text-pretty">
             Page not found
           </h1>
-          <p class="m-0 max-w-sm text-base/7 text-ink-muted">
+          <p class="lede m-0 max-w-sm">
             That URL is not on Soonex. Head home for the waitlist, or read the shipping log.
           </p>
           <div class="mt-4 flex flex-wrap items-center justify-center gap-4">

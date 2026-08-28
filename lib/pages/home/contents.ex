@@ -22,8 +22,8 @@ defmodule Soonex.HomePage.Contents do
         Fork once. <span class="text-brand-text">Theme in config.</span>
       </:title>
       <:lede>
-        Soonex is a static Tableau site with Corex controls already on the page. No LiveView events,
-        no npm, no forked component CSS.
+        Static on purpose. Tableau builds the pages. Corex runs the controls. You replace the stills
+        and the date.
       </:lede>
       <.tabs
         id="soonex-product-tabs"
@@ -36,8 +36,8 @@ defmodule Soonex.HomePage.Contents do
       <div class={"#{Shell.panel()} mt-12 p-6 sm:p-8"}>
         <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-8">
           <div class="min-w-0 lg:max-w-sm">
-            <p class={Shell.eyebrow()}>Quick start</p>
-            <p class="mt-2 text-sm/6 text-ink-muted sm:text-base/7">
+            <small class={Shell.eyebrow()}>Quick start</small>
+            <p class="lede mt-2">
               Clone the template, then run mix setup and mix soonex.server.
             </p>
           </div>
@@ -68,19 +68,19 @@ defmodule Soonex.HomePage.Contents do
         value: "overview",
         label: "Overview",
         content:
-          "A waitlist landing page, a Markdown journal, countdown chrome, and the Corex controls already wired on this page. Photography, copy, and the launch date are yours to replace."
+          "Static on purpose. Tableau builds the pages. Corex runs the controls. You replace the stills and the date."
       },
       %{
         value: "themes",
         label: "Themes",
         content:
-          "neo, uno, duo, and leo live in config. Template Options switches them on this device so they read as four products, not four tints. Host CSS retunes layout; it does not copy Corex recipes."
+          "neo is a gallery. uno is a spa. duo is a salon. leo is a print shop. Template Options is the client review."
       },
       %{
         value: "mix",
         label: "Mix",
         content:
-          "Mix, Tailwind, and esbuild already in the project are enough. There is no package.json and no Lenis. Host scripts bind the header, the waitlist toast, and journal pagination on the client."
+          "Mix, Tailwind, esbuild. There is no package.json. Host CSS retunes layout. Recipes stay upstream."
       }
     ])
   end

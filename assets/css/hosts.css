@@ -246,13 +246,68 @@ pre.code.code--wide {
   text-transform: uppercase;
 }
 
-[data-theme="uno"] .display {
+[data-theme="uno"] h1,
+[data-theme="uno"] h2,
+[data-theme="uno"] .soonex-quote,
+[data-theme="uno"] .soonex-stat-value {
   letter-spacing: -0.03em;
 }
 
 [data-theme="duo"] blockquote,
 [data-theme="duo"] .soonex-quote {
   font-family: var(--font-serif);
+  font-style: italic;
+}
+
+.soonex-lockup-word {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.soonex-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--text-xl--line-height);
+  color: var(--color-ink);
+}
+
+.soonex-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
+@media (min-width: 64rem) {
+  .soonex-quote {
+    font-size: var(--text-4xl);
+  }
+}
+
+.soonex-stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+small.eyebrow {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-text);
+}
+
+[data-theme="leo"] small.eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
 }
 
 /*

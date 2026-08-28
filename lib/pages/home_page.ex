@@ -34,9 +34,9 @@ defmodule Soonex.HomePage do
       <.hero countdown_ms={@countdown_ms} />
       <.contents />
       <.capita />
+      <.voces />
       <.officia />
       <.kalendarium />
-      <.voces />
       <.numeri />
       <.highlights posts={@posts} />
       <.faq />

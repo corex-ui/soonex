@@ -26,8 +26,8 @@ defmodule Soonex.Layouts.Root.Footer do
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
           <div class="max-w-md">
             <.lockup />
-            <p class="mt-6 text-sm/6 text-ink-muted">
-              The first Corex plus Tableau waitlist template. Fork, theme, and ship 1 September.
+            <p class="lede mt-6">
+              A waitlist you can fork. Four themes. A journal. Ship 1 September.
             </p>
             <ul class="soonex-toolchain mt-8">
               <li :for={mark <- @toolchain}>

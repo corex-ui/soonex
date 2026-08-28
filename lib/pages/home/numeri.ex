@@ -24,11 +24,11 @@ defmodule Soonex.HomePage.Numeri do
       </:lede>
       <div class={Shell.stat_grid()}>
         <article :for={fact <- facts()} class={Shell.stat()}>
-          <p class="m-0 text-sm font-semibold tracking-wide text-brand-text">{fact.label}</p>
-          <p class="display m-0 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {fact.value}
+          <p class="m-0">
+            <small class="eyebrow">{fact.label}</small>
           </p>
-          <p class="m-0 text-sm/6 text-ink-muted">{fact.detail}</p>
+          <p class="soonex-stat-value m-0">{fact.value}</p>
+          <p class="lede m-0">{fact.detail}</p>
         </article>
       </div>
     </.block>

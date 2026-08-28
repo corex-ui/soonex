@@ -17,7 +17,7 @@ defmodule Soonex.Layouts.Brand do
       class={["link ui-nav ui-size-md flex items-center gap-2 no-underline", @class]}
     >
       <.mark class="size-8 shrink-0" />
-      <span class="display text-lg font-semibold tracking-tight text-ink">Soonex</span>
+      <span class="soonex-lockup-word">Soonex</span>
     </.navigate>
     """
   end

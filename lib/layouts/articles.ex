@@ -30,13 +30,13 @@ defmodule Soonex.Layouts.Articles do
           <.photo src={cover(post).src} alt={cover(post).alt} width={1400} height={900} />
         </div>
         <div class="flex flex-1 flex-col p-8">
-          <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
-          <h2 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+          <small :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</small>
+          <h2 class={Shell.card_title()}>
             <.navigate to={Soonex.Public.path(post.permalink)} class="link ui-nav">
               {post[:title] || "Untitled"}
             </.navigate>
           </h2>
-          <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
+          <p :if={post[:description]} class="lede mt-3 flex-auto">
             {post[:description]}
           </p>
           <div :if={post_tags(post) != []} class="mt-6 flex flex-wrap gap-2">

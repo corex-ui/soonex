@@ -37,12 +37,12 @@ defmodule Soonex.HomePage.Kalendarium do
           <span class="absolute -start-[5px] top-6 size-2.5 bg-brand [border-radius:var(--radius-full)]"></span>
           <div class="soonex-sticky-beat border-b border-border bg-surface py-4">
             <p class="m-0 font-mono text-sm tracking-wide text-brand-text">{beat.moment}</p>
-            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+            <h3 class={Shell.card_title()}>
               {beat.title}
             </h3>
           </div>
           <div class="mt-6 flex min-w-0 flex-col gap-4">
-            <p class="m-0 text-base/7 text-ink-muted">{beat.lede}</p>
+            <p class="lede m-0">{beat.lede}</p>
             <div :if={beat.facts != []} class={"#{Shell.chip_row()} mt-1"}>
               <span :for={fact <- beat.facts} class="badge ui-brand ui-size-sm">
                 {fact.label}: {fact.content}

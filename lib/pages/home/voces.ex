@@ -35,7 +35,7 @@ defmodule Soonex.HomePage.Voces do
       >
         <:item :let={voice}>
           <blockquote class={"#{Shell.panel()} flex h-full min-h-72 flex-col justify-between gap-8 p-8 sm:p-10 lg:p-12"}>
-            <p class="soonex-quote display m-0 text-balance text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl lg:text-4xl">
+            <p class="soonex-quote m-0 text-pretty">
               “{voice.quote}”
             </p>
             <footer class="flex items-center gap-4">
@@ -71,8 +71,7 @@ defmodule Soonex.HomePage.Voces do
         id: "soonex-voice-amira",
         src: "/images/people/amira.jpg",
         initials: "AN",
-        quote:
-          "We forked on a Thursday, swapped the stills Friday, and the waitlist toast was already the one we wanted to ship.",
+        quote: "We didn’t need a design system. We needed a date on the page by Friday.",
         name: "Amira N.",
         role: "Founder, studio launch"
       },
@@ -80,8 +79,7 @@ defmodule Soonex.HomePage.Voces do
         id: "soonex-voice-jonas",
         src: "/images/people/jonas.jpg",
         initials: "JK",
-        quote:
-          "No package.json, no LiveView pager, no forked Corex CSS. Mix setup and the controls are the upstream ones.",
+        quote: "I grepped for package.json. Then I made coffee.",
         name: "Jonas K.",
         role: "Staff engineer"
       },
@@ -89,8 +87,7 @@ defmodule Soonex.HomePage.Voces do
         id: "soonex-voice-leah",
         src: "/images/people/leah.jpg",
         initials: "LM",
-        quote:
-          "neo, uno, duo, and leo finally feel like four products. Template Options is how we review with clients.",
+        quote: "I review with Template Options now. Four rooms, same building.",
         name: "Leah M.",
         role: "Product designer"
       }

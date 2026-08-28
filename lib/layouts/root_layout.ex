@@ -221,7 +221,7 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Soonex is the first Corex plus Tableau waitlist template. Fork, theme, journal, countdown, and ship 1 September."
+        "A waitlist you can fork. Four themes in config. A journal. A countdown. Ship 1 September."
 
       page[:page_kind] == :blog_index ->
         "Shipping notes from #{site_name}: themes, countdown, clone steps, and the road to 1 September."

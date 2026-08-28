@@ -33,16 +33,13 @@ defmodule Soonex.HomePage.Hero do
               <:second_label>Sec</:second_label>
             </.timer>
 
-            <h1
-              id="soonex-headline"
-              class="display mt-6 text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-8xl"
-            >
+            <h1 id="soonex-headline" class="mt-6 text-pretty">
               Soonex <span class="text-brand-text">ships 1 September.</span>
             </h1>
 
             <p class={"#{Shell.lede()} max-w-lg"}>
-              The first Corex plus Tableau waitlist template. Fork it, theme it in config, keep the
-              journal and countdown, and launch with accessible controls.
+              A waitlist you can fork. Four themes in config. A journal. A countdown. Controls you
+              didn’t have to invent.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -68,11 +65,11 @@ defmodule Soonex.HomePage.Hero do
               <div class="relative z-[1] flex min-h-[28rem] flex-col justify-between gap-6 p-4 sm:p-6 lg:min-h-[36rem]">
                 <div class="flex flex-1 items-center justify-center">
                   <div class={"#{Shell.panel()} w-full max-w-md p-5 sm:p-6"}>
-                    <p class={Shell.eyebrow()}>Waitlist</p>
-                    <h2 class="display mt-1 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                    <small class={Shell.eyebrow()}>Waitlist</small>
+                    <h2 class="mt-1 text-pretty">
                       Reserve a September seat
                     </h2>
-                    <p class="mt-2 text-sm/6 text-ink-muted">
+                    <p class="lede mt-2">
                       This demo does not collect addresses. Submit still shows the launch toast.
                     </p>
 

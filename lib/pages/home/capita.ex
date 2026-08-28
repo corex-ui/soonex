@@ -33,8 +33,8 @@ defmodule Soonex.HomePage.Capita do
             class="absolute inset-0 size-full"
           />
           <div class="absolute inset-x-0 bottom-0 border-t border-border bg-root p-6 sm:p-8">
-            <p class={Shell.eyebrow()}>Template</p>
-            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+            <small class={Shell.eyebrow()}>Template</small>
+            <h3 class={Shell.card_title()}>
               Waitlist, journal, and a countdown aimed at 1 September
             </h3>
           </div>
@@ -45,9 +45,9 @@ defmodule Soonex.HomePage.Capita do
             :for={cell <- cells()}
             class={"#{Shell.panel()} soonex-card-motion flex flex-1 flex-col p-6 sm:p-8"}
           >
-            <p class={Shell.eyebrow()}>{cell.kicker}</p>
-            <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{cell.title}</h3>
-            <p class="mt-3 flex-auto text-sm/6 text-ink-muted">{cell.body}</p>
+            <small class={Shell.eyebrow()}>{cell.kicker}</small>
+            <h3 class={Shell.card_title()}>{cell.title}</h3>
+            <p class="lede mt-3 flex-auto">{cell.body}</p>
           </article>
         </div>
       </div>

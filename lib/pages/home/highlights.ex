@@ -61,11 +61,11 @@ defmodule Soonex.HomePage.Highlights do
               />
             </div>
             <div class="flex flex-1 flex-col p-8">
-              <p :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</p>
-              <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">
+              <small :if={date_label(post)} class={Shell.eyebrow()}>{date_label(post)}</small>
+              <h3 class={Shell.card_title()}>
                 {post[:title] || "Untitled"}
               </h3>
-              <p :if={post[:description]} class="mt-3 flex-auto text-sm/6 text-ink-muted">
+              <p :if={post[:description]} class="lede mt-3 flex-auto">
                 {post[:description]}
               </p>
               <.navigate

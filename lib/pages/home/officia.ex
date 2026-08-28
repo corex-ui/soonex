@@ -28,9 +28,9 @@ defmodule Soonex.HomePage.Officia do
           :for={plan <- plans()}
           class={"#{Shell.panel()} soonex-card-motion flex flex-col p-6 sm:p-8"}
         >
-          <p class={Shell.eyebrow()}>{plan.name}</p>
-          <h3 class="display mt-2 text-xl font-semibold tracking-tight text-ink">{plan.headline}</h3>
-          <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{plan.body}</p>
+          <small class={Shell.eyebrow()}>{plan.name}</small>
+          <h3 class={Shell.card_title()}>{plan.headline}</h3>
+          <p class="lede mt-3">{plan.body}</p>
           <ul class={Shell.feature_list()}>
             <li :for={item <- plan.items} class="flex items-start gap-3">
               <span class="badge ui-brand ui-size-sm shrink-0">{item.label}</span>

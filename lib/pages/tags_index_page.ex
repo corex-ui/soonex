@@ -59,10 +59,10 @@ defmodule Soonex.TagsIndexPage do
               data-soonex-page-item
               class={"#{Shell.panel()} flex flex-col p-8"}
             >
-              <h2 class="display m-0 text-xl font-semibold tracking-tight text-ink">
+              <h2 class={"#{Shell.card_title()} m-0"}>
                 <.navigate to={tag.href} class="link ui-nav">{tag.label}</.navigate>
               </h2>
-              <p class="mt-3 text-sm/6 text-ink-muted">
+              <p class="lede mt-3">
                 {tag.count} {if tag.count == 1, do: "post", else: "posts"}
               </p>
             </article>

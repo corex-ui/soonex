@@ -35,15 +35,15 @@ defmodule Soonex.Layouts.Shell do
 
   def sticky_body, do: "w-full min-w-0 lg:col-span-7"
 
-  def eyebrow, do: "m-0 text-base/7 font-semibold text-brand-text"
+  def eyebrow, do: "eyebrow m-0"
 
-  def section_heading,
-    do: "display mt-2 text-pretty text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+  def section_heading, do: "mt-2 text-pretty"
 
-  def page_heading,
-    do: "display mt-2 text-pretty text-4xl font-semibold tracking-tight text-ink sm:text-5xl"
+  def page_heading, do: "mt-2 text-pretty"
 
-  def lede, do: "mt-6 max-w-2xl text-pretty text-lg/8 text-ink-muted"
+  def lede, do: "lede mt-6 max-w-2xl text-pretty"
+
+  def card_title, do: "soonex-card-title mt-2"
 
   def panel,
     do: "soonex-frame relative overflow-hidden border border-border bg-surface"

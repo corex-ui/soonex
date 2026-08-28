@@ -13,7 +13,7 @@ defmodule Soonex.HomePage.Faq do
         Before you <span class="text-brand-text">clone</span>
       </:title>
       <:lede>
-        What ships, what is demo-only, and how themes, motion, and the journal behave after you fork.
+        Opinionated answers. Still true after you fork.
       </:lede>
       <:actions>
         <.navigate to="#epistula" class="link ui-brand">
@@ -25,7 +25,7 @@ defmodule Soonex.HomePage.Faq do
         class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
         multiple={false}
         collapsible={true}
-        value="ships"
+        value="gallery"
         items={faq_items()}
       >
         <:trigger :let={item}>
@@ -45,58 +45,47 @@ defmodule Soonex.HomePage.Faq do
   defp faq_items do
     Corex.Content.new([
       %{
-        value: "ships",
-        label: "What ships when I fork this template?",
-        content:
-          "A waitlist landing page, a journal, countdown chrome, and the Corex controls already on this page. Photography, copy, and the launch date are placeholders you replace."
+        value: "gallery",
+        label: "Is this a component gallery?",
+        content: "No. It’s a waitlist with a date. The controls happen to be Corex."
       },
       %{
-        value: "waitlist",
-        label: "Does the waitlist collect real addresses?",
+        value: "email",
+        label: "Will you email me?",
         content:
-          "Not in this demo. Submit still shows a toast so you can see the success path without storing mailboxes. Wire the same form to your list later — interests, role, team size, and launch notes are already named fields."
+          "Not from this demo. Submit anyway — the toast is the whole point until you wire a list."
       },
       %{
         value: "themes",
-        label: "How do themes change without forking Corex CSS?",
-        content:
-          "Theme, brand, and accent live in config. The floating Template Options panel switches neo, uno, duo, and leo on this device. Host CSS only retunes layout; it does not copy component recipes or set overlay scale, duration, or opacity."
+        label: "Why four themes?",
+        content: "So a client can sit on the sofa and say ‘that one’ without a rebuild."
       },
       %{
-        value: "journal",
-        label: "Where does the journal live, and can I add posts?",
-        content:
-          "Posts are Markdown under the journal route. The home carousel is a short reading list; the index paginates the rest with the Corex pager on the client — no LiveView round trip. Add a file, rebuild, and the cover, date, and title show up. Tags stay optional."
+        value: "npm",
+        label: "Do I need npm?",
+        content: "No. If you miss it, this isn’t your template."
+      },
+      %{
+        value: "posts",
+        label: "Where do posts go?",
+        content: "Markdown. Rebuild. The pager is a Corex event in the browser, not LiveView."
       },
       %{
         value: "motion",
-        label: "How does scroll motion behave with reduced motion?",
+        label: "What if motion makes me sick?",
         content:
-          "Scroll reveal and card lift live in host CSS. They follow scroll and hover; they do not fight the type. Set Motion to Reduced in Accessibility and those animations stop. The condensed header and progress bar stay as chrome."
+          "Accessibility → Motion → Reduced. The header still condenses. The type still holds."
       },
       %{
-        value: "a11y",
-        label: "What do the accessibility controls change?",
-        content:
-          "The person-in-circle control at the corner opens zoom, contrast, motion, cursor, focus, and link underline for this device. Choices persist in local storage and write data attributes on the document. Reset returns the defaults."
+        value: "photos",
+        label: "Can I keep the photos?",
+        content: "Swap them. They’re placeholders with a license, not the brand."
       },
       %{
-        value: "toolchain",
-        label: "Do I need npm or a JavaScript bundler to start?",
+        value: "september",
+        label: "When is September?",
         content:
-          "No. Mix, Tailwind, and esbuild already in the project are enough. There is no package.json and no Lenis. Tabs, carousel, and accordion are Corex hooks. Host scripts bind header chrome, the waitlist toast, and journal pagination."
-      },
-      %{
-        value: "countdown",
-        label: "How is the countdown wired to a launch date?",
-        content:
-          "The hero timer counts down to 1 September in this demo. The header timer stays in the bar and appears after the hero. Change the target in the home template when you have a real date. Days, hours, minutes, and seconds stay on one row."
-      },
-      %{
-        value: "brand",
-        label: "Can I keep the photography after a rebrand?",
-        content:
-          "Yes. Swap the stills and the lockup. Toolchain marks live in the footer as static SVGs, not a marquee. Host CSS does not own the photos."
+          "Whenever you change the timestamp in the home template. The digits stay on one row."
       }
     ])
   end
