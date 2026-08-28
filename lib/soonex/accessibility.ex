@@ -126,7 +126,7 @@ defmodule Soonex.Accessibility do
       final_focus={"dialog:#{accessibility_dialog_id()}:trigger"}
     >
       <:trigger class={@trigger_class} aria_label="Accessibility">
-        <.heroicon name="hero-user-circle" />
+        <.heroicon name="hero-user-circle" /> Accessibility
       </:trigger>
       <:title>Accessibility</:title>
       <:description>
