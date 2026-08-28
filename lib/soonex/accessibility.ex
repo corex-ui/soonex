@@ -110,9 +110,7 @@ defmodule Soonex.Accessibility do
 
   def accessibility_dialog_id, do: "a11y-dialog"
 
-  attr(:trigger_class, :string,
-    default: "button ui-ghost ui-size-md ui-trigger--circle p-0 soonex-a11y-trigger"
-  )
+  attr(:trigger_class, :string, default: "button ui-size-sm")
 
   def accessibility_panel(assigns) do
     assigns = assign(assigns, :axes, Accessibility.axes())
@@ -128,20 +126,7 @@ defmodule Soonex.Accessibility do
       final_focus={"dialog:#{accessibility_dialog_id()}:trigger"}
     >
       <:trigger class={@trigger_class} aria_label="Accessibility">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="9.25" />
-          <circle cx="12" cy="8" r="1.35" fill="currentColor" stroke="none" />
-          <path d="M8.25 11.25h7.5M12 11.5v3.25M9.5 18l2.5-3.25L14.5 18" />
-        </svg>
+        <.heroicon name="hero-user-circle" />
       </:trigger>
       <:title>Accessibility</:title>
       <:description>
