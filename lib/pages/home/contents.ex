@@ -35,10 +35,10 @@ defmodule Soonex.HomePage.Contents do
 
       <div class={"#{Shell.panel()} mt-12 p-6 sm:p-8"}>
         <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-8">
-          <div class="min-w-0 lg:max-w-sm">
-            <small class={Shell.eyebrow()}>Quick start</small>
+          <div class="min-w-0 lg:max-w-xs">
+            <small class={Shell.eyebrow()}>Clone</small>
             <p class="lede mt-2">
-              Clone the template, then run mix setup and mix soonex.server.
+              mix setup, then mix soonex.server.
             </p>
           </div>
           <.clipboard
@@ -74,7 +74,7 @@ defmodule Soonex.HomePage.Contents do
         value: "themes",
         label: "Themes",
         content:
-          "neo is a gallery. uno is a spa. duo is a salon. leo is a print shop. Template Options is the client review."
+          "neo, uno, duo, and leo share one near-white field. Type, radius, and brand do the rest. Template Options is the client review."
       },
       %{
         value: "mix",

@@ -241,11 +241,6 @@ pre.code.code--wide {
   --ctl-radius: var(--soonex-ctl-radius);
 }
 
-[data-theme="leo"] :is(.button, .badge) {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 [data-theme="uno"] h1,
 [data-theme="uno"] h2,
 [data-theme="uno"] .soonex-quote,
@@ -278,16 +273,10 @@ pre.code.code--wide {
 
 .soonex-quote {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--leading-snug);
   color: var(--color-ink);
-}
-
-@media (min-width: 64rem) {
-  .soonex-quote {
-    font-size: var(--text-4xl);
-  }
 }
 
 .soonex-stat-value {

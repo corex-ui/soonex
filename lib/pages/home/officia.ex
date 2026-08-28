@@ -32,9 +32,9 @@ defmodule Soonex.HomePage.Officia do
           <h3 class={Shell.card_title()}>{plan.headline}</h3>
           <p class="lede mt-3">{plan.body}</p>
           <ul class={Shell.feature_list()}>
-            <li :for={item <- plan.items} class="flex items-start gap-3">
-              <span class="badge ui-brand ui-size-sm shrink-0">{item.label}</span>
-              <span class="min-w-0 text-sm/6 text-ink-muted">{item.content}</span>
+            <li :for={item <- plan.items} class="flex flex-col gap-1">
+              <span class="text-sm text-ink">{item.label}</span>
+              <span class="text-sm/6 text-ink-muted">{item.content}</span>
             </li>
           </ul>
           <.navigate to="#epistula" class={"#{plan.cta_class} mt-8 w-full"}>

@@ -134,7 +134,7 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#D5DCE6",
+        neutral: "#F3F5F8",
         accent: "#0E1218",
         brand: "#1D4ED8",
         alert: "#B42318",
@@ -144,15 +144,15 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.945, :neutral),
-            surface: l.(0.91, :neutral),
-            ui: fill.(0.865, :neutral),
+            root: l.(0.99, :neutral),
+            surface: l.(0.985, :neutral),
+            ui: fill.(0.96, :neutral),
             accent: fill.(0.22, :accent),
             brand: fill.(0.42, :brand),
             ink: contrast.(:accent, :root, 12),
             "ink-muted": contrast.(:accent, :root, 6.0),
             link: contrast.(:brand, :root, 5.5),
-            border: contrast.(:neutral, :ui, 1.28),
+            border: contrast.(:neutral, :ui, 1.2),
             focus: contrast.(:brand, :ui, 2.3),
             shadow: contrast.(:accent, :root, 1.1)
           }),
@@ -198,7 +198,7 @@ config :corex_design,
           letter_spacing: {:tracking, :tighter},
           font_size: {:text, :"5xl"},
           sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"8xl"}}
+          lg: %{font_size: {:text, :"7xl"}}
         },
         "h2" => %{
           font_family: {:font, :display},
@@ -231,7 +231,7 @@ config :corex_design,
     },
     uno: %{
       seeds: %{
-        neutral: "#9FD4C4",
+        neutral: "#F4F8F6",
         accent: "#04221C",
         brand: "#0F766E",
         alert: "#B91C1C",
@@ -241,15 +241,15 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.935, :neutral),
-            surface: l.(0.9, :neutral),
-            ui: fill.(0.85, :neutral),
+            root: l.(0.99, :neutral),
+            surface: l.(0.985, :neutral),
+            ui: fill.(0.96, :neutral),
             accent: fill.(0.28, :accent),
             brand: fill.(0.34, :brand),
             ink: contrast.(:accent, :root, 10),
             "ink-muted": contrast.(:accent, :root, 5.5),
             link: contrast.(:brand, :root, 5.8),
-            border: contrast.(:neutral, :ui, 1.22),
+            border: contrast.(:neutral, :ui, 1.18),
             focus: contrast.(:brand, :ui, 2.2),
             shadow: contrast.(:accent, :root, 1.06)
           }),
@@ -325,7 +325,7 @@ config :corex_design,
     },
     duo: %{
       seeds: %{
-        neutral: "#E8C4A0",
+        neutral: "#F8F6F3",
         accent: "#3A1C0F",
         brand: "#C2410C",
         alert: "#9F1239",
@@ -335,15 +335,15 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.94, :neutral),
-            surface: l.(0.905, :neutral),
-            ui: fill.(0.86, :neutral),
+            root: l.(0.99, :neutral),
+            surface: l.(0.985, :neutral),
+            ui: fill.(0.96, :neutral),
             accent: fill.(0.32, :accent),
             brand: fill.(0.44, :brand),
             ink: contrast.(:accent, :root, 9.5),
             "ink-muted": contrast.(:accent, :root, 5.2),
             link: contrast.(:brand, :root, 5.6),
-            border: contrast.(:neutral, :ui, 1.14),
+            border: contrast.(:neutral, :ui, 1.16),
             focus: contrast.(:brand, :ui, 2.15),
             shadow: contrast.(:accent, :root, 1.28)
           }),
@@ -419,7 +419,7 @@ config :corex_design,
     },
     leo: %{
       seeds: %{
-        neutral: "#CDB889",
+        neutral: "#F6F5F2",
         accent: "#111111",
         brand: "#EA580C",
         alert: "#C41E1E",
@@ -429,15 +429,15 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.925, :neutral),
-            surface: l.(0.88, :neutral),
-            ui: fill.(0.82, :neutral),
+            root: l.(0.99, :neutral),
+            surface: l.(0.985, :neutral),
+            ui: fill.(0.96, :neutral),
             accent: fill.(0.14, :accent),
             brand: fill.(0.38, :brand),
             ink: contrast.(:accent, :root, 12),
             "ink-muted": contrast.(:accent, :root, 5.8),
             link: contrast.(:brand, :root, 5.8),
-            border: contrast.(:accent, :ui, 1.75),
+            border: contrast.(:accent, :ui, 1.22),
             focus: contrast.(:brand, :ui, 2.5),
             shadow: contrast.(:accent, :root, 1.04)
           }),

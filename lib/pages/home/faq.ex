@@ -58,7 +58,8 @@ defmodule Soonex.HomePage.Faq do
       %{
         value: "themes",
         label: "Why four themes?",
-        content: "So a client can sit on the sofa and say ‘that one’ without a rebuild."
+        content:
+          "Type, radius, and brand. Paper stays near-white. Template Options is the review."
       },
       %{
         value: "npm",

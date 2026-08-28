@@ -67,7 +67,7 @@ defmodule Soonex.HomePage.Capita do
         kicker: "Controls",
         title: "Corex, not a custom kit",
         body:
-          "Select, accordion, tabs, carousel, and the waitlist fields are upstream Corex. Host CSS only retunes layout tokens."
+          "Select, accordion, tabs, and the waitlist fields are upstream Corex. Host CSS only retunes layout tokens."
       }
     ]
   end
