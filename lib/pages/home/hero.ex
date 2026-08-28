@@ -19,7 +19,8 @@ defmodule Soonex.HomePage.Hero do
         <div class="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-8">
           <div class="flex w-full flex-col justify-center lg:col-span-5" data-hero>
             <h1 id="soonex-headline" class="text-pretty">
-              Soonex <span class="text-brand-text">ships 1 September.</span>
+              Soonex
+              <span class="text-brand-text">ships <span class="whitespace-nowrap">1 September</span>.</span>
             </h1>
 
             <p class={"#{Shell.lede()} max-w-lg"}>
@@ -119,7 +120,9 @@ defmodule Soonex.HomePage.Hero do
                     </.avatar>
                   </div>
                   <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
-                    Studios already cloning the repo for a 1 September launch.
+                    Studios already cloning the repo for a
+                    <span class="whitespace-nowrap">1 September</span>
+                    launch.
                   </p>
                 </div>
               </div>

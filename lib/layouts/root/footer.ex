@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="lede mt-6">
-              A waitlist you can fork. Four themes. A journal. Ship 1 September.
+              A waitlist you can fork. Four themes. A journal. Ship <span class="whitespace-nowrap">1 September</span>.
             </p>
             <ul class="soonex-toolchain mt-8">
               <li :for={mark <- @toolchain}>

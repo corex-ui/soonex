@@ -20,8 +20,7 @@ defmodule Soonex.HomePage.Officia do
         Pick a lane. <span class="text-brand-text">Ship the same core.</span>
       </:title>
       <:lede>
-        Every plan is the same Soonex fork. The columns describe how far you take the template before
-        1 September.
+        Every plan is the same Soonex fork. The columns describe how far you take the template before <span class="whitespace-nowrap">1 September</span>.
       </:lede>
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <article
@@ -57,7 +56,7 @@ defmodule Soonex.HomePage.Officia do
         items: [
           %{label: "Site", content: "Waitlist landing and Markdown journal"},
           %{label: "Theme", content: "Keep neo, or switch once in config"},
-          %{label: "Date", content: "Countdown aimed at 1 September"}
+          %{label: "Date", content: "Countdown aimed at 1\u00A0September"}
         ]
       },
       %{

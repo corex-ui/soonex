@@ -35,7 +35,8 @@ defmodule Soonex.HomePage.Capita do
           <div class="absolute inset-x-0 bottom-0 border-t border-border bg-root p-6 sm:p-8">
             <small class={Shell.eyebrow()}>Template</small>
             <h3 class={Shell.card_title()}>
-              Waitlist, journal, and a countdown aimed at 1 September
+              Waitlist, journal, and a countdown aimed at
+              <span class="whitespace-nowrap">1 September</span>
             </h3>
           </div>
         </article>
