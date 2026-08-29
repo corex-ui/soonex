@@ -174,12 +174,23 @@ pre.code.code--wide {
 }
 
 .select [data-scope="select"][data-part="trigger"],
-.menu [data-scope="menu"][data-part="trigger"],
-.dialog [data-scope="dialog"][data-part="trigger"] {
+.menu [data-scope="menu"][data-part="trigger"] {
   --ctl-radius: inherit;
   --ctl-size: var(--ctl-size, var(--spacing-size));
   --ctl-space: var(--ctl-space, var(--spacing-space));
   --ctl-text: var(--ctl-text, var(--text-base));
+}
+
+/* Dialog triggers are .button hosts. Keep ui-size-* (the Template Options
+   cluster is ui-size-sm). Only inherit radius so corners stay Soonex. */
+.dialog [data-scope="dialog"][data-part="trigger"] {
+  --ctl-radius: inherit;
+}
+
+/* Corex pins floating-panel triggers to 0.8 * --spacing-size (md). Let
+   ui-size-sm on the demo cluster set one height with Accessibility. */
+.floating-panel [data-scope="floating-panel"][data-part="trigger"] {
+  min-height: var(--ctl-size, var(--spacing-size));
 }
 
 /*
