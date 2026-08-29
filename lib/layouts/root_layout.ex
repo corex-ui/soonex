@@ -202,7 +202,7 @@ defmodule Soonex.RootLayout do
         "#{site_name} · Launch 1 September"
 
       page[:page_kind] == :blog_index ->
-        "Journal · #{site_name}"
+        "Log · #{site_name}"
 
       page[:page_kind] == :not_found ->
         "Page not found · #{site_name}"
@@ -221,10 +221,10 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "A waitlist you can fork. Four themes in config. A journal. A countdown. Ship 1 September."
+        "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
 
       page[:page_kind] == :blog_index ->
-        "Shipping notes from #{site_name}: themes, countdown, clone steps, and the road to 1 September."
+        "Shipping notes from #{site_name}: four rooms, the countdown, and the road to 1 September."
 
       page[:page_kind] == :not_found ->
         "That page is not on #{site_name}. Head home or read the shipping log."
@@ -233,13 +233,13 @@ defmodule Soonex.RootLayout do
         "Browse the #{site_name} journal by topic — themes, launch, studio, and notes."
 
       tag_page?(page) ->
-        "Journal posts tagged #{page[:tag]} on #{site_name}."
+        "Log entries tagged #{page[:tag]} on #{site_name}."
 
       present_string?(page[:description]) ->
         page[:description]
 
       true ->
-        "Soonex is the first Corex plus Tableau waitlist template. Fork, theme, and ship 1 September."
+        "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
     end
   end
 

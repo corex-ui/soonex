@@ -1,8 +1,8 @@
 ---
 layout: Soonex.PostLayout
-title: Shipping notes — mix test before Pages
+title: CI before Pages
 date: 2026-06-01 12:00:00 +0000
-permalink: /blog/shipping-tableau-corex/
+permalink: /blog/ci-before-pages/
 description: Keep CI green before Pages deploys. Axe on the home document is the gate; the countdown stays aimed at 1 September.
 image: /images/covers/shipping.jpg
 image_alt: A laptop on a wooden desk with a code editor open
@@ -45,6 +45,6 @@ defmodule Soonex.Shipping do
 end
 ```
 
-The countdown target in this demo is 1 September. Change it in the home template when you have a real date[^ship].
+The countdown target in this demo is 1 September. Change it in the root layout when you have a real date[^ship].
 
 [^ship]: Days, hours, minutes, and seconds stay on one row. The header timer appears after the hero.

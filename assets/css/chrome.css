@@ -119,6 +119,38 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
 }
 
+.soonex-hero-wash {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-root) 18%, transparent) 0%,
+    var(--color-root) 86%
+  );
+}
+
+@media (width >= 64rem) {
+  .soonex-hero-wash {
+    background: linear-gradient(
+      105deg,
+      var(--color-root) 0%,
+      color-mix(in oklab, var(--color-root) 86%, transparent) 42%,
+      color-mix(in oklab, var(--color-accent) 24%, transparent) 100%
+    );
+  }
+}
+
+.soonex-waitlist-object {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-root);
+  border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
+  padding: var(--spacing-space);
+}
+
+@media (width >= 40rem) {
+  .soonex-waitlist-object {
+    padding: calc(var(--spacing-space) * 1.25);
+  }
+}
+
 .soonex-photo {
   display: block;
   width: 100%;

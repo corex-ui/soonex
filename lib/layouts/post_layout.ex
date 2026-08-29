@@ -47,7 +47,7 @@ defmodule Soonex.PostLayout do
           </:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
-              <.heroicon name="hero-arrow-left" /> Journal
+              <.heroicon name="hero-arrow-left" /> Log
             </.navigate>
           </:actions>
         </.layout_heading>
@@ -81,7 +81,7 @@ defmodule Soonex.PostLayout do
     src = page[:image]
 
     if is_binary(src) and src != "" do
-      %{src: src, alt: page[:image_alt] || page[:title] || "Journal cover"}
+      %{src: src, alt: page[:image_alt] || page[:title] || "Log cover"}
     end
   end
 end

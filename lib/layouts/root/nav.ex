@@ -92,7 +92,7 @@ defmodule Soonex.Layouts.Root.Nav do
             </div>
           </div>
           <.navigate
-            to={Soonex.Public.path("/") <> "#epistula"}
+            to={Soonex.Public.path("/") <> "#waitlist"}
             class="button ui-brand ui-solid ui-size-md"
           >
             Join waitlist
@@ -112,7 +112,7 @@ defmodule Soonex.Layouts.Root.Nav do
     ]
   end
 
-  defp nav_current?(page_path, %{id: :journal}) do
+  defp nav_current?(page_path, %{id: :log}) do
     String.starts_with?(page_path, "/blog") or String.starts_with?(page_path, "/tags")
   end
 
@@ -120,9 +120,9 @@ defmodule Soonex.Layouts.Root.Nav do
 
   defp desktop_links do
     [
-      %{id: :product, label: "Product", to: Soonex.Public.path("/") <> "#principia"},
-      %{id: :journal, label: "Journal", to: Soonex.Public.path("/blog")},
-      %{id: :questions, label: "Questions", to: Soonex.Public.path("/") <> "#quaestiones"}
+      %{id: :product, label: "Product", to: Soonex.Public.path("/") <> "#product"},
+      %{id: :log, label: "Log", to: Soonex.Public.path("/blog")},
+      %{id: :questions, label: "Questions", to: Soonex.Public.path("/") <> "#questions"}
     ]
   end
 
@@ -130,26 +130,26 @@ defmodule Soonex.Layouts.Root.Nav do
     Corex.List.new([
       %{
         label: "Product",
-        value: "principia",
-        to: Soonex.Public.path("/") <> "#principia",
+        value: "product",
+        to: Soonex.Public.path("/") <> "#product",
         redirect: :href
       },
       %{
-        label: "Journal",
+        label: "Log",
         value: "blog",
         to: Soonex.Public.path("/blog"),
         redirect: :href
       },
       %{
         label: "Questions",
-        value: "quaestiones",
-        to: Soonex.Public.path("/") <> "#quaestiones",
+        value: "questions",
+        to: Soonex.Public.path("/") <> "#questions",
         redirect: :href
       },
       %{
         label: "Join waitlist",
-        value: "epistula",
-        to: Soonex.Public.path("/") <> "#epistula",
+        value: "waitlist",
+        to: Soonex.Public.path("/") <> "#waitlist",
         redirect: :href
       }
     ])

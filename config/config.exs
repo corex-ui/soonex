@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "A waitlist you can fork. Four themes in config. A journal. A countdown aimed at 1 September."
+    "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -292,7 +292,7 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tight},
+          letter_spacing: {:tracking, :tighter},
           font_size: {:text, :"4xl"},
           sm: %{font_size: {:text, :"5xl"}},
           lg: %{font_size: {:text, :"6xl"}}
@@ -479,15 +479,18 @@ config :corex_design,
       typography: %{
         "h1" => %{
           font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tight},
-          font_size: {:text, :"4xl"},
-          sm: %{font_size: {:text, :"5xl"}},
-          lg: %{font_size: {:text, :"6xl"}}
+          letter_spacing: {:tracking, :tighter},
+          font_size: {:text, :"5xl"},
+          text_transform: "uppercase",
+          sm: %{font_size: {:text, :"6xl"}},
+          lg: %{font_size: {:text, :"7xl"}}
         },
         "h2" => %{
           font_weight: {:weight, :semibold},
-          font_size: {:text, :"3xl"},
-          sm: %{font_size: {:text, :"4xl"}}
+          letter_spacing: {:tracking, :tight},
+          font_size: {:text, :"4xl"},
+          text_transform: "uppercase",
+          sm: %{font_size: {:text, :"5xl"}}
         },
         "h3" => %{font_weight: {:weight, :medium}},
         "h4" => %{

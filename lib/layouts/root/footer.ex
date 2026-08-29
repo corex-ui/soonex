@@ -18,7 +18,6 @@ defmodule Soonex.Layouts.Root.Footer do
       assigns
       |> assign(:github, @github)
       |> assign(:hexdocs, @hexdocs)
-      |> assign(:toolchain, toolchain())
 
     ~H"""
     <footer class="mt-auto border-t border-border bg-surface py-16 sm:py-24">
@@ -27,18 +26,9 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="lede mt-6">
-              A waitlist you can fork. Four themes. A journal. Ship <span class="whitespace-nowrap">1 September</span>.
+              An open-source launch template from Corex — waitlist, journal, countdown, four themes in
+              config. Ship <span class="whitespace-nowrap">1 September</span>.
             </p>
-            <ul class="soonex-toolchain mt-8">
-              <li :for={mark <- @toolchain}>
-                <img
-                  src={Soonex.Public.path(mark.src)}
-                  alt={mark.alt}
-                  width="32"
-                  height="32"
-                />
-              </li>
-            </ul>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
             <div>
@@ -46,20 +36,23 @@ defmodule Soonex.Layouts.Root.Footer do
               <ul class="mt-6 flex list-none flex-col gap-4 p-0">
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#principia"}
+                    to={Soonex.Public.path("/") <> "#product"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Features
-                  </.navigate>
-                </li>
-                <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#officia"} class="link ui-nav ui-size-sm">
-                    Plans
+                    Product
                   </.navigate>
                 </li>
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#quaestiones"}
+                    to={Soonex.Public.path("/") <> "#themes"}
+                    class="link ui-nav ui-size-sm"
+                  >
+                    Rooms
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate
+                    to={Soonex.Public.path("/") <> "#questions"}
                     class="link ui-nav ui-size-sm"
                   >
                     Questions
@@ -67,7 +60,7 @@ defmodule Soonex.Layouts.Root.Footer do
                 </li>
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#epistula"}
+                    to={Soonex.Public.path("/") <> "#waitlist"}
                     class="link ui-nav ui-size-sm"
                   >
                     Waitlist
@@ -76,11 +69,11 @@ defmodule Soonex.Layouts.Root.Footer do
               </ul>
             </div>
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Journal</p>
+              <p class="m-0 text-sm/6 font-semibold text-ink">Log</p>
               <ul class="mt-6 flex list-none flex-col gap-4 p-0">
                 <li>
                   <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav ui-size-sm">
-                    All posts
+                    All entries
                   </.navigate>
                 </li>
                 <li>
@@ -121,7 +114,7 @@ defmodule Soonex.Layouts.Root.Footer do
             <p class="m-0 text-xs/6 text-ink-muted">{Soonex.Layouts.Media.credits()}</p>
           </div>
           <.navigate
-            to={Soonex.Public.path("/") <> "#epistula"}
+            to={Soonex.Public.path("/") <> "#waitlist"}
             class="button ui-brand ui-solid ui-size-md w-fit"
           >
             Join waitlist
@@ -130,16 +123,5 @@ defmodule Soonex.Layouts.Root.Footer do
       </div>
     </footer>
     """
-  end
-
-  defp toolchain do
-    [
-      %{src: "/images/tech/elixir.svg", alt: "Elixir"},
-      %{src: "/images/tech/phoenix.svg", alt: "Phoenix"},
-      %{src: "/images/tech/tableau.svg", alt: "Tableau"},
-      %{src: "/images/tech/zag.svg", alt: "Zag"},
-      %{src: "/images/tech/tailwind.svg", alt: "Tailwind CSS"},
-      %{src: "/images/tech/hex.svg", alt: "Hex"}
-    ]
   end
 end

@@ -2,6 +2,8 @@
 
 ## 0.2.1
 
+- Restage the home as a production launch landing: full-bleed hero, waitlist object on the still, English section ids, and distinct band skeletons.
+- Drop the three-up plan cards, Latin module names, and tech-icon footer. Log tease and four-room exhibit replace them.
 - Upgrade Corex packages to 0.2.1 (`corex`, `corex_design`, `corex_mcp`).
 - Keep stock Corex themes (neo/uno/duo/leo) and self-host their type stacks.
 - Production marketing chrome: SVG lockup, sticky condensed header, waitlist-card hero, full-width timer.

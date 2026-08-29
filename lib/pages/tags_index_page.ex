@@ -40,7 +40,7 @@ defmodule Soonex.TagsIndexPage do
           <:subtitle>Browse the shipping log by theme, launch, studio, and notes.</:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
-              <.heroicon name="hero-arrow-left" /> Journal
+              <.heroicon name="hero-arrow-left" /> Log
             </.navigate>
           </:actions>
         </.layout_heading>
@@ -49,24 +49,24 @@ defmodule Soonex.TagsIndexPage do
           <div :if={@tag_cards == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
             <p class="m-0">No tags yet.</p>
           </div>
-          <div
+          <ol
             :if={@tag_cards != []}
-            class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            class={Shell.log_list()}
             data-soonex-page-list
           >
-            <article
+            <li
               :for={tag <- @tag_cards}
               data-soonex-page-item
-              class={"#{Shell.panel()} flex flex-col p-8"}
+              class="flex items-baseline justify-between gap-6 py-6 first:pt-0"
             >
               <h2 class={"#{Shell.card_title()} m-0"}>
                 <.navigate to={tag.href} class="link ui-nav">{tag.label}</.navigate>
               </h2>
-              <p class="lede mt-3">
-                {tag.count} {if tag.count == 1, do: "post", else: "posts"}
+              <p class="lede m-0">
+                {tag.count} {if tag.count == 1, do: "entry", else: "entries"}
               </p>
-            </article>
-          </div>
+            </li>
+          </ol>
           <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={6} />
         </div>
       </div>

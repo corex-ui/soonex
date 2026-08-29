@@ -13,24 +13,24 @@ defmodule Soonex.HomePage.Waitlist do
 
     ~H"""
     <.block
-      id="epistula"
+      id="waitlist"
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
       tone={:surface}
       align={:center}
+      layout={:open}
     >
       <:title>
         Join the <span class="text-brand-text">September list</span>
       </:title>
       <:lede>
-        Tell us your role, interests, and team size. This demo does not store addresses — submit still
-        shows the launch toast.
+        Role, interests, and team size. We will write when the date hits.
       </:lede>
       <form
         id="soonex-waitlist-form"
         class={"#{Shell.panel()} mx-auto w-full max-w-lg p-8 sm:p-10"}
         data-waitlist-toast-title="You're on the list"
-        data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+        data-waitlist-toast-description="Demo form — toast only. Wire your provider after you fork."
       >
         <div class="flex w-full flex-col items-stretch gap-5">
           <.native_input
@@ -113,6 +113,9 @@ defmodule Soonex.HomePage.Waitlist do
           </button>
         </div>
       </form>
+      <p class="mx-auto mt-6 max-w-lg text-center text-sm/6 text-ink-muted">
+        Demo form — toast only. Wire your provider after you fork.
+      </p>
     </.block>
     """
   end

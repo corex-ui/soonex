@@ -8,15 +8,15 @@ defmodule Soonex.HomePage.Faq do
 
   def faq(assigns) do
     ~H"""
-    <.block id="quaestiones" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
+    <.block id="questions" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
         Before you <span class="text-brand-text">clone</span>
       </:title>
       <:lede>
-        Opinionated answers. Still true after you fork.
+        What Soonex is, what ships, and what you replace.
       </:lede>
       <:actions>
-        <.navigate to="#epistula" class="link ui-brand">
+        <.navigate to="#waitlist" class="link ui-brand">
           Join waitlist <.heroicon name="hero-arrow-down" />
         </.navigate>
       </:actions>
@@ -25,7 +25,7 @@ defmodule Soonex.HomePage.Faq do
         class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
         multiple={false}
         collapsible={true}
-        value="gallery"
+        value="what"
         items={faq_items()}
       >
         <:trigger :let={item}>
@@ -45,48 +45,40 @@ defmodule Soonex.HomePage.Faq do
   defp faq_items do
     Corex.Content.new([
       %{
-        value: "gallery",
-        label: "Is this a component gallery?",
-        content: "No. It’s a waitlist with a date. The controls happen to be Corex."
+        value: "what",
+        label: "What is Soonex?",
+        content:
+          "The open-source waitlist and launch template that ships with Corex. Fork it for a September launch — or any date you set."
       },
       %{
-        value: "email",
-        label: "Will you email me?",
+        value: "ships",
+        label: "What ships on 1 September?",
         content:
-          "Not from this demo. Submit anyway — the toast is the whole point until you wire a list."
+          "The landing, the waitlist fields, the shipping log, the header countdown, and four themes. Copy and stills are yours to replace."
       },
       %{
         value: "themes",
         label: "Why four themes?",
         content:
-          "Type, radius, and brand. Paper stays near-white. Template Options is the review."
+          "neo, uno, duo, and leo are four rooms on the same near-white paper. Type, radius, and brand change. Template Options switches them on this device."
       },
       %{
-        value: "npm",
-        label: "Do I need npm?",
-        content: "No. If you miss it, this isn’t your template."
-      },
-      %{
-        value: "posts",
-        label: "Where do posts go?",
-        content: "Markdown. Rebuild. The pager is a Corex event in the browser, not LiveView."
-      },
-      %{
-        value: "motion",
-        label: "What if motion makes me sick?",
+        value: "form",
+        label: "Does the form collect email?",
         content:
-          "Accessibility → Motion → Reduced. The header still condenses. The type still holds."
+          "Not on this demo. Submit still shows the launch toast so you can see the success path. Wire your provider after you fork."
       },
       %{
-        value: "photos",
-        label: "Can I keep the photos?",
-        content: "Swap them. They’re placeholders with a license, not the brand."
-      },
-      %{
-        value: "september",
-        label: "When is September?",
+        value: "a11y",
+        label: "How does accessibility work?",
         content:
-          "Whenever you change the timestamp in the home template. The digits stay on one row."
+          "The Accessibility control opens zoom, contrast, motion, cursor, focus, and underline. Choices persist in local storage."
+      },
+      %{
+        value: "clone",
+        label: "How do I clone it?",
+        content:
+          "git clone the repo, then mix setup and mix soonex.server. There is no package.json."
       }
     ])
   end

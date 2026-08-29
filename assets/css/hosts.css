@@ -6,6 +6,44 @@
   --soonex-ctl-radius: var(--radius-lg);
 }
 
+body.layout {
+  background-image:
+    url("../images/grain.svg"),
+    radial-gradient(
+      ellipse 80% 50% at 110% -10%,
+      color-mix(in oklab, var(--color-brand) 10%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at -8% 110%,
+      color-mix(in oklab, var(--color-accent) 7%, transparent),
+      transparent 50%
+    );
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-attachment: scroll, fixed, fixed;
+  background-blend-mode: multiply, normal, normal;
+}
+
+[data-mode="dark"] body.layout {
+  background-image:
+    url("../images/grain.svg"),
+    radial-gradient(
+      ellipse 80% 50% at 110% -10%,
+      color-mix(in oklab, var(--color-brand) 16%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at -8% 110%,
+      color-mix(in oklab, var(--color-accent) 10%, transparent),
+      transparent 50%
+    );
+  background-blend-mode: overlay, normal, normal;
+}
+
+html[data-motion="reduce"] body.layout {
+  background-attachment: scroll;
+}
+
 .button,
 .link.ui-nav {
   transition-timing-function: var(--soonex-ease);
@@ -286,6 +324,28 @@ pre.code.code--wide {
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-tight);
   line-height: 1;
+  color: var(--color-ink);
+}
+
+.soonex-room-specimen {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 0.95;
+  color: var(--color-ink);
+}
+
+.soonex-room-name {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.soonex-room {
   color: var(--color-ink);
 }
 

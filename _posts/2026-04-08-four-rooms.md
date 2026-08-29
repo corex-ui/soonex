@@ -1,9 +1,9 @@
 ---
 layout: Soonex.PostLayout
-title: Four themes without forking Corex CSS
+title: Four rooms on near-white paper
 date: 2026-04-08 09:00:00 +0000
-permalink: /blog/excepteur-sint-occaecat/
-description: neo, uno, duo, and leo live in config. Template Options switches them on this device so they read as four products.
+permalink: /blog/four-rooms/
+description: neo, uno, duo, and leo live in config. Type, radius, and brand change the room. Paper stays near-white.
 image: /images/photos/studio.jpg
 image_alt: A calm studio interior with a low sofa, plants, and a large window
 tags:
@@ -16,18 +16,18 @@ sitemap:
 
 Theme, brand, and accent live in config. The floating **Template Options** panel switches neo, uno, duo, and leo on this device. Host CSS does not copy component recipes.
 
-## What each theme is for
+## What each room is for
 
-neo is a cool gallery. uno is mint and tight. duo is salon cream with round corners. leo is kraft paper and a hard edge.
+neo is a product studio. uno is calm ops. duo is an editorial atelier. leo is a signal poster. Paper stays near-white in every room.
 
 ### Review table
 
-| Theme | Paper | Corner | Type |
+| Theme | Room | Corner | Type |
 | --- | --- | --- | --- |
-| neo | Gallery | Soft | Outfit |
-| uno | Mint | Tight | Sora |
-| duo | Salon | Round | Playfair |
-| leo | Kraft | None | IBM Plex |
+| neo | Product studio | Open | Outfit |
+| uno | Calm ops | Tight | Sora |
+| duo | Editorial atelier | Soft | Playfair |
+| leo | Signal poster | Square | IBM Plex |
 
 ### Studio checklist
 

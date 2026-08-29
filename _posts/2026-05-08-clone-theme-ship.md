@@ -1,9 +1,9 @@
 ---
 layout: Soonex.PostLayout
-title: How to clone, theme, and ship Soonex
+title: Clone, theme, and ship
 date: 2026-05-08 12:00:00 +0000
-permalink: /blog/using-the-soonex-template/
-description: Clone the waitlist template, switch neo/uno/duo/leo in config, and rebuild the Markdown journal.
+permalink: /blog/clone-theme-ship/
+description: Clone the launch template, switch neo/uno/duo/leo in config, and rebuild the Markdown log.
 image: /images/covers/overlay.jpg
 image_alt: Soft abstract color field in warm paper tones
 tags:
@@ -14,7 +14,7 @@ sitemap:
   changefreq: monthly
 ---
 
-Soonex is the first **Corex plus Tableau** waitlist template. Fork it, theme it in config, keep the journal and countdown, and launch with accessible controls.
+Soonex is an **open-source launch template** from Corex. Fork it, theme it in config, keep the log and countdown, and launch with accessible controls.
 
 ## Start here
 
@@ -43,7 +43,7 @@ Markdown link: [Hexdocs Corex](https://hexdocs.pm/corex). Bare URL with autolink
 ### Ordered
 
 1. Theme overlays in `config/config.exs`
-2. Journal posts under `_posts/`
+2. Log posts under `_posts/`
 3. Waitlist fields wired to your list
 
 ### Task list
@@ -56,12 +56,12 @@ Markdown link: [Hexdocs Corex](https://hexdocs.pm/corex). Bare URL with autolink
 
 ## Table
 
-| Band | Corex | Note |
+| Band | Job | Note |
 | --- | --- | --- |
-| Product | Tabs | Overview / Themes / Mix |
-| Plans | Data list | Launch / Studio / Agency |
-| Voices | Carousel | Horizontal quotes |
-| Journal | Pagination | Client events only |
+| Product | What you fork | Tabs + clone strip |
+| Rooms | Four themes | Type, radius, brand |
+| Log | Shipping notes | Client pager |
+| Waitlist | Canonical form | Toast on submit |
 
 | Feature | Status | Note |
 | --- | :---: | --- |
@@ -86,16 +86,6 @@ Default Open Graph asset:
 
 ![Soonex Open Graph](/images/og.svg)
 
-Tech marks used in the footer:
-
-![Elixir](/images/tech/elixir.svg)
-
-![Phoenix](/images/tech/phoenix.svg)
-
-![Tailwind](/images/tech/tailwind.svg)
-
-![Hex](/images/tech/hex.svg)
-
 ---
 
 ## GitHub-style alerts
@@ -113,16 +103,16 @@ Tech marks used in the footer:
 > `mix soonex.server` fails if port 4999 is already bound. Stop the occupant first.
 
 > [!CAUTION]
-> Journal pagination is a Corex client event. There is no LiveView `handle_event`.
+> Log pagination is a Corex client event. There is no LiveView `handle_event`.
 
 ---
 
 ## Footnotes
 
-The journal index paginates with the Corex pager on the client[^alpha]. Reduced motion lives in Accessibility[^beta].
+The log index paginates with the Corex pager on the client[^alpha]. Reduced motion lives in Accessibility[^beta].
 
-[^alpha]: Host script listens for `pagination-page-changed` and hides the other SSR cards.
-[^beta]: Scroll reveal and card lift stop under `data-motion=reduce`.
+[^alpha]: Host script listens for `pagination-page-changed` and hides the other SSR entries.
+[^beta]: Scroll reveal stops under `data-motion=reduce`.
 
 ---
 
@@ -154,7 +144,7 @@ Fenced JavaScript:
 ```javascript
 el.addEventListener("pagination-page-changed", (e) => {
   const { page, page_size } = e.detail
-  // show SSR cards for that 1-based slice
+  // show SSR entries for that 1-based slice
 })
 ```
 

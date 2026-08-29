@@ -5,24 +5,34 @@ defmodule Soonex.HomePage do
   use Corex
 
   import Soonex.HomePage.Hero, only: [hero: 1]
-  import Soonex.HomePage.Contents, only: [contents: 1]
-  import Soonex.HomePage.Capita, only: [capita: 1]
-  import Soonex.HomePage.Officia, only: [officia: 1]
-  import Soonex.HomePage.Voces, only: [voces: 1]
+  import Soonex.HomePage.Product, only: [product: 1]
+  import Soonex.HomePage.Notes, only: [notes: 1]
+  import Soonex.HomePage.Themes, only: [themes: 1]
+  import Soonex.HomePage.Log, only: [log: 1]
   import Soonex.HomePage.Faq, only: [faq: 1]
   import Soonex.HomePage.Waitlist, only: [waitlist: 1]
 
   def template(assigns) do
+    assigns = Map.put(assigns, :log_posts, posts(assigns))
+
     ~H"""
     <div id="home" class="w-full text-ink">
       <.hero />
-      <.contents />
-      <.capita />
-      <.voces />
-      <.officia />
+      <.product />
+      <.notes />
+      <.themes />
+      <.log posts={@log_posts} />
       <.faq />
       <.waitlist />
     </div>
     """
+  end
+
+  defp posts(assigns) do
+    cond do
+      is_list(assigns[:posts]) -> assigns.posts
+      is_map(assigns[:page]) and is_list(assigns.page[:posts]) -> assigns.page.posts
+      true -> []
+    end
   end
 end

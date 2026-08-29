@@ -37,7 +37,7 @@ defmodule Soonex.NotFoundPage do
               Home
             </.navigate>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
-              Journal
+              Log
             </.navigate>
           </div>
         </div>
