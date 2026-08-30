@@ -11,12 +11,12 @@ defmodule Soonex.HomePage.Notes do
     assigns = assign(assigns, :supporting, supporting())
 
     ~H"""
-    <.block id="notes" labelledby="soonex-notes-heading" eyebrow="Studio" layout={:editorial}>
+    <.block id="notes" labelledby="soonex-notes-heading" eyebrow="Studios" layout={:editorial}>
       <:title>
-        Notes from studios <span class="text-brand-text">already forking</span>
+        Already on the <span class="text-brand-text">September list</span>
       </:title>
       <:lede>
-        Short lines from people putting Soonex on a September calendar.
+        Founders, engineers, and designers putting Soonex on a calendar — not a backlog.
       </:lede>
       <blockquote class="m-0">
         <p class="soonex-quote m-0 text-pretty">“{@featured.quote}”</p>
@@ -39,7 +39,7 @@ defmodule Soonex.HomePage.Notes do
       <ul class="mt-12 flex list-none flex-col gap-10 p-0">
         <li :for={voice <- @supporting}>
           <blockquote class="m-0">
-            <p class="m-0 text-pretty text-lg/7">{voice.quote}</p>
+            <p class="m-0 text-pretty text-lg/7">“{voice.quote}”</p>
             <footer class="mt-4 flex items-center gap-3">
               <.avatar
                 id={voice.id}
@@ -66,9 +66,10 @@ defmodule Soonex.HomePage.Notes do
       id: "soonex-voice-amira",
       src: "/images/people/amira.jpg",
       initials: "AN",
-      quote: "We needed a date on the page before the deck was done.",
+      quote:
+        "We had a date before we had a deck. Soonex put the waitlist and the countdown on the page the same afternoon.",
       name: "Amira N.",
-      role: "Founder"
+      role: "Founder, Northline Studio"
     }
   end
 
@@ -78,17 +79,19 @@ defmodule Soonex.HomePage.Notes do
         id: "soonex-voice-jonas",
         src: "/images/people/jonas.jpg",
         initials: "JK",
-        quote: "Static site, controls included, one clone path.",
+        quote:
+          "One clone path, controls included, no second design system. We pointed the date and shipped the stills.",
         name: "Jonas K.",
-        role: "Staff engineer"
+        role: "Staff engineer, Relay"
       },
       %{
         id: "soonex-voice-leah",
         src: "/images/people/leah.jpg",
         initials: "LM",
-        quote: "Four rooms for a client review without a second build.",
+        quote:
+          "Four looks for the client review without rebuilding. They picked duo; we kept shipping.",
         name: "Leah M.",
-        role: "Product designer"
+        role: "Product designer, Fieldwork"
       }
     ]
   end

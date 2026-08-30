@@ -26,8 +26,7 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="lede mt-6">
-              An open-source launch template from Corex — waitlist, journal, countdown, four themes in
-              config. Ship <span class="whitespace-nowrap">1 September</span>.
+              Waitlist, shipping log, countdown, and four looks. Ship <span class="whitespace-nowrap">1 September</span>.
             </p>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
@@ -43,11 +42,8 @@ defmodule Soonex.Layouts.Root.Footer do
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate
-                    to={Soonex.Public.path("/") <> "#themes"}
-                    class="link ui-nav ui-size-sm"
-                  >
-                    Rooms
+                  <.navigate to={Soonex.Public.path("/") <> "#looks"} class="link ui-nav ui-size-sm">
+                    Looks
                   </.navigate>
                 </li>
                 <li>

@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
+    "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -198,7 +198,7 @@ config :corex_design,
           letter_spacing: {:tracking, :tighter},
           font_size: {:text, :"5xl"},
           sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"7xl"}}
+          lg: %{font_size: {:text, :"8xl"}}
         },
         "h2" => %{
           font_family: {:font, :display},
@@ -300,16 +300,21 @@ config :corex_design,
         "h2" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tight},
+          letter_spacing: {:tracking, :tighter},
           font_size: {:text, :"3xl"},
           sm: %{font_size: {:text, :"4xl"}}
         },
-        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :medium}},
-        "h4" => %{font_weight: {:weight, :medium}},
+        "h3" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :medium},
+          letter_spacing: {:tracking, :tight}
+        },
+        "h4" => %{font_weight: {:weight, :medium}, letter_spacing: {:tracking, :tight}},
         "p" => %{line_height: {:leading, :snug}},
         "p.lede" => %{
-          font_size: {:text, :lg},
+          font_size: {:text, :base},
           line_height: {:leading, :snug},
+          letter_spacing: {:tracking, :tight},
           color: "var(--color-ink-muted)"
         },
         "small.eyebrow" => %{
@@ -389,7 +394,7 @@ config :corex_design,
           letter_spacing: {:tracking, :tight},
           font_size: {:text, :"5xl"},
           sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"7xl"}}
+          lg: %{font_size: {:text, :"8xl"}}
         },
         "h2" => %{
           font_family: {:font, :display},
@@ -403,7 +408,7 @@ config :corex_design,
         "p.lede" => %{
           font_family: {:font, :serif},
           font_style: :italic,
-          font_size: {:text, :lg},
+          font_size: {:text, :xl},
           line_height: {:leading, :relaxed},
           color: "var(--color-ink-muted)"
         },
@@ -478,15 +483,15 @@ config :corex_design,
       },
       typography: %{
         "h1" => %{
-          font_weight: {:weight, :semibold},
+          font_weight: {:weight, :bold},
           letter_spacing: {:tracking, :tighter},
           font_size: {:text, :"5xl"},
           text_transform: "uppercase",
           sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"7xl"}}
+          lg: %{font_size: {:text, :"8xl"}}
         },
         "h2" => %{
-          font_weight: {:weight, :semibold},
+          font_weight: {:weight, :bold},
           letter_spacing: {:tracking, :tight},
           font_size: {:text, :"4xl"},
           text_transform: "uppercase",

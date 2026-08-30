@@ -121,6 +121,7 @@ defmodule Soonex.Layouts.Root.Nav do
   defp desktop_links do
     [
       %{id: :product, label: "Product", to: Soonex.Public.path("/") <> "#product"},
+      %{id: :looks, label: "Looks", to: Soonex.Public.path("/") <> "#looks"},
       %{id: :log, label: "Log", to: Soonex.Public.path("/blog")},
       %{id: :questions, label: "Questions", to: Soonex.Public.path("/") <> "#questions"}
     ]
@@ -132,6 +133,12 @@ defmodule Soonex.Layouts.Root.Nav do
         label: "Product",
         value: "product",
         to: Soonex.Public.path("/") <> "#product",
+        redirect: :href
+      },
+      %{
+        label: "Looks",
+        value: "looks",
+        to: Soonex.Public.path("/") <> "#looks",
         redirect: :href
       },
       %{

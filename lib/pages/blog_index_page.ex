@@ -32,7 +32,7 @@ defmodule Soonex.BlogIndexPage do
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>Log</:title>
           <:subtitle>
-            Shipping notes for the Corex launch template — {@blog_count}
+            Public notes on the road to 1 September — {@blog_count}
             {if @blog_count == 1, do: "entry", else: "entries"}.
           </:subtitle>
           <:actions>

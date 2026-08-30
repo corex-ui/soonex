@@ -181,6 +181,14 @@ html[data-motion="reduce"] body.layout {
   border-end-end-radius: var(--soonex-ctl-radius, var(--radius-md));
 }
 
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="list"] {
+  gap: 0;
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="trigger"] {
+  font-weight: var(--font-weight-semibold);
+}
+
 .carousel.ui-width-full [data-scope="carousel"][data-part="item"] {
   align-items: stretch;
 }
@@ -283,14 +291,31 @@ pre.code.code--wide {
 [data-theme="uno"] h1,
 [data-theme="uno"] h2,
 [data-theme="uno"] .soonex-quote,
-[data-theme="uno"] .soonex-stat-value {
-  letter-spacing: -0.03em;
+[data-theme="uno"] .soonex-stat-value,
+[data-theme="uno"] .soonex-room-specimen,
+[data-theme="uno"] .soonex-room-name,
+[data-theme="uno"] .soonex-card-title {
+  letter-spacing: -0.04em;
 }
 
 [data-theme="duo"] blockquote,
-[data-theme="duo"] .soonex-quote {
+[data-theme="duo"] .soonex-quote,
+[data-theme="duo"] .soonex-tab-workspace > .lede,
+[data-theme="duo"] .soonex-room .lede {
   font-family: var(--font-serif);
   font-style: italic;
+}
+
+[data-theme="leo"] .soonex-room-specimen,
+[data-theme="leo"] .soonex-room-name,
+[data-theme="leo"] .soonex-card-title,
+[data-theme="leo"] .soonex-lockup-word {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="neo"] .soonex-room-specimen {
+  letter-spacing: -0.06em;
 }
 
 .soonex-lockup-word {

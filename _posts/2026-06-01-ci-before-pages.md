@@ -14,7 +14,7 @@ sitemap:
   changefreq: monthly
 ---
 
-Keep **CI green** before Pages deploys so a broken push never reaches the public CDN. Wallaby axe on the home document is the test gate.
+We do not ship a broken landing. Keep **CI green** before Pages deploys so a bad push never reaches the public CDN. Axe on the home document is the gate.
 
 ## Before you push
 
@@ -32,7 +32,7 @@ Stop `mix soonex.server` if port 4999 is bound. Then `MIX_ENV=test mix test`.
 | --- | --- | --- |
 | Axe | `mix test` | Home document |
 | Build | `mix tableau.build` | Static `_site/` |
-| Serve | `mix soonex.server` | 4999 + Corex MCP |
+| Serve | `mix soonex.server` | Local preview |
 
 ![Soonex Open Graph](/images/og.svg)
 

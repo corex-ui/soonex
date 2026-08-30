@@ -7,24 +7,30 @@ defmodule Soonex.HomePage.Themes do
 
   def themes(assigns) do
     ~H"""
-    <.block id="themes" labelledby="soonex-themes-heading" eyebrow="Rooms" layout={:open}>
+    <.block id="looks" labelledby="soonex-looks-heading" eyebrow="Looks" layout={:open}>
       <:title>
-        Four rooms. <span class="text-brand-text">One building.</span>
+        Four looks. <span class="text-brand-text">One launch.</span>
       </:title>
       <:lede>
-        Paper stays near-white. Type, radius, and brand change the weather. Template Options is the
-        live review — not the headline.
+        Review neo, uno, duo, and leo with your client on this device. Paper stays calm — type,
+        corners, and brand change the room.
       </:lede>
       <p class="soonex-room-specimen m-0">Soonex</p>
       <p class="lede mt-4 max-w-xl">
-        The active room sets this display. Switch neo, uno, duo, or leo in the corner and this line
-        moves with it.
+        This display follows the look you pick in Template Options. Switch rooms live — no second
+        build for the review.
       </p>
 
-      <ol class="mt-12 flex list-none flex-col gap-10 p-0">
-        <li :for={room <- rooms()} data-theme={room.id} data-mode="light" class="soonex-room">
+      <ol class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+        <li
+          :for={room <- rooms()}
+          data-theme={room.id}
+          data-mode="light"
+          class="soonex-room border border-border bg-surface p-6 sm:p-8"
+        >
           <p class="soonex-room-name m-0">{room.id}</p>
-          <p class="lede m-0 mt-2 max-w-xl">{room.line}</p>
+          <p class="lede m-0 mt-3">{room.line}</p>
+          <p class="m-0 mt-4 text-sm/6 text-ink-muted">{room.use}</p>
         </li>
       </ol>
     </.block>
@@ -33,10 +39,26 @@ defmodule Soonex.HomePage.Themes do
 
   defp rooms do
     [
-      %{id: "neo", line: "Product studio — geometric display, open corners, cobalt."},
-      %{id: "uno", line: "Calm ops — tight tracking, small radius, teal."},
-      %{id: "duo", line: "Editorial atelier — serif display, soft corners, rust."},
-      %{id: "leo", line: "Signal poster — strong display, square corners, orange."}
+      %{
+        id: "neo",
+        line: "Product studio — geometric display, open corners, cobalt.",
+        use: "Default for product launches and investor-facing pages."
+      },
+      %{
+        id: "uno",
+        line: "Calm ops — tight tracking, small radius, teal.",
+        use: "Ops and tooling launches that need quiet confidence."
+      },
+      %{
+        id: "duo",
+        line: "Editorial atelier — serif display, soft corners, rust.",
+        use: "Studios and cultural brands that want editorial warmth."
+      },
+      %{
+        id: "leo",
+        line: "Signal poster — strong display, square corners, orange.",
+        use: "Campaign drops and poster-led announcements."
+      }
     ]
   end
 end

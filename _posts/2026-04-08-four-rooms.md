@@ -1,9 +1,9 @@
 ---
 layout: Soonex.PostLayout
-title: Four rooms on near-white paper
+title: Four looks for client review
 date: 2026-04-08 09:00:00 +0000
 permalink: /blog/four-rooms/
-description: neo, uno, duo, and leo live in config. Type, radius, and brand change the room. Paper stays near-white.
+description: neo, uno, duo, and leo on one launch — type, corners, and brand change the room; paper stays calm.
 image: /images/photos/studio.jpg
 image_alt: A calm studio interior with a low sofa, plants, and a large window
 tags:
@@ -14,15 +14,15 @@ sitemap:
   changefreq: monthly
 ---
 
-Theme, brand, and accent live in config. The floating **Template Options** panel switches neo, uno, duo, and leo on this device. Host CSS does not copy component recipes.
+Client review used to mean a second build. Now **Template Options** switches neo, uno, duo, and leo on this device so the studio and the client share one page.
 
-## What each room is for
+## What each look is for
 
-neo is a product studio. uno is calm ops. duo is an editorial atelier. leo is a signal poster. Paper stays near-white in every room.
+neo is the product studio. uno is calm ops. duo is the editorial atelier. leo is the signal poster. Paper stays near-white in every room.
 
 ### Review table
 
-| Theme | Room | Corner | Type |
+| Look | Room | Corner | Type |
 | --- | --- | --- | --- |
 | neo | Product studio | Open | Outfit |
 | uno | Calm ops | Tight | Sora |
@@ -31,14 +31,9 @@ neo is a product studio. uno is calm ops. duo is an editorial atelier. leo is a 
 
 ### Studio checklist
 
-- [x] Seeds and light/dark colors in overlays
-- [x] Radius and fonts per theme
+- [x] Four looks live on the landing
+- [x] Specimen updates with the active room
 - [ ] Your photography in the frames
 
 > [!TIP]
-> There is no `ui-input` utility in Corex. Soonex treats triggers and field hosts as the control language via `--ctl-radius`, `--ctl-space`, `--ctl-size`, and `--ctl-text`.
-
-```elixir
-# Theme overlays must not set *_scale, duration, or opacity.
-config :corex_design, default_theme: :neo
-```
+> Pick a look with your client before you rewrite the stills. The waitlist and countdown stay the same.

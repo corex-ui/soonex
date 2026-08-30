@@ -10,11 +10,7 @@ defmodule Soonex.HomePage.Hero do
 
   def hero(assigns) do
     ~H"""
-    <header
-      class={Shell.section_hero()}
-      aria-labelledby="soonex-headline"
-      data-hero-boundary
-    >
+    <header class={Shell.section_hero()} aria-labelledby="soonex-headline" data-hero-boundary>
       <div class="absolute inset-0">
         <.photo
           src="/images/photos/hero.jpg"
@@ -38,8 +34,8 @@ defmodule Soonex.HomePage.Hero do
             </h1>
 
             <p class={"#{Shell.lede()} max-w-lg"}>
-              An open-source launch template from Corex — waitlist, journal, countdown, four themes in
-              config.
+              Reserve a seat for launch day. Waitlist, shipping log, countdown, and four looks —
+              ready when the date hits.
             </p>
 
             <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -54,11 +50,16 @@ defmodule Soonex.HomePage.Hero do
 
           <div class="lg:col-span-6">
             <div class="soonex-waitlist-object w-full max-w-md lg:ml-auto">
+              <p class="soonex-card-title m-0">Reserve a September seat</p>
+              <p class="lede mt-2 text-sm/6">
+                Tell us who you are. We write when the countdown ends.
+              </p>
+
               <form
                 id="soonex-hero-waitlist-form"
-                class="flex w-full flex-col gap-4"
+                class="mt-5 flex w-full flex-col gap-4"
                 data-waitlist-toast-title="You're on the list"
-                data-waitlist-toast-description="Demo form — toast only. Wire your provider after you fork."
+                data-waitlist-toast-description="We'll email you before 1 September."
               >
                 <div class="soonex-waitlist-join flex w-full flex-col gap-3 sm:flex-row sm:items-end">
                   <.native_input
@@ -93,7 +94,7 @@ defmodule Soonex.HomePage.Hero do
                 </.radio_group>
               </form>
 
-              <div class="mt-5 flex items-center gap-3">
+              <div class="mt-5 flex items-center gap-3 border-t border-border pt-5">
                 <div class="soonex-avatars">
                   <.avatar
                     :for={person <- people()}
@@ -106,9 +107,7 @@ defmodule Soonex.HomePage.Hero do
                   </.avatar>
                 </div>
                 <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
-                  Studios already cloning the repo for a
-                  <span class="whitespace-nowrap">1 September</span>
-                  launch.
+                  240 studios already on the list for <span class="whitespace-nowrap">1 September</span>.
                 </p>
               </div>
             </div>

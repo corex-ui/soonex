@@ -24,13 +24,13 @@ defmodule Soonex.HomePage.Waitlist do
         Join the <span class="text-brand-text">September list</span>
       </:title>
       <:lede>
-        Role, interests, and team size. We will write when the date hits.
+        Role, interests, and team size. We write when the countdown ends.
       </:lede>
       <form
         id="soonex-waitlist-form"
         class={"#{Shell.panel()} mx-auto w-full max-w-lg p-8 sm:p-10"}
         data-waitlist-toast-title="You're on the list"
-        data-waitlist-toast-description="Demo form — toast only. Wire your provider after you fork."
+        data-waitlist-toast-description="We'll email you before 1 September."
       >
         <div class="flex w-full flex-col items-stretch gap-5">
           <.native_input
@@ -114,7 +114,7 @@ defmodule Soonex.HomePage.Waitlist do
         </div>
       </form>
       <p class="mx-auto mt-6 max-w-lg text-center text-sm/6 text-ink-muted">
-        Demo form — toast only. Wire your provider after you fork.
+        Demo page — toast only until you wire a provider.
       </p>
     </.block>
     """

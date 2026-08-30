@@ -221,16 +221,16 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
 
       page[:page_kind] == :blog_index ->
-        "Shipping notes from #{site_name}: four rooms, the countdown, and the road to 1 September."
+        "Shipping notes from #{site_name}: waitlist, looks, countdown, and the road to 1 September."
 
       page[:page_kind] == :not_found ->
         "That page is not on #{site_name}. Head home or read the shipping log."
 
       page[:page_kind] == :tags_index ->
-        "Browse the #{site_name} journal by topic — themes, launch, studio, and notes."
+        "Browse the #{site_name} shipping log by topic — launch, looks, studio, and notes."
 
       tag_page?(page) ->
         "Log entries tagged #{page[:tag]} on #{site_name}."
@@ -239,7 +239,7 @@ defmodule Soonex.RootLayout do
         page[:description]
 
       true ->
-        "Soonex is an open-source launch template from Corex — waitlist, journal, countdown, four themes in config."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
     end
   end
 

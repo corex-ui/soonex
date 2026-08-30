@@ -10,10 +10,10 @@ defmodule Soonex.HomePage.Faq do
     ~H"""
     <.block id="questions" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
-        Before you <span class="text-brand-text">clone</span>
+        Before you <span class="text-brand-text">join</span>
       </:title>
       <:lede>
-        What Soonex is, what ships, and what you replace.
+        Straight answers about the launch, the waitlist, and what you get on day one.
       </:lede>
       <:actions>
         <.navigate to="#waitlist" class="link ui-brand">
@@ -48,37 +48,37 @@ defmodule Soonex.HomePage.Faq do
         value: "what",
         label: "What is Soonex?",
         content:
-          "The open-source waitlist and launch template that ships with Corex. Fork it for a September launch — or any date you set."
+          "A launch workspace shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
       },
       %{
         value: "ships",
-        label: "What ships on 1 September?",
+        label: "What do I get on launch day?",
         content:
-          "The landing, the waitlist fields, the shipping log, the header countdown, and four themes. Copy and stills are yours to replace."
+          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the stills, lockup, and date for your brand."
       },
       %{
-        value: "themes",
-        label: "Why four themes?",
+        value: "looks",
+        label: "What are the four looks?",
         content:
-          "neo, uno, duo, and leo are four rooms on the same near-white paper. Type, radius, and brand change. Template Options switches them on this device."
+          "neo, uno, duo, and leo. Same page, different type, corners, and brand. Switch them live in Template Options for a client review."
       },
       %{
         value: "form",
-        label: "Does the form collect email?",
+        label: "Will you email me after I join?",
         content:
-          "Not on this demo. Submit still shows the launch toast so you can see the success path. Wire your provider after you fork."
+          "Yes — when you wire a provider. On this demo page, submit shows the launch toast so you can see the success path."
       },
       %{
         value: "a11y",
         label: "How does accessibility work?",
         content:
-          "The Accessibility control opens zoom, contrast, motion, cursor, focus, and underline. Choices persist in local storage."
+          "Open Accessibility for zoom, contrast, motion, cursor, focus, and underline. Choices stay on this device in local storage."
       },
       %{
-        value: "clone",
-        label: "How do I clone it?",
+        value: "open",
+        label: "Is this open source?",
         content:
-          "git clone the repo, then mix setup and mix soonex.server. There is no package.json."
+          "Yes. Clone the repo, run mix setup and mix soonex.server. There is no package.json — Mix, Tailwind, and esbuild are already in the project."
       }
     ])
   end

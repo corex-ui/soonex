@@ -63,4 +63,7 @@ defmodule Soonex.Layouts.Shell do
   def lanes, do: "m-0 flex list-none flex-col gap-8 p-0"
 
   def log_list, do: "m-0 flex list-none flex-col divide-y divide-border p-0"
+
+  def feature_bullets,
+    do: "soonex-feature-bullets m-0 flex list-none flex-col gap-2 p-0"
 end
