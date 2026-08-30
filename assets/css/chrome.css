@@ -1,4 +1,4 @@
-/* Tiny layout helpers that utilities cannot express. */
+/* Instrument-desk chrome. Tokens only — no Corex recipe forks. */
 
 html {
   scroll-behavior: smooth;
@@ -38,24 +38,6 @@ html[data-motion="reduce"] {
   }
 }
 
-.soonex-card-motion {
-  transition:
-    border-color var(--duration-fast) var(--soonex-ease),
-    box-shadow var(--duration-fast) var(--soonex-ease);
-}
-
-@media (hover: hover) {
-  .soonex-card-motion:hover {
-    border-color: var(--color-brand);
-    box-shadow: var(--shadow-sm);
-  }
-}
-
-html[data-motion="reduce"] .soonex-card-motion,
-html[data-motion="reduce"] .soonex-card-motion:hover {
-  transition: none;
-}
-
 [data-site-header] {
   transition: border-color var(--duration-normal) var(--soonex-ease);
 }
@@ -72,9 +54,7 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   }
 }
 
-/* Header timer stays in flow (invisible until reveal) so the bar never jumps.
-   Corex digits flip in a 2em window (`top: calc(var(--value) * -2em)`). Do not
-   shrink that window — it clips the strip. Compact the type instead. */
+/* Header timer — compact type, keep 2em digit window. */
 [data-site-header] .timer.ui-size-sm {
   --timer-digit: var(--text-sm);
   --timer-digit-leading: 2;
@@ -119,40 +99,115 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
 }
 
-.soonex-hero-wash {
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--color-root) 18%, transparent) 0%,
-    var(--color-root) 86%
-  );
+/* ——— Hero brand slab ——— */
+
+.soonex-hero-slab {
+  background-color: var(--color-brand);
+  color: var(--color-brand-contrast);
 }
 
-@media (width >= 64rem) {
-  .soonex-hero-wash {
-    background: linear-gradient(
-      105deg,
-      var(--color-root) 0%,
-      color-mix(in oklab, var(--color-root) 86%, transparent) 42%,
-      color-mix(in oklab, var(--color-accent) 24%, transparent) 100%
-    );
-  }
+.soonex-slab-kicker {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-brand-contrast) 78%, transparent);
 }
 
-.soonex-waitlist-object {
-  border: 1px solid var(--color-border);
-  background-color: var(--color-root);
-  border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
-  padding: calc(var(--spacing-space) * 1.15);
-  box-shadow: var(--shadow-sm);
+.soonex-slab-display {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 0.92;
+  color: var(--color-brand-contrast);
 }
 
 @media (width >= 40rem) {
-  .soonex-waitlist-object {
-    padding: calc(var(--spacing-space) * 1.45);
+  .soonex-slab-display {
+    font-size: var(--text-7xl);
   }
 }
 
-/* Hero email + CTA read as one joined control on sm+. */
+@media (width >= 64rem) {
+  .soonex-slab-display {
+    font-size: var(--text-8xl);
+  }
+}
+
+.soonex-slab-lede {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: color-mix(in oklab, var(--color-brand-contrast) 82%, transparent);
+}
+
+.soonex-slab-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--spacing-size);
+  padding-inline: calc(var(--spacing-space) * 1.25);
+  border-radius: var(--soonex-ctl-radius, var(--radius-md));
+  background-color: var(--color-root);
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.soonex-slab-cta:hover {
+  background-color: var(--color-surface);
+}
+
+.soonex-slab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-brand-contrast);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  border-block-end: 1px solid color-mix(in oklab, var(--color-brand-contrast) 45%, transparent);
+}
+
+.soonex-slab-link:hover {
+  border-block-end-color: var(--color-brand-contrast);
+}
+
+[data-theme="leo"] .soonex-slab-display,
+[data-theme="leo"] .soonex-slab-kicker {
+  text-transform: uppercase;
+}
+
+[data-theme="uno"] .soonex-slab-display {
+  letter-spacing: -0.05em;
+}
+
+[data-theme="duo"] .soonex-slab-lede {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* ——— Waitlist instrument rack ——— */
+
+.soonex-waitlist-rack {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
+  padding: calc(var(--spacing-space) * 1.25);
+}
+
+@media (width >= 40rem) {
+  .soonex-waitlist-rack {
+    padding: calc(var(--spacing-space) * 1.5);
+  }
+}
+
+.soonex-waitlist-rack--canonical {
+  border-width: 2px;
+}
+
 .soonex-waitlist-join {
   gap: var(--spacing-space-sm);
 }
@@ -175,49 +230,106 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   }
 }
 
+/* ——— Product tabs as segmented instrument ——— */
+
 .soonex-tab-panel {
-  min-height: 18rem;
+  min-height: 20rem;
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="list"] {
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--soonex-ctl-radius, var(--radius-md));
+  background-color: var(--color-ui);
+  padding: 0.2rem;
+  overflow: hidden;
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="trigger"] {
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--soonex-ctl-radius, var(--radius-sm));
 }
 
 .tabs.soonex-product-tabs [data-scope="tabs"][data-part="content"] {
-  padding: calc(var(--spacing-space) * 1.25);
+  margin-block-start: var(--spacing-space);
+  padding: calc(var(--spacing-space) * 1.35);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-block-start: 0;
+  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
+  min-height: 20rem;
 }
 
 .soonex-tab-workspace {
-  max-width: 48rem;
+  max-width: 52rem;
 }
 
 .soonex-tab-workspace .soonex-room-specimen {
   font-size: var(--text-5xl);
 }
 
-.soonex-check-list {
+.soonex-instrument-list {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-space);
+  gap: calc(var(--spacing-space) * 1.1);
 }
 
-.soonex-check-list > li {
+.soonex-instrument-list > li {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--spacing-space);
   align-items: start;
+  padding-block: calc(var(--spacing-space) * 0.65);
+  border-block-end: 1px solid var(--color-border);
 }
 
-.soonex-check-mark {
-  display: block;
-  width: 0.85rem;
-  height: 0.85rem;
-  margin-top: 0.35rem;
-  border-radius: var(--soonex-ctl-radius, var(--radius-sm));
-  background-color: var(--color-brand);
-  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--color-brand) 35%, transparent);
+.soonex-instrument-list > li:last-child {
+  border-block-end: 0;
+}
+
+.soonex-instrument-index {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-text);
+  line-height: 1.6;
+}
+
+.soonex-look-rail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-block: 1px solid var(--color-border);
+}
+
+.soonex-look-rail > li {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: var(--spacing-space);
+  align-items: baseline;
+  padding-block: calc(var(--spacing-space) * 0.85);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.soonex-look-rail > li:last-child {
+  border-block-end: 0;
+}
+
+.soonex-look-id {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-text);
+}
+
+.soonex-look-line {
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 .soonex-feature-bullets {
@@ -248,9 +360,12 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   background-color: var(--color-brand);
 }
 
-.soonex-mini-form,
-.soonex-sample-entry {
+.soonex-rack-specimen,
+.soonex-ledger-row {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-ui);
   border-radius: var(--soonex-ctl-radius, var(--radius-xl));
+  padding: calc(var(--spacing-space) * 1.15);
 }
 
 .soonex-field-ghost {
@@ -260,9 +375,25 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   padding-inline: var(--spacing-space);
   border: 1px solid var(--color-border);
   border-radius: var(--soonex-ctl-radius, var(--radius-md));
-  background-color: var(--color-ui);
+  background-color: var(--color-surface);
   color: var(--color-ink-muted);
   font-size: var(--text-sm);
+}
+
+.soonex-clone-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space);
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: calc(var(--spacing-space) * 1.35);
+}
+
+@media (width >= 64rem) {
+  .soonex-clone-strip {
+    flex-direction: row;
+    align-items: end;
+    gap: calc(var(--spacing-space) * 1.5);
+  }
 }
 
 .soonex-pricing {
@@ -273,7 +404,7 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
 }
 
 .soonex-pricing-tier {
-  padding-block: calc(var(--spacing-space) * 1.35);
+  padding-block: calc(var(--spacing-space) * 1.4);
   border-block-end: 1px solid var(--color-border);
 }
 
@@ -281,38 +412,88 @@ html[data-motion="reduce"] .soonex-card-motion:hover {
   border-block-end: 0;
 }
 
-.soonex-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ——— Looks instrument grid ——— */
+
+.soonex-looks-stage {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: calc(var(--spacing-space) * 1.25);
 }
 
-.soonex-avatars {
-  display: flex;
-  align-items: center;
-}
-
-.soonex-avatars .avatar + .avatar {
-  margin-inline-start: calc(var(--spacing-space-sm) * -1);
-}
-
-.soonex-avatars .avatar [data-scope="avatar"][data-part="root"] {
-  border: 2px solid var(--color-root);
-}
-
-.soonex-toolchain {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-space);
+.soonex-instrument-grid {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-space);
 }
 
-.soonex-toolchain img {
-  display: block;
-  height: var(--spacing-size);
-  width: auto;
+@media (width >= 40rem) {
+  .soonex-instrument-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.soonex-instrument-slab {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
+  padding: calc(var(--spacing-space) * 1.25);
+}
+
+.soonex-instrument-slab .soonex-room-name {
+  color: var(--color-ink);
+}
+
+/* ——— Notes + ledger ——— */
+
+.soonex-note-rail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-space) * 1.5);
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: calc(var(--spacing-space) * 1.25);
+}
+
+.soonex-ledger {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.soonex-ledger-entry {
+  padding-block: calc(var(--spacing-space) * 1.35);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.soonex-ledger-entry:first-child {
+  border-block-start: 1px solid var(--color-border);
+}
+
+/* ——— FAQ accordion instrument ——— */
+
+.accordion.soonex-faq-instrument [data-scope="accordion"][data-part="item-trigger"] {
+  font-weight: var(--font-weight-semibold);
+  padding-block: calc(var(--spacing-space) * 0.95);
+}
+
+.accordion.soonex-faq-instrument [data-scope="accordion"][data-part="item"] {
+  border-color: var(--color-border);
+}
+
+/* ——— Control family extras ——— */
+
+.select [data-scope="select"][data-part="trigger"],
+.tags-input [data-scope="tags-input"][data-part="control"],
+.number-input [data-scope="number-input"][data-part="control"] {
+  border-radius: var(--soonex-ctl-radius, var(--radius-md));
+}
+
+.clipboard [data-scope="clipboard"][data-part="control"] {
+  border-radius: var(--soonex-ctl-radius, var(--radius-md));
 }

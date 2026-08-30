@@ -26,6 +26,6 @@ defmodule Soonex.Layouts.Media do
   end
 
   def credits do
-    "Photographs under the Unsplash License. Tool marks from Simple Icons (CC0)."
+    "Soonex · Corex template"
   end
 end

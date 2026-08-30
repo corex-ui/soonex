@@ -7,37 +7,12 @@
 }
 
 body.layout {
-  background-image:
-    url("../images/grain.svg"),
-    radial-gradient(
-      ellipse 80% 50% at 110% -10%,
-      color-mix(in oklab, var(--color-brand) 10%, transparent),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 45% 40% at -8% 110%,
-      color-mix(in oklab, var(--color-accent) 7%, transparent),
-      transparent 50%
-    );
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-attachment: scroll, fixed, fixed;
-  background-blend-mode: multiply, normal, normal;
+  background-color: var(--color-root);
+  background-image: none;
 }
 
 [data-mode="dark"] body.layout {
-  background-image:
-    url("../images/grain.svg"),
-    radial-gradient(
-      ellipse 80% 50% at 110% -10%,
-      color-mix(in oklab, var(--color-brand) 16%, transparent),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 45% 40% at -8% 110%,
-      color-mix(in oklab, var(--color-accent) 10%, transparent),
-      transparent 50%
-    );
-  background-blend-mode: overlay, normal, normal;
+  background-image: none;
 }
 
 html[data-motion="reduce"] body.layout {

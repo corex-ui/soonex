@@ -4,8 +4,6 @@ title: Clone, look, and ship
 date: 2026-05-08 12:00:00 +0000
 permalink: /blog/clone-theme-ship/
 description: Clone Soonex, pick a look for review, keep the waitlist and log, and aim the countdown at your date.
-image: /images/covers/overlay.jpg
-image_alt: Soft abstract color field in warm paper tones
 tags:
   - Launch
   - Template
@@ -50,7 +48,7 @@ Markdown link: [Soonex on GitHub](https://github.com/corex-ui/soonex). Bare URL:
 
 - [x] Waitlist toast on submit
 - [ ] Real mailbox backend
-- [ ] Your launch photography
+- [ ] Your brand lockup and date
 
 ---
 
@@ -83,8 +81,6 @@ Markdown link: [Soonex on GitHub](https://github.com/corex-ui/soonex). Bare URL:
 ## Images
 
 Default Open Graph asset:
-
-![Soonex Open Graph](/images/og.svg)
 
 ---
 

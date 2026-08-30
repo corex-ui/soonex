@@ -5,8 +5,6 @@ defmodule Soonex.PostLayout do
   use Phoenix.Component
   use Corex
 
-  import Soonex.Layouts.Media, only: [photo: 1]
-
   alias Soonex.Layouts.Shell
 
   def template(assigns) do
@@ -33,7 +31,6 @@ defmodule Soonex.PostLayout do
       |> Map.put(:post_description, description)
       |> Map.put(:post_date_label, date_label)
       |> Map.put(:post_tags, tags)
-      |> Map.put(:post_cover, cover(page))
 
     ~H"""
     <article class={"#{Shell.section()} bg-root"}>
@@ -63,25 +60,11 @@ defmodule Soonex.PostLayout do
           </.navigate>
         </div>
 
-        <div :if={@post_cover} class={"#{Shell.frame()} mt-12 overflow-hidden"}>
-          <div class="relative aspect-[2/1]">
-            <.photo src={@post_cover.src} alt={@post_cover.alt} width={1400} height={700} />
-          </div>
-        </div>
-
         <div class="typo markdown prose mt-12 min-w-0 max-w-3xl">
           {{:safe, render(@inner_content)}}
         </div>
       </div>
     </article>
     """
-  end
-
-  defp cover(page) do
-    src = page[:image]
-
-    if is_binary(src) and src != "" do
-      %{src: src, alt: page[:image_alt] || page[:title] || "Log cover"}
-    end
   end
 end

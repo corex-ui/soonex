@@ -26,7 +26,7 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="lede mt-6">
-              Waitlist, shipping log, countdown, and four looks. Ship <span class="whitespace-nowrap">1 September</span>.
+              Instrument desk for launch day — waitlist, ledger, countdown, four looks. Ship <span class="whitespace-nowrap">1 September</span>.
             </p>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">

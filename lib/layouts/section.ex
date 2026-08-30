@@ -55,6 +55,7 @@ defmodule Soonex.Layouts.Section do
 
   defp tone_class(:root), do: "bg-root"
   defp tone_class(:surface), do: "border-y border-border bg-surface"
+  defp tone_class(:ui), do: "border-y border-border bg-ui"
   defp tone_class(:clear), do: ""
 
   defp stage_class(:bleed), do: "#{Shell.stage()} relative z-[1]"

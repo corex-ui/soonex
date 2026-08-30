@@ -4,8 +4,6 @@ title: CI before Pages
 date: 2026-06-01 12:00:00 +0000
 permalink: /blog/ci-before-pages/
 description: Keep CI green before Pages deploys. Axe on the home document is the gate; the countdown stays aimed at 1 September.
-image: /images/covers/shipping.jpg
-image_alt: A laptop on a wooden desk with a code editor open
 tags:
   - Launch
   - Notes
@@ -33,8 +31,6 @@ Stop `mix soonex.server` if port 4999 is bound. Then `MIX_ENV=test mix test`.
 | Axe | `mix test` | Home document |
 | Build | `mix tableau.build` | Static `_site/` |
 | Serve | `mix soonex.server` | Local preview |
-
-![Soonex Open Graph](/images/og.svg)
 
 > [!TIP]
 > Keep CI green before Pages deploys so broken pushes never reach the public CDN.

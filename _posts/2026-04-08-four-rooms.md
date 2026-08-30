@@ -4,8 +4,6 @@ title: Four looks for client review
 date: 2026-04-08 09:00:00 +0000
 permalink: /blog/four-rooms/
 description: neo, uno, duo, and leo on one launch — type, corners, and brand change the room; paper stays calm.
-image: /images/photos/studio.jpg
-image_alt: A calm studio interior with a low sofa, plants, and a large window
 tags:
   - Design
   - Studio
@@ -33,7 +31,7 @@ neo is the product studio. uno is calm ops. duo is the editorial atelier. leo is
 
 - [x] Four looks live on the landing
 - [x] Specimen updates with the active room
-- [ ] Your photography in the frames
+- [ ] Your brand lockup and date
 
 > [!TIP]
 > Pick a look with your client before you rewrite the stills. The waitlist and countdown stay the same.

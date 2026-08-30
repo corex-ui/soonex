@@ -22,7 +22,7 @@ defmodule Soonex.HomePage.Faq do
       </:actions>
       <.accordion
         id="soonex-faq"
-        class="accordion ui-accent ui-size-md mx-auto w-full max-w-none"
+        class="accordion ui-accent ui-size-md soonex-faq-instrument mx-auto w-full max-w-none"
         multiple={false}
         collapsible={true}
         value="what"
@@ -48,13 +48,13 @@ defmodule Soonex.HomePage.Faq do
         value: "what",
         label: "What is Soonex?",
         content:
-          "A launch workspace shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
+          "A launch desk shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
       },
       %{
         value: "ships",
         label: "What do I get on launch day?",
         content:
-          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the stills, lockup, and date for your brand."
+          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the lockup and date for your brand."
       },
       %{
         value: "looks",
