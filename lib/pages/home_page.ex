@@ -5,8 +5,11 @@ defmodule Soonex.HomePage do
   use Corex
 
   import Soonex.HomePage.Hero, only: [hero: 1]
+  import Soonex.HomePage.MarqueeBand, only: [marquee_band: 1]
+  import Soonex.HomePage.Bento, only: [bento: 1]
   import Soonex.HomePage.Product, only: [product: 1]
   import Soonex.HomePage.Themes, only: [themes: 1]
+  import Soonex.HomePage.Notes, only: [notes: 1]
   import Soonex.HomePage.Log, only: [log: 1]
   import Soonex.HomePage.Faq, only: [faq: 1]
   import Soonex.HomePage.Waitlist, only: [waitlist: 1]
@@ -17,8 +20,11 @@ defmodule Soonex.HomePage do
     ~H"""
     <div id="home" class="w-full text-ink">
       <.hero />
+      <.marquee_band />
+      <.bento />
       <.product />
       <.themes />
+      <.notes />
       <.log posts={@log_posts} />
       <.faq />
       <.waitlist />

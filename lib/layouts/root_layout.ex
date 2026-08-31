@@ -221,7 +221,7 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Soonex ships 1 September — typographic launch desk with waitlist, shipping log, countdown, and four looks."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
 
       page[:page_kind] == :blog_index ->
         "Shipping notes from #{site_name}: waitlist, looks, countdown, and the road to 1 September."
@@ -239,7 +239,7 @@ defmodule Soonex.RootLayout do
         page[:description]
 
       true ->
-        "Soonex ships 1 September — typographic launch desk with waitlist, shipping log, countdown, and four looks."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
     end
   end
 

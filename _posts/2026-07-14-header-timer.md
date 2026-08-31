@@ -4,6 +4,8 @@ title: The header timer and 1 September
 date: 2026-07-14 15:00:00 +0000
 permalink: /blog/header-timer/
 description: The countdown lives in the header, stays on one row, and aims at 1 September until you change the date.
+image: /images/photos/orbit.jpg
+image_alt: Earth from orbit against a dark sky
 tags:
   - Launch
   - Notes

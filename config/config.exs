@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Soonex ships 1 September — typographic launch desk with waitlist, shipping log, countdown, and four looks."
+    "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -117,11 +117,11 @@ with_on = fn colors ->
     "alert-contrast" => contrast.(:neutral, :alert, 9.5),
     "info-contrast" => contrast.(:neutral, :info, 9.5),
     "success-contrast" => contrast.(:neutral, :success, 9.5),
-    "accent-text" => contrast.(:accent, :ui, 4.6),
-    "brand-text" => contrast.(:brand, :ui, 4.6),
-    "alert-text" => contrast.(:alert, :ui, 4.6),
-    "info-text" => contrast.(:info, :ui, 4.6),
-    "success-text" => contrast.(:success, :ui, 4.6)
+    "accent-text" => contrast.(:accent, :root, 4.6),
+    "brand-text" => contrast.(:brand, :root, 4.6),
+    "alert-text" => contrast.(:alert, :root, 4.6),
+    "info-text" => contrast.(:info, :root, 4.6),
+    "success-text" => contrast.(:success, :root, 4.6)
   })
 end
 

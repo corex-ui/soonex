@@ -8,18 +8,12 @@ defmodule Soonex.HomePage.Faq do
 
   def faq(assigns) do
     ~H"""
-    <.block
-      id="questions"
-      labelledby="soonex-faq-heading"
-      eyebrow="Questions"
-      tone={:surface}
-      layout={:sticky}
-    >
+    <.block id="questions" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
       <:title>
         Before you <span class="text-brand-text">join</span>
       </:title>
       <:lede>
-        Launch, waitlist, looks — and one honest answer about the fork.
+        Straight answers about the launch, the waitlist, and what you get on day one.
       </:lede>
       <:actions>
         <.navigate to="#waitlist" class="link ui-brand">
@@ -54,19 +48,19 @@ defmodule Soonex.HomePage.Faq do
         value: "what",
         label: "What is Soonex?",
         content:
-          "A launch desk shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
+          "A launch workspace shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
       },
       %{
         value: "ships",
         label: "What do I get on launch day?",
         content:
-          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the lockup and date for your brand."
+          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the stills, lockup, and date for your brand."
       },
       %{
         value: "looks",
         label: "What are the four looks?",
         content:
-          "neo, uno, duo, and leo. Same page, different type, corners, and brand. Switch them live in Template Options for a client review."
+          "neo, uno, duo, and leo. Same page, different type, corners, and brand. Switch them live in Template Options."
       },
       %{
         value: "form",
@@ -78,7 +72,7 @@ defmodule Soonex.HomePage.Faq do
         value: "a11y",
         label: "How does accessibility work?",
         content:
-          "Open Accessibility for zoom, contrast, motion, cursor, focus, and underline. Choices stay on this device in local storage."
+          "Open Accessibility for zoom, contrast, motion, cursor, focus, and underline. Choices stay on this device."
       },
       %{
         value: "open",

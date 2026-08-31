@@ -4,6 +4,8 @@ title: Four looks for client review
 date: 2026-04-08 09:00:00 +0000
 permalink: /blog/four-rooms/
 description: neo, uno, duo, and leo on one launch — type, corners, and brand change the room; paper stays calm.
+image: /images/photos/studio.jpg
+image_alt: A calm studio interior with a low sofa, plants, and a large window
 tags:
   - Design
   - Studio

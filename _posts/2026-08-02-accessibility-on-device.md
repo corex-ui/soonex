@@ -4,6 +4,8 @@ title: Accessibility on this device
 date: 2026-08-02 11:00:00 +0000
 permalink: /blog/accessibility-on-device/
 description: Zoom, contrast, motion, cursor, focus, and link underline — preferences stay on this device in local storage.
+image: /images/covers/overlay.jpg
+image_alt: Soft abstract color field in warm paper tones
 tags:
   - Notes
   - Launch

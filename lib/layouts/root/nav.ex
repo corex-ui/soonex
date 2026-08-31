@@ -17,7 +17,7 @@ defmodule Soonex.Layouts.Root.Nav do
     ~H"""
     <header
       data-site-header
-      class="sticky top-0 z-50 border-b border-transparent bg-root py-3 data-[condensed]:border-border"
+      class="soonex-framer-nav sticky top-0 z-50 border-b border-transparent py-3 data-[condensed]:border-border"
     >
       <div
         data-scroll-progress

@@ -4,6 +4,8 @@ title: CI before Pages
 date: 2026-06-01 12:00:00 +0000
 permalink: /blog/ci-before-pages/
 description: Keep CI green before Pages deploys. Axe on the home document is the gate; the countdown stays aimed at 1 September.
+image: /images/covers/shipping.jpg
+image_alt: A laptop on a wooden desk with a code editor open
 tags:
   - Launch
   - Notes

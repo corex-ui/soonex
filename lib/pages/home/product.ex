@@ -12,14 +12,24 @@ defmodule Soonex.HomePage.Product do
     assigns = assign(assigns, :snippet, snippet())
 
     ~H"""
-    <.block id="product" labelledby="soonex-product-heading" eyebrow="Product" layout={:open}>
+    <.block
+      id="product"
+      labelledby="soonex-product-heading"
+      eyebrow="Product"
+      tone={:surface}
+      layout={:sticky}
+    >
       <:title>
-        The desk that ships <span class="text-brand-text">on a date</span>
+        Open a panel. <span class="text-brand-text">Ship the desk.</span>
       </:title>
       <:lede>
-        Four instruments. Open a panel. Launch when <span class="whitespace-nowrap">1 September</span>
-        hits.
+        Waitlist, log, countdown, looks — one product UI for studios launching <span class="whitespace-nowrap">1 September</span>.
       </:lede>
+      <:actions>
+        <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-md">
+          Join waitlist
+        </.navigate>
+      </:actions>
 
       <.tabs
         id="soonex-product-tabs"
@@ -31,64 +41,33 @@ defmodule Soonex.HomePage.Product do
         <:content value="overview" class="soonex-tab-panel">
           <div class="soonex-tab-workspace">
             <p class="lede m-0 max-w-2xl">
-              Soonex is a launch desk for studios with a hard date. Waitlist on the page, public log,
-              countdown aimed at launch, four looks for client review.
+              Soonex is a launch workspace for studios with a hard date. Put the waitlist on the
+              page, keep a public log, and review four looks with your client before go-live.
             </p>
-            <ol class="soonex-instrument-list mt-10">
-              <li>
-                <span class="soonex-instrument-index" aria-hidden="true">01</span>
-                <div>
-                  <p class="m-0 font-semibold text-ink">Waitlist strip</p>
-                  <p class="lede m-0 mt-1 text-sm/6">
-                    Email, role, interests, team size — toast on submit.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span class="soonex-instrument-index" aria-hidden="true">02</span>
-                <div>
-                  <p class="m-0 font-semibold text-ink">Shipping ledger</p>
-                  <p class="lede m-0 mt-1 text-sm/6">
-                    Markdown entries with tags. Index paginates in the browser.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span class="soonex-instrument-index" aria-hidden="true">03</span>
-                <div>
-                  <p class="m-0 font-semibold text-ink">Honest countdown</p>
-                  <p class="lede m-0 mt-1 text-sm/6">
-                    Aimed at <span class="whitespace-nowrap">1 September</span> until you change it.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-10">
-              <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-md">
-                Join waitlist
-              </.navigate>
-            </div>
+            <ul class="soonex-feature-bullets mt-8">
+              <li>Waitlist rack with toast on submit</li>
+              <li>Shipping log with covers and tags</li>
+              <li>Countdown aimed at 1 September</li>
+              <li>Four looks switched on this device</li>
+            </ul>
           </div>
         </:content>
 
         <:trigger value="waitlist">Waitlist</:trigger>
         <:content value="waitlist" class="soonex-tab-panel">
           <div class="soonex-tab-workspace">
-            <p class="soonex-card-title m-0">Fields on the strip</p>
-            <p class="lede mt-3 max-w-2xl">
-              Same instruments on the edition strip and the closing rack. Collect who is coming —
-              then show a clear success path.
+            <p class="soonex-card-title m-0">Capture who is coming</p>
+            <p class="lede mt-3">
+              Same fields on the hero still and at the end of the page. Wire your provider after
+              launch — the toast already ships.
             </p>
-            <ul class="soonex-feature-bullets mt-8">
+            <ul class="soonex-feature-bullets mt-6">
               <li>Email with validation</li>
               <li>Role select or radios</li>
               <li>Interests as tags</li>
               <li>Team size stepper</li>
               <li>Launch notes switch</li>
             </ul>
-            <p class="m-0 mt-8 text-sm/6 text-ink-muted">
-              Wire your provider after launch. The toast already ships.
-            </p>
           </div>
         </:content>
 
@@ -96,26 +75,10 @@ defmodule Soonex.HomePage.Product do
         <:content value="log" class="soonex-tab-panel">
           <div class="soonex-tab-workspace">
             <p class="lede m-0 max-w-2xl">
-              A public ledger of what shipped. Posts are Markdown with tags — rebuild and the index
-              updates.
+              Keep a public trail of what shipped. Posts live as Markdown with covers and tags.
             </p>
-            <article class="soonex-ledger-row mt-10">
-              <span class="soonex-mono-meta">02 August 2026</span>
-              <h3 class={"#{Shell.card_title()} mt-2"}>
-                Accessibility on this device
-              </h3>
-              <p class="lede mt-3 max-w-xl">
-                Zoom, contrast, motion, cursor, focus, and underline — stored on this device.
-              </p>
-              <.navigate
-                to={Soonex.Public.path("/blog/accessibility-on-device/")}
-                class="button ui-ghost ui-brand ui-size-sm mt-6 w-fit"
-              >
-                Read entry <.heroicon name="hero-arrow-up-right" />
-              </.navigate>
-            </article>
-            <div class="mt-6">
-              <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand">
+            <div class="mt-8">
+              <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-brand ui-size-sm">
                 All shipping notes <.heroicon name="hero-arrow-up-right" />
               </.navigate>
             </div>
@@ -127,27 +90,19 @@ defmodule Soonex.HomePage.Product do
           <div class="soonex-tab-workspace">
             <p class="soonex-room-specimen m-0">Soonex</p>
             <p class="lede mt-4 max-w-xl">
-              Four editions for the same launch. Switch in Template Options — no second build.
+              Four looks for the same launch. Switch rooms in Template Options — no second build.
             </p>
-            <ul class="soonex-look-rail mt-8">
-              <li :for={room <- looks()}>
-                <span class="soonex-look-id">{room.name}</span>
-                <span class="soonex-look-line">{room.line}</span>
-              </li>
-            </ul>
-            <.navigate to="#looks" class="link ui-brand mt-8 inline-flex">
+            <.navigate to="#looks" class="link ui-brand mt-6 inline-flex">
               See all four looks <.heroicon name="hero-arrow-down" />
             </.navigate>
           </div>
         </:content>
       </.tabs>
 
-      <div class="soonex-clone-strip mt-14">
+      <div class="soonex-clone-strip mt-12">
         <div class="min-w-0 lg:max-w-xs">
           <small class={Shell.eyebrow()}>Get Soonex</small>
-          <p class="lede mt-2">
-            Clone once. mix setup, then mix soonex.server.
-          </p>
+          <p class="lede mt-2">Clone once. mix setup, then mix soonex.server.</p>
         </div>
         <.clipboard
           id="soonex-theme-snippet"
@@ -166,16 +121,12 @@ defmodule Soonex.HomePage.Product do
         </.clipboard>
       </div>
 
-      <div class="mt-20">
+      <div class="mt-16">
         <small class={Shell.eyebrow()}>Plans</small>
         <h3 class={"#{Shell.section_heading()} mt-2"}>
           Same core. <span class="text-brand-text">Three lanes.</span>
         </h3>
-        <p class="lede mt-4 max-w-2xl">
-          Every plan is Soonex. How far you take it before <span class="whitespace-nowrap">1 September</span>.
-        </p>
-
-        <div class="soonex-pricing mt-10">
+        <div class="soonex-pricing mt-8">
           <article :for={plan <- plans()} class="soonex-pricing-tier">
             <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
               <div>
@@ -197,57 +148,34 @@ defmodule Soonex.HomePage.Product do
     """
   end
 
-  defp looks do
-    [
-      %{name: "neo", line: "Cold paper · electric cobalt · geometric display"},
-      %{name: "uno", line: "Teal field · razor corners · compressed type"},
-      %{name: "duo", line: "Warm surface · rust brand · editorial serif"},
-      %{name: "leo", line: "Poster ink · signal orange · uppercase"}
-    ]
-  end
-
   defp plans do
     [
       %{
         name: "Solo",
         headline: "Fork and put a date on the page",
-        body: "One look, the waitlist, and the log. Enough for an independent launch.",
+        body: "One look, the waitlist, and the log.",
         cta: "Join waitlist",
         cta_class: "button ui-ghost ui-size-sm w-fit",
-        items: [
-          "Waitlist landing and shipping log",
-          "Keep neo, or switch once for your brand",
-          "Countdown aimed at 1 September"
-        ]
+        items: ["Waitlist + shipping log", "Countdown to 1 September"]
       },
       %{
         name: "Studio",
         headline: "Four looks, client review",
-        body: "Treat Template Options as the review. The shipping log stays.",
+        body: "Treat Template Options as the review.",
         cta: "Join waitlist",
         cta_class: "button ui-brand ui-solid ui-size-sm w-fit",
-        items: [
-          "neo, uno, duo, and leo on this device",
-          "Tags and client pagination",
-          "Header timer, toast, and clone strip"
-        ]
+        items: ["neo, uno, duo, leo", "Header timer + toast"]
       },
       %{
         name: "Agency",
-        headline: "Accessible handoff you can repeat",
-        body: "Ship with accessibility on and a clone path the whole studio can run.",
+        headline: "Accessible handoff",
+        body: "Ship with accessibility on and a clone path the studio can run.",
         cta: "Join waitlist",
         cta_class: "button ui-ghost ui-size-sm w-fit",
-        items: [
-          "Zoom, contrast, motion, focus, underline",
-          "Same fork for every client engagement",
-          "Clone, mix setup, mix soonex.server"
-        ]
+        items: ["Zoom, contrast, motion", "Clone · mix setup · ship"]
       }
     ]
   end
 
-  defp snippet do
-    "git clone https://github.com/corex-ui/soonex.git"
-  end
+  defp snippet, do: "git clone https://github.com/corex-ui/soonex.git"
 end

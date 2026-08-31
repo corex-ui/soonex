@@ -6,6 +6,8 @@ defmodule Soonex.HomePage.Waitlist do
 
   import Soonex.Layouts.Section, only: [block: 1]
 
+  alias Soonex.Layouts.Shell
+
   def waitlist(assigns) do
     assigns = assign(assigns, :role_items, role_items())
 
@@ -15,7 +17,7 @@ defmodule Soonex.HomePage.Waitlist do
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
       tone={:surface}
-      align={:start}
+      align={:center}
       layout={:open}
     >
       <:title>
@@ -24,13 +26,13 @@ defmodule Soonex.HomePage.Waitlist do
       <:lede>
         Role, interests, and team size. We write when the countdown ends.
       </:lede>
-      <div class="soonex-closing-rack mx-auto w-full max-w-xl">
-        <form
-          id="soonex-waitlist-form"
-          class="soonex-rack-body flex w-full flex-col items-stretch gap-5"
-          data-waitlist-toast-title="You're on the list"
-          data-waitlist-toast-description="We'll email you before 1 September."
-        >
+      <form
+        id="soonex-waitlist-form"
+        class={"#{Shell.panel()} soonex-card-motion mx-auto w-full max-w-lg p-8 sm:p-10"}
+        data-waitlist-toast-title="You're on the list"
+        data-waitlist-toast-description="We'll email you before 1 September."
+      >
+        <div class="flex w-full flex-col items-stretch gap-5">
           <.native_input
             type="email"
             name="waitlist[email]"
@@ -109,11 +111,11 @@ defmodule Soonex.HomePage.Waitlist do
           <button type="submit" class="button ui-brand ui-solid ui-size-md w-full">
             Join waitlist
           </button>
-        </form>
-        <p class="m-0 mt-6 text-sm/6 text-ink-muted">
-          Demo page — toast only until you wire a provider.
-        </p>
-      </div>
+        </div>
+      </form>
+      <p class="mx-auto mt-6 max-w-lg text-center text-sm/6 text-ink-muted">
+        Demo page — toast only until you wire a provider.
+      </p>
     </.block>
     """
   end
