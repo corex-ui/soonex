@@ -1,4 +1,4 @@
-/* Instrument-desk chrome. Tokens only — no Corex recipe forks. */
+/* Launch Edition chrome. Tokens only — brand as signal, never field. */
 
 html {
   scroll-behavior: smooth;
@@ -23,6 +23,16 @@ html[data-motion="reduce"] {
     }
   }
 
+  @keyframes soonex-rule-draw {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   .soonex-reveal {
     animation-name: soonex-reveal;
     animation-duration: var(--duration-slow);
@@ -32,7 +42,16 @@ html[data-motion="reduce"] {
     animation-range: entry 0% entry 40%;
   }
 
-  html[data-motion="reduce"] .soonex-reveal {
+  .soonex-edition-meta .soonex-meta-rule {
+    transform-origin: left center;
+    animation-name: soonex-rule-draw;
+    animation-duration: var(--duration-slow);
+    animation-timing-function: var(--soonex-ease);
+    animation-fill-mode: both;
+  }
+
+  html[data-motion="reduce"] .soonex-reveal,
+  html[data-motion="reduce"] .soonex-edition-meta .soonex-meta-rule {
     animation: none;
     transform: none;
   }
@@ -54,7 +73,6 @@ html[data-motion="reduce"] {
   }
 }
 
-/* Header timer — compact type, keep 2em digit window. */
 [data-site-header] .timer.ui-size-sm {
   --timer-digit: var(--text-sm);
   --timer-digit-leading: 2;
@@ -99,121 +117,103 @@ html[data-motion="reduce"] {
   border-radius: var(--soonex-ctl-radius, var(--radius-2xl));
 }
 
-/* ——— Hero brand slab ——— */
-
-.soonex-hero-slab {
-  background-color: var(--color-brand);
-  color: var(--color-brand-contrast);
-}
-
-.soonex-slab-kicker {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-widest);
+.soonex-mono-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--color-brand-contrast) 78%, transparent);
+  color: var(--color-ink-muted);
 }
 
-.soonex-slab-display {
-  font-family: var(--font-display);
-  font-size: var(--text-6xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-tighter);
-  line-height: 0.92;
-  color: var(--color-brand-contrast);
-}
+/* ——— Edition hero (paper, not brand fill) ——— */
 
-@media (width >= 40rem) {
-  .soonex-slab-display {
-    font-size: var(--text-7xl);
-  }
-}
-
-@media (width >= 64rem) {
-  .soonex-slab-display {
-    font-size: var(--text-8xl);
-  }
-}
-
-.soonex-slab-lede {
-  font-size: var(--text-lg);
-  line-height: var(--leading-relaxed);
-  color: color-mix(in oklab, var(--color-brand-contrast) 82%, transparent);
-}
-
-.soonex-slab-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--spacing-size);
-  padding-inline: calc(var(--spacing-space) * 1.25);
-  border-radius: var(--soonex-ctl-radius, var(--radius-md));
+.soonex-edition-hero {
   background-color: var(--color-root);
   color: var(--color-ink);
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: none;
 }
 
-.soonex-slab-cta:hover {
-  background-color: var(--color-surface);
-}
-
-.soonex-slab-link {
-  display: inline-flex;
+.soonex-edition-meta {
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
-  color: var(--color-brand-contrast);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: none;
-  border-block-end: 1px solid color-mix(in oklab, var(--color-brand-contrast) 45%, transparent);
+  gap: var(--spacing-space);
+  max-width: 28rem;
 }
 
-.soonex-slab-link:hover {
-  border-block-end-color: var(--color-brand-contrast);
+.soonex-meta-rule {
+  display: block;
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: var(--color-brand);
+  min-width: 2rem;
 }
 
-[data-theme="leo"] .soonex-slab-display,
-[data-theme="leo"] .soonex-slab-kicker {
+.soonex-edition-display {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 14vw, 9.5rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 0.88;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.soonex-edition-lede {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-muted);
+}
+
+[data-theme="leo"] .soonex-edition-display {
   text-transform: uppercase;
 }
 
-[data-theme="uno"] .soonex-slab-display {
-  letter-spacing: -0.05em;
+[data-theme="uno"] .soonex-edition-display {
+  letter-spacing: -0.06em;
 }
 
-[data-theme="duo"] .soonex-slab-lede {
+[data-theme="duo"] .soonex-edition-lede {
   font-family: var(--font-serif);
   font-style: italic;
 }
 
-/* ——— Waitlist instrument rack ——— */
+/* ——— Waitlist strip (bottom instrument) ——— */
 
-.soonex-waitlist-rack {
-  border: 1px solid var(--color-border);
-  background-color: var(--color-surface);
-  color: var(--color-ink);
-  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
-  padding: calc(var(--spacing-space) * 1.25);
+.soonex-waitlist-strip {
+  padding-block: calc(var(--spacing-space) * 1.15);
 }
 
-@media (width >= 40rem) {
-  .soonex-waitlist-rack {
-    padding: calc(var(--spacing-space) * 1.5);
+.soonex-strip-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-space);
+}
+
+@media (width >= 64rem) {
+  .soonex-strip-form {
+    flex-direction: row;
+    align-items: end;
+    gap: calc(var(--spacing-space) * 1.5);
+  }
+
+  .soonex-strip-label {
+    flex: 0 0 12rem;
+  }
+
+  .soonex-strip-roles {
+    flex: 0 0 auto;
   }
 }
 
-.soonex-waitlist-rack--canonical {
-  border-width: 2px;
-}
-
 .soonex-waitlist-join {
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-space-sm);
 }
 
 @media (width >= 40rem) {
   .soonex-waitlist-join {
+    flex-direction: row;
     align-items: stretch;
     gap: 0;
   }
@@ -230,37 +230,48 @@ html[data-motion="reduce"] {
   }
 }
 
-/* ——— Product tabs as segmented instrument ——— */
+.soonex-closing-rack {
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: calc(var(--spacing-space) * 1.35);
+}
+
+/* ——— Product desk tabs ——— */
 
 .soonex-tab-panel {
-  min-height: 20rem;
+  min-height: 18rem;
 }
 
 .tabs.soonex-product-tabs [data-scope="tabs"][data-part="list"] {
   gap: 0;
-  border: 1px solid var(--color-border);
-  border-radius: var(--soonex-ctl-radius, var(--radius-md));
-  background-color: var(--color-ui);
-  padding: 0.2rem;
-  overflow: hidden;
+  border-block-end: 1px solid var(--color-border);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  width: 100%;
 }
 
 .tabs.soonex-product-tabs [data-scope="tabs"][data-part="trigger"] {
   font-weight: var(--font-weight-semibold);
-  border-radius: var(--soonex-ctl-radius, var(--radius-sm));
+  border-radius: 0;
+  border-block-end: 2px solid transparent;
+  margin-block-end: -1px;
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="trigger"][data-selected] {
+  border-block-end-color: var(--color-brand);
 }
 
 .tabs.soonex-product-tabs [data-scope="tabs"][data-part="content"] {
-  margin-block-start: var(--spacing-space);
-  padding: calc(var(--spacing-space) * 1.35);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
-  min-height: 20rem;
+  margin-block-start: calc(var(--spacing-space) * 1.25);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  min-height: 16rem;
 }
 
 .soonex-tab-workspace {
-  max-width: 52rem;
+  max-width: 48rem;
 }
 
 .soonex-tab-workspace .soonex-room-specimen {
@@ -273,20 +284,19 @@ html[data-motion="reduce"] {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing-space) * 1.1);
 }
 
 .soonex-instrument-list > li {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 3rem 1fr;
   gap: var(--spacing-space);
   align-items: start;
-  padding-block: calc(var(--spacing-space) * 0.65);
+  padding-block: calc(var(--spacing-space) * 0.85);
   border-block-end: 1px solid var(--color-border);
 }
 
-.soonex-instrument-list > li:last-child {
-  border-block-end: 0;
+.soonex-instrument-list > li:first-child {
+  border-block-start: 1px solid var(--color-border);
 }
 
 .soonex-instrument-index {
@@ -360,24 +370,9 @@ html[data-motion="reduce"] {
   background-color: var(--color-brand);
 }
 
-.soonex-rack-specimen,
 .soonex-ledger-row {
-  border: 1px solid var(--color-border);
-  background-color: var(--color-ui);
-  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
-  padding: calc(var(--spacing-space) * 1.15);
-}
-
-.soonex-field-ghost {
-  display: flex;
-  align-items: center;
-  min-height: var(--spacing-size);
-  padding-inline: var(--spacing-space);
-  border: 1px solid var(--color-border);
-  border-radius: var(--soonex-ctl-radius, var(--radius-md));
-  background-color: var(--color-surface);
-  color: var(--color-ink-muted);
-  font-size: var(--text-sm);
+  border-block: 1px solid var(--color-border);
+  padding-block: calc(var(--spacing-space) * 1.15);
 }
 
 .soonex-clone-strip {
@@ -412,50 +407,60 @@ html[data-motion="reduce"] {
   border-block-end: 0;
 }
 
-/* ——— Looks instrument grid ——— */
+/* ——— Looks specimen chart ——— */
 
 .soonex-looks-stage {
   border-block-start: 1px solid var(--color-border);
   padding-block-start: calc(var(--spacing-space) * 1.25);
 }
 
-.soonex-instrument-grid {
+.soonex-specimen-chart {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-space);
+  border: 1px solid var(--color-border);
 }
 
 @media (width >= 40rem) {
-  .soonex-instrument-grid {
+  .soonex-specimen-chart {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.soonex-instrument-slab {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--soonex-ctl-radius, var(--radius-xl));
+.soonex-specimen-cell {
+  background-color: var(--color-root);
   padding: calc(var(--spacing-space) * 1.25);
+  border-block-end: 1px solid var(--color-border);
 }
 
-.soonex-instrument-slab .soonex-room-name {
+@media (width >= 40rem) {
+  .soonex-specimen-cell:nth-child(odd) {
+    border-inline-end: 1px solid var(--color-border);
+  }
+
+  .soonex-specimen-cell:nth-last-child(-n + 2) {
+    border-block-end: 0;
+  }
+}
+
+@media (width < 40rem) {
+  .soonex-specimen-cell:last-child {
+    border-block-end: 0;
+  }
+}
+
+.soonex-specimen-cell .soonex-room-name {
   color: var(--color-ink);
 }
 
-/* ——— Notes + ledger ——— */
+/* ——— Ledger + voice ——— */
 
-.soonex-note-rail {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing-space) * 1.5);
+.soonex-voice-rule {
   border-block-start: 1px solid var(--color-border);
   padding-block-start: calc(var(--spacing-space) * 1.25);
+  max-width: 40rem;
 }
 
 .soonex-ledger {
@@ -464,6 +469,7 @@ html[data-motion="reduce"] {
   list-style: none;
   display: flex;
   flex-direction: column;
+  border-block-start: 1px solid var(--color-border);
 }
 
 .soonex-ledger-entry {
@@ -471,11 +477,20 @@ html[data-motion="reduce"] {
   border-block-end: 1px solid var(--color-border);
 }
 
-.soonex-ledger-entry:first-child {
-  border-block-start: 1px solid var(--color-border);
+.soonex-ledger-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-space);
 }
 
-/* ——— FAQ accordion instrument ——— */
+@media (width >= 40rem) {
+  .soonex-ledger-grid {
+    grid-template-columns: 9rem 1fr;
+    gap: calc(var(--spacing-space) * 1.5);
+  }
+}
+
+/* ——— FAQ ——— */
 
 .accordion.soonex-faq-instrument [data-scope="accordion"][data-part="item-trigger"] {
   font-weight: var(--font-weight-semibold);
@@ -486,7 +501,7 @@ html[data-motion="reduce"] {
   border-color: var(--color-border);
 }
 
-/* ——— Control family extras ——— */
+/* ——— Control family ——— */
 
 .select [data-scope="select"][data-part="trigger"],
 .tags-input [data-scope="tags-input"][data-part="control"],
@@ -496,4 +511,10 @@ html[data-motion="reduce"] {
 
 .clipboard [data-scope="clipboard"][data-part="control"] {
   border-radius: var(--soonex-ctl-radius, var(--radius-md));
+}
+
+.radio-group.soonex-strip-roles [data-scope="radio-group"][data-part="root"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-space);
 }

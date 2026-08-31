@@ -17,8 +17,8 @@ defmodule Soonex.HomePage.Product do
         The desk that ships <span class="text-brand-text">on a date</span>
       </:title>
       <:lede>
-        Four instruments in one page — waitlist, log, countdown, looks. Open a panel. Wire what
-        you need. Launch when <span class="whitespace-nowrap">1 September</span> hits.
+        Four instruments. Open a panel. Launch when <span class="whitespace-nowrap">1 September</span>
+        hits.
       </:lede>
 
       <.tabs
@@ -31,14 +31,14 @@ defmodule Soonex.HomePage.Product do
         <:content value="overview" class="soonex-tab-panel">
           <div class="soonex-tab-workspace">
             <p class="lede m-0 max-w-2xl">
-              Soonex is a launch desk for studios with a hard date. Put the waitlist on the page,
-              keep a public log, and switch looks with your client before go-live.
+              Soonex is a launch desk for studios with a hard date. Waitlist on the page, public log,
+              countdown aimed at launch, four looks for client review.
             </p>
             <ol class="soonex-instrument-list mt-10">
               <li>
                 <span class="soonex-instrument-index" aria-hidden="true">01</span>
                 <div>
-                  <p class="m-0 font-semibold text-ink">Waitlist rack</p>
+                  <p class="m-0 font-semibold text-ink">Waitlist strip</p>
                   <p class="lede m-0 mt-1 text-sm/6">
                     Email, role, interests, team size — toast on submit.
                   </p>
@@ -49,7 +49,7 @@ defmodule Soonex.HomePage.Product do
                 <div>
                   <p class="m-0 font-semibold text-ink">Shipping ledger</p>
                   <p class="lede m-0 mt-1 text-sm/6">
-                    Markdown entries with tags. The index paginates in the browser.
+                    Markdown entries with tags. Index paginates in the browser.
                   </p>
                 </div>
               </li>
@@ -74,37 +74,21 @@ defmodule Soonex.HomePage.Product do
         <:trigger value="waitlist">Waitlist</:trigger>
         <:content value="waitlist" class="soonex-tab-panel">
           <div class="soonex-tab-workspace">
-            <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
-              <div>
-                <p class="soonex-card-title m-0">Fields you keep</p>
-                <p class="lede mt-3">
-                  Same rack on the hero slab and at the foot of the page. Collect who is coming —
-                  then show a clear success path.
-                </p>
-                <ul class="soonex-feature-bullets mt-6">
-                  <li>Email with validation</li>
-                  <li>Role select or radios</li>
-                  <li>Interests as tags</li>
-                  <li>Team size stepper</li>
-                  <li>Launch notes switch</li>
-                </ul>
-              </div>
-              <div class="soonex-rack-specimen">
-                <small class={Shell.eyebrow()}>Rack</small>
-                <p class="soonex-card-title mt-2">Join the list</p>
-                <div class="mt-5 flex flex-col gap-3">
-                  <div class="soonex-field-ghost">you@studio.dev</div>
-                  <div class="soonex-field-ghost">Founder</div>
-                  <div class="soonex-field-ghost">Add an interest…</div>
-                  <div class="button ui-brand ui-solid ui-size-md pointer-events-none w-full text-center">
-                    Join waitlist
-                  </div>
-                </div>
-                <p class="m-0 mt-4 text-sm/6 text-ink-muted">
-                  Wire your provider after launch. The toast already ships.
-                </p>
-              </div>
-            </div>
+            <p class="soonex-card-title m-0">Fields on the strip</p>
+            <p class="lede mt-3 max-w-2xl">
+              Same instruments on the edition strip and the closing rack. Collect who is coming —
+              then show a clear success path.
+            </p>
+            <ul class="soonex-feature-bullets mt-8">
+              <li>Email with validation</li>
+              <li>Role select or radios</li>
+              <li>Interests as tags</li>
+              <li>Team size stepper</li>
+              <li>Launch notes switch</li>
+            </ul>
+            <p class="m-0 mt-8 text-sm/6 text-ink-muted">
+              Wire your provider after launch. The toast already ships.
+            </p>
           </div>
         </:content>
 
@@ -116,13 +100,12 @@ defmodule Soonex.HomePage.Product do
               updates.
             </p>
             <article class="soonex-ledger-row mt-10">
-              <small class={Shell.eyebrow()}>02 August 2026</small>
+              <span class="soonex-mono-meta">02 August 2026</span>
               <h3 class={"#{Shell.card_title()} mt-2"}>
                 Accessibility on this device
               </h3>
               <p class="lede mt-3 max-w-xl">
-                Zoom, contrast, motion, cursor, focus, and link underline — stored in local storage
-                so preferences follow the visitor.
+                Zoom, contrast, motion, cursor, focus, and underline — stored on this device.
               </p>
               <.navigate
                 to={Soonex.Public.path("/blog/accessibility-on-device/")}
@@ -144,8 +127,7 @@ defmodule Soonex.HomePage.Product do
           <div class="soonex-tab-workspace">
             <p class="soonex-room-specimen m-0">Soonex</p>
             <p class="lede mt-4 max-w-xl">
-              Four instruments for the same launch. Switch in Template Options — review with your
-              client without a second build.
+              Four editions for the same launch. Switch in Template Options — no second build.
             </p>
             <ul class="soonex-look-rail mt-8">
               <li :for={room <- looks()}>
@@ -190,7 +172,7 @@ defmodule Soonex.HomePage.Product do
           Same core. <span class="text-brand-text">Three lanes.</span>
         </h3>
         <p class="lede mt-4 max-w-2xl">
-          Every plan is Soonex. The columns describe how far you take it before <span class="whitespace-nowrap">1 September</span>.
+          Every plan is Soonex. How far you take it before <span class="whitespace-nowrap">1 September</span>.
         </p>
 
         <div class="soonex-pricing mt-10">

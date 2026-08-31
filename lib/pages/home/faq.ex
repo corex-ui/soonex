@@ -8,12 +8,18 @@ defmodule Soonex.HomePage.Faq do
 
   def faq(assigns) do
     ~H"""
-    <.block id="questions" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
+    <.block
+      id="questions"
+      labelledby="soonex-faq-heading"
+      eyebrow="Questions"
+      tone={:surface}
+      layout={:sticky}
+    >
       <:title>
         Before you <span class="text-brand-text">join</span>
       </:title>
       <:lede>
-        Straight answers about the launch, the waitlist, and what you get on day one.
+        Launch, waitlist, looks — and one honest answer about the fork.
       </:lede>
       <:actions>
         <.navigate to="#waitlist" class="link ui-brand">

@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Soonex ships 1 September — instrument desk with waitlist, shipping log, countdown, and four looks."
+    "Soonex ships 1 September — typographic launch desk with waitlist, shipping log, countdown, and four looks."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -144,9 +144,9 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.985, :neutral),
-            surface: l.(0.96, :neutral),
-            ui: fill.(0.92, :neutral),
+            root: l.(0.99, :neutral),
+            surface: l.(0.955, :neutral),
+            ui: fill.(0.9, :neutral),
             accent: fill.(0.16, :accent),
             brand: fill.(0.48, :brand),
             ink: contrast.(:accent, :root, 13),

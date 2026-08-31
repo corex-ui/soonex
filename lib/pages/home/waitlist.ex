@@ -14,7 +14,7 @@ defmodule Soonex.HomePage.Waitlist do
       id="waitlist"
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
-      tone={:ui}
+      tone={:surface}
       align={:start}
       layout={:open}
     >
@@ -24,7 +24,7 @@ defmodule Soonex.HomePage.Waitlist do
       <:lede>
         Role, interests, and team size. We write when the countdown ends.
       </:lede>
-      <div class="soonex-waitlist-rack soonex-waitlist-rack--canonical mx-auto w-full max-w-xl">
+      <div class="soonex-closing-rack mx-auto w-full max-w-xl">
         <form
           id="soonex-waitlist-form"
           class="soonex-rack-body flex w-full flex-col items-stretch gap-5"

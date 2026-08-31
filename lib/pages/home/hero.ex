@@ -9,86 +9,82 @@ defmodule Soonex.HomePage.Hero do
   def hero(assigns) do
     ~H"""
     <header
-      class="soonex-hero-slab relative isolate flex min-h-svh w-full flex-col justify-center overflow-x-clip"
+      class="soonex-edition-hero relative isolate flex min-h-svh w-full flex-col justify-between overflow-x-clip bg-root"
       aria-labelledby="soonex-headline"
       data-hero-boundary
     >
-      <div class={"#{Shell.stage()} relative z-[1] w-full py-20 sm:py-28"}>
-        <div class="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-12 lg:gap-10">
-          <div class="flex w-full flex-col justify-center lg:col-span-7" data-hero>
-            <p class="soonex-slab-kicker m-0">Launch · 1 September</p>
-            <h1 id="soonex-headline" class="soonex-slab-display mt-4 text-pretty">
-              Soonex
-            </h1>
-            <p class="soonex-slab-lede mt-6 max-w-xl text-pretty">
-              Waitlist. Shipping log. Countdown. Four looks. One instrument desk for studios that
-              ship on a date.
-            </p>
-            <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <.navigate to="#waitlist" class="soonex-slab-cta">
-                Join waitlist
-              </.navigate>
-              <.navigate to={Soonex.Public.path("/blog")} class="soonex-slab-link">
-                Read the log <.heroicon name="hero-arrow-up-right" />
-              </.navigate>
-            </div>
-          </div>
+      <div class={"#{Shell.stage()} flex w-full flex-1 flex-col justify-center pt-20 pb-10 sm:pt-28 sm:pb-14"}>
+        <div class="soonex-edition-meta" data-hero>
+          <span class="soonex-mono-meta">Edition</span>
+          <span class="soonex-meta-rule" aria-hidden="true"></span>
+          <span class="soonex-mono-meta">1 September 2026</span>
+        </div>
 
-          <div class="flex lg:col-span-5 lg:items-center">
-            <div class="soonex-waitlist-rack w-full">
-              <div class="soonex-rack-head">
-                <small class={Shell.eyebrow()}>Waitlist</small>
-                <p class="soonex-card-title m-0 mt-2">Reserve a seat</p>
-                <p class="lede m-0 mt-2 text-sm/6">
-                  Email + role. We write before the countdown ends.
-                </p>
-              </div>
+        <h1 id="soonex-headline" class="soonex-edition-display mt-6 text-pretty">
+          Soonex
+        </h1>
 
-              <form
-                id="soonex-hero-waitlist-form"
-                class="soonex-rack-body mt-6 flex w-full flex-col gap-5"
-                data-waitlist-toast-title="You're on the list"
-                data-waitlist-toast-description="We'll email you before 1 September."
-              >
-                <div class="soonex-waitlist-join flex w-full flex-col gap-3 sm:flex-row sm:items-stretch">
-                  <.native_input
-                    type="email"
-                    name="waitlist[email]"
-                    id="soonex-hero-waitlist-email"
-                    required
-                    autocomplete="email"
-                    placeholder="you@studio.dev"
-                    class="native-input ui-size-md ui-width-full min-w-0 flex-1"
-                  >
-                    <:label class="sr-only">Email</:label>
-                  </.native_input>
+        <div class="soonex-edition-split mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
+          <p class="soonex-edition-lede m-0 max-w-xl text-pretty lg:col-span-7">
+            Waitlist, shipping log, countdown, four looks — a launch desk for studios that ship on a
+            date.
+          </p>
+          <.navigate
+            to={Soonex.Public.path("/blog")}
+            class="link ui-brand ui-size-sm w-fit lg:col-span-5 lg:justify-self-end"
+          >
+            Read the log <.heroicon name="hero-arrow-up-right" />
+          </.navigate>
+        </div>
+      </div>
 
-                  <button type="submit" class="button ui-brand ui-solid ui-size-md sm:w-auto">
-                    Join
-                  </button>
-                </div>
-
-                <.radio_group
-                  id="soonex-hero-role"
-                  name="waitlist[role]"
-                  class="radio-group ui-brand ui-width-full"
-                  value="founder"
-                  items={[
-                    %{value: "founder", label: "Founder"},
-                    %{value: "engineer", label: "Engineer"},
-                    %{value: "designer", label: "Designer"}
-                  ]}
-                >
-                  <:label><span class="sr-only">I am a</span></:label>
-                </.radio_group>
-              </form>
-
-              <p class="soonex-rack-proof m-0 mt-6 border-t border-border pt-5 text-sm/6 text-ink-muted">
-                <span class="font-semibold text-ink">240 studios</span>
-                already on the list for <span class="whitespace-nowrap">1 September</span>.
+      <div class="soonex-waitlist-strip border-t border-border bg-surface">
+        <div class={Shell.stage()}>
+          <form
+            id="soonex-hero-waitlist-form"
+            class="soonex-strip-form"
+            data-waitlist-toast-title="You're on the list"
+            data-waitlist-toast-description="We'll email you before 1 September."
+          >
+            <div class="soonex-strip-label">
+              <small class={Shell.eyebrow()}>Waitlist</small>
+              <p class="m-0 mt-1 text-sm/6 text-ink-muted">
+                240 studios · write before launch
               </p>
             </div>
-          </div>
+
+            <div class="soonex-waitlist-join soonex-strip-join min-w-0 flex-1">
+              <.native_input
+                type="email"
+                name="waitlist[email]"
+                id="soonex-hero-waitlist-email"
+                required
+                autocomplete="email"
+                placeholder="you@studio.dev"
+                class="native-input ui-size-md ui-width-full min-w-0 flex-1"
+              >
+                <:label class="sr-only">Email</:label>
+              </.native_input>
+
+              <button type="submit" class="button ui-brand ui-solid ui-size-md shrink-0">
+                Join waitlist
+              </button>
+            </div>
+
+            <.radio_group
+              id="soonex-hero-role"
+              name="waitlist[role]"
+              class="radio-group ui-brand soonex-strip-roles"
+              value="founder"
+              items={[
+                %{value: "founder", label: "Founder"},
+                %{value: "engineer", label: "Engineer"},
+                %{value: "designer", label: "Designer"}
+              ]}
+            >
+              <:label><span class="sr-only">I am a</span></:label>
+            </.radio_group>
+          </form>
         </div>
       </div>
     </header>

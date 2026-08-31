@@ -7,30 +7,37 @@ defmodule Soonex.HomePage.Themes do
 
   def themes(assigns) do
     ~H"""
-    <.block id="looks" labelledby="soonex-looks-heading" eyebrow="Looks" layout={:open}>
+    <.block
+      id="looks"
+      labelledby="soonex-looks-heading"
+      eyebrow="Looks"
+      tone={:surface}
+      layout={:open}
+    >
       <:title>
-        Four instruments. <span class="text-brand-text">One launch.</span>
+        Four editions. <span class="text-brand-text">One launch.</span>
       </:title>
       <:lede>
-        neo, uno, duo, leo — same page, different type, corners, and brand. Switch live in Template
-        Options. Surface stays the medium.
+        neo, uno, duo, leo — type, corners, brand. Paper stays the medium. Switch live in Template
+        Options.
       </:lede>
 
-      <div class="soonex-looks-stage mt-4">
+      <div class="soonex-looks-stage">
         <p class="soonex-room-specimen m-0">Soonex</p>
         <p class="lede mt-4 max-w-xl">
           This specimen follows the look you pick. No second build for the review.
         </p>
       </div>
 
-      <ol class="soonex-instrument-grid mt-14">
+      <ol class="soonex-specimen-chart mt-14">
         <li
           :for={room <- rooms()}
           data-theme={room.id}
           data-mode="light"
-          class="soonex-instrument-slab"
+          class="soonex-specimen-cell"
         >
-          <p class="soonex-room-name m-0">{room.id}</p>
+          <span class="soonex-look-id">{room.id}</span>
+          <p class="soonex-room-name m-0 mt-4">{room.id}</p>
           <p class="lede m-0 mt-3">{room.line}</p>
           <p class="m-0 mt-5 text-sm/6 text-ink-muted">{room.use}</p>
         </li>

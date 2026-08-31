@@ -6,7 +6,6 @@ defmodule Soonex.HomePage do
 
   import Soonex.HomePage.Hero, only: [hero: 1]
   import Soonex.HomePage.Product, only: [product: 1]
-  import Soonex.HomePage.Notes, only: [notes: 1]
   import Soonex.HomePage.Themes, only: [themes: 1]
   import Soonex.HomePage.Log, only: [log: 1]
   import Soonex.HomePage.Faq, only: [faq: 1]
@@ -19,7 +18,6 @@ defmodule Soonex.HomePage do
     <div id="home" class="w-full text-ink">
       <.hero />
       <.product />
-      <.notes />
       <.themes />
       <.log posts={@log_posts} />
       <.faq />
