@@ -7,16 +7,20 @@ import { FloatingPanel } from "corex/floating-panel"
 import { Toast } from "corex/toast"
 import { Select } from "corex/select"
 import { Toggle } from "corex/toggle"
-import { initLenis } from "./lenis.js"
+import { Dialog } from "corex/dialog"
+import { ToggleGroup } from "corex/toggle-group"
+import { Menu } from "corex/menu"
+import { Clipboard } from "corex/clipboard"
 import { initLanding } from "./landing.js"
 import { initWaitlistForm } from "./waitlist.js"
+import { initPagination } from "./pagination.js"
 
 const csrfToken = document
   .querySelector("meta[name='csrf-token']")
   ?.getAttribute("content")
 
 // Eager chrome (every page) — matches installer/my_app3 so Template Options is instant.
-// Lazy page hooks — Timer, Marquee, Accordion, etc. only when present.
+// Lazy page hooks — Timer, Marquee, Accordion, marketing widgets only when present.
 const liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
   hooks: {
@@ -24,6 +28,10 @@ const liveSocket = new LiveSocket("/live", Socket, {
     Toast,
     Select,
     Toggle,
+    Dialog,
+    ToggleGroup,
+    Menu,
+    Clipboard,
     ...hooks({
       Tabs: () => import("corex/tabs"),
       Timer: () => import("corex/timer"),
@@ -31,17 +39,25 @@ const liveSocket = new LiveSocket("/live", Socket, {
       Accordion: () => import("corex/accordion"),
       Checkbox: () => import("corex/checkbox"),
       Avatar: () => import("corex/avatar"),
-      Clipboard: () => import("corex/clipboard"),
+      Pagination: () => import("corex/pagination"),
+      Carousel: () => import("corex/carousel"),
+      Tooltip: () => import("corex/tooltip"),
+      Collapsible: () => import("corex/collapsible"),
+      Switch: () => import("corex/switch"),
+      RadioGroup: () => import("corex/radio-group"),
+      TagsInput: () => import("corex/tags-input"),
+      NumberInput: () => import("corex/number-input"),
+      DatePicker: () => import("corex/date-picker"),
     }),
   },
 })
 
+initWaitlistForm()
+initPagination()
+
 liveSocket.disableDebug()
-initLenis()
 liveSocket.connect()
 
 if (document.querySelector("[data-landing]")) {
   initLanding()
 }
-
-initWaitlistForm()

@@ -5,6 +5,8 @@ defmodule Soonex.TagLayout do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Articles, only: [cards: 1, pager: 1]
+
   alias Soonex.Layouts.Shell
 
   def template(assigns) do
@@ -16,45 +18,31 @@ defmodule Soonex.TagLayout do
       assigns
       |> Map.put(:tag_label, tag)
       |> Map.put(:tag_posts, posts)
+      |> Map.put(:tag_count, length(posts))
 
     ~H"""
-    <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
-      <nav class="blog__nav" aria-label="Tag">
-        <.navigate to={Soonex.Public.path("/tags")} class="link ui-nav w-fit">
-          <.heroicon name="hero-arrow-left" /> All tags
-        </.navigate>
-      </nav>
-
-      <header class="blog__hero" aria-labelledby="tag-heading">
-        <div class="blog__head">
-          <p class="blog__eyebrow">Tag</p>
-          <h1 id="tag-heading" class="blog__display">
-            Posts tagged “<span class="blog__display__accent">{@tag_label}</span>”
-          </h1>
-          <p class="blog__meta">
-            <span>
-              {length(@tag_posts)} {if length(@tag_posts) == 1, do: "post", else: "posts"}
-            </span>
-            <span aria-hidden="true">·</span>
-            <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
-              All posts
+    <article class={"#{Shell.section()} bg-root"}>
+      <div class={Shell.stage()}>
+        <.layout_heading class="layout-heading" subtitle_tag="p">
+          <:title>{@tag_label}</:title>
+          <:subtitle>
+            {@tag_count} {if @tag_count == 1, do: "shipping-log entry", else: "shipping-log entries"}
+          </:subtitle>
+          <:actions>
+            <.navigate to={Soonex.Public.path("/tags")} class="button ui-ghost ui-size-sm">
+              <.heroicon name="hero-arrow-left" /> All tags
             </.navigate>
-          </p>
-        </div>
-      </header>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              Log
+            </.navigate>
+          </:actions>
+        </.layout_heading>
 
-      <ul class="blog__grid m-0 list-none p-0">
-        <li :for={post <- @tag_posts}>
-          <.navigate to={Soonex.Public.path(post.permalink)} class={"#{Shell.card()}"}>
-            <div class="blog__card__top">
-              <span></span>
-              <.heroicon name="hero-arrow-right" class="blog__card__arrow" />
-            </div>
-            <h2 class="blog__card__title">{post[:title] || "Untitled"}</h2>
-            <p :if={post[:description]} class="blog__card__excerpt">{post[:description]}</p>
-          </.navigate>
-        </li>
-      </ul>
+        <div class="mt-16" data-soonex-page="soonex-tag-pagination" data-soonex-page-size="3">
+          <.cards posts={@tag_posts} />
+          <.pager id="soonex-tag-pagination" count={@tag_count} page_size={3} />
+        </div>
+      </div>
     </article>
     """
   end

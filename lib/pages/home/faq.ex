@@ -4,131 +4,81 @@ defmodule Soonex.HomePage.Faq do
   use Phoenix.Component
   use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Section, only: [block: 1]
 
   def faq(assigns) do
     ~H"""
-    <section
-      id="faq"
-      class={"#{Shell.section()} border-y border-border bg-ui-muted"}
-      aria-labelledby="soonex-faq-heading"
-    >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-start justify-items-center gap-size-xl lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:justify-items-stretch"}>
-        <div class="mx-auto flex w-full max-w-2xl flex-col items-center justify-self-center gap-size-md text-center lg:mx-0 lg:max-w-none lg:items-start lg:justify-self-auto lg:text-start lg:sticky lg:top-40">
-          <h2 id="soonex-faq-heading" class={Shell.section_heading()}>
-            Lorem <span class="text-brand-text">FAQ</span>
-          </h2>
-          <p class={Shell.lede()}>
-            Ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-          </p>
-          <p class="m-0 text-sm">
-            <.navigate to="#waitlist" class="link ui-brand">Join the waitlist</.navigate>
-          </p>
-        </div>
-
-        <div class="mx-auto flex w-full max-w-2xl justify-center justify-self-center lg:mx-0 lg:block lg:max-w-none lg:justify-self-auto">
-          <.accordion
-            id="soonex-faq"
-            class="accordion ui-accent ui-size-sm sm:ui-size-md lg:ui-size-xl mx-auto w-full max-w-none"
-            multiple={true}
-            value={["stack"]}
-            items={faq_items()}
-          >
-            <:trigger :let={item}>
-              <span class="flex min-w-0 items-center gap-space">
-                <span class="flex shrink-0 -space-x-2" aria-hidden="true">
-                  <span
-                    :for={tech <- item.meta.tech}
-                    class="inline-flex size-7 items-center justify-center rounded-full border border-border bg-surface p-space-xs"
-                  >
-                    <img
-                      src={Soonex.Public.path(tech.src)}
-                      alt=""
-                      class="size-4 object-contain"
-                      loading="lazy"
-                    />
-                  </span>
-                </span>
-                <span class="min-w-0 text-start">{item.label}</span>
-              </span>
-            </:trigger>
-            <:content :let={item}>
-              <p class="m-0 leading-relaxed">{item.content}</p>
-            </:content>
-            <:indicator>
-              <.heroicon name="hero-chevron-right" />
-            </:indicator>
-          </.accordion>
-        </div>
-      </div>
-    </section>
+    <.block id="questions" labelledby="soonex-faq-heading" eyebrow="Questions" layout={:sticky}>
+      <:title>
+        Before you <span class="text-brand-text">join</span>
+      </:title>
+      <:lede>
+        Straight answers about the launch, the waitlist, and what you get on day one.
+      </:lede>
+      <:actions>
+        <.navigate to="#waitlist" class="link ui-brand">
+          Join waitlist <.heroicon name="hero-arrow-down" />
+        </.navigate>
+      </:actions>
+      <.accordion
+        id="soonex-faq"
+        class="accordion ui-accent ui-size-md soonex-faq-instrument mx-auto w-full max-w-none"
+        multiple={false}
+        collapsible={true}
+        value="what"
+        items={faq_items()}
+      >
+        <:trigger :let={item}>
+          <span class="min-w-0 text-start">{item.label}</span>
+        </:trigger>
+        <:content :let={item}>
+          <p class="m-0 text-base/7">{item.content}</p>
+        </:content>
+        <:indicator>
+          <.heroicon name="hero-chevron-right" />
+        </:indicator>
+      </.accordion>
+    </.block>
     """
   end
 
   defp faq_items do
     Corex.Content.new([
       %{
-        value: "stack",
-        label: "Lorem ipsum dolor sit amet?",
+        value: "what",
+        label: "What is Soonex?",
         content:
-          "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        meta: %{
-          tech: [
-            %{name: "Tableau", src: "/images/tech/tableau.jpg"},
-            %{name: "Elixir", src: "/images/tech/elixir.svg"},
-            %{name: "Hex", src: "/images/tech/hex.svg"}
-          ]
-        }
+          "A launch workspace shipping 1 September — waitlist, public shipping log, countdown, and four looks for client review."
       },
       %{
-        value: "builds",
-        label: "Sed do eiusmod tempor?",
+        value: "ships",
+        label: "What do I get on launch day?",
         content:
-          "Incididunt ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-        meta: %{
-          tech: [
-            %{name: "Tailwind", src: "/images/tech/tailwind.svg"},
-            %{name: "Hex", src: "/images/tech/hex.svg"}
-          ]
-        }
+          "The landing, waitlist fields, shipping log, header countdown, and four looks. Swap the stills, lockup, and date for your brand."
       },
       %{
-        value: "mcp",
-        label: "Ut enim ad minim veniam?",
+        value: "looks",
+        label: "What are the four looks?",
         content:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        meta: %{
-          tech: [
-            %{name: "Phoenix", src: "/images/tech/phoenix.svg"},
-            %{name: "TypeScript", src: "/images/tech/typescript.svg"},
-            %{name: "Zag.js", src: "/images/tech/zag.webp"}
-          ]
-        }
+          "neo, uno, duo, and leo. Same page, different type, corners, and brand. Switch them live in Template Options."
       },
       %{
-        value: "themes",
-        label: "Excepteur sint occaecat?",
+        value: "form",
+        label: "Will you email me after I join?",
         content:
-          "Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        meta: %{
-          tech: [
-            %{name: "CSS", src: "/images/tech/css.svg"},
-            %{name: "Figma", src: "/images/tech/figma.svg"}
-          ]
-        }
+          "Yes — when you wire a provider. On this demo page, submit shows the launch toast so you can see the success path."
       },
       %{
-        value: "next",
-        label: "Anim id est laborum?",
+        value: "a11y",
+        label: "How does accessibility work?",
         content:
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-        meta: %{
-          tech: [
-            %{name: "Phoenix", src: "/images/tech/phoenix.svg"},
-            %{name: "Zag.js", src: "/images/tech/zag.webp"},
-            %{name: "Ecto", src: "/images/tech/ecto.png"}
-          ]
-        }
+          "Open Accessibility for zoom, contrast, motion, cursor, focus, and underline. Choices stay on this device."
+      },
+      %{
+        value: "open",
+        label: "Is this open source?",
+        content:
+          "Yes. Clone the repo, run mix setup and mix soonex.server. There is no package.json — Mix, Tailwind, and esbuild are already in the project."
       }
     ])
   end

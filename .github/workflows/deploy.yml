@@ -15,9 +15,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build-and-deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' }}
@@ -51,17 +48,6 @@ jobs:
 
       - name: Install Mix dependencies
         run: mix deps.get
-
-      - name: Set up Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: "24"
-          cache: npm
-          cache-dependency-path: assets/package-lock.json
-
-      - name: Install npm dependencies
-        working-directory: assets
-        run: npm ci
 
       - name: Build static site
         run: mix build

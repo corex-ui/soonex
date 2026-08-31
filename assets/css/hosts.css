@@ -1,0 +1,424 @@
+/* Host polish after Corex. Tokens only. Prefer ui-* modifiers in HEEx. */
+
+[data-theme] {
+  --soonex-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --soonex-header-offset: calc(var(--spacing-size) + 1.5rem);
+  --soonex-ctl-radius: var(--radius-lg);
+  --soonex-ctl-border: var(--color-border);
+  --soonex-ctl-surface: var(--color-ui);
+  --soonex-ctl-shadow: var(--shadow-sm);
+}
+
+body.layout {
+  background-color: var(--color-root);
+  background-image: none;
+}
+
+[data-mode="dark"] body.layout {
+  background-image: none;
+}
+
+html[data-motion="reduce"] body.layout {
+  background-attachment: scroll;
+}
+
+.button,
+.link.ui-nav {
+  transition-timing-function: var(--soonex-ease);
+}
+
+.native-input.ui-width-full,
+.clipboard.ui-width-full,
+.radio-group.ui-width-full,
+.tags-input.ui-width-full,
+.number-input.ui-width-full,
+.date-picker.ui-width-full,
+.data-table.ui-width-full,
+.select.ui-width-full,
+.marquee.ui-width-full,
+.carousel.ui-width-full,
+.collapsible.ui-width-full,
+.switch.ui-width-full {
+  max-width: none;
+  width: 100%;
+}
+
+.data-table.ui-width-fit {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.carousel.ui-width-full {
+  max-height: none;
+  isolation: isolate;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="root"] {
+  aspect-ratio: auto;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="control"] {
+  z-index: 1;
+}
+
+.carousel.ui-width-full
+  [data-scope="carousel"][data-part="root"][data-orientation="horizontal"] {
+  max-height: none;
+  aspect-ratio: auto;
+}
+
+.select.soonex-nav-select [data-scope="select"][data-part="trigger"] {
+  width: auto;
+  min-width: var(--ctl-size, var(--spacing-size));
+  margin-inline-end: 0;
+  aspect-ratio: 1 / 1;
+  padding-inline: 0;
+  justify-content: center;
+}
+
+.select.soonex-nav-select [data-scope="select"][data-part="trigger"] > [data-part="item-text"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.select.soonex-nav-select [data-scope="select"][data-part="content"] {
+  z-index: 60;
+  min-width: var(--container-3xs);
+  width: max-content;
+}
+
+.native-input [data-scope="native-input"][data-part="label"]:has(.sr-only),
+.radio-group [data-scope="radio-group"][data-part="label"]:has(.sr-only) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.menu.ui-width-fit [data-scope="menu"][data-part="root"] > [data-scope="menu"][data-part="trigger"] {
+  width: auto;
+  min-width: var(--ctl-size, var(--spacing-size));
+  margin-inline-end: 0;
+  aspect-ratio: 1 / 1;
+  padding-inline: 0;
+  justify-content: center;
+}
+
+.accordion [data-scope="accordion"][data-part="item-trigger"] {
+  padding-block: var(--spacing-space);
+}
+
+.collapsible.ui-width-full [data-scope="collapsible"][data-part="trigger"] {
+  max-width: none;
+  width: 100%;
+}
+
+.tabs.ui-width-full {
+  max-width: none;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="root"] {
+  width: 100%;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="list"] {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="trigger"] {
+  display: flex;
+  flex: 1 1 0;
+  width: 0;
+  min-width: 0;
+  max-width: none;
+  justify-content: center;
+  text-align: center;
+}
+
+.tabs.ui-width-full [data-scope="tabs"][data-part="content"][data-orientation="horizontal"] {
+  border-end-start-radius: var(--soonex-ctl-radius, var(--radius-md));
+  border-end-end-radius: var(--soonex-ctl-radius, var(--radius-md));
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="list"] {
+  gap: 0;
+}
+
+.tabs.soonex-product-tabs [data-scope="tabs"][data-part="trigger"] {
+  font-weight: var(--font-weight-semibold);
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="item"] {
+  align-items: stretch;
+}
+
+.carousel.ui-width-full [data-scope="carousel"][data-part="item"] > * {
+  width: 100%;
+  height: 100%;
+}
+
+pre.code.code--wide {
+  max-width: none;
+}
+
+/*
+  Soonex control language. There is no ui-input utility — triggers and field
+  hosts share --ctl-* so header CTA, waitlist submit, and inputs read as one family.
+*/
+:is(
+  .button.ui-trigger--circle,
+  .button.ui-trigger--square,
+  .native-input,
+  .select,
+  .tags-input,
+  .number-input
+) {
+  --ctl-space: var(--spacing-space);
+  --ctl-size: var(--spacing-size);
+  --ctl-text: var(--text-base);
+}
+
+.native-input [data-scope="native-input"][data-part="input"],
+.select [data-scope="select"][data-part="trigger"],
+.tags-input [data-scope="tags-input"][data-part="control"],
+.number-input [data-scope="number-input"][data-part="control"] {
+  background-color: var(--soonex-ctl-surface, var(--color-ui));
+  border-color: var(--soonex-ctl-border, var(--color-border));
+}
+
+.button.ui-solid:not(.ui-ghost),
+.button.ui-brand.ui-solid {
+  box-shadow: var(--soonex-ctl-shadow, var(--shadow-sm));
+}
+
+.select [data-scope="select"][data-part="trigger"],
+.menu [data-scope="menu"][data-part="trigger"] {
+  --ctl-radius: inherit;
+  --ctl-size: var(--ctl-size, var(--spacing-size));
+  --ctl-space: var(--ctl-space, var(--spacing-space));
+  --ctl-text: var(--ctl-text, var(--text-base));
+}
+
+/* Dialog triggers are .button hosts. Keep ui-size-* (the Template Options
+   cluster is ui-size-sm). Only inherit radius so corners stay Soonex. */
+.dialog [data-scope="dialog"][data-part="trigger"] {
+  --ctl-radius: inherit;
+}
+
+/* Corex pins floating-panel triggers to 0.8 * --spacing-size (md). Let
+   ui-size-sm on the demo cluster set one height with Accessibility. */
+.floating-panel [data-scope="floating-panel"][data-part="trigger"] {
+  min-height: var(--ctl-size, var(--spacing-size));
+}
+
+/*
+  Shared Soonex radius. :where() keeps specificity at 0 so ui-rounded-*
+  on a host still wins. Circles stay full.
+*/
+[data-theme="neo"] {
+  --soonex-ctl-radius: var(--radius-xl);
+}
+
+[data-theme="uno"] {
+  --soonex-ctl-radius: var(--radius-sm);
+}
+
+[data-theme="duo"] {
+  --soonex-ctl-radius: var(--radius-3xl);
+}
+
+[data-theme="leo"] {
+  --soonex-ctl-radius: var(--radius-none);
+}
+
+:where(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+):not(.ui-trigger--circle) {
+  --ctl-radius: var(--soonex-ctl-radius);
+}
+
+[data-theme="uno"] h1,
+[data-theme="uno"] h2,
+[data-theme="uno"] .soonex-quote,
+[data-theme="uno"] .soonex-stat-value,
+[data-theme="uno"] .soonex-room-specimen,
+[data-theme="uno"] .soonex-room-name,
+[data-theme="uno"] .soonex-card-title {
+  letter-spacing: -0.04em;
+}
+
+[data-theme="duo"] blockquote,
+[data-theme="duo"] .soonex-quote,
+[data-theme="duo"] .soonex-tab-workspace > .lede,
+[data-theme="duo"] .soonex-room .lede {
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+[data-theme="leo"] .soonex-room-specimen,
+[data-theme="leo"] .soonex-room-name,
+[data-theme="leo"] .soonex-card-title,
+[data-theme="leo"] .soonex-lockup-word {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="neo"] .soonex-room-specimen {
+  letter-spacing: -0.06em;
+}
+
+.soonex-lockup-word {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.soonex-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--text-xl--line-height);
+  color: var(--color-ink);
+}
+
+.soonex-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+}
+
+.soonex-stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.soonex-room-specimen {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: 0.95;
+  color: var(--color-ink);
+}
+
+.soonex-room-name {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.soonex-room {
+  color: var(--color-ink);
+}
+
+small.eyebrow {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-text);
+}
+
+[data-theme="leo"] small.eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+
+/*
+  Corex pins ui-trigger--square to radius-sm. Map square triggers (and the
+  same recipe on button/badge/toggle) onto Soonex's per-theme corner.
+*/
+@layer utilities {
+  .tabs.ui-width-full {
+    max-width: none;
+    width: 100%;
+  }
+
+  .tabs.ui-width-full [data-scope="tabs"][data-part="list"] {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .tabs.ui-width-full [data-scope="tabs"][data-part="trigger"] {
+    display: flex;
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    max-width: none;
+    justify-content: center;
+  }
+
+  .ui-trigger--square {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .button.ui-trigger--square,
+  .badge.ui-trigger--square {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .toggle.ui-trigger--square [data-scope="toggle"][data-part="root"] {
+    border-radius: var(--soonex-ctl-radius, var(--radius-md));
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-md));
+  }
+
+  .ui-solid:not(.ui-trigger--square):not(.ui-trigger--circle) {
+    --ctl-radius: var(--soonex-ctl-radius, var(--radius-lg));
+  }
+}

@@ -5,30 +5,42 @@ defmodule Soonex.NotFoundPage do
     layout: Soonex.RootLayout,
     permalink: "/404.html",
     title: "Page not found",
-    description: "The page you requested is not part of this static site.",
+    description: "That page is not on Soonex.",
     page_kind: :not_found,
     sitemap: %{priority: 0.2, changefreq: "yearly"}
 
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Brand, only: [lockup: 1]
+
+  alias Soonex.Layouts.Shell
+
   def template(assigns) do
     ~H"""
     <section
-      class="flex min-h-dvh flex-col items-center justify-center gap-space-lg px-space py-size-xl text-center"
+      class={"#{Shell.section()} flex min-h-dvh flex-col items-center justify-center bg-root text-center"}
       aria-labelledby="soonex-not-found-heading"
     >
-      <div class="flex max-w-md flex-col gap-space-lg">
-        <p class="ui-label m-0 text-ink-muted">404</p>
-        <h1 id="soonex-not-found-heading" class="m-0 text-4xl font-bold tracking-tight">
-          Page not found
-        </h1>
-        <p class="m-0 leading-relaxed text-ink-muted">
-          The URL may be mistyped, or the page may have moved. Try the home page.
-        </p>
-        <.navigate to={Soonex.Public.path("/")} class="button ui-accent ui-solid w-fit self-center">
-          Back to home
-        </.navigate>
+      <div class={Shell.stage()}>
+        <div class={"#{Shell.panel()} mx-auto flex max-w-lg flex-col items-center gap-6 px-8 py-16"}>
+          <.lockup />
+          <small class={Shell.eyebrow()}>404</small>
+          <h1 id="soonex-not-found-heading" class="m-0 text-pretty">
+            Page not found
+          </h1>
+          <p class="lede m-0 max-w-sm">
+            That URL is not on Soonex. Head home to join the waitlist, or read the shipping log.
+          </p>
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-4">
+            <.navigate to={Soonex.Public.path("/")} class="button ui-brand ui-solid ui-size-md">
+              Home
+            </.navigate>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
+              Log
+            </.navigate>
+          </div>
+        </div>
       </div>
     </section>
     """

@@ -5,34 +5,38 @@ defmodule Soonex.HomePage do
   use Corex
 
   import Soonex.HomePage.Hero, only: [hero: 1]
-  import Soonex.HomePage.Highlights, only: [highlights: 1]
-  import Soonex.HomePage.Scale, only: [scale: 1]
+  import Soonex.HomePage.MarqueeBand, only: [marquee_band: 1]
+  import Soonex.HomePage.Bento, only: [bento: 1]
+  import Soonex.HomePage.Product, only: [product: 1]
+  import Soonex.HomePage.Themes, only: [themes: 1]
+  import Soonex.HomePage.Notes, only: [notes: 1]
+  import Soonex.HomePage.Log, only: [log: 1]
   import Soonex.HomePage.Faq, only: [faq: 1]
   import Soonex.HomePage.Waitlist, only: [waitlist: 1]
 
   def template(assigns) do
-    assigns =
-      assigns
-      |> Map.put(
-        :countdown_ms,
-        max(DateTime.diff(~U[2026-09-01 00:00:00Z], DateTime.utc_now(), :millisecond), 0)
-      )
-      |> Map.put(:stats_components, length(Corex.component_ids()))
-      |> Map.put(
-        :posts,
-        assigns
-        |> Map.get(:posts, [])
-        |> List.wrap()
-      )
+    assigns = Map.put(assigns, :log_posts, posts(assigns))
 
     ~H"""
     <div id="home" class="w-full text-ink">
-      <.hero countdown_ms={@countdown_ms} />
-      <.highlights posts={@posts} />
-      <.scale stats_components={@stats_components} />
+      <.hero />
+      <.marquee_band />
+      <.bento />
+      <.product />
+      <.themes />
+      <.notes />
+      <.log posts={@log_posts} />
       <.faq />
       <.waitlist />
     </div>
     """
+  end
+
+  defp posts(assigns) do
+    cond do
+      is_list(assigns[:posts]) -> assigns.posts
+      is_map(assigns[:page]) and is_list(assigns.page[:posts]) -> assigns.page.posts
+      true -> []
+    end
   end
 end

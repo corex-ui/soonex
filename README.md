@@ -7,17 +7,14 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 ## Prerequisites
 
 - Elixir ~> 1.17
-- Node.js (for `npm install` in `assets/`)
-- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2.0`)
+- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2.1`)
 
 ## Quick start
 
 ```shell
 cd soonex
-mix deps.get
-mix corex.design.build
-cd assets && npm install && cd ..
-mix tableau.server
+mix setup
+mix soonex.server
 ```
 
 - Dev site: `http://localhost:4999` (home at `/`).
@@ -26,14 +23,26 @@ mix tableau.server
 
 With `MIX_ENV=dev`, Corex MCP listens at `http://localhost:4004/corex/mcp` (Tableau stays on 4999). Configure your editor using [`.cursor/mcp.json`](.cursor/mcp.json) as an example.
 
+`mix tableau.server` logs “server started on http://localhost:4999/” **before** Bandit binds. If you then see `:eaddrinuse`, another process already owns 4999 (a leftover Tableau, Wallaby, or `python -m http.server 4999`). Stop it, then retry:
+
+```shell
+ss -ltnp 'sport = :4999'          # Linux
+lsof -nP -iTCP:4999 -sTCP:LISTEN  # macOS
+kill <pid>
+mix soonex.server                 # port check, then tableau.server
+```
+
 Rebuild assets: `mix assets.build`.
 
 ## Customize (where to edit)
 
-- **Brand / SEO:** [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex), [`lib/pages/root_index_page.ex`](lib/pages/root_index_page.ex).
-- **Themes:** [`lib/soonex/theme.ex`](lib/soonex/theme.ex) — `data-theme` on `<html>` must match themes in `config :corex_design`.
-- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex).
-- **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
+- **Brand / SEO:** lockup in [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg); titles in [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex).
+- **Themes:** overlay **all allowed keys** per theme in [`config/config.exs`](config/config.exs) (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`) plus top-level `scales:`. Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
+- **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); `corex_design` must stay a **runtime** dep.
+- **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
+- **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); condensed + countdown `hidden`/`inert` in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js). [`assets/css/hosts.css`](assets/css/hosts.css) is after `corex.css`. No token opacity (`bg-surface/90`).
+- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Band skeletons live in [`lib/layouts/section.ex`](lib/layouts/section.ex) (`:open`, `:editorial`, `:sticky`). FAQ is the sticky split. Anchors: `#product`, `#notes`, `#themes`, `#log`, `#questions`, `#waitlist`.
+- **Log:** index at [`/blog`](lib/pages/blog_index_page.ex) (`layout_heading`, list, pagination); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
 
 MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tableau data, tags, and static extras** in the longer notes below.
@@ -50,7 +59,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js); landing motion under [`assets/js/landing*.js`](assets/js).
+- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js), a11y head script; header condensed + countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js) (`hidden` + `inert` until past the hero sentinel).
 
 ## Production and hosting
 

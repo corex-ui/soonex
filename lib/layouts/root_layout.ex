@@ -9,7 +9,7 @@ defmodule Soonex.RootLayout do
 
   import Soonex.Layouts.Root.Demo, only: [demo_site_controls: 1]
   import Soonex.Layouts.Root.Footer, only: [site_footer: 1]
-  import Soonex.Layouts.Root.LandingChrome, only: [landing_chrome: 1]
+  import Soonex.Layouts.Root.Nav, only: [site_nav: 1]
 
   alias Phoenix.HTML
   alias Phoenix.HTML.Safe
@@ -65,22 +65,25 @@ defmodule Soonex.RootLayout do
     ~H"""
     <!DOCTYPE html>
     <html
-      class="lenis"
+      class="scroll-smooth motion-reduce:scroll-auto"
       lang="en"
       dir="ltr"
       data-theme={@theme}
       data-mode={@mode}
       data-themes={Enum.join(Soonex.Theme.themes(), ",")}
       data-default-theme={Soonex.Theme.default_theme()}
+      {Soonex.Accessibility.data_attrs()}
     >
       <head>
         {Soonex.Theme.head_script()}
         {Soonex.Mode.head_script()}
+        {Soonex.Accessibility.head_script()}
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="csrf-token" content={get_csrf_token()} />
 
+        <link rel="icon" href={Soonex.Public.path("/images/logo.svg")} type="image/svg+xml" />
         <link rel="icon" href={Soonex.Public.path("/images/favicon.ico")} sizes="48x48" />
         <link
           rel="icon"
@@ -135,18 +138,28 @@ defmodule Soonex.RootLayout do
         <meta name="twitter:image" content={@og_image_url} />
 
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="preload"
+          href={Soonex.Public.path("/fonts/manrope-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+        <link
+          rel="preload"
+          href={Soonex.Public.path("/fonts/outfit-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
         />
         <link rel="stylesheet" href={Soonex.Public.path("/css/site.css")} />
         <script type="module" src={Soonex.Public.path("/js/site.js")} />
       </head>
 
-      <body class="layout typo flex min-h-dvh flex-col bg-root text-ink antialiased">
+      <body class="layout typo flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
-        <.landing_chrome countdown_start_ms={@countdown_start_ms} />
+        <.site_nav countdown_start_ms={@countdown_start_ms} page_path={@page_path} />
 
         <main
           id="main-content"
@@ -186,10 +199,10 @@ defmodule Soonex.RootLayout do
         page[:title]
 
       page[:page_kind] == :home ->
-        "#{site_name} · Elixir static site template"
+        "#{site_name} · Launch 1 September"
 
       page[:page_kind] == :blog_index ->
-        "Blog · #{site_name}"
+        "Log · #{site_name}"
 
       page[:page_kind] == :not_found ->
         "Page not found · #{site_name}"
@@ -208,25 +221,25 @@ defmodule Soonex.RootLayout do
   defp meta_description(page, site_name) do
     cond do
       page[:page_kind] == :home ->
-        "Tableau + Corex coming-soon template: static HEEx, design tokens, Markdown. Join the #{site_name} waitlist."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
 
       page[:page_kind] == :blog_index ->
-        "Journal posts from the #{site_name} static site template."
+        "Shipping notes from #{site_name}: waitlist, looks, countdown, and the road to 1 September."
 
       page[:page_kind] == :not_found ->
-        "This URL is not available on the #{site_name} static site."
+        "That page is not on #{site_name}. Head home or read the shipping log."
 
       page[:page_kind] == :tags_index ->
-        "Browse tags on the #{site_name} static site."
+        "Browse the #{site_name} shipping log by topic — launch, looks, studio, and notes."
 
       tag_page?(page) ->
-        "Posts tagged #{page[:tag]} on the #{site_name} static site."
+        "Log entries tagged #{page[:tag]} on #{site_name}."
 
       present_string?(page[:description]) ->
         page[:description]
 
       true ->
-        "A coming-soon static site. Learn more about #{site_name}."
+        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
     end
   end
 

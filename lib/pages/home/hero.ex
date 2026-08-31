@@ -4,98 +4,145 @@ defmodule Soonex.HomePage.Hero do
   use Phoenix.Component
   use Corex
 
-  alias Soonex.Layouts.Shell
+  import Soonex.Layouts.Media, only: [photo: 1]
 
-  attr(:countdown_ms, :integer, required: true)
+  alias Soonex.Layouts.Shell
 
   def hero(assigns) do
     ~H"""
     <header
-      class={"#{Shell.section()} overflow-x-hidden"}
+      class={"#{Shell.section_hero()} soonex-framer-hero bg-root"}
       aria-labelledby="soonex-headline"
       data-hero-boundary
     >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-center justify-items-center gap-size-lg lg:grid-cols-2 lg:justify-items-stretch lg:gap-size-xl xl:grid-cols-[minmax(0,1fr)_minmax(22rem,1.15fr)]"}>
-        <div
-          class="mx-auto flex w-full max-w-xl flex-col items-center gap-size-md text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-start"
-          data-hero
-        >
-          <p class="m-0 text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">
-            Soonex
-          </p>
+      <div class="absolute inset-0">
+        <.photo
+          src="/images/photos/hero.jpg"
+          alt="Sunlit studio with long work tables and hanging task lamps"
+          width={1600}
+          height={1200}
+          class="absolute inset-0 size-full"
+          loading="eager"
+        />
+        <div class="soonex-hero-wash absolute inset-0"></div>
+      </div>
 
-          <h1
-            id="soonex-headline"
-            class="display m-0 text-balance text-4xl tracking-tighter text-ink sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            Lorem ipsum dolor <span class="text-brand-text">sit amet</span>.
-          </h1>
-
-          <p class={Shell.lede()}>
-            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-          </p>
-
-          <ul
-            class="m-0 grid w-full max-w-xl list-none grid-cols-1 gap-x-space-xl gap-y-space-lg p-0 sm:grid-cols-2"
-            aria-label="Highlights"
-          >
-            <%= for line <- [
-                  "Lorem ipsum dolor sit amet, consectetur.",
-                  "Sed do eiusmod tempor incididunt ut.",
-                  "Ut labore et dolore magna aliqua enim.",
-                  "Quis nostrud exercitation ullamco laboris."
-                ] do %>
-              <li class="relative flex items-start gap-x-space text-pretty text-start text-sm text-ink-muted">
-                <span class="mt-space-xs shrink-0 text-success-text">
-                  <.heroicon name="hero-check" />
-                </span>
-                <span>{line}</span>
-              </li>
-            <% end %>
-          </ul>
-
-          <div class="flex w-full flex-wrap items-center justify-center gap-space-lg lg:justify-start">
-            <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-lg">
-              Join the waitlist
-            </.navigate>
-            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-lg">
-              Read the journal <.heroicon name="hero-arrow-up-right" />
-            </.navigate>
-          </div>
-        </div>
-
-        <div
-          class="hero-countdown mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none"
-          aria-labelledby="hero-countdown-title"
-        >
-          <div class="hero-countdown__head">
-            <p class="hero-countdown__eyebrow">Launching in</p>
-            <p id="hero-countdown-title" class="hero-countdown__title">
-              Lorem ipsum countdown
+      <div class={"#{Shell.stage()} relative z-[1] w-full py-16 sm:py-24"}>
+        <div class="grid grid-cols-1 items-end gap-12 lg:grid-cols-12 lg:items-center lg:gap-10">
+          <div class="flex w-full flex-col justify-center lg:col-span-6" data-hero>
+            <small class={Shell.eyebrow()}>Launch · 1 September</small>
+            <h1 id="soonex-headline" class="mt-3 text-pretty">
+              Soonex
+              <span class="text-brand-text">
+                ships <span class="whitespace-nowrap">1 September</span>.
+              </span>
+            </h1>
+            <p class={"#{Shell.lede()} max-w-lg"}>
+              Waitlist, shipping log, countdown, and four looks — the launch desk for studios that
+              ship on a date.
             </p>
+            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-md">
+                Join waitlist
+              </.navigate>
+              <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
+                Read the log <.heroicon name="hero-arrow-up-right" />
+              </.navigate>
+            </div>
           </div>
 
-          <.timer
-            id="soonex-hero-countdown"
-            countdown
-            start_ms={@countdown_ms}
-            target_ms={0}
-            class="timer hero-countdown__timer ui-success ui-size-xl w-full"
-          >
-            <:day_label>Days</:day_label>
-            <:hour_label>Hours</:hour_label>
-            <:minute_label>Min</:minute_label>
-            <:second_label>Sec</:second_label>
-          </.timer>
+          <div class="lg:col-span-6">
+            <div class="soonex-waitlist-object soonex-card-motion w-full max-w-md lg:ml-auto">
+              <p class="soonex-card-title m-0">Reserve a September seat</p>
+              <p class="lede mt-2 text-sm/6">
+                Tell us who you are. We write when the countdown ends.
+              </p>
 
-          <p class="hero-countdown__note">
-            Consectetur adipiscing elit · launch window Q3 2026
-          </p>
+              <form
+                id="soonex-hero-waitlist-form"
+                class="mt-5 flex w-full flex-col gap-4"
+                data-waitlist-toast-title="You're on the list"
+                data-waitlist-toast-description="We'll email you before 1 September."
+              >
+                <div class="soonex-waitlist-join flex w-full flex-col gap-3 sm:flex-row sm:items-stretch">
+                  <.native_input
+                    type="email"
+                    name="waitlist[email]"
+                    id="soonex-hero-waitlist-email"
+                    required
+                    autocomplete="email"
+                    placeholder="you@studio.dev"
+                    class="native-input ui-size-md ui-width-full min-w-0 flex-1"
+                  >
+                    <:label class="sr-only">Email</:label>
+                  </.native_input>
+
+                  <button type="submit" class="button ui-brand ui-solid ui-size-md sm:w-auto">
+                    Join waitlist
+                  </button>
+                </div>
+
+                <.radio_group
+                  id="soonex-hero-role"
+                  name="waitlist[role]"
+                  class="radio-group ui-brand ui-width-full"
+                  value="founder"
+                  items={[
+                    %{value: "founder", label: "Founder"},
+                    %{value: "engineer", label: "Engineer"},
+                    %{value: "designer", label: "Designer"}
+                  ]}
+                >
+                  <:label><span class="sr-only">I am a</span></:label>
+                </.radio_group>
+              </form>
+
+              <div class="mt-5 flex items-center gap-3 border-t border-border pt-5">
+                <div class="soonex-avatars">
+                  <.avatar
+                    :for={person <- people()}
+                    id={person.id}
+                    src={Soonex.Public.path(person.src)}
+                    alt={person.alt}
+                    class="avatar ui-size-sm"
+                  >
+                    <:fallback>{person.initials}</:fallback>
+                  </.avatar>
+                </div>
+                <p class="m-0 max-w-xs text-sm/6 text-ink-muted">
+                  240 studios already on the list for <span class="whitespace-nowrap">1 September</span>.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
 
     <div data-hero-sentinel aria-hidden="true" class="pointer-events-none h-px w-full shrink-0"></div>
     """
+  end
+
+  defp people do
+    [
+      %{
+        id: "soonex-hero-avatar-amira",
+        src: "/images/people/amira.jpg",
+        alt: "Amira N.",
+        initials: "AN"
+      },
+      %{
+        id: "soonex-hero-avatar-jonas",
+        src: "/images/people/jonas.jpg",
+        alt: "Jonas K.",
+        initials: "JK"
+      },
+      %{
+        id: "soonex-hero-avatar-leah",
+        src: "/images/people/leah.jpg",
+        alt: "Leah M.",
+        initials: "LM"
+      }
+    ]
   end
 end

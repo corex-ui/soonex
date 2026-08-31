@@ -1,31 +1,29 @@
 const stickyRevealPx = 96
+const condensedPx = 8
 
 export function scrollProgress01() {
-  const lenis = globalThis.__landingLenis
-  if (lenis && typeof lenis.progress === "number") {
-    return Math.min(1, Math.max(0, lenis.progress))
-  }
   const doc = document.documentElement
   const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight)
   return Math.min(1, Math.max(0, window.scrollY / maxScroll))
 }
 
-export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
-  const stickyEl = stickyBar instanceof HTMLElement ? stickyBar : null
+function motionReduce() {
+  return document.documentElement.getAttribute("data-motion") === "reduce"
+}
+
+export function bindLandingScrollChrome(header, countdown, heroBoundary, progressFill) {
+  const headerEl = header instanceof HTMLElement ? header : null
+  const countdownEl = countdown instanceof HTMLElement ? countdown : null
   const boundaryEl = heroBoundary instanceof HTMLElement ? heroBoundary : null
   const progressOk = progressFill instanceof HTMLElement
 
-  if (!stickyEl && !progressOk) {
+  if (!headerEl && !countdownEl && !progressOk) {
     return () => {}
-  }
-
-  if (stickyEl) {
-    stickyEl.style.transition =
-      "opacity 0.25s ease-out, transform 0.25s ease-out"
   }
 
   let alive = true
   let rafId = null
+  let lastHeaderOffset = ""
 
   const pastReveal = () => {
     if (boundaryEl) {
@@ -34,25 +32,42 @@ export function bindLandingScrollChrome(stickyBar, heroBoundary, progressFill) {
         ? r.top <= stickyRevealPx
         : r.bottom <= stickyRevealPx
     }
-    return window.scrollY > stickyRevealPx
+    return true
+  }
+
+  const showCountdown = (show) => {
+    if (!countdownEl) {
+      return
+    }
+    countdownEl.toggleAttribute("data-shown", show)
+    countdownEl.toggleAttribute("aria-hidden", !show)
+    countdownEl.toggleAttribute("inert", !show)
+    countdownEl.classList.toggle("invisible", !show)
   }
 
   const tick = () => {
     if (!alive) {
       return
     }
-    if (stickyEl) {
-      const show = pastReveal()
-      stickyEl.style.opacity = show ? "1" : "0"
-      stickyEl.style.transform = show
-        ? "translate3d(0, 0, 0)"
-        : "translate3d(0, -100%, 0)"
-      stickyEl.style.pointerEvents = show ? "auto" : "none"
+    if (headerEl) {
+      headerEl.toggleAttribute("data-condensed", window.scrollY > condensedPx)
+      if (motionReduce()) {
+        headerEl.style.transition = "none"
+      }
+      const offset = `${headerEl.getBoundingClientRect().height}px`
+      if (offset !== lastHeaderOffset) {
+        lastHeaderOffset = offset
+        document.documentElement.style.setProperty("--soonex-header-offset", offset)
+      }
     }
+    showCountdown(pastReveal())
     if (progressOk) {
       const p = scrollProgress01()
       progressFill.style.transform = `scaleX(${p})`
       progressFill.style.transformOrigin = "left center"
+      if (motionReduce()) {
+        progressFill.style.transition = "none"
+      }
     }
     rafId = requestAnimationFrame(tick)
   }
