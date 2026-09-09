@@ -1,0 +1,166 @@
+/* Shared marketing rhythm. Tokens only. Skins override composition. */
+
+.soonex-hero-grid {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+@media (width >= 64rem) {
+  .soonex-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+.soonex-hero-heading {
+  text-wrap: pretty;
+}
+
+.soonex-accent {
+  color: var(--color-brand-text);
+}
+
+.soonex-launch-badge {
+  margin: 0;
+}
+
+.soonex-hero-form {
+  max-width: 28rem;
+}
+
+.soonex-plan[data-featured="true"] {
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+  border-color: var(--color-brand);
+}
+
+.soonex-plan[data-featured="true"] .soonex-eyebrow,
+.soonex-plan[data-featured="true"] .display,
+.soonex-plan[data-featured="true"] p,
+.soonex-plan[data-featured="true"] li {
+  color: inherit;
+}
+
+.soonex-step-index,
+.soonex-faq-index {
+  font-variant-numeric: tabular-nums;
+}
+
+.soonex-tech-chip {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.soonex-tech-chip img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+}
+
+.soonex-launch {
+  display: grid;
+  gap: 1rem;
+}
+
+.soonex-launch-beat[data-featured="true"] {
+  border-color: var(--color-brand);
+}
+
+.soonex-faq-answer .link,
+.soonex-faq-answer .clipboard {
+  margin-top: 0.25rem;
+}
+
+@media (width >= 40rem) {
+  .soonex-launch {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.soonex-claim-icon {
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-text);
+}
+
+.soonex-faq-trigger {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: baseline;
+  gap: 0.75rem;
+  text-align: start;
+}
+
+.soonex-faq [data-part="item-trigger"] {
+  padding-inline: calc(var(--spacing-space) + 0.75rem);
+}
+
+.soonex-bento {
+  align-items: start;
+}
+
+.soonex-bento-hero {
+  align-self: start;
+  width: 100%;
+}
+
+.soonex-bento-cells .collapsible:nth-child(2) [data-scope="collapsible"][data-part="trigger"] {
+  padding-inline: calc(var(--spacing-space) + 0.75rem);
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes soonex-reveal {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .soonex-reveal {
+    transform: none;
+    filter: none;
+    animation-name: soonex-reveal;
+    animation-duration: var(--duration-slow);
+    animation-timing-function: var(--soonex-ease);
+    animation-fill-mode: none;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  html[data-motion="reduce"] .soonex-reveal {
+    animation: none;
+  }
+}
+
+.soonex-card-motion {
+  transition:
+    border-color var(--duration-fast) var(--soonex-ease),
+    box-shadow var(--duration-fast) var(--soonex-ease);
+}
+
+@media (hover: hover) {
+  .soonex-card-motion:hover {
+    border-color: var(--color-brand);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+html[data-motion="reduce"] .soonex-card-motion,
+html[data-motion="reduce"] .soonex-card-motion:hover {
+  transition: none;
+  box-shadow: none;
+}

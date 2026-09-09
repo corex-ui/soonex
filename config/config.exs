@@ -76,7 +76,7 @@ config :tableau, Tableau.RSSExtension,
   enabled: true,
   title: "Soonex",
   description:
-    "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
+    "Tableau + Corex launch template: waitlist, journal, countdown, and four skins you customize in config."
 
 config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
@@ -117,11 +117,11 @@ with_on = fn colors ->
     "alert-contrast" => contrast.(:neutral, :alert, 9.5),
     "info-contrast" => contrast.(:neutral, :info, 9.5),
     "success-contrast" => contrast.(:neutral, :success, 9.5),
-    "accent-text" => contrast.(:accent, :root, 4.6),
-    "brand-text" => contrast.(:brand, :root, 4.6),
-    "alert-text" => contrast.(:alert, :root, 4.6),
-    "info-text" => contrast.(:info, :root, 4.6),
-    "success-text" => contrast.(:success, :root, 4.6)
+    "accent-text" => contrast.(:accent, :ui, 4.6),
+    "brand-text" => contrast.(:brand, :ui, 4.6),
+    "alert-text" => contrast.(:alert, :ui, 4.6),
+    "info-text" => contrast.(:info, :ui, 4.6),
+    "success-text" => contrast.(:success, :ui, 4.6)
   })
 end
 
@@ -134,9 +134,9 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#EEF1F6",
-        accent: "#070A10",
-        brand: "#155EEF",
+        neutral: "#EEEAE4",
+        accent: "#161618",
+        brand: "#1D4ED8",
         alert: "#B42318",
         info: "#0E7490",
         success: "#15803D"
@@ -145,42 +145,42 @@ config :corex_design,
         light:
           with_on.(%{
             root: l.(0.99, :neutral),
-            surface: l.(0.955, :neutral),
-            ui: fill.(0.9, :neutral),
-            accent: fill.(0.16, :accent),
-            brand: fill.(0.48, :brand),
-            ink: contrast.(:accent, :root, 13),
-            "ink-muted": contrast.(:accent, :root, 6.4),
-            link: contrast.(:brand, :root, 5.8),
-            border: contrast.(:neutral, :ui, 1.35),
-            focus: contrast.(:brand, :ui, 2.5),
-            shadow: contrast.(:accent, :root, 1.15)
+            surface: l.(0.965, :neutral),
+            ui: fill.(0.94, :neutral),
+            accent: fill.(0.24, :accent),
+            brand: fill.(0.4, :brand),
+            ink: contrast.(:accent, :root, 12),
+            "ink-muted": contrast.(:accent, :root, 6.0),
+            link: contrast.(:brand, :root, 5.5),
+            border: contrast.(:neutral, :ui, 1.28),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.1)
           }),
         dark:
           with_on.(%{
-            root: l.(0.045, :accent),
-            surface: l.(0.085, :accent),
-            ui: fill.(0.14, :accent),
-            accent: fill.(0.55, :accent),
-            brand: fill.(0.5, :brand),
-            ink: contrast.(:neutral, :root, 14),
-            "ink-muted": contrast.(:neutral, :root, 7.0),
-            link: contrast.(:brand, :root, 6.5),
-            border: contrast.(:neutral, :ui, 1.4),
-            focus: contrast.(:brand, :ui, 2.55),
-            shadow: contrast.(:accent, :root, 1.2)
+            root: l.(0.055, :accent),
+            surface: l.(0.095, :accent),
+            ui: fill.(0.155, :accent),
+            accent: fill.(0.5, :accent),
+            brand: fill.(0.54, :brand),
+            ink: contrast.(:neutral, :root, 13),
+            "ink-muted": contrast.(:neutral, :root, 6.6),
+            link: contrast.(:brand, :root, 6.2),
+            border: contrast.(:neutral, :ui, 1.32),
+            focus: contrast.(:brand, :ui, 2.4),
+            shadow: contrast.(:accent, :root, 1.18)
           })
       },
       dimensions: %{
         radius: %{
-          xs: 0.2,
-          sm: 0.4,
-          md: 0.7,
+          xs: 0.28,
+          sm: 0.48,
+          md: 0.72,
           lg: 1.0,
-          xl: 1.35,
-          "2xl": 1.7,
-          "3xl": 2.2,
-          "4xl": 2.8,
+          xl: 1.25,
+          "2xl": 1.5,
+          "3xl": 1.9,
+          "4xl": 2.4,
           full: 9999
         },
         font: %{
@@ -195,46 +195,31 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter},
-          font_size: {:text, :"5xl"},
-          sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"8xl"}}
+          letter_spacing: {:tracking, :tighter}
         },
         "h2" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight},
-          font_size: {:text, :"4xl"},
-          sm: %{font_size: {:text, :"5xl"}}
+          letter_spacing: {:tracking, :tight}
         },
-        "h3" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :semibold},
-          font_size: {:text, :xl}
-        },
+        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
         "h4" => %{font_family: {:font, :sans}, font_weight: {:weight, :semibold}},
         "p" => %{line_height: {:leading, :relaxed}},
-        "p.lede" => %{
-          font_size: {:text, :lg},
-          line_height: {:leading, :relaxed},
-          color: "var(--color-ink-muted)"
+        "p.display" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :bold},
+          letter_spacing: {:tracking, :tighter}
         },
-        "small.eyebrow" => %{
-          font_weight: {:weight, :semibold},
-          font_size: {:text, :sm},
-          letter_spacing: {:tracking, :wide},
-          color: "var(--color-brand-text)"
-        },
-        "blockquote" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}
       }
     },
     uno: %{
       seeds: %{
-        neutral: "#E8F0ED",
-        accent: "#021A16",
-        brand: "#0D9488",
+        neutral: "#F6F6F6",
+        accent: "#071614",
+        brand: "#0F766E",
         alert: "#B91C1C",
         info: "#0369A1",
         success: "#166534"
@@ -242,43 +227,43 @@ config :corex_design,
       colors: %{
         light:
           with_on.(%{
-            root: l.(0.97, :neutral),
-            surface: l.(0.94, :neutral),
-            ui: fill.(0.9, :neutral),
-            accent: fill.(0.22, :accent),
-            brand: fill.(0.4, :brand),
-            ink: contrast.(:accent, :root, 11),
-            "ink-muted": contrast.(:accent, :root, 5.8),
-            link: contrast.(:brand, :root, 6.0),
-            border: contrast.(:neutral, :ui, 1.28),
-            focus: contrast.(:brand, :ui, 2.35),
-            shadow: contrast.(:accent, :root, 1.08)
+            root: l.(0.99, :neutral),
+            surface: l.(0.97, :neutral),
+            ui: fill.(0.94, :neutral),
+            accent: fill.(0.3, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 10),
+            "ink-muted": contrast.(:accent, :root, 5.5),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:neutral, :ui, 1.22),
+            focus: contrast.(:brand, :ui, 2.2),
+            shadow: contrast.(:accent, :root, 1.06)
           }),
         dark:
           with_on.(%{
-            root: l.(0.05, :accent),
-            surface: l.(0.095, :accent),
-            ui: fill.(0.155, :accent),
-            accent: fill.(0.55, :accent),
-            brand: fill.(0.55, :brand),
-            ink: contrast.(:neutral, :root, 13),
-            "ink-muted": contrast.(:neutral, :root, 6.5),
-            link: contrast.(:brand, :root, 7.2),
-            border: contrast.(:neutral, :ui, 1.35),
-            focus: contrast.(:brand, :ui, 2.4),
-            shadow: contrast.(:accent, :root, 1.16)
+            root: l.(0.065, :accent),
+            surface: l.(0.11, :accent),
+            ui: fill.(0.175, :accent),
+            accent: fill.(0.52, :accent),
+            brand: fill.(0.52, :brand),
+            ink: contrast.(:neutral, :root, 12.5),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.28),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.14)
           })
       },
       dimensions: %{
         radius: %{
-          xs: 0,
-          sm: 0.02,
-          md: 0.05,
-          lg: 0.1,
-          xl: 0.16,
-          "2xl": 0.24,
-          "3xl": 0.32,
-          "4xl": 0.4,
+          xs: 0.55,
+          sm: 0.9,
+          md: 1.25,
+          lg: 1.7,
+          xl: 2.2,
+          "2xl": 3.0,
+          "3xl": 4.0,
+          "4xl": 5.0,
           full: 9999
         },
         font: %{
@@ -286,54 +271,29 @@ config :corex_design,
           display: ["Sora", "ui-sans-serif", "system-ui", "sans-serif"],
           mono: ["JetBrains Mono", "ui-monospace", "monospace"],
           code: ["JetBrains Mono", "ui-monospace", "monospace"],
-          serif: ["ui-serif", "Georgia", "serif"]
+          serif: ["Playfair Display", "Georgia", "serif"]
         }
       },
       typography: %{
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tighter},
-          font_size: {:text, :"4xl"},
-          sm: %{font_size: {:text, :"5xl"}},
-          lg: %{font_size: {:text, :"6xl"}}
-        },
-        "h2" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :tighter},
-          font_size: {:text, :"3xl"},
-          sm: %{font_size: {:text, :"4xl"}}
-        },
-        "h3" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :medium},
           letter_spacing: {:tracking, :tight}
         },
-        "h4" => %{font_weight: {:weight, :medium}, letter_spacing: {:tracking, :tight}},
+        "h2" => %{font_family: {:font, :display}, letter_spacing: {:tracking, :tight}},
+        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :medium}},
+        "h4" => %{font_weight: {:weight, :medium}},
         "p" => %{line_height: {:leading, :snug}},
-        "p.lede" => %{
-          font_size: {:text, :base},
-          line_height: {:leading, :snug},
-          letter_spacing: {:tracking, :tight},
-          color: "var(--color-ink-muted)"
-        },
-        "small.eyebrow" => %{
-          font_weight: {:weight, :medium},
-          font_size: {:text, :xs},
-          letter_spacing: {:tracking, :widest},
-          text_transform: "uppercase",
-          color: "var(--color-brand-text)"
-        },
-        "blockquote" => %{font_style: :italic},
+        "p.display" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}
       }
     },
     duo: %{
       seeds: %{
-        neutral: "#F3EDE6",
-        accent: "#2A140C",
+        neutral: "#F7EDE4",
+        accent: "#3A2618",
         brand: "#C2410C",
         alert: "#9F1239",
         info: "#3D5278",
@@ -341,44 +301,47 @@ config :corex_design,
       },
       colors: %{
         light:
-          with_on.(%{
-            root: l.(0.98, :neutral),
-            surface: l.(0.95, :neutral),
-            ui: fill.(0.91, :neutral),
-            accent: fill.(0.28, :accent),
-            brand: fill.(0.46, :brand),
-            ink: contrast.(:accent, :root, 10),
-            "ink-muted": contrast.(:accent, :root, 5.4),
-            link: contrast.(:brand, :root, 5.8),
-            border: contrast.(:neutral, :ui, 1.22),
-            focus: contrast.(:brand, :ui, 2.2),
-            shadow: contrast.(:accent, :root, 1.3)
-          }),
+          Map.merge(
+            with_on.(%{
+              root: l.(0.99, :neutral),
+              surface: l.(0.97, :neutral),
+              ui: fill.(0.94, :neutral),
+              accent: fill.(0.34, :accent),
+              brand: fill.(0.42, :brand),
+              ink: contrast.(:accent, :root, 12.5),
+              "ink-muted": contrast.(:accent, :root, 6.8),
+              link: contrast.(:brand, :root, 7.0),
+              border: contrast.(:neutral, :ui, 1.22),
+              focus: contrast.(:brand, :ui, 2.3),
+              shadow: contrast.(:accent, :root, 1.28)
+            }),
+            %{"brand-text" => contrast.(:brand, :root, 7.0)}
+          ),
         dark:
           with_on.(%{
-            root: l.(0.06, :accent),
-            surface: l.(0.11, :accent),
-            ui: fill.(0.18, :accent),
-            accent: fill.(0.52, :accent),
-            brand: fill.(0.58, :brand),
-            ink: contrast.(:neutral, :root, 12.5),
-            "ink-muted": contrast.(:neutral, :root, 6.4),
-            link: contrast.(:brand, :root, 7.2),
-            border: contrast.(:neutral, :ui, 1.25),
-            focus: contrast.(:brand, :ui, 2.35),
-            shadow: contrast.(:accent, :root, 1.35)
+            root: l.(0.075, :accent),
+            surface: l.(0.125, :accent),
+            ui: fill.(0.195, :accent),
+            accent: fill.(0.5, :accent),
+            brand: fill.(0.56, :brand),
+            ink: contrast.(:neutral, :root, 12),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.18),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.32)
           })
       },
       dimensions: %{
         radius: %{
-          xs: 1.0,
-          sm: 1.6,
-          md: 2.4,
-          lg: 3.2,
-          xl: 4.2,
-          "2xl": 5.4,
-          "3xl": 7.0,
-          "4xl": 9.0,
+          xs: 0.55,
+          sm: 0.9,
+          md: 1.3,
+          lg: 1.8,
+          xl: 2.35,
+          "2xl": 3.1,
+          "3xl": 4.0,
+          "4xl": 5.0,
           full: 9999
         },
         font: %{
@@ -393,32 +356,16 @@ config :corex_design,
         "h1" => %{
           font_family: {:font, :display},
           font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight},
-          font_size: {:text, :"5xl"},
-          sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"8xl"}}
+          letter_spacing: {:tracking, :tight}
         },
-        "h2" => %{
-          font_family: {:font, :display},
-          font_weight: {:weight, :semibold},
-          font_size: {:text, :"4xl"},
-          sm: %{font_size: {:text, :"5xl"}}
-        },
+        "h2" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
         "h3" => %{font_family: {:font, :display}},
         "h4" => %{font_family: {:font, :serif}, font_weight: {:weight, :medium}},
         "p" => %{line_height: {:leading, :relaxed}},
-        "p.lede" => %{
-          font_family: {:font, :serif},
-          font_style: :italic,
-          font_size: {:text, :xl},
-          line_height: {:leading, :relaxed},
-          color: "var(--color-ink-muted)"
-        },
-        "small.eyebrow" => %{
-          font_family: {:font, :sans},
-          font_weight: {:weight, :semibold},
-          letter_spacing: {:tracking, :wide},
-          color: "var(--color-brand-text)"
+        "p.display" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :bold},
+          letter_spacing: {:tracking, :tight}
         },
         "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
@@ -427,9 +374,9 @@ config :corex_design,
     },
     leo: %{
       seeds: %{
-        neutral: "#F0EEE9",
-        accent: "#0A0A0A",
-        brand: "#F97316",
+        neutral: "#E6DCCE",
+        accent: "#0C0C0C",
+        brand: "#E2410A",
         alert: "#C41E1E",
         info: "#0369A1",
         success: "#166534"
@@ -438,42 +385,42 @@ config :corex_design,
         light:
           with_on.(%{
             root: l.(0.985, :neutral),
-            surface: l.(0.955, :neutral),
-            ui: fill.(0.91, :neutral),
-            accent: fill.(0.1, :accent),
-            brand: fill.(0.45, :brand),
-            ink: contrast.(:accent, :root, 13),
-            "ink-muted": contrast.(:accent, :root, 6.0),
-            link: contrast.(:brand, :root, 6.0),
-            border: contrast.(:accent, :ui, 1.4),
-            focus: contrast.(:brand, :ui, 2.6),
-            shadow: contrast.(:accent, :root, 1.05)
+            surface: l.(0.96, :neutral),
+            ui: fill.(0.92, :neutral),
+            accent: fill.(0.16, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 12),
+            "ink-muted": contrast.(:accent, :root, 5.8),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:accent, :ui, 1.55),
+            focus: contrast.(:brand, :ui, 2.5),
+            shadow: contrast.(:accent, :root, 1.04)
           }),
         dark:
           with_on.(%{
-            root: l.(0.03, :accent),
-            surface: l.(0.07, :accent),
-            ui: fill.(0.13, :accent),
-            accent: fill.(0.5, :accent),
-            brand: fill.(0.52, :brand),
-            ink: contrast.(:neutral, :root, 14.5),
-            "ink-muted": contrast.(:neutral, :root, 7.0),
-            link: contrast.(:brand, :root, 7.4),
-            border: contrast.(:neutral, :ui, 1.5),
-            focus: contrast.(:brand, :ui, 2.7),
-            shadow: contrast.(:accent, :root, 1.08)
+            root: l.(0.04, :accent),
+            surface: l.(0.085, :accent),
+            ui: fill.(0.145, :accent),
+            accent: fill.(0.48, :accent),
+            brand: fill.(0.5, :brand),
+            ink: contrast.(:neutral, :root, 14),
+            "ink-muted": contrast.(:neutral, :root, 6.8),
+            link: contrast.(:brand, :root, 7.2),
+            border: contrast.(:neutral, :ui, 1.42),
+            focus: contrast.(:brand, :ui, 2.6),
+            shadow: contrast.(:accent, :root, 1.06)
           })
       },
       dimensions: %{
         radius: %{
           xs: 0,
-          sm: 0,
-          md: 0,
-          lg: 0,
-          xl: 0,
-          "2xl": 0,
-          "3xl": 0,
-          "4xl": 0,
+          sm: 0.01,
+          md: 0.02,
+          lg: 0.03,
+          xl: 0.04,
+          "2xl": 0.06,
+          "3xl": 0.08,
+          "4xl": 0.1,
           full: 9999
         },
         font: %{
@@ -485,42 +432,17 @@ config :corex_design,
         }
       },
       typography: %{
-        "h1" => %{
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter},
-          font_size: {:text, :"5xl"},
-          text_transform: "uppercase",
-          sm: %{font_size: {:text, :"6xl"}},
-          lg: %{font_size: {:text, :"8xl"}}
-        },
-        "h2" => %{
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tight},
-          font_size: {:text, :"4xl"},
-          text_transform: "uppercase",
-          sm: %{font_size: {:text, :"5xl"}}
-        },
-        "h3" => %{font_weight: {:weight, :medium}, text_transform: "uppercase"},
+        "h1" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
+        "h2" => %{font_weight: {:weight, :semibold}},
+        "h3" => %{font_weight: {:weight, :medium}},
         "h4" => %{
           font_weight: {:weight, :medium},
           letter_spacing: {:tracking, :widest},
-          font_size: {:text, :sm},
-          text_transform: "uppercase"
+          font_size: {:text, :sm}
         },
         "p" => %{line_height: {:leading, :snug}},
-        "p.lede" => %{
-          font_size: {:text, :lg},
-          line_height: {:leading, :snug},
-          color: "var(--color-ink-muted)"
-        },
-        "small.eyebrow" => %{
-          font_weight: {:weight, :medium},
-          font_size: {:text, :xs},
-          letter_spacing: {:tracking, :widest},
-          text_transform: "uppercase",
-          color: "var(--color-brand-text)"
-        },
-        "blockquote" => %{font_weight: {:weight, :semibold}},
+        "p.display" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
+        "blockquote" => %{font_style: :italic},
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}
       }

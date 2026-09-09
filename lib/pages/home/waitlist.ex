@@ -14,23 +14,25 @@ defmodule Soonex.HomePage.Waitlist do
     ~H"""
     <.block
       id="waitlist"
+      section="waitlist"
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
       tone={:surface}
       align={:center}
-      layout={:open}
+      reveal={false}
     >
       <:title>
-        Join the <span class="text-brand-text">September list</span>
+        Be on the list when <span class="soonex-accent">{Soonex.Launch.label()}</span> lands.
       </:title>
       <:lede>
-        Role, interests, and team size. We write when the countdown ends.
+        This demo does not store addresses. Submit still shows the success toast so you can see the
+        path before you wire a real list.
       </:lede>
       <form
         id="soonex-waitlist-form"
-        class={"#{Shell.panel()} soonex-card-motion mx-auto w-full max-w-lg p-8 sm:p-10"}
+        class={"#{Shell.panel_open()} soonex-waitlist-form mx-auto w-full max-w-lg p-8 sm:p-10"}
         data-waitlist-toast-title="You're on the list"
-        data-waitlist-toast-description="We'll email you before 1 September."
+        data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
       >
         <div class="flex w-full flex-col items-stretch gap-5">
           <.native_input
@@ -50,13 +52,18 @@ defmodule Soonex.HomePage.Waitlist do
             name="waitlist[role]"
             class="select ui-brand ui-size-md ui-width-full"
             value={["founder"]}
+            items={@role_items}
             positioning={
               %Corex.Positioning{
+                strategy: "absolute",
                 placement: "bottom-start",
-                same_width: true
+                same_width: true,
+                gutter: 8,
+                slide: false,
+                fit_viewport: false,
+                flip: false
               }
             }
-            items={@role_items}
           >
             <:label>Role</:label>
             <:trigger>
@@ -67,7 +74,7 @@ defmodule Soonex.HomePage.Waitlist do
           <.tags_input
             id="soonex-waitlist-interests"
             name="waitlist[interests]"
-            class="tags-input ui-brand ui-size-md ui-width-full"
+            class="tags-input ui-brand ui-width-full"
             value={[]}
             translation={
               %Corex.TagsInput.Translation{
@@ -84,7 +91,7 @@ defmodule Soonex.HomePage.Waitlist do
           <.number_input
             id="soonex-waitlist-team"
             name="waitlist[team_size]"
-            class="number-input ui-brand ui-size-md ui-width-full"
+            class="number-input ui-brand ui-width-full"
             min={1.0}
             max={200.0}
             step={1.0}
@@ -113,9 +120,6 @@ defmodule Soonex.HomePage.Waitlist do
           </button>
         </div>
       </form>
-      <p class="mx-auto mt-6 max-w-lg text-center text-sm/6 text-ink-muted">
-        Demo page — toast only until you wire a provider.
-      </p>
     </.block>
     """
   end

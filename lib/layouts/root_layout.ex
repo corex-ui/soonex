@@ -7,6 +7,7 @@ defmodule Soonex.RootLayout do
   use Phoenix.Component
   use Corex
 
+  import Soonex.CookieConsent, only: [cookie_consent: 1]
   import Soonex.Layouts.Root.Demo, only: [demo_site_controls: 1]
   import Soonex.Layouts.Root.Footer, only: [site_footer: 1]
   import Soonex.Layouts.Root.Nav, only: [site_nav: 1]
@@ -18,11 +19,7 @@ defmodule Soonex.RootLayout do
     site_name = "Soonex"
     copyright_holder = "Soonex"
 
-    countdown_start_ms =
-      max(
-        DateTime.diff(~U[2026-09-01 00:00:00Z], DateTime.utc_now(), :millisecond),
-        0
-      )
+    countdown_start_ms = Soonex.Launch.countdown_ms()
 
     tableau_config =
       case Tableau.Config.get() do
@@ -78,6 +75,7 @@ defmodule Soonex.RootLayout do
         {Soonex.Theme.head_script()}
         {Soonex.Mode.head_script()}
         {Soonex.Accessibility.head_script()}
+        {Soonex.CookieConsent.head_script()}
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -170,6 +168,7 @@ defmodule Soonex.RootLayout do
         </main>
 
         <.site_footer copyright_holder={@copyright_holder} />
+        <.cookie_consent privacy_path={Soonex.Public.path("/privacy/")} />
 
         <.toast_group id="layout-toast" class="toast" phx-update="ignore" flash={@flash}>
           <:loading>
@@ -198,49 +197,47 @@ defmodule Soonex.RootLayout do
       md_page?(page) and present_string?(page[:title]) ->
         page[:title]
 
-      page[:page_kind] == :home ->
-        "#{site_name} · Launch 1 September"
-
-      page[:page_kind] == :blog_index ->
-        "Log · #{site_name}"
-
-      page[:page_kind] == :not_found ->
-        "Page not found · #{site_name}"
-
-      page[:page_kind] == :tags_index ->
-        "Tags · #{site_name}"
-
       tag_page?(page) ->
         "#{page[:tag]} · Tags · #{site_name}"
 
       true ->
-        site_name
+        kind_title(page[:page_kind], site_name)
     end
   end
 
+  defp kind_title(:home, site_name), do: "#{site_name} · Launch #{Soonex.Launch.year_label()}"
+  defp kind_title(:blog_index, site_name), do: "Journal · #{site_name}"
+  defp kind_title(:not_found, site_name), do: "Page not found · #{site_name}"
+  defp kind_title(:privacy, site_name), do: "Privacy · #{site_name}"
+  defp kind_title(:tags_index, site_name), do: "Tags · #{site_name}"
+  defp kind_title(_kind, site_name), do: site_name
+
   defp meta_description(page, site_name) do
-    cond do
-      page[:page_kind] == :home ->
-        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
-
-      page[:page_kind] == :blog_index ->
-        "Shipping notes from #{site_name}: waitlist, looks, countdown, and the road to 1 September."
-
-      page[:page_kind] == :not_found ->
-        "That page is not on #{site_name}. Head home or read the shipping log."
-
-      page[:page_kind] == :tags_index ->
-        "Browse the #{site_name} shipping log by topic — launch, looks, studio, and notes."
-
-      tag_page?(page) ->
-        "Log entries tagged #{page[:tag]} on #{site_name}."
-
-      present_string?(page[:description]) ->
-        page[:description]
-
-      true ->
-        "Soonex ships 1 September — waitlist, shipping log, countdown, and four looks for client review."
+    if tag_page?(page) do
+      "Journal posts tagged #{page[:tag]} on #{site_name}."
+    else
+      kind_description(page[:page_kind], site_name) ||
+        page_description(page) ||
+        "Tableau + Corex launch template: waitlist, journal, and four theme skins."
     end
+  end
+
+  defp kind_description(:home, _site_name),
+    do:
+      "Tableau + Corex launch template: waitlist, journal, countdown, and four skins you customize in config."
+
+  defp kind_description(:blog_index, site_name), do: "Shipping notes from #{site_name}."
+  defp kind_description(:not_found, site_name), do: "That page is not on #{site_name}."
+
+  defp kind_description(:privacy, _site_name),
+    do:
+      "Necessary preferences stay on this device. Analytics and marketing stay off unless you allow them."
+
+  defp kind_description(:tags_index, site_name), do: "Browse journal tags on #{site_name}."
+  defp kind_description(_kind, _site_name), do: nil
+
+  defp page_description(page) do
+    if present_string?(page[:description]), do: page[:description]
   end
 
   defp page_path_from_page(page) when is_map(page) do

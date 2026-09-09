@@ -49,6 +49,16 @@ defmodule Soonex.Layouts.Root.Demo do
                 close_on_select={false}
                 update_trigger={false}
                 on_value_change_client="corex:set-theme"
+                positioning={
+                  %Corex.Positioning{
+                    strategy: "fixed",
+                    placement: "bottom-start",
+                    same_width: true,
+                    gutter: 8,
+                    slide: false,
+                    fit_viewport: false
+                  }
+                }
                 translation={%Corex.Select.Translation{placeholder: "Theme"}}
               >
                 <:label>Theme</:label>

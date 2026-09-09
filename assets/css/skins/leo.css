@@ -1,0 +1,181 @@
+/* leo — Keynote / Swiss poster. Zero radius, grid overlay, uppercase labels, slab form. */
+
+[data-theme="leo"] :is(
+  .button,
+  .badge,
+  .native-input,
+  .avatar,
+  .menu,
+  .select,
+  .tabs,
+  .toast,
+  .pagination,
+  .clipboard,
+  .accordion,
+  .collapsible,
+  .carousel,
+  .date-picker,
+  .tags-input,
+  .number-input,
+  .radio-group,
+  .data-table,
+  .switch,
+  .checkbox,
+  .timer,
+  .tooltip,
+  .dialog,
+  .floating-panel
+) {
+  --ctl-radius: 0;
+}
+
+[data-theme="leo"] .soonex-panel,
+[data-theme="leo"] .soonex-frame,
+[data-theme="leo"] .soonex-hero-frame {
+  border-radius: 0;
+}
+
+[data-theme="leo"] :is(.button, .badge) {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-theme="leo"] .soonex-eyebrow,
+[data-theme="leo"] .soonex-launch-badge,
+[data-theme="leo"] .soonex-nav-links .link,
+[data-theme="leo"] .soonex-step-index {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+[data-theme="leo"] [data-site-header] {
+  background: var(--color-root);
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-hero {
+  isolation: isolate;
+}
+
+[data-theme="leo"] .soonex-hero .soonex-stage {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="leo"] .soonex-hero-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 3rem;
+}
+
+[data-theme="leo"] .soonex-hero-heading {
+  font-size: clamp(3.25rem, 9vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  max-width: 18ch;
+}
+
+[data-theme="leo"] .soonex-hero-form {
+  max-width: none;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+[data-theme="leo"] .soonex-hero-copy {
+  justify-self: stretch;
+  width: 100%;
+}
+
+[data-theme="leo"] .soonex-hero-visual {
+  width: 100%;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+[data-theme="leo"] .soonex-claims {
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-claim {
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (width >= 40rem) {
+  [data-theme="leo"] .soonex-claims {
+    grid-template-columns: 1fr;
+  }
+}
+
+[data-theme="leo"] .soonex-bento {
+  gap: 0;
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-bento > * {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (width >= 64rem) {
+  [data-theme="leo"] .soonex-bento-hero {
+    border-inline-end: 1px solid var(--color-border);
+  }
+}
+
+[data-theme="leo"] .soonex-plan[data-featured="true"] {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+[data-theme="leo"] .soonex-plan[data-featured="true"] .soonex-eyebrow,
+[data-theme="leo"] .soonex-plan[data-featured="true"] .display,
+[data-theme="leo"] .soonex-plan[data-featured="true"] p,
+[data-theme="leo"] .soonex-plan[data-featured="true"] li {
+  color: inherit;
+}
+
+[data-theme="leo"] .soonex-steps {
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-step {
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (width >= 64rem) {
+  [data-theme="leo"] .soonex-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+[data-theme="leo"] .soonex-faq-index {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+[data-theme="leo"] .soonex-faq [data-scope="accordion"][data-part="item"] {
+  border: 0;
+  border-radius: 0;
+}
+
+[data-theme="leo"] .soonex-launch {
+  gap: 0;
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-launch-beat {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="leo"] .soonex-waitlist-form {
+  max-width: 40rem;
+  border-radius: 0;
+}

@@ -25,19 +25,19 @@ defmodule Soonex.NotFoundPage do
       <div class={Shell.stage()}>
         <div class={"#{Shell.panel()} mx-auto flex max-w-lg flex-col items-center gap-6 px-8 py-16"}>
           <.lockup />
-          <small class={Shell.eyebrow()}>404</small>
-          <h1 id="soonex-not-found-heading" class="m-0 text-pretty">
+          <p class={Shell.eyebrow()}>404</p>
+          <h1 id="soonex-not-found-heading" class="display m-0 text-4xl font-semibold tracking-tight">
             Page not found
           </h1>
-          <p class="lede m-0 max-w-sm">
-            That URL is not on Soonex. Head home to join the waitlist, or read the shipping log.
+          <p class="m-0 max-w-sm text-base/7 text-ink-muted">
+            That URL is not on this site. Head home or read the journal.
           </p>
           <div class="mt-4 flex flex-wrap items-center justify-center gap-4">
             <.navigate to={Soonex.Public.path("/")} class="button ui-brand ui-solid ui-size-md">
               Home
             </.navigate>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-md">
-              Log
+              Journal
             </.navigate>
           </div>
         </div>

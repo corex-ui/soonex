@@ -26,20 +26,20 @@ defmodule Soonex.TagLayout do
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>{@tag_label}</:title>
           <:subtitle>
-            {@tag_count} {if @tag_count == 1, do: "shipping-log entry", else: "shipping-log entries"}
+            {@tag_count} {if @tag_count == 1, do: "post", else: "posts"} tagged in the journal
           </:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/tags")} class="button ui-ghost ui-size-sm">
               <.heroicon name="hero-arrow-left" /> All tags
             </.navigate>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
-              Log
+              Journal
             </.navigate>
           </:actions>
         </.layout_heading>
 
-        <div class="mt-16" data-soonex-page="soonex-tag-pagination" data-soonex-page-size="3">
-          <.cards posts={@tag_posts} />
+        <div class="mt-16">
+          <.cards posts={@tag_posts} pager_id="soonex-tag-pagination" page_size={3} />
           <.pager id="soonex-tag-pagination" count={@tag_count} page_size={3} />
         </div>
       </div>

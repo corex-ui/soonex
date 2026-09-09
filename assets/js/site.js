@@ -13,7 +13,9 @@ import { Menu } from "corex/menu"
 import { Clipboard } from "corex/clipboard"
 import { initLanding } from "./landing.js"
 import { initWaitlistForm } from "./waitlist.js"
-import { initPagination } from "./pagination.js"
+import { initSkins } from "./skins.js"
+import { initPager } from "./pager.js"
+import "./cookie-consent.js"
 
 const csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -52,12 +54,13 @@ const liveSocket = new LiveSocket("/live", Socket, {
   },
 })
 
-initWaitlistForm()
-initPagination()
-
 liveSocket.disableDebug()
 liveSocket.connect()
 
 if (document.querySelector("[data-landing]")) {
   initLanding()
 }
+
+initWaitlistForm()
+initSkins()
+initPager()

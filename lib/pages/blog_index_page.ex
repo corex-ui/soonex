@@ -4,7 +4,7 @@ defmodule Soonex.BlogIndexPage do
   use Tableau.Page,
     layout: Soonex.RootLayout,
     permalink: "/blog",
-    title: "Log",
+    title: "Journal",
     page_kind: :blog_index,
     sitemap: %{priority: 0.7, changefreq: "weekly"}
 
@@ -30,10 +30,12 @@ defmodule Soonex.BlogIndexPage do
     <article class={"#{Shell.section()} bg-root"}>
       <div class={Shell.stage()}>
         <.layout_heading class="layout-heading" subtitle_tag="p">
-          <:title>Log</:title>
+          <:title>Journal</:title>
           <:subtitle>
-            Public notes on the road to 1 September — {@blog_count}
-            {if @blog_count == 1, do: "entry", else: "entries"}.
+            Shipping notes for the waitlist, skins, and launch date. {@blog_count} {if @blog_count ==
+                                                                                         1,
+                                                                                       do: "post",
+                                                                                       else: "posts"}.
           </:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/")} class="button ui-ghost ui-size-sm">
@@ -45,8 +47,8 @@ defmodule Soonex.BlogIndexPage do
           </:actions>
         </.layout_heading>
 
-        <div class="mt-16" data-soonex-page="soonex-blog-pagination" data-soonex-page-size="3">
-          <.cards posts={@sorted_posts} />
+        <div class="mt-16">
+          <.cards posts={@sorted_posts} pager_id="soonex-blog-pagination" page_size={3} />
           <.pager id="soonex-blog-pagination" count={@blog_count} page_size={3} />
         </div>
       </div>

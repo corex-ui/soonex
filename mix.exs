@@ -7,7 +7,6 @@ defmodule Soonex.MixProject do
       version: "0.2.1",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
-      compilers: Mix.compilers() ++ [:corex_design],
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
       deps: deps(),
@@ -58,7 +57,7 @@ defmodule Soonex.MixProject do
       {:rustler_precompiled, "~> 0.9", override: true},
       {:makeup_syntect, "~> 0.1.4"},
       {:wallaby, "~> 0.30", only: :test, runtime: false},
-      {:a11y_audit, "~> 0.3.1", only: :test, runtime: false},
+      {:a11y_audit, "~> 0.5.0", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false},
       {:usage_rules, "~> 1.1", only: :dev}
@@ -93,7 +92,7 @@ defmodule Soonex.MixProject do
         "tableau.build"
       ],
       test: ["pre.test", "test"],
-      server: ["soonex.server"],
+      server: ["soonex.port_check", "tableau.server"],
       "assets.build": [
         "corex.design.build",
         "tailwind default",

@@ -37,36 +37,38 @@ defmodule Soonex.TagsIndexPage do
       <div class={Shell.stage()}>
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>Tags</:title>
-          <:subtitle>Browse the shipping log by theme, launch, studio, and notes.</:subtitle>
+          <:subtitle>Browse the journal by topic</:subtitle>
           <:actions>
             <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
-              <.heroicon name="hero-arrow-left" /> Log
+              <.heroicon name="hero-arrow-left" /> Journal
             </.navigate>
           </:actions>
         </.layout_heading>
 
-        <div class="mt-16" data-soonex-page="soonex-tags-pagination" data-soonex-page-size="6">
+        <div class="mt-16">
           <div :if={@tag_cards == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
             <p class="m-0">No tags yet.</p>
           </div>
-          <ol
+          <div
             :if={@tag_cards != []}
-            class={Shell.log_list()}
-            data-soonex-page-list
+            class="soonex-tags-list grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            data-soonex-page-list="soonex-tags-pagination"
+            data-page-size="6"
           >
-            <li
-              :for={tag <- @tag_cards}
+            <article
+              :for={{tag, index} <- Enum.with_index(@tag_cards)}
+              class="soonex-card-motion flex flex-col border border-border p-8"
               data-soonex-page-item
-              class="flex items-baseline justify-between gap-6 py-6 first:pt-0"
+              hidden={index >= 6}
             >
-              <h2 class={"#{Shell.card_title()} m-0"}>
+              <h2 class="display m-0 text-xl font-semibold tracking-tight text-ink">
                 <.navigate to={tag.href} class="link ui-nav">{tag.label}</.navigate>
               </h2>
-              <p class="lede m-0">
-                {tag.count} {if tag.count == 1, do: "entry", else: "entries"}
+              <p class="mt-3 text-sm/6 text-ink-muted">
+                {tag.count} {if tag.count == 1, do: "post", else: "posts"}
               </p>
-            </li>
-          </ol>
+            </article>
+          </div>
           <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={6} />
         </div>
       </div>

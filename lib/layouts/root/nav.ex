@@ -7,6 +7,7 @@ defmodule Soonex.Layouts.Root.Nav do
   import Soonex.Layouts.Brand, only: [lockup: 1]
 
   alias Soonex.Layouts.Shell
+  alias Soonex.Public
 
   attr(:countdown_start_ms, :integer, required: true)
   attr(:page_path, :string, default: "/")
@@ -17,7 +18,7 @@ defmodule Soonex.Layouts.Root.Nav do
     ~H"""
     <header
       data-site-header
-      class="soonex-framer-nav sticky top-0 z-50 border-b border-transparent py-3 data-[condensed]:border-border"
+      class="soonex-nav sticky top-0 z-50 border-b border-transparent bg-root py-3 data-[condensed]:border-border"
     >
       <div
         data-scroll-progress
@@ -58,7 +59,7 @@ defmodule Soonex.Layouts.Root.Nav do
           <.lockup />
         </div>
 
-        <nav class="hidden items-center gap-x-6 lg:flex" aria-label="Primary">
+        <nav class="soonex-nav-links hidden items-center gap-x-6 lg:flex" aria-label="Primary">
           <.navigate
             :for={item <- desktop_links()}
             to={item.to}
@@ -84,16 +85,16 @@ defmodule Soonex.Layouts.Root.Nav do
                 target_ms={0}
                 class="timer ui-success ui-rounded-md ui-size-sm"
               >
-                <:day_label>Days</:day_label>
-                <:hour_label>Hours</:hour_label>
-                <:minute_label>Min</:minute_label>
-                <:second_label>Sec</:second_label>
+                <:day_label>d</:day_label>
+                <:hour_label>h</:hour_label>
+                <:minute_label>m</:minute_label>
+                <:second_label>s</:second_label>
               </.timer>
             </div>
           </div>
           <.navigate
-            to={Soonex.Public.path("/") <> "#waitlist"}
-            class="button ui-brand ui-solid ui-size-md"
+            to={Public.path("/") <> "#waitlist"}
+            class="button ui-brand ui-solid ui-size-sm"
           >
             Join waitlist
           </.navigate>
@@ -112,7 +113,7 @@ defmodule Soonex.Layouts.Root.Nav do
     ]
   end
 
-  defp nav_current?(page_path, %{id: :log}) do
+  defp nav_current?(page_path, %{id: :journal}) do
     String.starts_with?(page_path, "/blog") or String.starts_with?(page_path, "/tags")
   end
 
@@ -120,10 +121,10 @@ defmodule Soonex.Layouts.Root.Nav do
 
   defp desktop_links do
     [
-      %{id: :product, label: "Product", to: Soonex.Public.path("/") <> "#product"},
-      %{id: :looks, label: "Looks", to: Soonex.Public.path("/") <> "#looks"},
-      %{id: :log, label: "Log", to: Soonex.Public.path("/blog")},
-      %{id: :questions, label: "Questions", to: Soonex.Public.path("/") <> "#questions"}
+      %{id: :product, label: "Product", to: Public.path("/") <> "#features"},
+      %{id: :launch, label: "Launch", to: Public.path("/") <> "#launch"},
+      %{id: :journal, label: "Journal", to: Public.path("/blog")},
+      %{id: :questions, label: "Questions", to: Public.path("/") <> "#questions"}
     ]
   end
 
@@ -131,32 +132,32 @@ defmodule Soonex.Layouts.Root.Nav do
     Corex.List.new([
       %{
         label: "Product",
-        value: "product",
-        to: Soonex.Public.path("/") <> "#product",
+        value: "features",
+        to: Public.path("/") <> "#features",
         redirect: :href
       },
       %{
-        label: "Looks",
-        value: "looks",
-        to: Soonex.Public.path("/") <> "#looks",
+        label: "Launch",
+        value: "launch",
+        to: Public.path("/") <> "#launch",
         redirect: :href
       },
       %{
-        label: "Log",
+        label: "Journal",
         value: "blog",
-        to: Soonex.Public.path("/blog"),
+        to: Public.path("/blog"),
         redirect: :href
       },
       %{
         label: "Questions",
         value: "questions",
-        to: Soonex.Public.path("/") <> "#questions",
+        to: Public.path("/") <> "#questions",
         redirect: :href
       },
       %{
         label: "Join waitlist",
         value: "waitlist",
-        to: Soonex.Public.path("/") <> "#waitlist",
+        to: Public.path("/") <> "#waitlist",
         redirect: :href
       }
     ])
