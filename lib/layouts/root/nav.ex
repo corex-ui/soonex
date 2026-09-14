@@ -15,8 +15,8 @@ defmodule Soonex.Layouts.Root.Nav do
     assigns = assign(assigns, :nav_select_items, nav_select_items())
 
     ~H"""
-    <header class="sticky top-0 z-50 border-b border-border bg-root/95 backdrop-blur-sm">
-      <div class={"#{Shell.stage()} flex items-center justify-between gap-4 py-4"}>
+    <header class="sticky top-0 z-50 border-b border-border bg-root/90 backdrop-blur-sm">
+      <div class={"#{Shell.stage()} flex items-center justify-between gap-4 py-4 lg:py-5"}>
         <div class="flex min-w-0 items-center gap-3">
           <.select
             id="soonex-mobile-nav"
@@ -52,7 +52,7 @@ defmodule Soonex.Layouts.Root.Nav do
           </.navigate>
         </nav>
 
-        <.navigate to={Public.path("/") <> "#waitlist"} class="button ui-brand ui-solid ui-size-sm">
+        <.navigate to={Public.path("/") <> "#waitlist"} class={Shell.primary_button()}>
           Join waitlist
         </.navigate>
       </div>
@@ -77,9 +77,9 @@ defmodule Soonex.Layouts.Root.Nav do
 
   defp desktop_links do
     [
-      %{id: :product, label: "Product", to: Public.path("/") <> "#features"},
-      %{id: :how, label: "How it works", to: Public.path("/") <> "#how-it-works"},
-      %{id: :pricing, label: "Plans", to: Public.path("/") <> "#pricing"},
+      %{id: :product, label: "Product", to: Public.path("/") <> "#capabilities"},
+      %{id: :how, label: "How it works", to: Public.path("/") <> "#spotlight"},
+      %{id: :scale, label: "Scale", to: Public.path("/") <> "#scale"},
       %{id: :journal, label: "Journal", to: Public.path("/blog")},
       %{id: :questions, label: "FAQ", to: Public.path("/") <> "#questions"}
     ]
@@ -87,14 +87,19 @@ defmodule Soonex.Layouts.Root.Nav do
 
   defp nav_select_items do
     Corex.List.new([
-      %{label: "Product", value: "features", to: Public.path("/") <> "#features", redirect: :href},
       %{
-        label: "How it works",
-        value: "how",
-        to: Public.path("/") <> "#how-it-works",
+        label: "Product",
+        value: "capabilities",
+        to: Public.path("/") <> "#capabilities",
         redirect: :href
       },
-      %{label: "Plans", value: "pricing", to: Public.path("/") <> "#pricing", redirect: :href},
+      %{
+        label: "How it works",
+        value: "spotlight",
+        to: Public.path("/") <> "#spotlight",
+        redirect: :href
+      },
+      %{label: "Scale", value: "scale", to: Public.path("/") <> "#scale", redirect: :href},
       %{label: "Journal", value: "blog", to: Public.path("/blog"), redirect: :href},
       %{label: "FAQ", value: "questions", to: Public.path("/") <> "#questions", redirect: :href},
       %{label: "Join waitlist", value: "waitlist", to: Public.path("/") <> "#waitlist", redirect: :href}

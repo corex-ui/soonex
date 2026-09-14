@@ -2,7 +2,7 @@
 
 ## 0.3.0
 
-- Full home redesign: premium SaaS layout (hero, trust badges, features, how-it-works tabs, pricing, journal, FAQ, waitlist) with Corex-focused copy and generous whitespace.
+- Full home redesign inspired by premium SaaS landing rhythm: warm ivory canvas, charcoal feature bands, left-aligned hero, Corex UI showcase panels, scale section with closing CTA band, and compact waitlist footer block.
 - Simplify customization to Corex Design only: single `neo` theme with light/dark modes; remove per-theme skin CSS/JS, Framer photography, frosted scroll chrome, marquee, and carousel.
 - Drop `assets/css/layout.css`, `assets/css/skins/*`, `assets/js/skins/*`, `assets/js/landing*.js`, and `assets/js/theme.js`.
 - Demo controls: light/dark mode toggle and accessibility panel only (no theme switcher).

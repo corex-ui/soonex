@@ -134,9 +134,9 @@ config :corex_design,
   themes: %{
     neo: %{
       seeds: %{
-        neutral: "#EEEAE4",
-        accent: "#161618",
-        brand: "#1D4ED8",
+        neutral: "#FAF9F6",
+        accent: "#141414",
+        brand: "#141414",
         alert: "#B42318",
         info: "#0E7490",
         success: "#15803D"
@@ -194,21 +194,21 @@ config :corex_design,
       typography: %{
         "h1" => %{
           font_family: {:font, :display},
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter}
+          font_weight: {:weight, :medium},
+          letter_spacing: {:tracking, :tight}
         },
         "h2" => %{
           font_family: {:font, :display},
-          font_weight: {:weight, :bold},
+          font_weight: {:weight, :medium},
           letter_spacing: {:tracking, :tight}
         },
-        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
-        "h4" => %{font_family: {:font, :sans}, font_weight: {:weight, :semibold}},
+        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :medium}},
+        "h4" => %{font_family: {:font, :sans}, font_weight: {:weight, :medium}},
         "p" => %{line_height: {:leading, :relaxed}},
         "p.display" => %{
           font_family: {:font, :display},
-          font_weight: {:weight, :bold},
-          letter_spacing: {:tracking, :tighter}
+          font_weight: {:weight, :medium},
+          letter_spacing: {:tracking, :tight}
         },
         "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
         "code" => %{font_family: {:font, :mono}},

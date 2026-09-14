@@ -21,53 +21,46 @@ defmodule Soonex.Layouts.Root.Footer do
       |> assign(:hexdocs, @hexdocs)
 
     ~H"""
-    <footer class="soonex-footer mt-auto border-t border-border bg-surface py-16 sm:py-24">
+    <footer class="soonex-footer mt-auto border-t border-border bg-root py-16 sm:py-20">
       <div class={Shell.stage()}>
-        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div class="max-w-md">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-4">
             <.lockup />
-            <p class="mt-6 text-sm/6 text-ink-muted">
-              Tableau + Corex coming-soon template with accessible Phoenix UI, a waitlist, and a journal.
+            <p class="mt-4 text-sm/6 text-ink-muted">
+              Tableau + Corex coming-soon template.
             </p>
+            <p class="mt-1 text-sm/6 text-ink-muted">Accessible Phoenix UI</p>
           </div>
-          <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
+          <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Product</p>
-              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+              <p class="m-0 text-sm/6 font-medium text-ink">Product</p>
+              <ul class="mt-4 flex list-none flex-col gap-3 p-0">
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#features"}
+                    to={Soonex.Public.path("/") <> "#capabilities"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Features
-                  </.navigate>
-                </li>
-                <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#pricing"} class="link ui-nav ui-size-sm">
-                    Plans
+                    Capabilities
                   </.navigate>
                 </li>
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#how-it-works"}
+                    to={Soonex.Public.path("/") <> "#spotlight"}
                     class="link ui-nav ui-size-sm"
                   >
                     How it works
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate
-                    to={Soonex.Public.path("/") <> "#waitlist"}
-                    class="link ui-nav ui-size-sm"
-                  >
-                    Waitlist
+                  <.navigate to={Soonex.Public.path("/") <> "#scale"} class="link ui-nav ui-size-sm">
+                    Scale
                   </.navigate>
                 </li>
               </ul>
             </div>
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Journal</p>
-              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+              <p class="m-0 text-sm/6 font-medium text-ink">Journal</p>
+              <ul class="mt-4 flex list-none flex-col gap-3 p-0">
                 <li>
                   <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav ui-size-sm">
                     All posts
@@ -86,8 +79,8 @@ defmodule Soonex.Layouts.Root.Footer do
               </ul>
             </div>
             <div>
-              <p class="m-0 text-sm/6 font-semibold text-ink">Elsewhere</p>
-              <ul class="mt-6 flex list-none flex-col gap-4 p-0">
+              <p class="m-0 text-sm/6 font-medium text-ink">Elsewhere</p>
+              <ul class="mt-4 flex list-none flex-col gap-3 p-0">
                 <li>
                   <.navigate to={@github} class="link ui-nav ui-size-sm" external>
                     GitHub
@@ -96,6 +89,14 @@ defmodule Soonex.Layouts.Root.Footer do
                 <li>
                   <.navigate to={@hexdocs} class="link ui-nav ui-size-sm" external>
                     Hexdocs
+                  </.navigate>
+                </li>
+                <li>
+                  <.navigate
+                    to={Soonex.Public.path("/") <> "#waitlist"}
+                    class="link ui-nav ui-size-sm"
+                  >
+                    Waitlist
                   </.navigate>
                 </li>
               </ul>
@@ -119,11 +120,8 @@ defmodule Soonex.Layouts.Root.Footer do
               <.cookie_dialog />
             </div>
           </div>
-          <.navigate
-            to={Soonex.Public.path("/") <> "#waitlist"}
-            class="button ui-brand ui-solid ui-size-sm w-fit"
-          >
-            Join waitlist
+          <.navigate to="#main-content" class="link ui-nav ui-size-sm text-ink-muted">
+            Back to top ↑
           </.navigate>
         </div>
       </div>

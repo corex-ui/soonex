@@ -19,7 +19,7 @@ defmodule Soonex.Layouts.Brand do
       <span class="soonex-mark-wrap inline-flex shrink-0 text-[2rem] leading-none">
         <.mark class="soonex-mark" />
       </span>
-      <span class="display text-lg font-semibold tracking-tight text-ink">Soonex</span>
+      <span class="display text-lg font-medium tracking-tight text-ink">Soonex</span>
     </.navigate>
     """
   end

@@ -4,90 +4,61 @@ defmodule Soonex.HomePage.Pricing do
   use Phoenix.Component
   use Corex
 
-  import Soonex.Layouts.Section, only: [block: 1]
-
   alias Soonex.Layouts.Shell
 
   def pricing(assigns) do
     ~H"""
-    <.block
-      id="pricing"
-      section="pricing"
-      labelledby="soonex-pricing-heading"
-      eyebrow="Plans"
-      tone={:root}
-      align={:center}
+    <section
+      id="scale"
+      data-section="scale"
+      class={"#{Shell.section()} bg-root"}
+      aria-labelledby="soonex-scale-heading"
     >
-      <:title>
-        Start free. Scale when you ship.
-      </:title>
-      <:lede>
-        Placeholder tiers you can rename for your product. The middle option is the default fork
-        path for teams who want the full template.
-      </:lede>
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <article
-          :for={plan <- plans()}
-          class={"#{plan_class(plan)} soonex-plan flex flex-col p-6 sm:p-8"}
-          data-featured={if(plan.featured, do: "true")}
-        >
-          <p class={Shell.eyebrow()}>{plan.name}</p>
-          <h3 class="display mt-2 text-xl font-semibold tracking-tight">{plan.headline}</h3>
-          <p class="display mt-4 text-4xl font-semibold tracking-tight">{plan.price}</p>
-          <p class="mt-3 flex-auto text-sm/6 sm:text-base/7">{plan.body}</p>
-          <ul class="mt-6 flex list-none flex-col gap-2 p-0 text-sm/6">
-            <li :for={item <- plan.items} class="flex items-start gap-2">
-              <.heroicon name="hero-check" class="mt-0.5 size-4 shrink-0" />
-              <span>{item}</span>
-            </li>
-          </ul>
-          <.navigate
-            to="#waitlist"
-            class={
-              if plan.featured,
-                do: "button ui-size-md mt-8 w-full bg-root text-ink",
-                else: "button ui-brand ui-solid ui-size-md mt-8 w-full"
-            }
-          >
-            {plan.cta}
+      <div class={Shell.stage()}>
+        <h2 id="soonex-scale-heading" class={Shell.section_heading_lg()}>
+          Fast to fork, easy to ship.
+        </h2>
+        <p class={Shell.lede()}>
+          A coming-soon template you can rename, retheme, and deploy without rebuilding sections
+          from scratch.
+        </p>
+
+        <ul class={"#{Shell.column_grid()} #{Shell.body_tight()}"}>
+          <li :for={item <- scale_items()} class="min-w-0">
+            <h3 class="text-base font-medium tracking-tight text-ink">{item.title}</h3>
+            <p class="mt-3 text-sm/6 text-ink-muted sm:text-base/7">{item.body}</p>
+          </li>
+        </ul>
+
+        <div class={"#{Shell.body_tight()} soonex-closing-band flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"}>
+          <p class="display m-0 text-pretty text-2xl font-medium tracking-tight text-ink sm:text-3xl">
+            Want early access to Corex templates?
+          </p>
+          <.navigate to="#waitlist" class={"#{Shell.primary_button()} shrink-0"}>
+            Yes, join waitlist
           </.navigate>
-        </article>
+        </div>
       </div>
-    </.block>
+    </section>
     """
   end
 
-  defp plan_class(%{featured: true}), do: Shell.frame()
-  defp plan_class(_plan), do: Shell.panel()
-
-  defp plans do
+  defp scale_items do
     [
       %{
-        name: "Launch",
-        headline: "Fork and customize",
-        price: "Open",
-        featured: false,
-        cta: "Join waitlist",
-        body: "Waitlist landing, journal, and light/dark modes with Corex tokens.",
-        items: ["Waitlist + toast demo", "Journal + tags", "GitHub Pages workflow"]
+        title: "Instant activation",
+        body:
+          "Run mix setup and mix server to preview the full landing, journal, and waitlist flow locally."
       },
       %{
-        name: "Studio",
-        headline: "Full template",
-        price: "Open",
-        featured: true,
-        cta: "Start with Studio",
-        body: "Everything in Launch plus accessibility controls and richer form fields.",
-        items: ["Corex a11y dialog", "Tabs, accordion, selects", "mix project.rename task"]
+        title: "Adaptable approach",
+        body:
+          "Use Soonex as a launch page, a client handoff, or the starting point for a Corex marketing site."
       },
       %{
-        name: "Team",
-        headline: "Ship for clients",
-        price: "Open",
-        featured: false,
-        cta: "Join waitlist",
-        body: "Hand off a static site that already passes axe and documents customization in README.",
-        items: ["Self-hosted fonts", "Config-driven theming", "Tableau + Corex docs linked"]
+        title: "Effortless integration",
+        body:
+          "Wire the waitlist form to your provider, swap copy in lib/pages/home, and publish _site/ to any static host."
       }
     ]
   end

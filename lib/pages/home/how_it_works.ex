@@ -9,29 +9,31 @@ defmodule Soonex.HomePage.HowItWorks do
   def how_it_works(assigns) do
     ~H"""
     <.block
-      id="how-it-works"
-      section="how-it-works"
-      labelledby="soonex-how-heading"
-      eyebrow="How it works"
-      tone={:surface}
+      id="spotlight"
+      section="spotlight"
+      labelledby="soonex-spotlight-heading"
+      tone={:inverse}
+      layout={:split}
+      heading_size={:large}
     >
       <:title>
-        From clone to launch in three commands.
+        Config-driven UI, shipped as static HTML.
       </:title>
       <:lede>
-        Mix handles dependencies, Corex design CSS, Tailwind, and esbuild. You edit config and
-        content — not a parallel design system.
+        Customize seeds, radius, and typography under config :corex_design, then edit HEEx content
+        modules. Mix handles Corex design CSS, Tailwind, and esbuild — you do not maintain a
+        parallel design system.
       </:lede>
       <.tabs
         id="soonex-how-tabs"
-        class="tabs tabs--wide ui-brand ui-width-full"
+        class="tabs tabs--wide ui-accent ui-width-full"
         value="setup"
         items={tab_items()}
       />
       <div class="mt-8 flex justify-start">
         <.clipboard
           id="soonex-how-copy"
-          class="clipboard ui-brand ui-solid ui-width-fit ui-size-sm"
+          class="clipboard ui-accent ui-solid ui-width-fit ui-size-sm"
           value="mix setup"
         >
           <:label class="sr-only">mix setup</:label>

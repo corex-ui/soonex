@@ -13,39 +13,41 @@ defmodule Soonex.HomePage.Hero do
       aria-labelledby="soonex-headline"
       data-section="hero"
     >
-      <div class={"#{Shell.stage()} text-center"}>
-        <p class="m-0">
-          <span class="badge ui-brand ui-size-sm">Launching {Soonex.Launch.year_label()}</span>
-        </p>
+      <div class={Shell.stage()}>
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-8">
+            <p class="m-0 text-sm/6 text-ink-muted">
+              Launching {Soonex.Launch.year_label()}
+            </p>
 
-        <h1
-          id="soonex-headline"
-          class="display mx-auto mt-8 max-w-4xl text-pretty text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl"
-        >
-          Accessible Phoenix UI, ready for your launch page.
-        </h1>
+            <h1 id="soonex-headline" class={"#{Shell.hero_heading()} mt-6"}>
+              Accessible Phoenix UI for your coming-soon launch.
+            </h1>
 
-        <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg/8 text-ink-muted sm:text-xl/8">
-          Soonex is a Tableau + Corex coming-soon template. Ship a waitlist, journal, and
-          production-grade components with tokens, light/dark modes, and built-in accessibility.
-        </p>
+            <p class="mt-6 max-w-xl text-pretty text-sm/6 text-ink-muted sm:text-base/7">
+              Soonex is a Tableau + Corex template. Ship a waitlist, journal, and production-grade
+              components with design tokens, light/dark modes, and built-in accessibility — no
+              parallel CSS framework.
+            </p>
+          </div>
 
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-          <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-lg">
-            Join waitlist
-          </.navigate>
-          <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-lg">
-            Read the journal
-          </.navigate>
+          <div class="flex flex-wrap items-center gap-3 lg:col-span-4 lg:justify-end lg:pb-1">
+            <.navigate to="#waitlist" class={Shell.primary_button()}>
+              Join waitlist
+            </.navigate>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              Read journal
+            </.navigate>
+          </div>
         </div>
 
-        <div class="mx-auto mt-12 flex max-w-md flex-col items-center gap-4">
+        <div class="mt-16 flex flex-col gap-3 border-t border-border pt-10 sm:flex-row sm:items-end sm:justify-between">
           <.timer
             id="soonex-hero-timer"
             countdown
             start_ms={Soonex.Launch.countdown_ms()}
             target_ms={0}
-            class="timer ui-brand ui-size-md"
+            class="timer ui-accent ui-size-sm"
           >
             <:day_label>days</:day_label>
             <:hour_label>hours</:hour_label>

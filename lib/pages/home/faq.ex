@@ -14,7 +14,7 @@ defmodule Soonex.HomePage.Faq do
       labelledby="soonex-faq-heading"
       eyebrow="Questions"
       layout={:sticky}
-      tone={:surface}
+      tone={:root}
     >
       <:title>
         Before you fork Soonex.
@@ -24,7 +24,7 @@ defmodule Soonex.HomePage.Faq do
         framework to maintain.
       </:lede>
       <:actions>
-        <.navigate to="#waitlist" class="link ui-brand">
+        <.navigate to="#waitlist" class="link ui-accent">
           Join waitlist <.heroicon name="hero-arrow-down" />
         </.navigate>
       </:actions>
@@ -41,17 +41,17 @@ defmodule Soonex.HomePage.Faq do
         </:trigger>
         <:content :let={item}>
           <div class="flex flex-col gap-4">
-            <p class="m-0 text-base/7">{item.content}</p>
-            <.navigate :if={item.value == "customize"} to="#how-it-works" class="link ui-brand w-fit">
+            <p class="m-0 text-sm/6 sm:text-base/7">{item.content}</p>
+            <.navigate :if={item.value == "customize"} to="#spotlight" class="link ui-accent w-fit">
               See how it works <.heroicon name="hero-arrow-down" />
             </.navigate>
-            <.navigate :if={item.value == "waitlist"} to="#waitlist" class="link ui-brand w-fit">
+            <.navigate :if={item.value == "waitlist"} to="#waitlist" class="link ui-accent w-fit">
               Open the waitlist <.heroicon name="hero-arrow-down" />
             </.navigate>
             <.clipboard
               :if={item.value == "toolchain"}
               id="soonex-faq-setup"
-              class="clipboard ui-brand ui-size-sm ui-width-fit self-start"
+              class="clipboard ui-accent ui-size-sm ui-width-fit self-start"
               value="mix setup"
             >
               <:label class="sr-only">mix setup</:label>

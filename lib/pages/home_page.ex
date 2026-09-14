@@ -5,7 +5,7 @@ defmodule Soonex.HomePage do
   use Corex
 
   import Soonex.HomePage.Hero, only: [hero: 1]
-  import Soonex.HomePage.Trust, only: [trust: 1]
+  import Soonex.HomePage.Showcase, only: [showcase: 1]
   import Soonex.HomePage.Features, only: [features: 1]
   import Soonex.HomePage.HowItWorks, only: [how_it_works: 1]
   import Soonex.HomePage.Pricing, only: [pricing: 1]
@@ -21,7 +21,7 @@ defmodule Soonex.HomePage do
     ~H"""
     <div id="home" class="w-full text-ink">
       <.hero />
-      <.trust />
+      <.showcase />
       <.features />
       <.how_it_works />
       <.pricing />
