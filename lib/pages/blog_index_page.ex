@@ -32,7 +32,7 @@ defmodule Soonex.BlogIndexPage do
         <.layout_heading class="layout-heading" subtitle_tag="p">
           <:title>Journal</:title>
           <:subtitle>
-            Shipping notes for the waitlist, skins, and launch date. {@blog_count} {if @blog_count ==
+            Shipping notes for Corex, the waitlist, and launch prep. {@blog_count} {if @blog_count ==
                                                                                          1,
                                                                                        do: "post",
                                                                                        else: "posts"}.

@@ -19,8 +19,6 @@ defmodule Soonex.RootLayout do
     site_name = "Soonex"
     copyright_holder = "Soonex"
 
-    countdown_start_ms = Soonex.Launch.countdown_ms()
-
     tableau_config =
       case Tableau.Config.get() do
         {:ok, %Tableau.Config{} = c} -> c
@@ -52,7 +50,6 @@ defmodule Soonex.RootLayout do
       |> Map.put(:default_theme, Soonex.Theme.default_theme())
       |> Map.put(:theme, Soonex.Theme.current(assigns))
       |> Map.put(:mode, Soonex.Mode.current(assigns))
-      |> Map.put(:countdown_start_ms, countdown_start_ms)
       |> Map.put(:canonical_url, canonical_url)
       |> Map.put(:base_url, base_url)
       |> Map.put(:page_path, page_path)
@@ -157,13 +154,9 @@ defmodule Soonex.RootLayout do
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
-        <.site_nav countdown_start_ms={@countdown_start_ms} page_path={@page_path} />
+        <.site_nav page_path={@page_path} />
 
-        <main
-          id="main-content"
-          class="layout__main flex-1"
-          data-landing
-        >
+        <main id="main-content" class="layout__main flex-1">
           {render(@inner_content)}
         </main>
 
@@ -218,13 +211,13 @@ defmodule Soonex.RootLayout do
     else
       kind_description(page[:page_kind], site_name) ||
         page_description(page) ||
-        "Tableau + Corex launch template: waitlist, journal, and four theme skins."
+        "Tableau + Corex coming-soon template with accessible Phoenix UI components."
     end
   end
 
   defp kind_description(:home, _site_name),
     do:
-      "Tableau + Corex launch template: waitlist, journal, countdown, and four skins you customize in config."
+      "Tableau + Corex coming-soon template: accessible Phoenix UI, waitlist, journal, and config-driven design tokens."
 
   defp kind_description(:blog_index, site_name), do: "Shipping notes from #{site_name}."
   defp kind_description(:not_found, site_name), do: "That page is not on #{site_name}."

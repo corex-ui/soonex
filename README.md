@@ -1,6 +1,6 @@
 # Soonex
 
-English-only **Tableau** static site: Corex components, theme/mode toggles, and the same contrast pipeline as the SaaS template.
+English-only **Tableau** static site: Corex components, light/dark mode, and the same contrast pipeline as the SaaS template.
 
 **Related:** multi-locale variant at [github.com/corex-ui/soonex_i18n](https://github.com/corex-ui/soonex_i18n). Corex docs on Hex: [installation](https://hexdocs.pm/corex/installation.html), [Tableau + Corex](https://hexdocs.pm/corex/tableau.html), [Design](https://hexdocs.pm/corex/design.html), [update guide](https://hexdocs.pm/corex/update.html).
 
@@ -37,12 +37,11 @@ Rebuild assets: `mix assets.build`.
 ## Customize (where to edit)
 
 - **Brand / SEO:** lockup in [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg); titles in [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex).
-- **Launch date:** [`lib/soonex/launch.ex`](lib/soonex/launch.ex). Hero badge and header countdown both read it.
-- **Themes:** overlay **all allowed keys** per theme in [`config/config.exs`](config/config.exs) (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`) plus top-level `scales:`. Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
-- **Skins:** each theme has isolated CSS in [`assets/css/skins/`](assets/css/skins/) and optional JS in [`assets/js/skins/`](assets/js/skins/). Imports live in [`assets/css/site.css`](assets/css/site.css) and [`assets/js/skins.js`](assets/js/skins.js). To drop a look, delete the skin files, remove the imports, and remove the id from `Soonex.Theme` and `config :corex_design, :themes`. Shared marketing rhythm stays in [`assets/css/layout.css`](assets/css/layout.css). [`assets/css/hosts.css`](assets/css/hosts.css) is Corex host polish only. No token opacity (`bg-surface/90`).
+- **Launch date:** [`lib/soonex/launch.ex`](lib/soonex/launch.ex). Hero badge and countdown timer both read it.
+- **Theme:** overlay allowed keys in [`config/config.exs`](config/config.exs) under `config :corex_design` (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`, top-level `scales:`). Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. Light/dark mode toggles via [`lib/soonex/mode.ex`](lib/soonex/mode.ex).
 - **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); run `mix corex.design.build` after changing accessibility config.
-- **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
-- **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); condensed + countdown `hidden`/`inert` in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js).
+- **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Default stack: Outfit (display) + Manrope (sans) + JetBrains Mono.
+- **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); minimal host polish in [`assets/css/hosts.css`](assets/css/hosts.css) and [`assets/css/chrome.css`](assets/css/chrome.css). Prefer Corex `ui-*` modifiers over custom CSS.
 - **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). FAQ uses the sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
 - **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex) (`layout_heading`, cards, pagination); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
 - **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
@@ -61,7 +60,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/theme.js`](assets/js/theme.js), [`assets/js/mode.js`](assets/js/mode.js), a11y head script; header condensed + countdown in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js) (`hidden` + `inert` until past the hero sentinel). Optional theme skins in [`assets/js/skins.js`](assets/js/skins.js).
+- Client UI: [`assets/js/mode.js`](assets/js/mode.js) for light/dark mode, a11y head script, waitlist toast in [`assets/js/waitlist.js`](assets/js/waitlist.js).
 
 ## Production and hosting
 

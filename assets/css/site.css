@@ -8,11 +8,6 @@
 @source "../../lib";
 
 @import "./chrome.css";
-@import "./layout.css";
-@import "./skins/neo.css";
-@import "./skins/uno.css";
-@import "./skins/duo.css";
-@import "./skins/leo.css";
 @import "./prose.css";
 
 @custom-variant dark (&:where([data-mode=dark], [data-mode=dark] *));

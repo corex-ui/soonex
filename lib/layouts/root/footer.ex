@@ -27,7 +27,7 @@ defmodule Soonex.Layouts.Root.Footer do
           <div class="max-w-md">
             <.lockup />
             <p class="mt-6 text-sm/6 text-ink-muted">
-              A Tableau + Corex launch template: waitlist, journal, and four skins you can tell apart.
+              Tableau + Corex coming-soon template with accessible Phoenix UI, a waitlist, and a journal.
             </p>
           </div>
           <div class="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-3 xl:col-span-2 xl:mt-0">
@@ -49,10 +49,10 @@ defmodule Soonex.Layouts.Root.Footer do
                 </li>
                 <li>
                   <.navigate
-                    to={Soonex.Public.path("/") <> "#questions"}
+                    to={Soonex.Public.path("/") <> "#how-it-works"}
                     class="link ui-nav ui-size-sm"
                   >
-                    Questions
+                    How it works
                   </.navigate>
                 </li>
                 <li>

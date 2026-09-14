@@ -6,6 +6,8 @@ defmodule Soonex.HomePage.Features do
 
   import Soonex.Layouts.Section, only: [block: 1]
 
+  alias Soonex.Layouts.Shell
+
   def features(assigns) do
     ~H"""
     <.block
@@ -14,18 +16,19 @@ defmodule Soonex.HomePage.Features do
       labelledby="soonex-features-heading"
       eyebrow="Product"
       tone={:root}
+      align={:center}
     >
       <:title>
-        Everything a launch site needs. <span class="soonex-accent">Nothing you have to invent.</span>
+        Corex components with contrast you can trust.
       </:title>
       <:lede>
-        Themes, waitlist, journal, and accessibility are already wired. You change copy, seeds, and
-        the launch date.
+        Tokens, modes, and accessibility are solved in config — not in one-off CSS. Customize seeds,
+        radius, and typography, then ship the same markup in light and dark.
       </:lede>
-      <ul class="soonex-claims m-0 grid list-none grid-cols-1 gap-10 p-0 sm:grid-cols-3 sm:gap-8">
-        <li :for={feature <- claims()} class="soonex-claim flex flex-col">
-          <span class="soonex-claim-icon" aria-hidden="true">
-            <.heroicon name={feature.icon} />
+      <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <li :for={feature <- claims()} class={Shell.panel()}>
+          <span class="inline-flex size-10 items-center justify-center rounded-lg bg-ui text-brand-text">
+            <.heroicon name={feature.icon} class="size-5" />
           </span>
           <h3 class="display mt-5 text-xl font-semibold tracking-tight text-ink">
             {feature.title}
@@ -41,21 +44,21 @@ defmodule Soonex.HomePage.Features do
     [
       %{
         icon: "hero-swatch",
-        title: "Corex tokens, not a palette dump",
+        title: "Design tokens that stay readable",
         body:
-          "Light and dark both ship. Brand, accent, and ink stay readable because the design pipeline owns contrast, not a handful of hex codes in CSS."
-      },
-      %{
-        icon: "hero-rectangle-group",
-        title: "Four skins that actually differ",
-        body:
-          "Neo, uno, duo, and leo change chrome, density, and ornament — not just hue. Switch them from Template Options on this page."
+          "Light and dark palettes are generated from seeds in config :corex_design. Brand, accent, and ink keep WCAG-friendly contrast without hand-tuned hex stacks."
       },
       %{
         icon: "hero-command-line",
-        title: "Mix in, waitlist out",
+        title: "Phoenix UI without the app server",
         body:
-          "mix setup then mix server. The waitlist toast is wired so you can see the success path before you attach a real list."
+          "Tableau renders static HTML. Corex hooks hydrate selects, tabs, accordions, and forms on the client — the same components you use in LiveView apps."
+      },
+      %{
+        icon: "hero-heart",
+        title: "Accessibility built in",
+        body:
+          "The demo ships Corex accessibility controls: text size, contrast, motion, focus, and link underline — persisted locally with no backend."
       }
     ]
   end

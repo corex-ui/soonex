@@ -17,22 +17,21 @@ defmodule Soonex.HomePage.Waitlist do
       section="waitlist"
       labelledby="soonex-waitlist-heading"
       eyebrow="Waitlist"
-      tone={:surface}
+      tone={:root}
       align={:center}
-      reveal={false}
     >
       <:title>
-        Be on the list when <span class="soonex-accent">{Soonex.Launch.label()}</span> lands.
+        Get notified when Corex templates expand.
       </:title>
       <:lede>
-        This demo does not store addresses. Submit still shows the success toast so you can see the
-        path before you wire a real list.
+        Demo form — no addresses are stored. Submit still fires the success toast so you can validate
+        the flow before connecting your provider.
       </:lede>
       <form
         id="soonex-waitlist-form"
-        class={"#{Shell.panel_open()} soonex-waitlist-form mx-auto w-full max-w-lg p-8 sm:p-10"}
+        class={"#{Shell.panel_open()} mx-auto w-full max-w-lg"}
         data-waitlist-toast-title="You're on the list"
-        data-waitlist-toast-description="This demo form does not collect addresses. The live template wires the same toast."
+        data-waitlist-toast-description="This demo form does not collect addresses. Wire the same fields to your list when you ship."
       >
         <div class="flex w-full flex-col items-stretch gap-5">
           <.native_input
@@ -41,10 +40,10 @@ defmodule Soonex.HomePage.Waitlist do
             id="soonex-waitlist-email"
             required
             autocomplete="email"
-            placeholder="you@studio.dev"
+            placeholder="you@company.com"
             class="native-input ui-size-md ui-width-full"
           >
-            <:label class="sr-only">Email</:label>
+            <:label>Email</:label>
           </.native_input>
 
           <.select
@@ -70,41 +69,6 @@ defmodule Soonex.HomePage.Waitlist do
               <.heroicon name="hero-chevron-down" />
             </:trigger>
           </.select>
-
-          <.tags_input
-            id="soonex-waitlist-interests"
-            name="waitlist[interests]"
-            class="tags-input ui-brand ui-width-full"
-            value={[]}
-            translation={
-              %Corex.TagsInput.Translation{
-                placeholder: "Add an interest and press Enter"
-              }
-            }
-          >
-            <:label>Interests</:label>
-            <:close>
-              <.heroicon name="hero-x-mark" />
-            </:close>
-          </.tags_input>
-
-          <.number_input
-            id="soonex-waitlist-team"
-            name="waitlist[team_size]"
-            class="number-input ui-brand ui-width-full"
-            min={1.0}
-            max={200.0}
-            step={1.0}
-            value="2"
-          >
-            <:label>Team size</:label>
-            <:decrement_trigger>
-              <.heroicon name="hero-chevron-down" class="icon" />
-            </:decrement_trigger>
-            <:increment_trigger>
-              <.heroicon name="hero-chevron-up" class="icon" />
-            </:increment_trigger>
-          </.number_input>
 
           <.switch
             id="soonex-waitlist-notes"

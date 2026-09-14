@@ -59,7 +59,7 @@ defmodule Soonex.PrivacyPage do
           <ul>
             <li>
               <strong>Theme and color mode</strong>
-              — which Corex theme (neo, uno, duo, leo) and light or dark mode you selected.
+              — light or dark color mode you selected.
             </li>
             <li>
               <strong>Accessibility settings</strong>

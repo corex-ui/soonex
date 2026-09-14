@@ -16,26 +16,26 @@ defmodule Soonex.HomePage.Pricing do
       labelledby="soonex-pricing-heading"
       eyebrow="Plans"
       tone={:root}
+      align={:center}
     >
       <:title>
-        One template. <span class="soonex-accent">Three ways to ship it.</span>
+        Start free. Scale when you ship.
       </:title>
       <:lede>
-        These tiers are placeholders you rename. The middle card is the one you keep when you fork.
+        Placeholder tiers you can rename for your product. The middle option is the default fork
+        path for teams who want the full template.
       </:lede>
-      <div class="soonex-plans grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <article
           :for={plan <- plans()}
-          class={"#{plan_class(plan)} soonex-card-motion soonex-plan flex flex-col p-6 sm:p-8"}
+          class={"#{plan_class(plan)} soonex-plan flex flex-col p-6 sm:p-8"}
           data-featured={if(plan.featured, do: "true")}
         >
           <p class={Shell.eyebrow()}>{plan.name}</p>
           <h3 class="display mt-2 text-xl font-semibold tracking-tight">{plan.headline}</h3>
-          <p class="soonex-plan-price display mt-4 text-4xl font-semibold tracking-tight">
-            {plan.price}
-          </p>
+          <p class="display mt-4 text-4xl font-semibold tracking-tight">{plan.price}</p>
           <p class="mt-3 flex-auto text-sm/6 sm:text-base/7">{plan.body}</p>
-          <ul class="soonex-plan-items mt-6 flex list-none flex-col gap-2 p-0 text-sm/6">
+          <ul class="mt-6 flex list-none flex-col gap-2 p-0 text-sm/6">
             <li :for={item <- plan.items} class="flex items-start gap-2">
               <.heroicon name="hero-check" class="mt-0.5 size-4 shrink-0" />
               <span>{item}</span>
@@ -57,42 +57,37 @@ defmodule Soonex.HomePage.Pricing do
     """
   end
 
-  defp plan_class(%{featured: true}) do
-    "soonex-frame relative overflow-hidden border"
-  end
-
+  defp plan_class(%{featured: true}), do: Shell.frame()
   defp plan_class(_plan), do: Shell.panel()
 
   defp plans do
     [
       %{
         name: "Launch",
-        headline: "Fork and go live",
+        headline: "Fork and customize",
         price: "Open",
         featured: false,
         cta: "Join waitlist",
-        body: "The waitlist landing page, countdown chrome, and a single theme you rebrand.",
-        items: ["Waitlist form + toast", "Journal + RSS", "One Corex theme"]
+        body: "Waitlist landing, journal, and light/dark modes with Corex tokens.",
+        items: ["Waitlist + toast demo", "Journal + tags", "GitHub Pages workflow"]
       },
       %{
         name: "Studio",
-        headline: "All four skins",
+        headline: "Full template",
         price: "Open",
         featured: true,
         cta: "Start with Studio",
-        body:
-          "Switch neo, uno, duo, and leo from config. Keep the ones you like; delete the rest.",
-        items: ["Four skins + dark mode", "Accessibility dialog", "Launch timeline"]
+        body: "Everything in Launch plus accessibility controls and richer form fields.",
+        items: ["Corex a11y dialog", "Tabs, accordion, selects", "mix project.rename task"]
       },
       %{
-        name: "Agency",
-        headline: "Ship it for a client",
+        name: "Team",
+        headline: "Ship for clients",
         price: "Open",
         featured: false,
         cta: "Join waitlist",
-        body:
-          "Rename the OTP app, swap the lockup, and hand over a site that already passes axe.",
-        items: ["mix project.rename", "Self-hosted fonts", "GitHub Pages workflow"]
+        body: "Hand off a static site that already passes axe and documents customization in README.",
+        items: ["Self-hosted fonts", "Config-driven theming", "Tableau + Corex docs linked"]
       }
     ]
   end

@@ -1,11 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+- Full home redesign: premium SaaS layout (hero, trust badges, features, how-it-works tabs, pricing, journal, FAQ, waitlist) with Corex-focused copy and generous whitespace.
+- Simplify customization to Corex Design only: single `neo` theme with light/dark modes; remove per-theme skin CSS/JS, Framer photography, frosted scroll chrome, marquee, and carousel.
+- Drop `assets/css/layout.css`, `assets/css/skins/*`, `assets/js/skins/*`, `assets/js/landing*.js`, and `assets/js/theme.js`.
+- Demo controls: light/dark mode toggle and accessibility panel only (no theme switcher).
+- Update README, privacy copy, and blog index lede for the new direction.
+
 ## 0.2.2
 
-- Framer-style product launch restage: photo hero with waitlist object, proof marquee, feature bento, product desk, pricing, launch timeline, voice carousel, journal tease, FAQ, and closing waitlist CTA.
 - Harden for Corex 0.2.2+: drop `:corex_design` from Mix `compilers`; keep `mix corex.design.build` in `assets.build`, `pre.test`, and `build`; pin Corex family deps to `~> 0.2` with `corex_design` as `runtime: false`.
 - Drop `assets/package.json` and Lenis; CI/deploy no longer run `npm ci`.
-- Upgrade `a11y_audit` to `~> 0.5.0`; Wallaby axe check stays green on the restaged home page.
+- Upgrade `a11y_audit` to `~> 0.5.0`; Wallaby axe check stays green on the home page.
 - Add `mix server` (`soonex.port_check` then `tableau.server`) and restore AGENTS.md for Cloud Agent workflows.
 
 ## 0.2.1

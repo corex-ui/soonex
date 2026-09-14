@@ -1,4 +1,4 @@
-/* Tiny layout helpers that utilities cannot express. */
+/* Minimal host helpers. Prefer Corex ui-* modifiers and design tokens in HEEx. */
 
 html {
   scroll-behavior: smooth;
@@ -8,158 +8,16 @@ html[data-motion="reduce"] {
   scroll-behavior: auto;
 }
 
-[data-motion="reduce"] [data-site-header] {
-  transition: none;
+.soonex-plan[data-featured="true"] {
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+  border-color: var(--color-brand);
 }
 
-[data-site-header] {
-  transition: border-color var(--duration-normal) var(--soonex-ease);
+.soonex-plan[data-featured="true"] :is(.soonex-eyebrow, .display, p, li) {
+  color: inherit;
 }
 
-[data-site-header] [data-header-bar] {
-  min-height: var(--spacing-size);
-}
-
-/* Header timer stays in flow (invisible until reveal) so the bar never jumps.
-   Corex digits flip in a 2em window (`top: calc(var(--value) * -2em)`). Do not
-   shrink that window — it clips the strip. Compact the type instead. */
-[data-site-header] .timer.ui-size-sm {
-  --timer-digit: var(--text-sm);
-  --timer-digit-leading: 2;
-}
-
-[data-site-header] .timer [data-scope="timer"][data-part="area"] {
-  align-items: center;
-}
-
-[data-site-header] .timer [data-scope="timer"][data-part="separator"] {
-  align-self: center;
-}
-
-[data-site-header] .timer [data-scope="timer"][data-part="item-label"] {
-  font-size: var(--text-xs);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--color-ink-muted);
-  white-space: nowrap;
-}
-
-@media (width < 40rem) {
-  .timer.ui-size-sm,
-  .timer.ui-size-md,
-  .timer.ui-size-lg {
-    --timer-digit: var(--text-xl);
-    --timer-digit-leading: var(--text-xl--line-height);
-  }
-
-  .timer [data-scope="timer"][data-part="area"] {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: var(--spacing-space-xs);
-  }
-}
-
-.soonex-frame {
-  border-radius: var(--radius-2xl);
-}
-
-.soonex-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.soonex-avatars {
-  display: flex;
-  align-items: center;
-}
-
-.soonex-avatars li + li {
-  margin-inline-start: calc(var(--spacing-space-sm) * -1);
-}
-
-.soonex-avatar {
-  width: 2.25rem;
-  height: 2.25rem;
-  object-fit: cover;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-root);
-}
-
-.soonex-avatar-lg {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.marquee [data-scope="marquee"][data-part="content"] {
-  align-items: center;
-}
-
-.marquee [data-scope="marquee"][data-part="item"] {
-  flex-shrink: 0;
-}
-
-.marquee [data-scope="marquee"][data-part="edge"] {
-  --edge-background: var(--color-root);
-}
-
-.marquee [data-scope="marquee"][data-part="edge"][data-side="start"],
-.marquee [data-scope="marquee"][data-part="edge"][data-side="end"] {
-  width: 3rem;
-  max-width: 3rem;
-}
-
-html[data-motion="reduce"] .marquee [data-scope="marquee"][data-part="content"] {
-  animation: none;
-}
-
-.data-list.data-list--wide,
 .tabs.tabs--wide {
   max-width: none;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="item"] {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="label"] {
-  min-width: 4.5rem;
-  max-width: 8rem;
-  width: auto;
-  flex: 0 0 auto;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="content"] {
-  display: flex;
-  flex: 1 1 0%;
-  width: auto;
-  min-width: 0;
-  align-items: center;
-}
-
-.data-list.data-list--wide
-  [data-scope="data-list"][data-part="root"][data-orientation="horizontal"]
-  [data-scope="data-list"][data-part="content"]
-  .link {
-  max-width: none;
-  width: 100%;
-}
-
-.soonex-tags-list.data-list {
-  background-color: transparent;
-  border: 0;
-}
-
-.soonex-tags-list.data-list [data-scope="data-list"][data-part="item"] {
-  background-color: transparent;
 }

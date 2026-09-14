@@ -13,7 +13,6 @@ defmodule Soonex.Layouts.Section do
   attr(:align, :atom, default: :start)
   attr(:layout, :atom, default: :stack, values: [:stack, :sticky])
   attr(:compact, :boolean, default: false)
-  attr(:reveal, :boolean, default: true)
 
   slot(:title, required: true)
   slot(:lede)
@@ -25,7 +24,7 @@ defmodule Soonex.Layouts.Section do
     <section
       id={@id}
       data-section={@section || @id}
-      class={"#{section_class(@compact, @reveal)} #{tone_class(@tone)}"}
+      class={"#{section_class(@compact)} #{tone_class(@tone)}"}
       aria-labelledby={@labelledby}
     >
       <div class={stage_class(@layout)}>
@@ -39,7 +38,7 @@ defmodule Soonex.Layouts.Section do
           </p>
           <div
             :if={@actions != []}
-            class={"soonex-section-actions mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 #{actions_align(@layout, @align)}"}
+            class={"mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 #{actions_align(@layout, @align)}"}
           >
             {render_slot(@actions)}
           </div>
@@ -52,10 +51,8 @@ defmodule Soonex.Layouts.Section do
     """
   end
 
-  defp section_class(true, true), do: "#{Shell.section_compact()} soonex-reveal"
-  defp section_class(false, true), do: "#{Shell.section()} soonex-reveal"
-  defp section_class(true, false), do: Shell.section_compact()
-  defp section_class(false, false), do: Shell.section()
+  defp section_class(true), do: Shell.section_compact()
+  defp section_class(false), do: Shell.section()
 
   defp tone_class(:root), do: "bg-root"
   defp tone_class(:surface), do: "border-y border-border bg-surface"
