@@ -3,7 +3,8 @@
 ## 0.3.0
 
 - Full home redesign inspired by premium SaaS landing rhythm: warm ivory canvas, charcoal feature bands, left-aligned hero, Corex UI showcase panels, scale section with closing CTA band, and compact waitlist footer block.
-- Simplify customization to Corex Design only: single `neo` theme with light/dark modes; remove per-theme skin CSS/JS, Framer photography, frosted scroll chrome, marquee, and carousel.
+- Simplify customization to Corex Design only: four stock themes (neo/uno/duo/leo) with light/dark modes via Template Options; no per-theme skin CSS/JS. Restore Corex tech marquee with eager hook loading.
+- Drop Framer photography, frosted scroll chrome, and carousel; keep marquee as a Corex component demo.
 - Drop `assets/css/layout.css`, `assets/css/skins/*`, `assets/js/skins/*`, `assets/js/landing*.js`, and `assets/js/theme.js`.
 - Demo controls: light/dark mode toggle and accessibility panel only (no theme switcher).
 - Update README, privacy copy, and blog index lede for the new direction.

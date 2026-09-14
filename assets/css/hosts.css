@@ -17,6 +17,7 @@
 .date-picker.ui-width-full,
 .data-table.ui-width-full,
 .select.ui-width-full,
+.marquee.ui-width-full,
 .collapsible.ui-width-full,
 .accordion.ui-width-full,
 .switch.ui-width-full {
@@ -43,6 +44,13 @@
 
 #soonex-waitlist-role [data-scope="select"][data-part="positioner"] {
   position: absolute;
+}
+
+#theme-switcher [data-scope="select"][data-part="positioner"],
+#theme-switcher [data-scope="select"][data-part="content"],
+[id="select:theme-switcher:positioner"],
+[id="select:theme-switcher:content"] {
+  z-index: 80;
 }
 
 #site-controls [data-scope="floating-panel"][data-part="body"],

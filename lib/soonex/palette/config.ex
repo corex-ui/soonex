@@ -1,7 +1,7 @@
 defmodule Soonex.Palette.Config do
   @moduledoc false
 
-  @theme_order ~w(neo)
+  @theme_order ~w(neo uno duo leo)
 
   def defaults do
     nl = neo_light()
@@ -23,7 +23,18 @@ defmodule Soonex.Palette.Config do
       "state_order" => ["muted", "default", "hover", "active"],
       "themes" => %{
         "neo-light" => nl,
-        "neo-dark" => nd
+        "neo-dark" => nd,
+        "uno-light" =>
+          nl |> merge_overrides(uno_light_overrides()) |> Map.put("seeds", uno_seeds()),
+        "uno-dark" =>
+          nd |> merge_overrides(uno_dark_overrides()) |> Map.put("seeds", uno_seeds()),
+        "duo-light" =>
+          nl |> merge_overrides(duo_light_overrides()) |> Map.put("seeds", duo_seeds()),
+        "duo-dark" =>
+          nd |> merge_overrides(duo_dark_overrides()) |> Map.put("seeds", duo_seeds()),
+        "leo-light" =>
+          nl |> merge_overrides(leo_light_overrides()) |> Map.put("seeds", leo_seeds()),
+        "leo-dark" => nd |> merge_overrides(leo_dark_overrides()) |> Map.put("seeds", leo_seeds())
       },
       "ui_ratio_base" => %{"default" => -1.12, "hover" => -1.08, "muted" => -1.2}
     }
@@ -35,8 +46,41 @@ defmodule Soonex.Palette.Config do
       "alert" => "#B42318",
       "base" => "#FAF9F6",
       "brand" => "#141414",
-      "info" => "#0E7490",
+      "info" => "#1F77D4",
+      "success" => "#059669"
+    }
+  end
+
+  defp uno_seeds do
+    %{
+      "accent" => "#475569",
+      "alert" => "#B91C1C",
+      "base" => "#EEF2F7",
+      "brand" => "#0E7490",
+      "info" => "#0369A1",
+      "success" => "#047857"
+    }
+  end
+
+  defp duo_seeds do
+    %{
+      "accent" => "#57534E",
+      "alert" => "#9F1239",
+      "base" => "#FAF7F2",
+      "brand" => "#5B21B6",
+      "info" => "#1D4ED8",
       "success" => "#15803D"
+    }
+  end
+
+  defp leo_seeds do
+    %{
+      "accent" => "#3F3F46",
+      "alert" => "#991B1B",
+      "base" => "#F4F4F5",
+      "brand" => "#B45309",
+      "info" => "#1E40AF",
+      "success" => "#166534"
     }
   end
 
@@ -153,6 +197,134 @@ defmodule Soonex.Palette.Config do
         "border" => %{"color" => "base", "ratio" => 1.4},
         "shadow" => %{"color" => "base", "ratio" => 1.2}
       }
+    }
+  end
+
+  defp uno_light_overrides do
+    %{
+      "output" => "tokens/themes/uno/color/light.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 97},
+        "root" => %{"lightness" => 100},
+        "ui" => %{"lightness" => 94}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.32},
+        "shadow" => %{"ratio" => 1.1}
+      },
+      "ink" => %{"default" => %{"ratio" => 8.5}},
+      "semantic" => %{
+        "accent" => %{
+          "bg" => "base",
+          "lightness" => 89,
+          "ink" => %{"color" => "accent", "ratio" => 5.5}
+        },
+        "alert" => %{
+          "bg" => "base",
+          "lightness" => 89,
+          "ink" => %{"color" => "alert", "ratio" => 5.5}
+        },
+        "brand" => %{
+          "bg" => "base",
+          "lightness" => 95,
+          "ink" => %{"color" => "brand", "ratio" => 5.5}
+        },
+        "info" => %{
+          "bg" => "base",
+          "lightness" => 89,
+          "ink" => %{"color" => "info", "ratio" => 5.5}
+        },
+        "selected" => %{
+          "bg" => "base",
+          "lightness" => 26,
+          "ink" => %{"color" => "accent", "ratio" => 10}
+        },
+        "success" => %{
+          "bg" => "base",
+          "lightness" => 89,
+          "ink" => %{"color" => "success", "ratio" => 5.5}
+        }
+      }
+    }
+  end
+
+  defp uno_dark_overrides do
+    %{
+      "output" => "tokens/themes/uno/color/dark.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 14},
+        "root" => %{"lightness" => 7},
+        "ui" => %{"lightness" => 19}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.42},
+        "shadow" => %{"ratio" => 1.22}
+      },
+      "ink" => %{"default" => %{"ratio" => 12.25}}
+    }
+  end
+
+  defp duo_light_overrides do
+    %{
+      "output" => "tokens/themes/duo/color/light.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 97},
+        "root" => %{"lightness" => 99},
+        "ui" => %{"lightness" => 92}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.34},
+        "shadow" => %{"ratio" => 1.07}
+      },
+      "ink" => %{"default" => %{"ratio" => 8.25}}
+    }
+  end
+
+  defp duo_dark_overrides do
+    %{
+      "output" => "tokens/themes/duo/color/dark.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 16},
+        "root" => %{"lightness" => 10},
+        "ui" => %{"lightness" => 21}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.43},
+        "shadow" => %{"ratio" => 1.23}
+      },
+      "ink" => %{"default" => %{"ratio" => 12.1}}
+    }
+  end
+
+  defp leo_light_overrides do
+    %{
+      "output" => "tokens/themes/leo/color/light.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 96},
+        "root" => %{"lightness" => 98},
+        "ui" => %{"lightness" => 92}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.34},
+        "shadow" => %{"ratio" => 1.07}
+      },
+      "ink" => %{"default" => %{"ratio" => 8.25}}
+    }
+  end
+
+  defp leo_dark_overrides do
+    %{
+      "output" => "tokens/themes/leo/color/dark.json",
+      "surface" => %{
+        "layer" => %{"lightness" => 16},
+        "root" => %{"lightness" => 9},
+        "ui" => %{"lightness" => 21}
+      },
+      "utility" => %{
+        "border" => %{"ratio" => 1.43},
+        "shadow" => %{"ratio" => 1.23}
+      },
+      "ink" => %{"default" => %{"ratio" => 12.1}}
     }
   end
 

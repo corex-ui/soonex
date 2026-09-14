@@ -38,7 +38,7 @@ Rebuild assets: `mix assets.build`.
 
 - **Brand / SEO:** lockup in [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg); titles in [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex).
 - **Launch date:** [`lib/soonex/launch.ex`](lib/soonex/launch.ex). Hero badge and countdown timer both read it.
-- **Theme:** overlay allowed keys in [`config/config.exs`](config/config.exs) under `config :corex_design` (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`, top-level `scales:`). Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. Light/dark mode toggles via [`lib/soonex/mode.ex`](lib/soonex/mode.ex).
+- **Theme:** overlay allowed keys in [`config/config.exs`](config/config.exs) under `config :corex_design` for each theme (`neo`, `uno`, `duo`, `leo`): `seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`, top-level `scales:`. Then `mix corex.design.build`. Switch themes and light/dark in **Template Options** (demo FAB) — no skin CSS required.
 - **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); run `mix corex.design.build` after changing accessibility config.
 - **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Default stack: Outfit (display) + Manrope (sans) + JetBrains Mono.
 - **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); minimal host polish in [`assets/css/hosts.css`](assets/css/hosts.css) and [`assets/css/chrome.css`](assets/css/chrome.css). Prefer Corex `ui-*` modifiers over custom CSS.
@@ -60,7 +60,7 @@ MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tabl
 - `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
 - Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
 - Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/mode.js`](assets/js/mode.js) for light/dark mode, a11y head script, waitlist toast in [`assets/js/waitlist.js`](assets/js/waitlist.js).
+- Client UI: [`assets/js/theme.js`](assets/js/theme.js) and [`assets/js/mode.js`](assets/js/mode.js) for theme/mode persistence; a11y head script; waitlist toast in [`assets/js/waitlist.js`](assets/js/waitlist.js). Corex marquee loads eagerly in [`assets/js/site.js`](assets/js/site.js).
 
 ## Production and hosting
 

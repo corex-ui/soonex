@@ -214,6 +214,238 @@ config :corex_design,
         "code" => %{font_family: {:font, :mono}},
         "kbd" => %{font_family: {:font, :mono}}
       }
+    },
+    uno: %{
+      seeds: %{
+        neutral: "#F6F6F6",
+        accent: "#071614",
+        brand: "#0F766E",
+        alert: "#B91C1C",
+        info: "#0369A1",
+        success: "#166534"
+      },
+      colors: %{
+        light:
+          with_on.(%{
+            root: l.(0.99, :neutral),
+            surface: l.(0.97, :neutral),
+            ui: fill.(0.94, :neutral),
+            accent: fill.(0.3, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 10),
+            "ink-muted": contrast.(:accent, :root, 5.5),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:neutral, :ui, 1.22),
+            focus: contrast.(:brand, :ui, 2.2),
+            shadow: contrast.(:accent, :root, 1.06)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.065, :accent),
+            surface: l.(0.11, :accent),
+            ui: fill.(0.175, :accent),
+            accent: fill.(0.52, :accent),
+            brand: fill.(0.52, :brand),
+            ink: contrast.(:neutral, :root, 12.5),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.28),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.14)
+          })
+      },
+      dimensions: %{
+        radius: %{
+          xs: 0.55,
+          sm: 0.9,
+          md: 1.25,
+          lg: 1.7,
+          xl: 2.2,
+          "2xl": 3.0,
+          "3xl": 4.0,
+          "4xl": 5.0,
+          full: 9999
+        },
+        font: %{
+          sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+          display: ["Sora", "ui-sans-serif", "system-ui", "sans-serif"],
+          mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+          code: ["JetBrains Mono", "ui-monospace", "monospace"],
+          serif: ["Playfair Display", "Georgia", "serif"]
+        }
+      },
+      typography: %{
+        "h1" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :semibold},
+          letter_spacing: {:tracking, :tight}
+        },
+        "h2" => %{font_family: {:font, :display}, letter_spacing: {:tracking, :tight}},
+        "h3" => %{font_family: {:font, :display}, font_weight: {:weight, :medium}},
+        "h4" => %{font_weight: {:weight, :medium}},
+        "p" => %{line_height: {:leading, :snug}},
+        "p.display" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
+        "code" => %{font_family: {:font, :mono}},
+        "kbd" => %{font_family: {:font, :mono}}
+      }
+    },
+    duo: %{
+      seeds: %{
+        neutral: "#F7EDE4",
+        accent: "#3A2618",
+        brand: "#C2410C",
+        alert: "#9F1239",
+        info: "#3D5278",
+        success: "#3F6B4E"
+      },
+      colors: %{
+        light:
+          Map.merge(
+            with_on.(%{
+              root: l.(0.99, :neutral),
+              surface: l.(0.97, :neutral),
+              ui: fill.(0.94, :neutral),
+              accent: fill.(0.34, :accent),
+              brand: fill.(0.42, :brand),
+              ink: contrast.(:accent, :root, 12.5),
+              "ink-muted": contrast.(:accent, :root, 6.8),
+              link: contrast.(:brand, :root, 7.0),
+              border: contrast.(:neutral, :ui, 1.22),
+              focus: contrast.(:brand, :ui, 2.3),
+              shadow: contrast.(:accent, :root, 1.28)
+            }),
+            %{"brand-text" => contrast.(:brand, :root, 7.0)}
+          ),
+        dark:
+          with_on.(%{
+            root: l.(0.075, :accent),
+            surface: l.(0.125, :accent),
+            ui: fill.(0.195, :accent),
+            accent: fill.(0.5, :accent),
+            brand: fill.(0.56, :brand),
+            ink: contrast.(:neutral, :root, 12),
+            "ink-muted": contrast.(:neutral, :root, 6.2),
+            link: contrast.(:brand, :root, 7.0),
+            border: contrast.(:neutral, :ui, 1.18),
+            focus: contrast.(:brand, :ui, 2.3),
+            shadow: contrast.(:accent, :root, 1.32)
+          })
+      },
+      dimensions: %{
+        radius: %{
+          xs: 0.55,
+          sm: 0.9,
+          md: 1.3,
+          lg: 1.8,
+          xl: 2.35,
+          "2xl": 3.1,
+          "3xl": 4.0,
+          "4xl": 5.0,
+          full: 9999
+        },
+        font: %{
+          sans: ["Work Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+          display: ["Playfair Display", "Georgia", "serif"],
+          mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+          code: ["JetBrains Mono", "ui-monospace", "monospace"],
+          serif: ["Playfair Display", "Georgia", "serif"]
+        }
+      },
+      typography: %{
+        "h1" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :bold},
+          letter_spacing: {:tracking, :tight}
+        },
+        "h2" => %{font_family: {:font, :display}, font_weight: {:weight, :semibold}},
+        "h3" => %{font_family: {:font, :display}},
+        "h4" => %{font_family: {:font, :serif}, font_weight: {:weight, :medium}},
+        "p" => %{line_height: {:leading, :relaxed}},
+        "p.display" => %{
+          font_family: {:font, :display},
+          font_weight: {:weight, :bold},
+          letter_spacing: {:tracking, :tight}
+        },
+        "blockquote" => %{font_family: {:font, :serif}, font_style: :italic},
+        "code" => %{font_family: {:font, :mono}},
+        "kbd" => %{font_family: {:font, :mono}}
+      }
+    },
+    leo: %{
+      seeds: %{
+        neutral: "#E6DCCE",
+        accent: "#0C0C0C",
+        brand: "#E2410A",
+        alert: "#C41E1E",
+        info: "#0369A1",
+        success: "#166534"
+      },
+      colors: %{
+        light:
+          with_on.(%{
+            root: l.(0.985, :neutral),
+            surface: l.(0.96, :neutral),
+            ui: fill.(0.92, :neutral),
+            accent: fill.(0.16, :accent),
+            brand: fill.(0.36, :brand),
+            ink: contrast.(:accent, :root, 12),
+            "ink-muted": contrast.(:accent, :root, 5.8),
+            link: contrast.(:brand, :root, 5.8),
+            border: contrast.(:accent, :ui, 1.55),
+            focus: contrast.(:brand, :ui, 2.5),
+            shadow: contrast.(:accent, :root, 1.04)
+          }),
+        dark:
+          with_on.(%{
+            root: l.(0.04, :accent),
+            surface: l.(0.085, :accent),
+            ui: fill.(0.145, :accent),
+            accent: fill.(0.48, :accent),
+            brand: fill.(0.5, :brand),
+            ink: contrast.(:neutral, :root, 14),
+            "ink-muted": contrast.(:neutral, :root, 6.8),
+            link: contrast.(:brand, :root, 7.2),
+            border: contrast.(:neutral, :ui, 1.42),
+            focus: contrast.(:brand, :ui, 2.6),
+            shadow: contrast.(:accent, :root, 1.06)
+          })
+      },
+      dimensions: %{
+        radius: %{
+          xs: 0,
+          sm: 0.01,
+          md: 0.02,
+          lg: 0.03,
+          xl: 0.04,
+          "2xl": 0.06,
+          "3xl": 0.08,
+          "4xl": 0.1,
+          full: 9999
+        },
+        font: %{
+          sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+          display: ["IBM Plex Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+          mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+          code: ["IBM Plex Mono", "ui-monospace", "monospace"],
+          serif: ["ui-serif", "Georgia", "serif"]
+        }
+      },
+      typography: %{
+        "h1" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
+        "h2" => %{font_weight: {:weight, :semibold}},
+        "h3" => %{font_weight: {:weight, :medium}},
+        "h4" => %{
+          font_weight: {:weight, :medium},
+          letter_spacing: {:tracking, :widest},
+          font_size: {:text, :sm}
+        },
+        "p" => %{line_height: {:leading, :snug}},
+        "p.display" => %{font_weight: {:weight, :semibold}, letter_spacing: {:tracking, :tight}},
+        "blockquote" => %{font_style: :italic},
+        "code" => %{font_family: {:font, :mono}},
+        "kbd" => %{font_family: {:font, :mono}}
+      }
     }
   },
   modes: [:light, :dark],
@@ -244,10 +476,13 @@ config :corex_design,
     :checkbox,
     :"data-list",
     :timer,
+    :marquee,
     :accordion,
+    :avatar,
     :"floating-panel",
     :scrollbar,
     :pagination,
+    :carousel,
     :switch,
     :"data-table",
     :collapsible,

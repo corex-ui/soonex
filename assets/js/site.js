@@ -1,4 +1,5 @@
 import "./mode.js"
+import "./theme.js"
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 import { hooks } from "corex/hooks"
@@ -10,6 +11,7 @@ import { Dialog } from "corex/dialog"
 import { ToggleGroup } from "corex/toggle-group"
 import { Menu } from "corex/menu"
 import { Clipboard } from "corex/clipboard"
+import { Marquee } from "corex/marquee"
 import { initWaitlistForm } from "./waitlist.js"
 import { initPager } from "./pager.js"
 import "./cookie-consent.js"
@@ -29,6 +31,7 @@ const liveSocket = new LiveSocket("/live", Socket, {
     ToggleGroup,
     Menu,
     Clipboard,
+    Marquee,
     ...hooks({
       Tabs: () => import("corex/tabs"),
       Timer: () => import("corex/timer"),
