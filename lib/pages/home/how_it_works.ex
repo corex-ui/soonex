@@ -29,24 +29,34 @@ defmodule Soonex.HomePage.HowItWorks do
         class="tabs tabs--wide ui-accent ui-width-full"
         value="setup"
         items={tab_items()}
-      />
-      <div class="mt-8 flex justify-start">
-        <.clipboard
-          id="soonex-how-copy"
-          class="clipboard ui-accent ui-solid ui-width-fit ui-size-sm"
-          value="mix setup"
-        >
-          <:label class="sr-only">mix setup</:label>
-          <:copy>
-            <.heroicon name="hero-clipboard" />
-            <span>Copy mix setup</span>
-          </:copy>
-          <:copied>
-            <.heroicon name="hero-check" />
-            <span>Copied</span>
-          </:copied>
-        </.clipboard>
-      </div>
+      >
+        <:content :let={item}>
+          <div class="flex flex-col gap-5">
+            <p class="m-0 text-base/7">{item.meta.intro}</p>
+            <ul class="m-0 flex list-none flex-col gap-3 p-0">
+              <li :for={step <- item.meta.steps} class="flex items-start gap-3 text-sm/6">
+                <.heroicon name="hero-check-circle" class="mt-0.5 size-4 shrink-0" />
+                <span>{step}</span>
+              </li>
+            </ul>
+            <.clipboard
+              id={"soonex-how-copy-#{item.meta.id}"}
+              class="clipboard ui-accent ui-size-sm ui-width-fit"
+              value={item.meta.command}
+            >
+              <:label class="sr-only">{item.meta.command}</:label>
+              <:copy>
+                <.heroicon name="hero-clipboard" />
+                <span>Copy {item.meta.command_label}</span>
+              </:copy>
+              <:copied>
+                <.heroicon name="hero-check" />
+                <span>Copied</span>
+              </:copied>
+            </.clipboard>
+          </div>
+        </:content>
+      </.tabs>
     </.block>
     """
   end
@@ -56,20 +66,53 @@ defmodule Soonex.HomePage.HowItWorks do
       %{
         value: "setup",
         label: "Setup",
-        content:
-          "Run mix setup to fetch Hex deps and build Corex design assets from config :corex_design."
+        content: "Setup",
+        meta: %{
+          id: "setup",
+          intro:
+            "Clone Soonex, install Hex dependencies, and build Corex design assets before you open the site locally.",
+          steps: [
+            "Run mix setup from the repo root — it fetches deps and runs mix corex.design.build.",
+            "Start the dev server with mix server and open http://localhost:4999.",
+            "Use Template Options to switch neo, uno, duo, or leo and toggle light/dark mode."
+          ],
+          command: "mix setup",
+          command_label: "mix setup"
+        }
       },
       %{
         value: "customize",
         label: "Customize",
-        content:
-          "Edit seeds, radius, and typography in config/config.exs, then mix corex.design.build. Update HEEx in lib/pages/home for copy."
+        content: "Customize",
+        meta: %{
+          id: "customize",
+          intro:
+            "Brand the template through config :corex_design and HEEx content modules — not a parallel CSS framework.",
+          steps: [
+            "Edit seeds, radius, fonts, and typography under config :corex_design.",
+            "Run mix corex.design.build to regenerate tokens and component CSS.",
+            "Update copy in lib/pages/home and lib/layouts without touching skin files."
+          ],
+          command: "mix corex.design.build",
+          command_label: "mix corex.design.build"
+        }
       },
       %{
         value: "ship",
         label: "Ship",
-        content:
-          "Run MIX_ENV=prod mix build to emit _site/. Deploy to GitHub Pages or any static host."
+        content: "Ship",
+        meta: %{
+          id: "ship",
+          intro:
+            "Tableau emits static HTML into _site/. Deploy the folder to GitHub Pages or any static host.",
+          steps: [
+            "Set SOONEX_PUBLIC_URL to your production origin before building.",
+            "Run MIX_ENV=prod mix build to compile _site/ with prefixed asset paths.",
+            "Wire the waitlist form to your provider — the demo toast flow is already in place."
+          ],
+          command: "MIX_ENV=prod mix build",
+          command_label: "prod build"
+        }
       }
     ])
   end

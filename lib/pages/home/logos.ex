@@ -19,24 +19,15 @@ defmodule Soonex.HomePage.Logos do
       <div class={Shell.stage()}>
         <.marquee
           id="soonex-tech-marquee"
-          class="marquee soonex-tech-marquee ui-width-full"
+          class="marquee ui-width-full"
           duration={28}
           spacing="2.5rem"
           pause_on_interaction
           items={@tech}
         >
           <:item :let={item}>
-            <span class="soonex-tech-chip">
-              <img
-                src={Soonex.Public.path(item.src)}
-                alt=""
-                width="28"
-                height="28"
-                loading="eager"
-                decoding="sync"
-              />
-              <span>{item.name}</span>
-            </span>
+            <img src={Soonex.Public.path(item.src)} alt="" width="32" height="32" />
+            <span>{item.name}</span>
           </:item>
         </.marquee>
       </div>

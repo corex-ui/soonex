@@ -48,56 +48,6 @@ html[data-motion="reduce"] {
   background: var(--color-surface);
 }
 
-.soonex-tech-marquee.marquee {
-  max-width: none;
-}
-
-.soonex-tech-marquee[data-loading] {
-  opacity: 1;
-}
-
-.soonex-tech-marquee[data-loading] [data-scope="marquee"][data-part="root"] {
-  animation: none;
-  background: none;
-  pointer-events: auto;
-  cursor: auto;
-  user-select: auto;
-}
-
-.soonex-tech-marquee [data-part="edge"] {
-  display: none;
-}
-
-.soonex-tech-marquee [data-part="ssr-preview"],
-.soonex-tech-marquee [data-scope="marquee"][data-part="content"] {
-  opacity: 1;
-}
-
-.soonex-tech-chip {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 0.625rem;
-  white-space: nowrap;
-  color: var(--color-ink);
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--text-sm--line-height);
-}
-
-.soonex-tech-chip img {
-  display: block;
-  width: 1.75rem;
-  height: 1.75rem;
-  flex-shrink: 0;
-  object-fit: contain;
-  opacity: 1;
-}
-
-.soonex-tech-chip span {
-  color: var(--color-ink);
-}
-
 .tabs.tabs--wide {
   max-width: none;
 }
