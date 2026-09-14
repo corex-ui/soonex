@@ -11,6 +11,23 @@ defmodule Mix.Tasks.Soonex.Server do
   @impl Mix.Task
   def run(args) do
     Mix.Task.run("soonex.port_check", [])
+    warn_missing_inotify!()
     Mix.Task.run("tableau.server", args)
+  end
+
+  defp warn_missing_inotify! do
+    if :os.type() == {:unix, :linux} and is_nil(System.find_executable("inotifywait")) do
+      Mix.raise("""
+      inotify-tools is required for Tableau live reload on Linux.
+
+      Without `inotifywait`, the dev server starts but live-reload websockets crash with:
+
+          GenServer.call(:web_dev_utils_file_watcher, :subscribe, 5000)
+
+      Install it, then retry:
+
+          sudo apt-get install -y inotify-tools
+      """)
+    end
   end
 end
