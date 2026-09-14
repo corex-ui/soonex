@@ -4,10 +4,9 @@ defmodule Soonex.MixProject do
   def project do
     [
       app: :soonex,
-      version: "0.2.0",
+      version: "0.3.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
-      compilers: Mix.compilers() ++ [:corex_design],
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
       deps: deps(),
@@ -32,6 +31,7 @@ defmodule Soonex.MixProject do
   defp deps do
     [
       {:tableau, "~> 0.30"},
+      {:mdex, "~> 0.13.2", override: true},
       {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:phoenix_live_view, "~> 1.0"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
@@ -43,9 +43,9 @@ defmodule Soonex.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:corex, "~> 0.2.0"},
-      {:corex_design, "~> 0.2.0", runtime: false},
-      {:corex_mcp, "~> 0.2.0", only: [:dev, :test]},
+      {:corex, "~> 0.2"},
+      {:corex_design, "~> 0.2", runtime: false},
+      {:corex_mcp, "~> 0.2", only: [:dev, :test]},
       {:color, "~> 0.11"},
       {:floki, "~> 0.38"},
       {:makeup, "~> 1.2"},
@@ -57,7 +57,7 @@ defmodule Soonex.MixProject do
       {:rustler_precompiled, "~> 0.9", override: true},
       {:makeup_syntect, "~> 0.1.4"},
       {:wallaby, "~> 0.30", only: :test, runtime: false},
-      {:a11y_audit, "~> 0.3.1", only: :test, runtime: false},
+      {:a11y_audit, "~> 0.5.0", only: :test, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ex_slop, "~> 0.1", only: [:dev, :test], runtime: false},
       {:usage_rules, "~> 1.1", only: :dev}
@@ -92,6 +92,7 @@ defmodule Soonex.MixProject do
         "tableau.build"
       ],
       test: ["pre.test", "test"],
+      server: ["soonex.port_check", "tableau.server"],
       "assets.build": [
         "corex.design.build",
         "tailwind default",

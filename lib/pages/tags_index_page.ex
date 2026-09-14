@@ -11,68 +11,67 @@ defmodule Soonex.TagsIndexPage do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Layouts.Articles, only: [pager: 1]
+
   alias Soonex.Layouts.Shell
 
   def template(assigns) do
     tags = Map.get(assigns, :tags, %{})
 
-    sorted =
+    tag_cards =
       tags
       |> Map.to_list()
       |> Enum.sort_by(fn {_tag, posts} -> length(posts) end, :desc)
+      |> Enum.map(fn {tag, posts} ->
+        %{
+          label: tag.tag,
+          href: Soonex.Public.path(tag.permalink),
+          count: length(posts)
+        }
+      end)
 
-    assigns = Map.put(assigns, :sorted_tags, sorted)
+    assigns = Map.put(assigns, :tag_cards, tag_cards)
 
     ~H"""
-    <article class={"#{Shell.stage()} flex min-h-dvh flex-col gap-space-xl pt-size-xl pb-size-xl"}>
-      <nav class="blog__nav" aria-label="Tags">
-        <.navigate to={Soonex.Public.path("/blog")} class="link ui-nav w-fit">
-          <.heroicon name="hero-arrow-left" /> Back to blog
-        </.navigate>
-      </nav>
-
-      <header class="blog__hero" aria-labelledby="tags-heading">
-        <div class="blog__head">
-          <p class="blog__eyebrow">Blog</p>
-          <h1 id="tags-heading" class="blog__display">
-            Browse <span class="blog__display__accent">tags</span>
-          </h1>
-          <p class="blog__lede">
-            Browse topics across your posts. Every tag is a static Tableau page.
-          </p>
-          <p class="blog__meta">
-            <.navigate to={Soonex.Public.path("/blog")} class="link ui-brand ui-size-sm">
-              All posts
+    <article class={"#{Shell.section()} bg-root"}>
+      <div class={Shell.stage()}>
+        <.layout_heading class="layout-heading" subtitle_tag="p">
+          <:title>Tags</:title>
+          <:subtitle>Browse the journal by topic</:subtitle>
+          <:actions>
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              <.heroicon name="hero-arrow-left" /> Journal
             </.navigate>
-          </p>
-        </div>
-      </header>
+          </:actions>
+        </.layout_heading>
 
-      <ul
-        :if={@sorted_tags != []}
-        class="blog__grid m-0 list-none p-0"
-        aria-label="All tags"
-      >
-        <li :for={{tag, posts} <- @sorted_tags}>
-          <.navigate to={Soonex.Public.path(tag.permalink)} class={"#{Shell.card()}"}>
-            <div class="blog__card__top">
-              <p class="blog__card__date">
-                {length(posts)} {if length(posts) == 1, do: "post", else: "posts"}
+        <div class="mt-16">
+          <div :if={@tag_cards == []} class={"#{Shell.panel()} p-8 text-ink-muted"}>
+            <p class="m-0">No tags yet.</p>
+          </div>
+          <div
+            :if={@tag_cards != []}
+            class="soonex-tags-list grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            data-soonex-page-list="soonex-tags-pagination"
+            data-page-size="6"
+          >
+            <article
+              :for={{tag, index} <- Enum.with_index(@tag_cards)}
+              class="soonex-card-motion flex flex-col border border-border p-8"
+              data-soonex-page-item
+              hidden={index >= 6}
+            >
+              <h2 class="display m-0 text-xl font-semibold tracking-tight text-ink">
+                <.navigate to={tag.href} class="link ui-nav">{tag.label}</.navigate>
+              </h2>
+              <p class="mt-3 text-sm/6 text-ink-muted">
+                {tag.count} {if tag.count == 1, do: "post", else: "posts"}
               </p>
-              <.heroicon name="hero-arrow-right" class="blog__card__arrow" />
-            </div>
-            <h2 class="blog__card__title">{tag.tag}</h2>
-            <p class="blog__card__excerpt">
-              View all posts tagged with {tag.tag}.
-            </p>
-          </.navigate>
-        </li>
-      </ul>
-
-      <p :if={@sorted_tags == []} class="m-0 text-ink-muted">
-        No tags yet. Add a <code class="rounded-md bg-surface px-space-xs py-space-xs text-sm">tags:</code>
-        list to post front matter.
-      </p>
+            </article>
+          </div>
+          <.pager id="soonex-tags-pagination" count={length(@tag_cards)} page_size={6} />
+        </div>
+      </div>
     </article>
     """
   end

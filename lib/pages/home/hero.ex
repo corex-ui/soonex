@@ -6,96 +6,60 @@ defmodule Soonex.HomePage.Hero do
 
   alias Soonex.Layouts.Shell
 
-  attr(:countdown_ms, :integer, required: true)
-
   def hero(assigns) do
     ~H"""
     <header
-      class={"#{Shell.section()} overflow-x-hidden"}
+      class={"#{Shell.section_hero()} bg-root"}
       aria-labelledby="soonex-headline"
-      data-hero-boundary
+      data-section="hero"
     >
-      <div class={"#{Shell.stage()} grid grid-cols-1 items-center justify-items-center gap-size-lg lg:grid-cols-2 lg:justify-items-stretch lg:gap-size-xl xl:grid-cols-[minmax(0,1fr)_minmax(22rem,1.15fr)]"}>
-        <div
-          class="mx-auto flex w-full max-w-xl flex-col items-center gap-size-md text-center lg:mx-0 lg:max-w-none lg:items-start lg:text-start"
-          data-hero
-        >
-          <p class="m-0 text-sm font-semibold uppercase tracking-[0.2em] text-brand-text">
-            Soonex
-          </p>
+      <div class={Shell.stage()}>
+        <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-8">
+            <p class="m-0 text-sm/6 text-ink-muted">
+              Launching {Soonex.Launch.year_label()}
+            </p>
 
-          <h1
-            id="soonex-headline"
-            class="display m-0 text-balance text-4xl tracking-tighter text-ink sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            Lorem ipsum dolor <span class="text-brand-text">sit amet</span>.
-          </h1>
+            <h1 id="soonex-headline" class={"#{Shell.hero_heading()} mt-6"}>
+              Accessible Phoenix UI for your coming-soon launch.
+            </h1>
 
-          <p class={Shell.lede()}>
-            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-          </p>
+            <p class="mt-6 max-w-xl text-pretty text-sm/6 text-ink-muted sm:text-base/7">
+              Soonex is a Tableau + Corex template. Ship a waitlist, journal, and production-grade
+              components with design tokens, light/dark modes, and built-in accessibility — no
+              parallel CSS framework.
+            </p>
+          </div>
 
-          <ul
-            class="m-0 grid w-full max-w-xl list-none grid-cols-1 gap-x-space-xl gap-y-space-lg p-0 sm:grid-cols-2"
-            aria-label="Highlights"
-          >
-            <%= for line <- [
-                  "Lorem ipsum dolor sit amet, consectetur.",
-                  "Sed do eiusmod tempor incididunt ut.",
-                  "Ut labore et dolore magna aliqua enim.",
-                  "Quis nostrud exercitation ullamco laboris."
-                ] do %>
-              <li class="relative flex items-start gap-x-space text-pretty text-start text-sm text-ink-muted">
-                <span class="mt-space-xs shrink-0 text-success-text">
-                  <.heroicon name="hero-check" />
-                </span>
-                <span>{line}</span>
-              </li>
-            <% end %>
-          </ul>
-
-          <div class="flex w-full flex-wrap items-center justify-center gap-space-lg lg:justify-start">
-            <.navigate to="#waitlist" class="button ui-brand ui-solid ui-size-lg">
-              Join the waitlist
+          <div class="flex flex-wrap items-center gap-3 lg:col-span-4 lg:justify-end lg:pb-1">
+            <.navigate to="#waitlist" class={Shell.primary_button()}>
+              Join waitlist
             </.navigate>
-            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-lg">
-              Read the journal <.heroicon name="hero-arrow-up-right" />
+            <.navigate to={Soonex.Public.path("/blog")} class="button ui-ghost ui-size-sm">
+              Read journal
             </.navigate>
           </div>
         </div>
 
-        <div
-          class="hero-countdown mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none"
-          aria-labelledby="hero-countdown-title"
-        >
-          <div class="hero-countdown__head">
-            <p class="hero-countdown__eyebrow">Launching in</p>
-            <p id="hero-countdown-title" class="hero-countdown__title">
-              Lorem ipsum countdown
-            </p>
-          </div>
-
+        <div class="mt-16 flex flex-col gap-3 border-t border-border pt-10 sm:flex-row sm:items-end sm:justify-between">
           <.timer
-            id="soonex-hero-countdown"
+            id="soonex-hero-timer"
             countdown
-            start_ms={@countdown_ms}
+            start_ms={Soonex.Launch.countdown_ms()}
             target_ms={0}
-            class="timer hero-countdown__timer ui-success ui-size-xl w-full"
+            class="timer ui-accent ui-size-sm"
           >
-            <:day_label>Days</:day_label>
-            <:hour_label>Hours</:hour_label>
-            <:minute_label>Min</:minute_label>
-            <:second_label>Sec</:second_label>
+            <:day_label>days</:day_label>
+            <:hour_label>hours</:hour_label>
+            <:minute_label>min</:minute_label>
+            <:second_label>sec</:second_label>
           </.timer>
-
-          <p class="hero-countdown__note">
-            Consectetur adipiscing elit · launch window Q3 2026
+          <p class="m-0 text-sm/6 text-ink-muted">
+            Countdown target lives in <code class="code">Soonex.Launch</code>.
           </p>
         </div>
       </div>
     </header>
-
-    <div data-hero-sentinel aria-hidden="true" class="pointer-events-none h-px w-full shrink-0"></div>
     """
   end
 end

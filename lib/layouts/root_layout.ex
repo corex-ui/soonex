@@ -7,9 +7,10 @@ defmodule Soonex.RootLayout do
   use Phoenix.Component
   use Corex
 
+  import Soonex.CookieConsent, only: [cookie_consent: 1]
   import Soonex.Layouts.Root.Demo, only: [demo_site_controls: 1]
   import Soonex.Layouts.Root.Footer, only: [site_footer: 1]
-  import Soonex.Layouts.Root.LandingChrome, only: [landing_chrome: 1]
+  import Soonex.Layouts.Root.Nav, only: [site_nav: 1]
 
   alias Phoenix.HTML
   alias Phoenix.HTML.Safe
@@ -17,12 +18,6 @@ defmodule Soonex.RootLayout do
   def template(assigns) do
     site_name = "Soonex"
     copyright_holder = "Soonex"
-
-    countdown_start_ms =
-      max(
-        DateTime.diff(~U[2026-09-01 00:00:00Z], DateTime.utc_now(), :millisecond),
-        0
-      )
 
     tableau_config =
       case Tableau.Config.get() do
@@ -55,7 +50,6 @@ defmodule Soonex.RootLayout do
       |> Map.put(:default_theme, Soonex.Theme.default_theme())
       |> Map.put(:theme, Soonex.Theme.current(assigns))
       |> Map.put(:mode, Soonex.Mode.current(assigns))
-      |> Map.put(:countdown_start_ms, countdown_start_ms)
       |> Map.put(:canonical_url, canonical_url)
       |> Map.put(:base_url, base_url)
       |> Map.put(:page_path, page_path)
@@ -65,22 +59,26 @@ defmodule Soonex.RootLayout do
     ~H"""
     <!DOCTYPE html>
     <html
-      class="lenis"
+      class="scroll-smooth motion-reduce:scroll-auto"
       lang="en"
       dir="ltr"
       data-theme={@theme}
       data-mode={@mode}
       data-themes={Enum.join(Soonex.Theme.themes(), ",")}
       data-default-theme={Soonex.Theme.default_theme()}
+      {Soonex.Accessibility.data_attrs()}
     >
       <head>
         {Soonex.Theme.head_script()}
         {Soonex.Mode.head_script()}
+        {Soonex.Accessibility.head_script()}
+        {Soonex.CookieConsent.head_script()}
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="csrf-token" content={get_csrf_token()} />
 
+        <link rel="icon" href={Soonex.Public.path("/images/logo.svg")} type="image/svg+xml" />
         <link rel="icon" href={Soonex.Public.path("/images/favicon.ico")} sizes="48x48" />
         <link
           rel="icon"
@@ -135,28 +133,35 @@ defmodule Soonex.RootLayout do
         <meta name="twitter:image" content={@og_image_url} />
 
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="preload"
+          href={Soonex.Public.path("/fonts/manrope-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+        <link
+          rel="preload"
+          href={Soonex.Public.path("/fonts/outfit-latin-wght-normal.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
         />
         <link rel="stylesheet" href={Soonex.Public.path("/css/site.css")} />
         <script type="module" src={Soonex.Public.path("/js/site.js")} />
       </head>
 
-      <body class="layout typo flex min-h-dvh flex-col bg-root text-ink antialiased">
+      <body class="layout typo flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">
         <.navigate to="#main-content" class="link link--skip">Skip to content</.navigate>
 
         <.demo_site_controls mode={@mode} />
-        <.landing_chrome countdown_start_ms={@countdown_start_ms} />
+        <.site_nav page_path={@page_path} />
 
-        <main
-          id="main-content"
-          class="layout__main flex-1"
-          data-landing
-        >
+        <main id="main-content" class="layout__main flex-1">
           {render(@inner_content)}
         </main>
 
         <.site_footer copyright_holder={@copyright_holder} />
+        <.cookie_consent privacy_path={Soonex.Public.path("/privacy/")} />
 
         <.toast_group id="layout-toast" class="toast" phx-update="ignore" flash={@flash}>
           <:loading>
@@ -185,49 +190,47 @@ defmodule Soonex.RootLayout do
       md_page?(page) and present_string?(page[:title]) ->
         page[:title]
 
-      page[:page_kind] == :home ->
-        "#{site_name} · Elixir static site template"
-
-      page[:page_kind] == :blog_index ->
-        "Blog · #{site_name}"
-
-      page[:page_kind] == :not_found ->
-        "Page not found · #{site_name}"
-
-      page[:page_kind] == :tags_index ->
-        "Tags · #{site_name}"
-
       tag_page?(page) ->
         "#{page[:tag]} · Tags · #{site_name}"
 
       true ->
-        site_name
+        kind_title(page[:page_kind], site_name)
     end
   end
 
+  defp kind_title(:home, site_name), do: "#{site_name} · Launch #{Soonex.Launch.year_label()}"
+  defp kind_title(:blog_index, site_name), do: "Journal · #{site_name}"
+  defp kind_title(:not_found, site_name), do: "Page not found · #{site_name}"
+  defp kind_title(:privacy, site_name), do: "Privacy · #{site_name}"
+  defp kind_title(:tags_index, site_name), do: "Tags · #{site_name}"
+  defp kind_title(_kind, site_name), do: site_name
+
   defp meta_description(page, site_name) do
-    cond do
-      page[:page_kind] == :home ->
-        "Tableau + Corex coming-soon template: static HEEx, design tokens, Markdown. Join the #{site_name} waitlist."
-
-      page[:page_kind] == :blog_index ->
-        "Journal posts from the #{site_name} static site template."
-
-      page[:page_kind] == :not_found ->
-        "This URL is not available on the #{site_name} static site."
-
-      page[:page_kind] == :tags_index ->
-        "Browse tags on the #{site_name} static site."
-
-      tag_page?(page) ->
-        "Posts tagged #{page[:tag]} on the #{site_name} static site."
-
-      present_string?(page[:description]) ->
-        page[:description]
-
-      true ->
-        "A coming-soon static site. Learn more about #{site_name}."
+    if tag_page?(page) do
+      "Journal posts tagged #{page[:tag]} on #{site_name}."
+    else
+      kind_description(page[:page_kind], site_name) ||
+        page_description(page) ||
+        "Tableau + Corex coming-soon template with accessible Phoenix UI components."
     end
+  end
+
+  defp kind_description(:home, _site_name),
+    do:
+      "Tableau + Corex coming-soon template: accessible Phoenix UI, waitlist, journal, and config-driven design tokens."
+
+  defp kind_description(:blog_index, site_name), do: "Shipping notes from #{site_name}."
+  defp kind_description(:not_found, site_name), do: "That page is not on #{site_name}."
+
+  defp kind_description(:privacy, _site_name),
+    do:
+      "Necessary preferences stay on this device. Analytics and marketing stay off unless you allow them."
+
+  defp kind_description(:tags_index, site_name), do: "Browse journal tags on #{site_name}."
+  defp kind_description(_kind, _site_name), do: nil
+
+  defp page_description(page) do
+    if present_string?(page[:description]), do: page[:description]
   end
 
   defp page_path_from_page(page) when is_map(page) do
