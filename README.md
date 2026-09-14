@@ -7,7 +7,7 @@ English-only **Tableau** static site: Corex components, theme/mode toggles, and 
 ## Prerequisites
 
 - Elixir ~> 1.17
-- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2.1`)
+- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2`)
 
 ## Quick start
 
@@ -40,7 +40,7 @@ Rebuild assets: `mix assets.build`.
 - **Launch date:** [`lib/soonex/launch.ex`](lib/soonex/launch.ex). Hero badge and header countdown both read it.
 - **Themes:** overlay **all allowed keys** per theme in [`config/config.exs`](config/config.exs) (`seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`) plus top-level `scales:`. Contrast stays calculated; `*_scale` / duration / opacity keys are rejected. Then `mix corex.design.build`. [`lib/soonex/theme.ex`](lib/soonex/theme.ex) must list the same ids as `data-theme`.
 - **Skins:** each theme has isolated CSS in [`assets/css/skins/`](assets/css/skins/) and optional JS in [`assets/js/skins/`](assets/js/skins/). Imports live in [`assets/css/site.css`](assets/css/site.css) and [`assets/js/skins.js`](assets/js/skins.js). To drop a look, delete the skin files, remove the imports, and remove the id from `Soonex.Theme` and `config :corex_design, :themes`. Shared marketing rhythm stays in [`assets/css/layout.css`](assets/css/layout.css). [`assets/css/hosts.css`](assets/css/hosts.css) is Corex host polish only. No token opacity (`bg-surface/90`).
-- **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); `corex_design` must stay a **runtime** dep.
+- **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); run `mix corex.design.build` after changing accessibility config.
 - **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Stacks follow Corex 0.2 (neo = Outfit + Manrope; uno/duo/leo keep their Corex families).
 - **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); condensed + countdown `hidden`/`inert` in [`assets/js/landing-scroll-chrome.js`](assets/js/landing-scroll-chrome.js).
 - **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). FAQ uses the sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).

@@ -4,7 +4,7 @@ defmodule Soonex.MixProject do
   def project do
     [
       app: :soonex,
-      version: "0.2.1",
+      version: "0.2.2",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -43,9 +43,9 @@ defmodule Soonex.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:corex, "~> 0.2.1"},
-      {:corex_design, "~> 0.2.1"},
-      {:corex_mcp, "~> 0.2.1", only: [:dev, :test]},
+      {:corex, "~> 0.2"},
+      {:corex_design, "~> 0.2", runtime: false},
+      {:corex_mcp, "~> 0.2", only: [:dev, :test]},
       {:color, "~> 0.11"},
       {:floki, "~> 0.38"},
       {:makeup, "~> 1.2"},

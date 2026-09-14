@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2
+
+- Framer-style product launch restage: photo hero with waitlist object, proof marquee, feature bento, product desk, pricing, launch timeline, voice carousel, journal tease, FAQ, and closing waitlist CTA.
+- Harden for Corex 0.2.2+: drop `:corex_design` from Mix `compilers`; keep `mix corex.design.build` in `assets.build`, `pre.test`, and `build`; pin Corex family deps to `~> 0.2` with `corex_design` as `runtime: false`.
+- Drop `assets/package.json` and Lenis; CI/deploy no longer run `npm ci`.
+- Upgrade `a11y_audit` to `~> 0.5.0`; Wallaby axe check stays green on the restaged home page.
+- Add `mix server` (`soonex.port_check` then `tableau.server`) and restore AGENTS.md for Cloud Agent workflows.
+
 ## 0.2.1
 
 - Restage the home as a production launch landing: full-bleed hero, waitlist object on the still, English section ids, and distinct band skeletons.
