@@ -38,6 +38,7 @@ There is one product: the static marketing/blog site. Standard commands live in 
 ### Gotchas
 - Live reload needs `inotify-tools` (installed). If the dev server logs
   `inotify-tools is needed ... fs_inotify_bootstrap_error`, the file watcher is disabled and content
-  changes won't hot-reload — restart the server after installing it.
+  changes won't hot-reload — restart the server after installing it. `mix server` fails fast on
+  Linux when `inotifywait` is missing.
 - Port 4999 is shared by the dev server and the test harness. Stop `mix server` before running
   `mix test`, otherwise the test's Bandit server can't bind the port.
