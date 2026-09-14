@@ -13,24 +13,28 @@ defmodule Soonex.HomePage.Logos do
     <section
       id="logos"
       data-section="logos"
-      class={"#{Shell.section_compact()} bg-root"}
+      class={"#{Shell.section_compact()} border-y border-border bg-root"}
       aria-label="Built with"
     >
       <div class={Shell.stage()}>
-        <p class="m-0 text-sm/6 text-ink-muted">
-          The same stack you already ship with
-        </p>
         <.marquee
           id="soonex-tech-marquee"
-          class="marquee ui-width-full mt-6"
-          duration={24}
-          spacing="2rem"
+          class="marquee soonex-tech-marquee ui-width-full"
+          duration={28}
+          spacing="2.5rem"
           pause_on_interaction
           items={@tech}
         >
           <:item :let={item}>
             <span class="soonex-tech-chip">
-              <img src={Soonex.Public.path(item.src)} alt="" width="32" height="32" />
+              <img
+                src={Soonex.Public.path(item.src)}
+                alt=""
+                width="28"
+                height="28"
+                loading="eager"
+                decoding="sync"
+              />
               <span>{item.name}</span>
             </span>
           </:item>
@@ -44,6 +48,7 @@ defmodule Soonex.HomePage.Logos do
     [
       %{name: "Elixir", src: "/images/tech/elixir.svg"},
       %{name: "Phoenix", src: "/images/tech/phoenixframework.svg"},
+      %{name: "Tableau", src: "/images/tech/tableau.svg"},
       %{name: "Tailwind", src: "/images/tech/tailwindcss.svg"},
       %{name: "HTML5", src: "/images/tech/html5.svg"},
       %{name: "JavaScript", src: "/images/tech/javascript.svg"},
