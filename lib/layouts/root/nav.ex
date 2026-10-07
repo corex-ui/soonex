@@ -15,8 +15,8 @@ defmodule Soonex.Layouts.Root.Nav do
     assigns = assign(assigns, :nav_select_items, nav_select_items())
 
     ~H"""
-    <header class="sticky top-0 z-50 border-b border-border bg-root/90 backdrop-blur-sm">
-      <div class={"#{Shell.stage()} flex items-center justify-between gap-4 py-4 lg:py-5"}>
+    <header class="sticky top-0 z-50 border-b border-border bg-root/85 backdrop-blur-md">
+      <div class={"#{Shell.stage_wide()} flex items-center justify-between gap-4 py-3 lg:py-4"}>
         <div class="flex min-w-0 items-center gap-3">
           <.select
             id="soonex-mobile-nav"
@@ -78,8 +78,8 @@ defmodule Soonex.Layouts.Root.Nav do
   defp desktop_links do
     [
       %{id: :product, label: "Product", to: Public.path("/") <> "#capabilities"},
-      %{id: :how, label: "How it works", to: Public.path("/") <> "#spotlight"},
-      %{id: :scale, label: "Scale", to: Public.path("/") <> "#scale"},
+      %{id: :how, label: "Workflow", to: Public.path("/") <> "#spotlight"},
+      %{id: :proof, label: "Why Soonex", to: Public.path("/") <> "#proof"},
       %{id: :journal, label: "Journal", to: Public.path("/blog")},
       %{id: :questions, label: "FAQ", to: Public.path("/") <> "#questions"}
     ]
@@ -94,15 +94,20 @@ defmodule Soonex.Layouts.Root.Nav do
         redirect: :href
       },
       %{
-        label: "How it works",
+        label: "Workflow",
         value: "spotlight",
         to: Public.path("/") <> "#spotlight",
         redirect: :href
       },
-      %{label: "Scale", value: "scale", to: Public.path("/") <> "#scale", redirect: :href},
+      %{label: "Why Soonex", value: "proof", to: Public.path("/") <> "#proof", redirect: :href},
       %{label: "Journal", value: "blog", to: Public.path("/blog"), redirect: :href},
       %{label: "FAQ", value: "questions", to: Public.path("/") <> "#questions", redirect: :href},
-      %{label: "Join waitlist", value: "waitlist", to: Public.path("/") <> "#waitlist", redirect: :href}
+      %{
+        label: "Join waitlist",
+        value: "waitlist",
+        to: Public.path("/") <> "#waitlist",
+        redirect: :href
+      }
     ])
   end
 end

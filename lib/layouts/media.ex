@@ -16,16 +16,17 @@ defmodule Soonex.Layouts.Media do
     <img
       src={Soonex.Public.path(@src)}
       alt={@alt}
-      class={["soonex-photo", @class]}
+      class={["block size-full object-cover", @class]}
       width={@width}
       height={@height}
       loading={@loading}
+      decoding="async"
       sizes={@sizes}
     />
     """
   end
 
   def credits do
-    "Photographs under the Unsplash License. Tool marks from Simple Icons (CC0)."
+    "Photography from Unsplash (Unsplash License). Tool marks from Simple Icons (CC0) and the Tableau project."
   end
 end

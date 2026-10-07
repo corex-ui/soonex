@@ -17,11 +17,11 @@ defmodule Soonex.HomePage.Faq do
       tone={:root}
     >
       <:title>
-        Before you fork Soonex.
+        Questions, answered.
       </:title>
       <:lede>
-        Customization lives in config :corex_design and HEEx content modules. No parallel CSS
-        framework to maintain.
+        The short version: one config block for the look, plain HEEx modules for the words, and
+        static HTML at the end.
       </:lede>
       <:actions>
         <.navigate to="#waitlist" class="link ui-accent">
@@ -43,7 +43,7 @@ defmodule Soonex.HomePage.Faq do
           <div class="flex flex-col gap-4">
             <p class="m-0 text-sm/6 sm:text-base/7">{item.content}</p>
             <.navigate :if={item.value == "customize"} to="#spotlight" class="link ui-accent w-fit">
-              See how it works <.heroicon name="hero-arrow-down" />
+              See the workflow <.heroicon name="hero-arrow-down" />
             </.navigate>
             <.navigate :if={item.value == "waitlist"} to="#waitlist" class="link ui-accent w-fit">
               Open the waitlist <.heroicon name="hero-arrow-down" />
@@ -78,9 +78,9 @@ defmodule Soonex.HomePage.Faq do
     Corex.Content.new([
       %{
         value: "corex",
-        label: "What is Corex in this template?",
+        label: "What is Corex, and why does Soonex use it?",
         content:
-          "Corex is an accessible Phoenix UI kit. Soonex uses its static-site integration: design tokens from config :corex_design, ui-* modifiers in HEEx, and client hooks for interactive widgets."
+          "Corex is an accessible UI kit for Phoenix. Soonex uses its static-site integration: design tokens from config :corex_design, ui-* modifiers in HEEx, and client hooks that bring widgets to life without a server."
       },
       %{
         value: "customize",
@@ -90,9 +90,9 @@ defmodule Soonex.HomePage.Faq do
       },
       %{
         value: "waitlist",
-        label: "Does the waitlist store email addresses?",
+        label: "Where do waitlist signups go?",
         content:
-          "Not in this demo. Submit shows a toast so you can verify the UX before wiring your list provider. Field names are already structured for a real backend."
+          "Nowhere until you connect a provider. Out of the box, submitting shows a confirmation toast and stores nothing. The field names are ready to post to Buttondown, ConvertKit, or your own endpoint."
       },
       %{
         value: "toolchain",

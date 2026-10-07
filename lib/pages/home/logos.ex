@@ -13,10 +13,13 @@ defmodule Soonex.HomePage.Logos do
     <section
       id="logos"
       data-section="logos"
-      class={"#{Shell.section_compact()} border-y border-border bg-root"}
-      aria-label="Built with"
+      class={"#{Shell.section_compact()} bg-root"}
+      aria-labelledby="soonex-logos-heading"
     >
-      <div class={Shell.stage()}>
+      <div class={Shell.stage_wide()}>
+        <h2 id="soonex-logos-heading" class={"#{Shell.eyebrow()} mb-8 text-center"}>
+          Built on the tools Phoenix teams already trust
+        </h2>
         <.marquee
           id="soonex-tech-marquee"
           class="marquee ui-width-full"
@@ -39,7 +42,7 @@ defmodule Soonex.HomePage.Logos do
     [
       %{name: "Elixir", src: "/images/tech/elixir.svg"},
       %{name: "Phoenix", src: "/images/tech/phoenixframework.svg"},
-      %{name: "Tableau", src: "/images/tech/tableau.svg"},
+      %{name: "Tableau", src: "/images/tech/tableau.jpg"},
       %{name: "Tailwind", src: "/images/tech/tailwindcss.svg"},
       %{name: "HTML5", src: "/images/tech/html5.svg"},
       %{name: "JavaScript", src: "/images/tech/javascript.svg"},

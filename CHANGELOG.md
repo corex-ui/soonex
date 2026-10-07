@@ -2,12 +2,17 @@
 
 ## 0.3.0
 
-- Full home redesign inspired by premium SaaS landing rhythm: warm ivory canvas, charcoal feature bands, left-aligned hero, Corex UI showcase panels, scale section with closing CTA band, and compact waitlist footer block.
-- Simplify customization to Corex Design only: four stock themes (neo/uno/duo/leo) with light/dark modes via Template Options; no per-theme skin CSS/JS. Restore Corex tech marquee with eager hook loading.
-- Drop Framer photography, frosted scroll chrome, and carousel; keep marquee as a Corex component demo.
-- Drop `assets/css/layout.css`, `assets/css/skins/*`, `assets/js/skins/*`, `assets/js/landing*.js`, and `assets/js/theme.js`.
-- Demo controls: light/dark mode toggle and accessibility panel only (no theme switcher).
-- Update README, privacy copy, and blog index lede for the new direction.
+- Redesign the home page with an editorial layout: display-size hero with a photo stage and floating countdown, photo-backed live preview, capabilities bento grid, workflow tabs with steps and copy commands, a proof section with stats, image-led journal cards, FAQ, and a closing waitlist band over photography.
+- Rewrite marketing copy as a product launch rather than template notes.
+- Customize through Corex Design only: four themes (neo, uno, duo, leo) with light and dark modes in `config :corex_design`. Drop per-theme skin CSS and JS (`assets/css/skins/*`, `assets/js/skins/*`, `assets/css/layout.css`, `assets/js/landing*.js`).
+- Keep the Template Options theme switcher (`assets/js/theme.js`, `Soonex.Theme`) and the Corex tech marquee with its default styling.
+- Add `:photo` tone to `Soonex.Layouts.Section` plus display, tile, photo frame, and scrim helpers in `Soonex.Layouts.Shell`.
+- Replace all photography with Unsplash abstract imagery (credited in the README); remove unused portraits and grain texture.
+- Fix the JavaScript logo to the official yellow mark and restore the official Tableau project logo in place of the Tableau Software mark; remove unused tech icons.
+- Replace the journal with six current posts, including a Markdown style guide post.
+- Rename the scale section module to `Soonex.HomePage.Proof`; remove the unused `Soonex.HomePage.Trust`.
+- Update `phoenix_live_view` to 1.2.12, `makeup` to 1.2.3, and `ex_slop` to 0.4.5.
+- Rewrite the README.
 
 ## 0.2.2
 

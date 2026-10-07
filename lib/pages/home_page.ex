@@ -9,7 +9,7 @@ defmodule Soonex.HomePage do
   import Soonex.HomePage.Showcase, only: [showcase: 1]
   import Soonex.HomePage.Features, only: [features: 1]
   import Soonex.HomePage.HowItWorks, only: [how_it_works: 1]
-  import Soonex.HomePage.Pricing, only: [pricing: 1]
+  import Soonex.HomePage.Proof, only: [proof: 1]
   import Soonex.HomePage.Journal, only: [journal: 1]
   import Soonex.HomePage.Faq, only: [faq: 1]
   import Soonex.HomePage.Waitlist, only: [waitlist: 1]
@@ -26,7 +26,7 @@ defmodule Soonex.HomePage do
       <.showcase />
       <.features />
       <.how_it_works />
-      <.pricing />
+      <.proof />
       <.journal posts={@posts} />
       <.faq />
       <.waitlist />

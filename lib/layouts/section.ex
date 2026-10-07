@@ -9,7 +9,8 @@ defmodule Soonex.Layouts.Section do
   attr(:labelledby, :string, required: true)
   attr(:eyebrow, :string, default: nil)
   attr(:section, :string, default: nil)
-  attr(:tone, :atom, default: :root, values: [:root, :surface, :inverse])
+  attr(:tone, :atom, default: :root, values: [:root, :surface, :inverse, :photo])
+  attr(:photo, :string, default: nil, doc: "image path, required when tone is :photo")
   attr(:align, :atom, default: :start)
   attr(:layout, :atom, default: :stack, values: [:stack, :sticky, :split])
   attr(:compact, :boolean, default: false)
@@ -19,6 +20,40 @@ defmodule Soonex.Layouts.Section do
   slot(:lede)
   slot(:actions)
   slot(:inner_block, required: true)
+
+  def block(%{tone: :photo} = assigns) do
+    ~H"""
+    <section
+      id={@id}
+      data-section={@section || @id}
+      class={"#{section_class(@compact)} bg-root"}
+      aria-labelledby={@labelledby}
+    >
+      <div class={Shell.stage_wide()}>
+        <div class={"#{Shell.photo_frame()} px-6 py-16 sm:px-12 sm:py-20 lg:px-16 lg:py-24"}>
+          <img
+            src={Soonex.Public.path(@photo)}
+            alt=""
+            class={Shell.photo_fill()}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class={Shell.scrim()} aria-hidden="true"></div>
+          <div class="max-w-3xl">
+            <p :if={@eyebrow} class={"#{Shell.eyebrow()} text-white/75"}>{@eyebrow}</p>
+            <h2 id={@labelledby} class={"#{Shell.on_photo_heading()} mt-3"}>
+              {render_slot(@title)}
+            </h2>
+            <p :if={@lede != []} class={Shell.on_photo_body()}>{render_slot(@lede)}</p>
+          </div>
+          <div class={Shell.body()}>
+            {render_slot(@inner_block)}
+          </div>
+        </div>
+      </div>
+    </section>
+    """
+  end
 
   def block(assigns) do
     ~H"""
@@ -51,7 +86,7 @@ defmodule Soonex.Layouts.Section do
               {render_slot(@title)}
             </h2>
           </div>
-          <div class="lg:col-span-6 lg:pt-8">
+          <div class="lg:col-span-6 lg:pt-10">
             <p :if={@lede != []} class={lede_class(@tone)}>
               {render_slot(@lede)}
             </p>
@@ -75,9 +110,9 @@ defmodule Soonex.Layouts.Section do
   defp tone_class(:surface), do: "border-y border-border bg-surface"
   defp tone_class(:inverse), do: "soonex-band-inverse bg-accent text-accent-contrast"
 
-  defp stage_class(:split, _tone), do: Shell.stage()
-  defp stage_class(:sticky, _tone), do: "#{Shell.stage()} #{Shell.sticky_grid()}"
-  defp stage_class(:stack, _tone), do: Shell.stage()
+  defp stage_class(:split, _tone), do: Shell.stage_wide()
+  defp stage_class(:sticky, _tone), do: "#{Shell.stage_wide()} #{Shell.sticky_grid()}"
+  defp stage_class(:stack, _tone), do: Shell.stage_wide()
 
   defp intro_class(:sticky, _align), do: Shell.sticky_intro()
   defp intro_class(:stack, :center), do: Shell.intro_center()

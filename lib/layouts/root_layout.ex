@@ -211,13 +211,13 @@ defmodule Soonex.RootLayout do
     else
       kind_description(page[:page_kind], site_name) ||
         page_description(page) ||
-        "Tableau + Corex coming-soon template with accessible Phoenix UI components."
+        "Soonex: the launch page kit for Phoenix teams, built with Tableau and Corex."
     end
   end
 
   defp kind_description(:home, _site_name),
     do:
-      "Tableau + Corex coming-soon template: accessible Phoenix UI, waitlist, journal, and config-driven design tokens."
+      "Soonex is the launch page kit for Phoenix teams: static HTML, accessible Corex components, four themes, a waitlist, and a journal."
 
   defp kind_description(:blog_index, site_name), do: "Shipping notes from #{site_name}."
   defp kind_description(:not_found, site_name), do: "That page is not on #{site_name}."

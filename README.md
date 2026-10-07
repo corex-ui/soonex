@@ -1,80 +1,159 @@
 # Soonex
 
-English-only **Tableau** static site: Corex components, light/dark mode, and the same contrast pipeline as the SaaS template.
+Soonex is a launch page kit for Phoenix teams. It builds a coming-soon site as static HTML with [Tableau](https://github.com/elixir-tools/tableau), styles it with [Corex](https://hexdocs.pm/corex) design tokens, and hydrates accessible Corex components in the browser.
 
-**Related:** multi-locale variant at [github.com/corex-ui/soonex_i18n](https://github.com/corex-ui/soonex_i18n). Corex docs on Hex: [installation](https://hexdocs.pm/corex/installation.html), [Tableau + Corex](https://hexdocs.pm/corex/tableau.html), [Design](https://hexdocs.pm/corex/design.html), [update guide](https://hexdocs.pm/corex/update.html).
+**Live demo:** [corex-ui.github.io/soonex](https://corex-ui.github.io/soonex)
 
-## Prerequisites
+There is also a multi-locale variant: [corex-ui/soonex_i18n](https://github.com/corex-ui/soonex_i18n).
 
-- Elixir ~> 1.17
-- Hex packages `corex`, `corex_design`, and `corex_mcp` (`~> 0.2`)
+## Features
+
+- **Landing page:** hero with launch countdown, tech marquee, live component preview, capabilities grid, workflow tabs, proof section, journal highlights, FAQ, and a closing waitlist band.
+- **Four themes:** `neo`, `uno`, `duo`, and `leo`, each with light and dark modes generated from color seeds in `config :corex_design`. Visitors can switch them in **Template Options**.
+- **Waitlist form:** email, role select, and opt-in switch with toast feedback. It stores nothing until you connect a provider.
+- **Journal:** Markdown posts with cover images, tags, RSS (`/feed.xml`), sitemap, and pagination.
+- **Accessibility panel:** text size, contrast, motion, focus ring, and link underline, saved in the visitor's browser.
+- **Cookie consent and privacy page:** optional categories stay off unless the visitor allows them.
+- **No Node toolchain:** Tailwind v4 and esbuild run as Mix tasks. There is no `package.json`.
+
+## Requirements
+
+- Erlang/OTP 28 and Elixir 1.19 (pinned in [`.tool-versions`](.tool-versions); the project supports Elixir `~> 1.17` and CI also runs 1.17 and 1.18)
+- Hex packages `corex`, `corex_design`, and `corex_mcp` at `~> 0.2`
+- Linux only: `inotify-tools` for live reload in the dev server
+- For `mix test`: Google Chrome and a matching `chromedriver`
 
 ## Quick start
 
 ```shell
+git clone https://github.com/corex-ui/soonex.git
 cd soonex
 mix setup
 mix server
 ```
 
-- Dev site: `http://localhost:4999` (home at `/`).
-- Production output: `MIX_ENV=prod mix build` → `_site/`.
-- Set **`SOONEX_PUBLIC_URL`** for your real origin; otherwise the demo default is `https://corex-ui.github.io/soonex`.
+Open [http://localhost:4999](http://localhost:4999). The dev server watches `lib/`, `_posts/`, `_data/`, and `assets/` and reloads on change.
 
-With `MIX_ENV=dev`, Corex MCP listens at `http://localhost:4004/corex/mcp` (Tableau stays on 4999). Configure your editor using [`.cursor/mcp.json`](.cursor/mcp.json) as an example.
+In development, Corex MCP also runs at `http://localhost:4004/corex/mcp`. See [`.cursor/mcp.json`](.cursor/mcp.json) for an editor configuration example.
 
-`mix tableau.server` logs “server started on http://localhost:4999/” **before** Bandit binds. If you then see `:eaddrinuse`, another process already owns 4999 (a leftover Tableau, Wallaby, or `python -m http.server 4999`). Stop it, then retry:
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `mix setup` | Fetch dependencies and build Corex design CSS |
+| `mix server` | Check that ports 4999 and 4004 are free, then start the Tableau dev server |
+| `mix assets.build` | Rebuild Corex design CSS, Tailwind, and esbuild output |
+| `mix corex.design.build` | Regenerate design tokens and component CSS after changing `config :corex_design` |
+| `MIX_ENV=prod mix build` | Production build into `_site/` with minified CSS and JavaScript |
+| `mix test` | Build the site, then run the Wallaby axe accessibility check on the home page |
+| `mix credo` | Lint |
+| `mix soonex.gen.post My title` | Create a new post in `_posts/` |
+
+## Project structure
+
+```text
+config/config.exs        Tableau, Tailwind, esbuild, and config :corex_design (themes)
+lib/pages/home_page.ex   Home page section order
+lib/pages/home/          One module per home section (hero, logos, showcase, features, ...)
+lib/layouts/             Root layout, nav, footer, post layout, Shell and Section helpers
+lib/soonex/launch.ex     Launch date used by the hero badge and countdown
+assets/css/              Tailwind entry, fonts, and small host helpers
+assets/js/site.js        Corex hook registration, theme and mode persistence, waitlist toast
+extra/                   Static files copied to the site root (images, fonts, favicons)
+_posts/                  Journal posts (Markdown)
+test/                    Wallaby accessibility test
+```
+
+## Customizing
+
+### Brand and SEO
+
+- Logo lockup: [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg)
+- Page titles and meta descriptions: [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex)
+- Open Graph image: [`extra/images/og.svg`](extra/images/og.svg)
+
+### Launch date
+
+Change `@target` in [`lib/soonex/launch.ex`](lib/soonex/launch.ex). The hero badge and countdown both read it.
+
+### Themes
+
+Each theme in `config :corex_design` (in [`config/config.exs`](config/config.exs)) accepts `seeds`, `colors.light` and `colors.dark`, `dimensions.radius`, `dimensions.font`, and `typography`, plus top-level `scales`. After editing, run:
+
+```shell
+mix corex.design.build
+```
+
+Keep styling in Corex `ui-*` modifiers and design tokens in HEEx. [`assets/css/hosts.css`](assets/css/hosts.css) and [`assets/css/chrome.css`](assets/css/chrome.css) only hold small layout helpers.
+
+### Home sections
+
+Sections live in [`lib/pages/home/`](lib/pages/home/) and are composed in [`lib/pages/home_page.ex`](lib/pages/home_page.ex). Shared spacing and type classes are in [`lib/layouts/shell.ex`](lib/layouts/shell.ex), and [`lib/layouts/section.ex`](lib/layouts/section.ex) provides the `block` component with `:root`, `:surface`, `:inverse`, and `:photo` tones.
+
+Photos live in [`extra/images/photos/`](extra/images/photos/) and post covers in [`extra/images/covers/`](extra/images/covers/).
+
+### Waitlist
+
+The form is in [`lib/pages/home/waitlist.ex`](lib/pages/home/waitlist.ex) and the toast in [`assets/js/waitlist.js`](assets/js/waitlist.js). Point the form at your email provider or endpoint before launch; field names are `waitlist[email]`, `waitlist[role]`, and `waitlist[notes]`.
+
+### Journal
+
+Posts are Markdown files in [`_posts/`](_posts/) with `layout: Soonex.PostLayout`. Front matter supports `title`, `date`, `permalink`, `description`, `image`, `image_alt`, `tags`, and `sitemap`. The post [Writing in the journal](_posts/2026-09-08-writing-in-the-journal.md) shows every supported Markdown feature. In development only, draft posts in `_drafts/` and work-in-progress pages in `_wip/` are rendered too, along with future-dated posts.
+
+### Accessibility and cookies
+
+The accessibility panel is configured in [`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex), and cookie consent in [`lib/soonex/cookie_consent.ex`](lib/soonex/cookie_consent.ex). Update [`lib/pages/privacy_page.ex`](lib/pages/privacy_page.ex) for your jurisdiction.
+
+## Deploying
+
+1. Set `SOONEX_PUBLIC_URL` to your production origin. Subpaths such as `https://example.github.io/my-launch` are supported; asset paths are prefixed automatically. Without it, builds use `https://corex-ui.github.io/soonex`.
+2. Run `MIX_ENV=prod mix build`. If you changed permalinks, delete `_site/` first.
+3. Publish `_site/` to any static host. [`lib/pages/not_found_page.ex`](lib/pages/not_found_page.ex) generates `404.html`.
+
+For GitHub Pages, [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) deploys on pushes to `main` after [CI](.github/workflows/ci.yml) passes. Set **Settings > Pages > Source** to **GitHub Actions**.
+
+## Renaming the project
+
+1. Commit your work first; the rename cannot be undone automatically.
+2. Run `mix project.rename your_app` (snake_case). See [`lib/mix/tasks/project.rename.ex`](lib/mix/tasks/project.rename.ex).
+3. Run `mix format` and `mix compile`.
+
+Only the `layout:` line in `_posts/*.md` is rewritten; post bodies are left as they are.
+
+## Troubleshooting
+
+**Port 4999 is already in use.** `mix server` and `mix test` both use port 4999. Find and stop the other process, then retry:
 
 ```shell
 ss -ltnp 'sport = :4999'          # Linux
 lsof -nP -iTCP:4999 -sTCP:LISTEN  # macOS
-kill <pid>
-mix server                      # alias: port check, then tableau.server
 ```
 
-Rebuild assets: `mix assets.build`.
+**Live reload does not work on Linux.** Install `inotify-tools` and restart the dev server.
 
-## Customize (where to edit)
+**Wallaby cannot start a session.** Chrome and `chromedriver` must match versions. You can point at specific binaries with `WALLABY_CHROME_BINARY` and `WALLABY_CHROMEDRIVER_PATH`.
 
-- **Brand / SEO:** lockup in [`lib/layouts/brand.ex`](lib/layouts/brand.ex) and [`extra/images/logo.svg`](extra/images/logo.svg); titles in [`lib/layouts/root_layout.ex`](lib/layouts/root_layout.ex).
-- **Launch date:** [`lib/soonex/launch.ex`](lib/soonex/launch.ex). Hero badge and countdown timer both read it.
-- **Theme:** overlay allowed keys in [`config/config.exs`](config/config.exs) under `config :corex_design` for each theme (`neo`, `uno`, `duo`, `leo`): `seeds`, `colors.light` / `colors.dark`, `dimensions.radius`, `dimensions.font`, `typography`, top-level `scales:`. Then `mix corex.design.build`. Switch themes and light/dark in **Template Options** (demo FAB) — no skin CSS required.
-- **Accessibility:** Corex `--a11y` dialog in the demo FAB ([`lib/soonex/accessibility.ex`](lib/soonex/accessibility.ex)). Preferences live in `localStorage` (`phx:a11y`); run `mix corex.design.build` after changing accessibility config.
-- **Fonts:** self-hosted woff2 in [`extra/fonts/`](extra/fonts/), faces in [`assets/css/fonts.css`](assets/css/fonts.css). Default stack: Outfit (display) + Manrope (sans) + JetBrains Mono.
-- **Chrome:** sticky header in [`lib/layouts/root/nav.ex`](lib/layouts/root/nav.ex); minimal host polish in [`assets/css/hosts.css`](assets/css/hosts.css) and [`assets/css/chrome.css`](assets/css/chrome.css). Prefer Corex `ui-*` modifiers over custom CSS.
-- **Content:** home sections in [`lib/pages/home/`](lib/pages/home/), composed by [`lib/pages/home_page.ex`](lib/pages/home_page.ex). FAQ uses the sticky split (`layout={:sticky}` in [`lib/layouts/section.ex`](lib/layouts/section.ex)).
-- **Blog:** index at [`/blog`](lib/pages/blog_index_page.ex) (`layout_heading`, cards, pagination); posts under [`_posts/`](_posts/) with `Soonex.PostLayout`; tags at [`/tags`](lib/pages/tags_index_page.ex).
-- **Posts / data:** [`_posts/`](_posts/), [`_data/`](_data/), optional `title` / `description` in YAML.
+**Styles look stale after a Corex upgrade.** Run `mix corex.design.build`; generated CSS lives in `assets/corex/` (gitignored).
 
-MDX-style Tableau extras (tags, `include_dir`, sitemap) are summarized in **Tableau data, tags, and static extras** in the longer notes below.
+## Image credits
 
-## Rename this template
+Photography is from [Unsplash](https://unsplash.com) under the [Unsplash License](https://unsplash.com/license).
 
-1. Commit or branch (no undo).
-2. From the repo root: `mix project.rename your_otp_app` (snake_case). See [`lib/mix/tasks/project.rename.ex`](lib/mix/tasks/project.rename.ex).
-3. Run `mix format` and `mix compile`.
-4. **`_posts/*.md`:** only the YAML `layout:` line is rewritten; post bodies stay as-is.
+| File | Photographer |
+| --- | --- |
+| `photos/hero.jpg` | [Andrew Kliatskyi](https://unsplash.com/@kirp) |
+| `photos/texture.jpg` | [Adrien Olichon](https://unsplash.com/@adrienolichon) |
+| `photos/ribbons.jpg` | [Milad Fakurian](https://unsplash.com/@fakurian) |
+| `photos/closing.jpg` | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
+| `covers/waves.jpg` | [Milad Fakurian](https://unsplash.com/@fakurian) |
+| `covers/spectrum.jpg` | [Milad Fakurian](https://unsplash.com/@fakurian) |
+| `covers/haze.jpg` | [MagicPattern](https://unsplash.com/@magicpattern) |
+| `covers/dusk.jpg` | [Martin Martz](https://unsplash.com/@martz90) |
+| `covers/orbit.jpg` | [Martin Martz](https://unsplash.com/@martz90) |
+| `covers/current.jpg` | [Martin Martz](https://unsplash.com/@martz90) |
 
-## Corex assets and JS
+Tool logos in `extra/images/tech/` come from [Simple Icons](https://simpleicons.org) (CC0), except `tableau.jpg`, which is the [Tableau project](https://github.com/elixir-tools/tableau) logo.
 
-- `assets/js/site.js` imports `corex/*`; Esbuild resolves via **`NODE_PATH`** including `deps` ([`config/config.exs`](config/config.exs)).
-- Run **`mix corex.design.build`** after upgrading Corex / changing `config :corex_design`.
-- Generated CSS lives under `assets/corex/` (gitignored).
-- Client UI: [`assets/js/theme.js`](assets/js/theme.js) and [`assets/js/mode.js`](assets/js/mode.js) for theme/mode persistence; a11y head script; waitlist toast in [`assets/js/waitlist.js`](assets/js/waitlist.js). Corex marquee loads eagerly in [`assets/js/site.js`](assets/js/site.js).
+## License
 
-## Production and hosting
-
-- GitHub Actions: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) publishes Pages **only after CI succeeds** on a **push to `main`**. In the repo, set Pages **Source** to **GitHub Actions**.
-- Clear `_site/` when permalinks change (`rm -rf _site`) so stale paths are not published.
-- **404:** [`lib/pages/not_found_page.ex`](lib/pages/not_found_page.ex) emits `_site/404.html` for static hosts. `mix tableau.server` 404 behavior is still Tableau’s default.
-
-## Tableau data, tags, and static extras
-
-- **`@data`:** YAML (etc.) under [`_data/`](_data/) merged into the page assigns (e.g. `@data["facts"]["headline"]`).
-- **Tags:** enabled in [`config/config.exs`](config/config.exs); index at **`/tags`** via [`lib/pages/tags_index_page.ex`](lib/pages/tags_index_page.ex).
-- **Static passthrough:** [`static/`](static/) via `include_dir` on `config :tableau, :config`.
-- **Sitemap:** optional `sitemap:` on `use Tableau.Page` or in post front matter.
-
-## Drafts
-
-Drafts and WIP live in `_drafts` and `_wip` (see `config/dev.exs` / `config/prod.exs`).
+This repository does not include a license file yet. Add one before you redistribute a fork.

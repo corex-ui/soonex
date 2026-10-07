@@ -22,14 +22,14 @@ defmodule Soonex.Layouts.Root.Footer do
 
     ~H"""
     <footer class="soonex-footer mt-auto border-t border-border bg-root py-16 sm:py-20">
-      <div class={Shell.stage()}>
+      <div class={Shell.stage_wide()}>
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div class="lg:col-span-4">
             <.lockup />
-            <p class="mt-4 text-sm/6 text-ink-muted">
-              Tableau + Corex coming-soon template.
+            <p class="mt-4 max-w-xs text-sm/6 text-ink-muted">
+              The launch page kit for Phoenix teams. Static HTML, accessible Corex components,
+              and a waitlist that is ready on day one.
             </p>
-            <p class="mt-1 text-sm/6 text-ink-muted">Accessible Phoenix UI</p>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8">
             <div>
@@ -48,12 +48,12 @@ defmodule Soonex.Layouts.Root.Footer do
                     to={Soonex.Public.path("/") <> "#spotlight"}
                     class="link ui-nav ui-size-sm"
                   >
-                    How it works
+                    Workflow
                   </.navigate>
                 </li>
                 <li>
-                  <.navigate to={Soonex.Public.path("/") <> "#scale"} class="link ui-nav ui-size-sm">
-                    Scale
+                  <.navigate to={Soonex.Public.path("/") <> "#proof"} class="link ui-nav ui-size-sm">
+                    Why Soonex
                   </.navigate>
                 </li>
               </ul>

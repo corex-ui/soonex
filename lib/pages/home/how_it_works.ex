@@ -12,17 +12,17 @@ defmodule Soonex.HomePage.HowItWorks do
       id="spotlight"
       section="spotlight"
       labelledby="soonex-spotlight-heading"
+      eyebrow="Workflow"
       tone={:inverse}
       layout={:split}
       heading_size={:large}
     >
       <:title>
-        Config-driven UI, shipped as static HTML.
+        From clone to live in an afternoon.
       </:title>
       <:lede>
-        Customize seeds, radius, and typography under config :corex_design, then edit HEEx content
-        modules. Mix handles Corex design CSS, Tailwind, and esbuild — you do not maintain a
-        parallel design system.
+        Three steps, all in Mix. No Node toolchain, no parallel design system, and nothing to
+        maintain beyond your config and your copy.
       </:lede>
       <.tabs
         id="soonex-how-tabs"
@@ -70,11 +70,11 @@ defmodule Soonex.HomePage.HowItWorks do
         meta: %{
           id: "setup",
           intro:
-            "Clone Soonex, install Hex dependencies, and build Corex design assets before you open the site locally.",
+            "Clone the repo, fetch Hex dependencies, and build the design assets in one command.",
           steps: [
-            "Run mix setup from the repo root — it fetches deps and runs mix corex.design.build.",
-            "Start the dev server with mix server and open http://localhost:4999.",
-            "Use Template Options to switch neo, uno, duo, or leo and toggle light/dark mode."
+            "Run mix setup from the repo root. It fetches deps and builds Corex design CSS.",
+            "Start the dev server with mix server and open localhost:4999.",
+            "Try neo, uno, duo, or leo and light or dark mode from Template Options."
           ],
           command: "mix setup",
           command_label: "mix setup"
@@ -86,12 +86,11 @@ defmodule Soonex.HomePage.HowItWorks do
         content: "Customize",
         meta: %{
           id: "customize",
-          intro:
-            "Brand the template through config :corex_design and HEEx content modules — not a parallel CSS framework.",
+          intro: "Make it yours with one config block and plain HEEx content modules.",
           steps: [
-            "Edit seeds, radius, fonts, and typography under config :corex_design.",
+            "Set seeds, radius, fonts, and type scale under config :corex_design.",
             "Run mix corex.design.build to regenerate tokens and component CSS.",
-            "Update copy in lib/pages/home and lib/layouts without touching skin files."
+            "Edit section copy in lib/pages/home and the launch date in Soonex.Launch."
           ],
           command: "mix corex.design.build",
           command_label: "mix corex.design.build"
@@ -104,11 +103,11 @@ defmodule Soonex.HomePage.HowItWorks do
         meta: %{
           id: "ship",
           intro:
-            "Tableau emits static HTML into _site/. Deploy the folder to GitHub Pages or any static host.",
+            "Build static HTML into _site/ and publish it to GitHub Pages or any static host.",
           steps: [
-            "Set SOONEX_PUBLIC_URL to your production origin before building.",
-            "Run MIX_ENV=prod mix build to compile _site/ with prefixed asset paths.",
-            "Wire the waitlist form to your provider — the demo toast flow is already in place."
+            "Set SOONEX_PUBLIC_URL to your production origin.",
+            "Run MIX_ENV=prod mix build to produce _site/ with prefixed asset paths.",
+            "Point the waitlist form at your email provider and go live."
           ],
           command: "MIX_ENV=prod mix build",
           command_label: "prod build"
