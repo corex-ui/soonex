@@ -146,8 +146,8 @@ defmodule Soonex.RootLayout do
           type="font/woff2"
           crossorigin
         />
-        <link rel="stylesheet" href={Soonex.Public.path("/css/site.css")} />
-        <script type="module" src={Soonex.Public.path("/js/site.js")} />
+        <link rel="stylesheet" href={Soonex.Public.asset("/css/site.css")} />
+        <script type="module" src={Soonex.Public.asset("/js/site.js")} />
       </head>
 
       <body class="layout typo flex min-h-dvh min-w-0 flex-col overflow-x-clip bg-root text-ink antialiased">

@@ -15,4 +15,11 @@ defmodule Soonex.Public do
       pfx -> pfx <> root
     end
   end
+
+  def asset(path) when is_binary(path) do
+    case Application.get_env(:soonex, :asset_version) do
+      version when is_binary(version) and version != "" -> path(path) <> "?v=" <> version
+      _ -> path(path)
+    end
+  end
 end

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Version `site.css` and `site.js` URLs in production builds (`?v=` plus the commit SHA, or the build time outside GitHub Actions) so visitors get new styles after a deploy without a hard refresh.
+
 ## 0.3.0
 
 - Redesign the home page with an editorial layout: display-size hero with a photo stage and floating countdown, photo-backed live preview, capabilities bento grid, workflow tabs with steps and copy commands, a proof section with stats, image-led journal cards, FAQ, and a closing waitlist band over photography.
