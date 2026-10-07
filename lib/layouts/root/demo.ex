@@ -4,6 +4,8 @@ defmodule Soonex.Layouts.Root.Demo do
   use Phoenix.Component
   use Corex
 
+  import Soonex.Accessibility, only: [accessibility_panel: 1]
+
   attr(:mode, :any, required: true)
 
   def demo_site_controls(assigns) do
@@ -13,6 +15,7 @@ defmodule Soonex.Layouts.Root.Demo do
       aria-label="Demo site controls"
       class="fixed bottom-space end-space z-50 flex flex-col items-end gap-space"
     >
+      <.accessibility_panel />
       <.floating_panel
         id="site-controls"
         class="floating-panel"
@@ -46,6 +49,16 @@ defmodule Soonex.Layouts.Root.Demo do
                 close_on_select={false}
                 update_trigger={false}
                 on_value_change_client="corex:set-theme"
+                positioning={
+                  %Corex.Positioning{
+                    strategy: "fixed",
+                    placement: "bottom-start",
+                    same_width: true,
+                    gutter: 8,
+                    slide: false,
+                    fit_viewport: false
+                  }
+                }
                 translation={%Corex.Select.Translation{placeholder: "Theme"}}
               >
                 <:label>Theme</:label>
@@ -78,11 +91,11 @@ defmodule Soonex.Layouts.Root.Demo do
         </:content>
       </.floating_panel>
       <.navigate
-        to="https://corex.gigalixirapp.com/templates"
+        to="https://hexdocs.pm/corex"
         class="button ui-accent ui-solid ui-size-sm"
         external
       >
-        Made with Corex <.heroicon name="hero-arrow-down-tray" />
+        Corex docs <.heroicon name="hero-arrow-up-right" />
       </.navigate>
     </div>
     """

@@ -1,5 +1,45 @@
 # Changelog
 
+## 0.3.0
+
+- Redesign the home page with an editorial layout: display-size hero with a photo stage and floating countdown, photo-backed live preview, capabilities bento grid, workflow tabs with steps and copy commands, a proof section with stats, image-led journal cards, FAQ, and a closing waitlist band over photography.
+- Rewrite marketing copy as a product launch rather than template notes.
+- Customize through Corex Design only: four themes (neo, uno, duo, leo) with light and dark modes in `config :corex_design`. Drop per-theme skin CSS and JS (`assets/css/skins/*`, `assets/js/skins/*`, `assets/css/layout.css`, `assets/js/landing*.js`).
+- Keep the Template Options theme switcher (`assets/js/theme.js`, `Soonex.Theme`) and the Corex tech marquee with its default styling.
+- Add `:photo` tone to `Soonex.Layouts.Section` plus display, tile, photo frame, and scrim helpers in `Soonex.Layouts.Shell`.
+- Replace all photography with Unsplash abstract imagery (credited in the README); remove unused portraits and grain texture.
+- Fix the JavaScript logo to the official yellow mark and restore the official Tableau project logo in place of the Tableau Software mark; remove unused tech icons.
+- Replace the journal with six current posts, including a Markdown style guide post.
+- Rename the scale section module to `Soonex.HomePage.Proof`; remove the unused `Soonex.HomePage.Trust`.
+- Update `phoenix_live_view` to 1.2.12, `makeup` to 1.2.3, and `ex_slop` to 0.4.5.
+- Rewrite the README.
+
+## 0.2.2
+
+- Harden for Corex 0.2.2+: drop `:corex_design` from Mix `compilers`; keep `mix corex.design.build` in `assets.build`, `pre.test`, and `build`; pin Corex family deps to `~> 0.2` with `corex_design` as `runtime: false`.
+- Drop `assets/package.json` and Lenis; CI/deploy no longer run `npm ci`.
+- Upgrade `a11y_audit` to `~> 0.5.0`; Wallaby axe check stays green on the home page.
+- Add `mix server` (`soonex.port_check` then `tableau.server`) and restore AGENTS.md for Cloud Agent workflows.
+
+## 0.2.1
+
+- Restage the home as a production launch landing: full-bleed hero, waitlist object on the still, English section ids, and distinct band skeletons.
+- Drop the three-up plan cards, Latin module names, and tech-icon footer. Log tease and four-room exhibit replace them.
+- Upgrade Corex packages to 0.2.1 (`corex`, `corex_design`, `corex_mcp`).
+- Keep stock Corex themes (neo/uno/duo/leo) and self-host their type stacks.
+- Production marketing chrome: SVG lockup, sticky condensed header, waitlist-card hero, full-width timer.
+- Overlay every allowed Corex design key (seeds, light/dark colors, radius, font, typography) plus top-level `scales:`.
+- Home bands each use one signature component (carousel, data_table, tabs, collapsible, date_picker, tooltip). FAQ keeps the sticky split.
+- Blog, tags, and 404 use `layout_heading`, article cards, and pagination instead of `data_list` rows.
+- Header countdown uses `hidden` + `inert` until past the hero sentinel (no transform peek).
+- Drop homepage/blog BEM CSS in favor of inline Tailwind + Corex tokens.
+- Use the common Tailwind marketing section (`py-24` / heading cluster / `mt-16` body) with a full-bleed stage (`max-w-[90rem]`).
+- Override Tableau's `mdex ~> 0.11.1` pin to `mdex ~> 0.13.2` (CVE-2026-53426 / 53427 / 53428 / 53429 / 54888 / 54889).
+- Add `mix soonex.server` / `mix soonex.port_check` so a taken :4999 fails with the occupant instead of Tableau's premature “server started” log.
+- Drop Lenis and `assets/package.json`; native `scroll-smooth` is enough.
+- Enable Corex accessibility (`accessibility: true`) with the official `--a11y` dialog (localStorage, no Phoenix plug). `corex_design` is a runtime dependency for that.
+- Tiny `hosts.css` after `corex.css`. No token opacity.
+
 ## 0.2.0
 
 - Upgrade to Corex 0.2 (`corex`, `corex_design`, `corex_mcp`); replace Designex with `mix corex.design.build`.
